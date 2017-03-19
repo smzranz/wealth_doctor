@@ -1,0 +1,929 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C30DB1701E76ECB000980DCD /* TagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30DB16F1E76ECB000980DCD /* TagsCollectionViewCell.swift */; };
+		C37253A21E73ED3500ED2A43 /* NewsArticlesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37253A11E73ED3500ED2A43 /* NewsArticlesCollectionViewCell.swift */; };
+		C37253C11E73EF3F00ED2A43 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = C37253A51E73EF3F00ED2A43 /* NSData+ImageContentType.m */; };
+		C37253C21E73EF3F00ED2A43 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C37253A71E73EF3F00ED2A43 /* SDImageCache.m */; };
+		C37253C31E73EF3F00ED2A43 /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = C37253A91E73EF3F00ED2A43 /* SDWebImageCompat.m */; };
+		C37253C41E73EF3F00ED2A43 /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C37253AB1E73EF3F00ED2A43 /* SDWebImageDecoder.m */; };
+		C37253C51E73EF3F00ED2A43 /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = C37253AD1E73EF3F00ED2A43 /* SDWebImageDownloader.m */; };
+		C37253C61E73EF3F00ED2A43 /* SDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C37253AF1E73EF3F00ED2A43 /* SDWebImageDownloaderOperation.m */; };
+		C37253C71E73EF3F00ED2A43 /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C37253B11E73EF3F00ED2A43 /* SDWebImageManager.m */; };
+		C37253C81E73EF3F00ED2A43 /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C37253B41E73EF3F00ED2A43 /* SDWebImagePrefetcher.m */; };
+		C37253C91E73EF3F00ED2A43 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C37253B61E73EF3F00ED2A43 /* UIButton+WebCache.m */; };
+		C37253CA1E73EF3F00ED2A43 /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = C37253B81E73EF3F00ED2A43 /* UIImage+GIF.m */; };
+		C37253CB1E73EF3F00ED2A43 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = C37253BA1E73EF3F00ED2A43 /* UIImage+MultiFormat.m */; };
+		C37253CC1E73EF3F00ED2A43 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C37253BC1E73EF3F00ED2A43 /* UIImageView+HighlightedWebCache.m */; };
+		C37253CD1E73EF3F00ED2A43 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C37253BE1E73EF3F00ED2A43 /* UIImageView+WebCache.m */; };
+		C37253CE1E73EF3F00ED2A43 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C37253C01E73EF3F00ED2A43 /* UIView+WebCacheOperation.m */; };
+		C37253D01E747E0100ED2A43 /* KnowMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37253CF1E747E0100ED2A43 /* KnowMoreViewController.swift */; };
+		C37D749D1E7E620700996448 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37D749C1E7E620600996448 /* MenuCollectionViewCell.swift */; };
+		C37D749F1E7E621F00996448 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37D749E1E7E621F00996448 /* MenuViewController.swift */; };
+		C397A8471E62CE4A00BA7724 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397A8461E62CE4A00BA7724 /* AppDelegate.swift */; };
+		C397A8491E62CE4A00BA7724 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397A8481E62CE4A00BA7724 /* ViewController.swift */; };
+		C397A84C1E62CE4A00BA7724 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C397A84A1E62CE4A00BA7724 /* Main.storyboard */; };
+		C397A84F1E62CE4A00BA7724 /* Wealth_Doctor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C397A84D1E62CE4A00BA7724 /* Wealth_Doctor.xcdatamodeld */; };
+		C397A8511E62CE4A00BA7724 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C397A8501E62CE4A00BA7724 /* Assets.xcassets */; };
+		C397A8541E62CE4A00BA7724 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C397A8521E62CE4A00BA7724 /* LaunchScreen.storyboard */; };
+		C397A85F1E62CE4A00BA7724 /* Wealth_DoctorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397A85E1E62CE4A00BA7724 /* Wealth_DoctorTests.swift */; };
+		C397A86A1E62CE4A00BA7724 /* Wealth_DoctorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397A8691E62CE4A00BA7724 /* Wealth_DoctorUITests.swift */; };
+		C397A8781E631A1A00BA7724 /* SettingPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397A8771E631A1A00BA7724 /* SettingPageCell.swift */; };
+		C3A90B171E6A81D800703389 /* VerifyOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A90B161E6A81D800703389 /* VerifyOTPViewController.swift */; };
+		C3A90B221E6A94AC00703389 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A90B1A1E6A94AC00703389 /* FMDatabase.m */; };
+		C3A90B231E6A94AC00703389 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A90B1C1E6A94AC00703389 /* FMDatabaseAdditions.m */; };
+		C3A90B241E6A94AC00703389 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A90B1E1E6A94AC00703389 /* FMDatabasePool.m */; };
+		C3A90B251E6A94AC00703389 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A90B201E6A94AC00703389 /* FMDatabaseQueue.m */; };
+		C3A90B281E6A94C200703389 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A90B271E6A94C200703389 /* FMResultSet.m */; };
+		C3A90B2B1E6A950600703389 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A90B2A1E6A950600703389 /* DataBaseManager.swift */; };
+		C3A90B2E1E6A964900703389 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A90B2D1E6A964900703389 /* libsqlite3.tbd */; };
+		C3A90B301E6A995000703389 /* TableCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A90B2F1E6A995000703389 /* TableCreateViewController.swift */; };
+		C3A90B321E6C293200703389 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A90B311E6C293200703389 /* ChatViewController.swift */; };
+		C3A90B341E6C294300703389 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A90B331E6C294300703389 /* ChatTableViewCell.swift */; };
+		C3BB325F1E6F1E4F00DD3D44 /* IQNSArray+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB32491E6F1E4F00DD3D44 /* IQNSArray+Sort.swift */; };
+		C3BB32601E6F1E4F00DD3D44 /* IQUIScrollView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB324A1E6F1E4F00DD3D44 /* IQUIScrollView+Additions.swift */; };
+		C3BB32611E6F1E4F00DD3D44 /* IQUITextFieldView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB324B1E6F1E4F00DD3D44 /* IQUITextFieldView+Additions.swift */; };
+		C3BB32621E6F1E4F00DD3D44 /* IQUIView+Hierarchy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB324C1E6F1E4F00DD3D44 /* IQUIView+Hierarchy.swift */; };
+		C3BB32631E6F1E4F00DD3D44 /* IQUIViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB324D1E6F1E4F00DD3D44 /* IQUIViewController+Additions.swift */; };
+		C3BB32641E6F1E4F00DD3D44 /* IQUIWindow+Hierarchy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB324E1E6F1E4F00DD3D44 /* IQUIWindow+Hierarchy.swift */; };
+		C3BB32651E6F1E4F00DD3D44 /* IQKeyboardManagerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB32501E6F1E4F00DD3D44 /* IQKeyboardManagerConstants.swift */; };
+		C3BB32661E6F1E4F00DD3D44 /* IQKeyboardManagerConstantsInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB32511E6F1E4F00DD3D44 /* IQKeyboardManagerConstantsInternal.swift */; };
+		C3BB32671E6F1E4F00DD3D44 /* IQKeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB32521E6F1E4F00DD3D44 /* IQKeyboardManager.swift */; };
+		C3BB32681E6F1E4F00DD3D44 /* IQKeyboardReturnKeyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB32541E6F1E4F00DD3D44 /* IQKeyboardReturnKeyHandler.swift */; };
+		C3BB32691E6F1E4F00DD3D44 /* IQTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB32561E6F1E4F00DD3D44 /* IQTextView.swift */; };
+		C3BB326A1E6F1E4F00DD3D44 /* IQBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB32581E6F1E4F00DD3D44 /* IQBarButtonItem.swift */; };
+		C3BB326B1E6F1E4F00DD3D44 /* IQPreviousNextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB32591E6F1E4F00DD3D44 /* IQPreviousNextView.swift */; };
+		C3BB326C1E6F1E4F00DD3D44 /* IQTitleBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB325A1E6F1E4F00DD3D44 /* IQTitleBarButtonItem.swift */; };
+		C3BB326D1E6F1E4F00DD3D44 /* IQToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB325B1E6F1E4F00DD3D44 /* IQToolbar.swift */; };
+		C3BB326E1E6F1E4F00DD3D44 /* IQUIView+IQKeyboardToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB325C1E6F1E4F00DD3D44 /* IQUIView+IQKeyboardToolbar.swift */; };
+		C3BB326F1E6F1E4F00DD3D44 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C3BB325E1E6F1E4F00DD3D44 /* IQKeyboardManager.bundle */; };
+		C3BB32711E6F2EED00DD3D44 /* LabelPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB32701E6F2EED00DD3D44 /* LabelPadding.swift */; };
+		C3CCA6401E64845C0019A63E /* ic_launcher.png in Resources */ = {isa = PBXBuildFile; fileRef = C3CCA63F1E64845C0019A63E /* ic_launcher.png */; };
+		C3CCA6421E6484660019A63E /* office_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C3CCA6411E6484660019A63E /* office_logo.png */; };
+		C3E702351E688F4800B596E8 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E702341E688F4800B596E8 /* OTPViewController.swift */; };
+		C3E702371E68916500B596E8 /* intenetcheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E702361E68916500B596E8 /* intenetcheck.swift */; };
+		C3EBD1D61E65FB0300E22661 /* SettingsPageVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EBD1D51E65FB0300E22661 /* SettingsPageVIewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C397A85B1E62CE4A00BA7724 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C397A83B1E62CE4900BA7724 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C397A8421E62CE4A00BA7724;
+			remoteInfo = "Wealth Doctor";
+		};
+		C397A8661E62CE4A00BA7724 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C397A83B1E62CE4900BA7724 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C397A8421E62CE4A00BA7724;
+			remoteInfo = "Wealth Doctor";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C30DB16F1E76ECB000980DCD /* TagsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewCell.swift; sourceTree = "<group>"; };
+		C37253A11E73ED3500ED2A43 /* NewsArticlesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsArticlesCollectionViewCell.swift; sourceTree = "<group>"; };
+		C37253A41E73EF3F00ED2A43 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
+		C37253A51E73EF3F00ED2A43 /* NSData+ImageContentType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+ImageContentType.m"; sourceTree = "<group>"; };
+		C37253A61E73EF3F00ED2A43 /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
+		C37253A71E73EF3F00ED2A43 /* SDImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageCache.m; sourceTree = "<group>"; };
+		C37253A81E73EF3F00ED2A43 /* SDWebImageCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageCompat.h; sourceTree = "<group>"; };
+		C37253A91E73EF3F00ED2A43 /* SDWebImageCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageCompat.m; sourceTree = "<group>"; };
+		C37253AA1E73EF3F00ED2A43 /* SDWebImageDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDecoder.h; sourceTree = "<group>"; };
+		C37253AB1E73EF3F00ED2A43 /* SDWebImageDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDecoder.m; sourceTree = "<group>"; };
+		C37253AC1E73EF3F00ED2A43 /* SDWebImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloader.h; sourceTree = "<group>"; };
+		C37253AD1E73EF3F00ED2A43 /* SDWebImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloader.m; sourceTree = "<group>"; };
+		C37253AE1E73EF3F00ED2A43 /* SDWebImageDownloaderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloaderOperation.h; sourceTree = "<group>"; };
+		C37253AF1E73EF3F00ED2A43 /* SDWebImageDownloaderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloaderOperation.m; sourceTree = "<group>"; };
+		C37253B01E73EF3F00ED2A43 /* SDWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageManager.h; sourceTree = "<group>"; };
+		C37253B11E73EF3F00ED2A43 /* SDWebImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageManager.m; sourceTree = "<group>"; };
+		C37253B21E73EF3F00ED2A43 /* SDWebImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageOperation.h; sourceTree = "<group>"; };
+		C37253B31E73EF3F00ED2A43 /* SDWebImagePrefetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImagePrefetcher.h; sourceTree = "<group>"; };
+		C37253B41E73EF3F00ED2A43 /* SDWebImagePrefetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImagePrefetcher.m; sourceTree = "<group>"; };
+		C37253B51E73EF3F00ED2A43 /* UIButton+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+WebCache.h"; sourceTree = "<group>"; };
+		C37253B61E73EF3F00ED2A43 /* UIButton+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WebCache.m"; sourceTree = "<group>"; };
+		C37253B71E73EF3F00ED2A43 /* UIImage+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GIF.h"; sourceTree = "<group>"; };
+		C37253B81E73EF3F00ED2A43 /* UIImage+GIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GIF.m"; sourceTree = "<group>"; };
+		C37253B91E73EF3F00ED2A43 /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MultiFormat.h"; sourceTree = "<group>"; };
+		C37253BA1E73EF3F00ED2A43 /* UIImage+MultiFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MultiFormat.m"; sourceTree = "<group>"; };
+		C37253BB1E73EF3F00ED2A43 /* UIImageView+HighlightedWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+HighlightedWebCache.h"; sourceTree = "<group>"; };
+		C37253BC1E73EF3F00ED2A43 /* UIImageView+HighlightedWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+HighlightedWebCache.m"; sourceTree = "<group>"; };
+		C37253BD1E73EF3F00ED2A43 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
+		C37253BE1E73EF3F00ED2A43 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
+		C37253BF1E73EF3F00ED2A43 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
+		C37253C01E73EF3F00ED2A43 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		C37253CF1E747E0100ED2A43 /* KnowMoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnowMoreViewController.swift; sourceTree = "<group>"; };
+		C37D749C1E7E620600996448 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		C37D749E1E7E621F00996448 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		C397A8431E62CE4A00BA7724 /* Wealth Doctor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wealth Doctor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C397A8461E62CE4A00BA7724 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C397A8481E62CE4A00BA7724 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C397A84B1E62CE4A00BA7724 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C397A84E1E62CE4A00BA7724 /* Wealth_Doctor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Wealth_Doctor.xcdatamodel; sourceTree = "<group>"; };
+		C397A8501E62CE4A00BA7724 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C397A8531E62CE4A00BA7724 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C397A8551E62CE4A00BA7724 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C397A85A1E62CE4A00BA7724 /* Wealth DoctorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Wealth DoctorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C397A85E1E62CE4A00BA7724 /* Wealth_DoctorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wealth_DoctorTests.swift; sourceTree = "<group>"; };
+		C397A8601E62CE4A00BA7724 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C397A8651E62CE4A00BA7724 /* Wealth DoctorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Wealth DoctorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C397A8691E62CE4A00BA7724 /* Wealth_DoctorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wealth_DoctorUITests.swift; sourceTree = "<group>"; };
+		C397A86B1E62CE4A00BA7724 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C397A8771E631A1A00BA7724 /* SettingPageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingPageCell.swift; sourceTree = "<group>"; };
+		C3A90B161E6A81D800703389 /* VerifyOTPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyOTPViewController.swift; sourceTree = "<group>"; };
+		C3A90B181E6A94AB00703389 /* Wealth Doctor-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wealth Doctor-Bridging-Header.h"; sourceTree = "<group>"; };
+		C3A90B191E6A94AC00703389 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		C3A90B1A1E6A94AC00703389 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		C3A90B1B1E6A94AC00703389 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		C3A90B1C1E6A94AC00703389 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		C3A90B1D1E6A94AC00703389 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		C3A90B1E1E6A94AC00703389 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		C3A90B1F1E6A94AC00703389 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		C3A90B201E6A94AC00703389 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		C3A90B211E6A94AC00703389 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		C3A90B261E6A94C200703389 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		C3A90B271E6A94C200703389 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		C3A90B2A1E6A950600703389 /* DataBaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
+		C3A90B2D1E6A964900703389 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		C3A90B2F1E6A995000703389 /* TableCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCreateViewController.swift; sourceTree = "<group>"; };
+		C3A90B311E6C293200703389 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		C3A90B331E6C294300703389 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		C3BB32491E6F1E4F00DD3D44 /* IQNSArray+Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQNSArray+Sort.swift"; sourceTree = "<group>"; };
+		C3BB324A1E6F1E4F00DD3D44 /* IQUIScrollView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIScrollView+Additions.swift"; sourceTree = "<group>"; };
+		C3BB324B1E6F1E4F00DD3D44 /* IQUITextFieldView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUITextFieldView+Additions.swift"; sourceTree = "<group>"; };
+		C3BB324C1E6F1E4F00DD3D44 /* IQUIView+Hierarchy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIView+Hierarchy.swift"; sourceTree = "<group>"; };
+		C3BB324D1E6F1E4F00DD3D44 /* IQUIViewController+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIViewController+Additions.swift"; sourceTree = "<group>"; };
+		C3BB324E1E6F1E4F00DD3D44 /* IQUIWindow+Hierarchy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIWindow+Hierarchy.swift"; sourceTree = "<group>"; };
+		C3BB32501E6F1E4F00DD3D44 /* IQKeyboardManagerConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IQKeyboardManagerConstants.swift; sourceTree = "<group>"; };
+		C3BB32511E6F1E4F00DD3D44 /* IQKeyboardManagerConstantsInternal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IQKeyboardManagerConstantsInternal.swift; sourceTree = "<group>"; };
+		C3BB32521E6F1E4F00DD3D44 /* IQKeyboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IQKeyboardManager.swift; sourceTree = "<group>"; };
+		C3BB32531E6F1E4F00DD3D44 /* IQKeyboardManagerSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQKeyboardManagerSwift.h; sourceTree = "<group>"; };
+		C3BB32541E6F1E4F00DD3D44 /* IQKeyboardReturnKeyHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IQKeyboardReturnKeyHandler.swift; sourceTree = "<group>"; };
+		C3BB32561E6F1E4F00DD3D44 /* IQTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IQTextView.swift; sourceTree = "<group>"; };
+		C3BB32581E6F1E4F00DD3D44 /* IQBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IQBarButtonItem.swift; sourceTree = "<group>"; };
+		C3BB32591E6F1E4F00DD3D44 /* IQPreviousNextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IQPreviousNextView.swift; sourceTree = "<group>"; };
+		C3BB325A1E6F1E4F00DD3D44 /* IQTitleBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IQTitleBarButtonItem.swift; sourceTree = "<group>"; };
+		C3BB325B1E6F1E4F00DD3D44 /* IQToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IQToolbar.swift; sourceTree = "<group>"; };
+		C3BB325C1E6F1E4F00DD3D44 /* IQUIView+IQKeyboardToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIView+IQKeyboardToolbar.swift"; sourceTree = "<group>"; };
+		C3BB325E1E6F1E4F00DD3D44 /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
+		C3BB32701E6F2EED00DD3D44 /* LabelPadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelPadding.swift; sourceTree = "<group>"; };
+		C3CCA63F1E64845C0019A63E /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
+		C3CCA6411E6484660019A63E /* office_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = office_logo.png; sourceTree = "<group>"; };
+		C3E702341E688F4800B596E8 /* OTPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
+		C3E702361E68916500B596E8 /* intenetcheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = intenetcheck.swift; sourceTree = "<group>"; };
+		C3EBD1D51E65FB0300E22661 /* SettingsPageVIewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPageVIewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C397A8401E62CE4A00BA7724 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3A90B2E1E6A964900703389 /* libsqlite3.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C397A8571E62CE4A00BA7724 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C397A8621E62CE4A00BA7724 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C37253A31E73EF3F00ED2A43 /* SDWebImage */ = {
+			isa = PBXGroup;
+			children = (
+				C37253A41E73EF3F00ED2A43 /* NSData+ImageContentType.h */,
+				C37253A51E73EF3F00ED2A43 /* NSData+ImageContentType.m */,
+				C37253A61E73EF3F00ED2A43 /* SDImageCache.h */,
+				C37253A71E73EF3F00ED2A43 /* SDImageCache.m */,
+				C37253A81E73EF3F00ED2A43 /* SDWebImageCompat.h */,
+				C37253A91E73EF3F00ED2A43 /* SDWebImageCompat.m */,
+				C37253AA1E73EF3F00ED2A43 /* SDWebImageDecoder.h */,
+				C37253AB1E73EF3F00ED2A43 /* SDWebImageDecoder.m */,
+				C37253AC1E73EF3F00ED2A43 /* SDWebImageDownloader.h */,
+				C37253AD1E73EF3F00ED2A43 /* SDWebImageDownloader.m */,
+				C37253AE1E73EF3F00ED2A43 /* SDWebImageDownloaderOperation.h */,
+				C37253AF1E73EF3F00ED2A43 /* SDWebImageDownloaderOperation.m */,
+				C37253B01E73EF3F00ED2A43 /* SDWebImageManager.h */,
+				C37253B11E73EF3F00ED2A43 /* SDWebImageManager.m */,
+				C37253B21E73EF3F00ED2A43 /* SDWebImageOperation.h */,
+				C37253B31E73EF3F00ED2A43 /* SDWebImagePrefetcher.h */,
+				C37253B41E73EF3F00ED2A43 /* SDWebImagePrefetcher.m */,
+				C37253B51E73EF3F00ED2A43 /* UIButton+WebCache.h */,
+				C37253B61E73EF3F00ED2A43 /* UIButton+WebCache.m */,
+				C37253B71E73EF3F00ED2A43 /* UIImage+GIF.h */,
+				C37253B81E73EF3F00ED2A43 /* UIImage+GIF.m */,
+				C37253B91E73EF3F00ED2A43 /* UIImage+MultiFormat.h */,
+				C37253BA1E73EF3F00ED2A43 /* UIImage+MultiFormat.m */,
+				C37253BB1E73EF3F00ED2A43 /* UIImageView+HighlightedWebCache.h */,
+				C37253BC1E73EF3F00ED2A43 /* UIImageView+HighlightedWebCache.m */,
+				C37253BD1E73EF3F00ED2A43 /* UIImageView+WebCache.h */,
+				C37253BE1E73EF3F00ED2A43 /* UIImageView+WebCache.m */,
+				C37253BF1E73EF3F00ED2A43 /* UIView+WebCacheOperation.h */,
+				C37253C01E73EF3F00ED2A43 /* UIView+WebCacheOperation.m */,
+			);
+			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		C37D74A01E7E626A00996448 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				C30DB16F1E76ECB000980DCD /* TagsCollectionViewCell.swift */,
+				C3A90B311E6C293200703389 /* ChatViewController.swift */,
+				C3A90B331E6C294300703389 /* ChatTableViewCell.swift */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
+		C37D74A11E7E629200996448 /* Article */ = {
+			isa = PBXGroup;
+			children = (
+				C397A8481E62CE4A00BA7724 /* ViewController.swift */,
+				C37253A11E73ED3500ED2A43 /* NewsArticlesCollectionViewCell.swift */,
+			);
+			name = Article;
+			sourceTree = "<group>";
+		};
+		C37D74A21E7E62AC00996448 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C3EBD1D51E65FB0300E22661 /* SettingsPageVIewController.swift */,
+				C397A8771E631A1A00BA7724 /* SettingPageCell.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		C37D74A31E7E62DA00996448 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				C37D749C1E7E620600996448 /* MenuCollectionViewCell.swift */,
+				C37D749E1E7E621F00996448 /* MenuViewController.swift */,
+			);
+			name = SideMenu;
+			sourceTree = "<group>";
+		};
+		C397A83A1E62CE4900BA7724 = {
+			isa = PBXGroup;
+			children = (
+				C397A8451E62CE4A00BA7724 /* Wealth Doctor */,
+				C397A85D1E62CE4A00BA7724 /* Wealth DoctorTests */,
+				C397A8681E62CE4A00BA7724 /* Wealth DoctorUITests */,
+				C397A8441E62CE4A00BA7724 /* Products */,
+				C3A90B2C1E6A964900703389 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C397A8441E62CE4A00BA7724 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C397A8431E62CE4A00BA7724 /* Wealth Doctor.app */,
+				C397A85A1E62CE4A00BA7724 /* Wealth DoctorTests.xctest */,
+				C397A8651E62CE4A00BA7724 /* Wealth DoctorUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C397A8451E62CE4A00BA7724 /* Wealth Doctor */ = {
+			isa = PBXGroup;
+			children = (
+				C397A8461E62CE4A00BA7724 /* AppDelegate.swift */,
+				C37D74A11E7E629200996448 /* Article */,
+				C37D74A01E7E626A00996448 /* Chat */,
+				C37D74A21E7E62AC00996448 /* Settings */,
+				C37D74A31E7E62DA00996448 /* SideMenu */,
+				C3A90B161E6A81D800703389 /* VerifyOTPViewController.swift */,
+				C3E702341E688F4800B596E8 /* OTPViewController.swift */,
+				C37253CF1E747E0100ED2A43 /* KnowMoreViewController.swift */,
+				C3A90B2F1E6A995000703389 /* TableCreateViewController.swift */,
+				C3BB32701E6F2EED00DD3D44 /* LabelPadding.swift */,
+				C3E702361E68916500B596E8 /* intenetcheck.swift */,
+				C397A84A1E62CE4A00BA7724 /* Main.storyboard */,
+				C397A8501E62CE4A00BA7724 /* Assets.xcassets */,
+				C37253A31E73EF3F00ED2A43 /* SDWebImage */,
+				C3BB32471E6F1E4F00DD3D44 /* IQKeyboardManagerSwift */,
+				C3A90B291E6A94D000703389 /* FMDB */,
+				C397A8521E62CE4A00BA7724 /* LaunchScreen.storyboard */,
+				C397A8551E62CE4A00BA7724 /* Info.plist */,
+				C3CCA63F1E64845C0019A63E /* ic_launcher.png */,
+				C3CCA6411E6484660019A63E /* office_logo.png */,
+				C397A84D1E62CE4A00BA7724 /* Wealth_Doctor.xcdatamodeld */,
+				C3A90B181E6A94AB00703389 /* Wealth Doctor-Bridging-Header.h */,
+			);
+			path = "Wealth Doctor";
+			sourceTree = "<group>";
+		};
+		C397A85D1E62CE4A00BA7724 /* Wealth DoctorTests */ = {
+			isa = PBXGroup;
+			children = (
+				C397A85E1E62CE4A00BA7724 /* Wealth_DoctorTests.swift */,
+				C397A8601E62CE4A00BA7724 /* Info.plist */,
+			);
+			path = "Wealth DoctorTests";
+			sourceTree = "<group>";
+		};
+		C397A8681E62CE4A00BA7724 /* Wealth DoctorUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C397A8691E62CE4A00BA7724 /* Wealth_DoctorUITests.swift */,
+				C397A86B1E62CE4A00BA7724 /* Info.plist */,
+			);
+			path = "Wealth DoctorUITests";
+			sourceTree = "<group>";
+		};
+		C3A90B291E6A94D000703389 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				C3A90B2A1E6A950600703389 /* DataBaseManager.swift */,
+				C3A90B191E6A94AC00703389 /* FMDatabase.h */,
+				C3A90B1A1E6A94AC00703389 /* FMDatabase.m */,
+				C3A90B1B1E6A94AC00703389 /* FMDatabaseAdditions.h */,
+				C3A90B1C1E6A94AC00703389 /* FMDatabaseAdditions.m */,
+				C3A90B1D1E6A94AC00703389 /* FMDatabasePool.h */,
+				C3A90B1E1E6A94AC00703389 /* FMDatabasePool.m */,
+				C3A90B1F1E6A94AC00703389 /* FMDatabaseQueue.h */,
+				C3A90B201E6A94AC00703389 /* FMDatabaseQueue.m */,
+				C3A90B261E6A94C200703389 /* FMResultSet.h */,
+				C3A90B211E6A94AC00703389 /* FMDB.h */,
+				C3A90B271E6A94C200703389 /* FMResultSet.m */,
+			);
+			name = FMDB;
+			sourceTree = "<group>";
+		};
+		C3A90B2C1E6A964900703389 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C3A90B2D1E6A964900703389 /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C3BB32471E6F1E4F00DD3D44 /* IQKeyboardManagerSwift */ = {
+			isa = PBXGroup;
+			children = (
+				C3BB32481E6F1E4F00DD3D44 /* Categories */,
+				C3BB324F1E6F1E4F00DD3D44 /* Constants */,
+				C3BB32521E6F1E4F00DD3D44 /* IQKeyboardManager.swift */,
+				C3BB32531E6F1E4F00DD3D44 /* IQKeyboardManagerSwift.h */,
+				C3BB32541E6F1E4F00DD3D44 /* IQKeyboardReturnKeyHandler.swift */,
+				C3BB32551E6F1E4F00DD3D44 /* IQTextView */,
+				C3BB32571E6F1E4F00DD3D44 /* IQToolbar */,
+				C3BB325D1E6F1E4F00DD3D44 /* Resources */,
+			);
+			path = IQKeyboardManagerSwift;
+			sourceTree = "<group>";
+		};
+		C3BB32481E6F1E4F00DD3D44 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				C3BB32491E6F1E4F00DD3D44 /* IQNSArray+Sort.swift */,
+				C3BB324A1E6F1E4F00DD3D44 /* IQUIScrollView+Additions.swift */,
+				C3BB324B1E6F1E4F00DD3D44 /* IQUITextFieldView+Additions.swift */,
+				C3BB324C1E6F1E4F00DD3D44 /* IQUIView+Hierarchy.swift */,
+				C3BB324D1E6F1E4F00DD3D44 /* IQUIViewController+Additions.swift */,
+				C3BB324E1E6F1E4F00DD3D44 /* IQUIWindow+Hierarchy.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		C3BB324F1E6F1E4F00DD3D44 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				C3BB32501E6F1E4F00DD3D44 /* IQKeyboardManagerConstants.swift */,
+				C3BB32511E6F1E4F00DD3D44 /* IQKeyboardManagerConstantsInternal.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		C3BB32551E6F1E4F00DD3D44 /* IQTextView */ = {
+			isa = PBXGroup;
+			children = (
+				C3BB32561E6F1E4F00DD3D44 /* IQTextView.swift */,
+			);
+			path = IQTextView;
+			sourceTree = "<group>";
+		};
+		C3BB32571E6F1E4F00DD3D44 /* IQToolbar */ = {
+			isa = PBXGroup;
+			children = (
+				C3BB32581E6F1E4F00DD3D44 /* IQBarButtonItem.swift */,
+				C3BB32591E6F1E4F00DD3D44 /* IQPreviousNextView.swift */,
+				C3BB325A1E6F1E4F00DD3D44 /* IQTitleBarButtonItem.swift */,
+				C3BB325B1E6F1E4F00DD3D44 /* IQToolbar.swift */,
+				C3BB325C1E6F1E4F00DD3D44 /* IQUIView+IQKeyboardToolbar.swift */,
+			);
+			path = IQToolbar;
+			sourceTree = "<group>";
+		};
+		C3BB325D1E6F1E4F00DD3D44 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C3BB325E1E6F1E4F00DD3D44 /* IQKeyboardManager.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C397A8421E62CE4A00BA7724 /* Wealth Doctor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C397A86E1E62CE4A00BA7724 /* Build configuration list for PBXNativeTarget "Wealth Doctor" */;
+			buildPhases = (
+				C397A83F1E62CE4A00BA7724 /* Sources */,
+				C397A8401E62CE4A00BA7724 /* Frameworks */,
+				C397A8411E62CE4A00BA7724 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Wealth Doctor";
+			productName = "Wealth Doctor";
+			productReference = C397A8431E62CE4A00BA7724 /* Wealth Doctor.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C397A8591E62CE4A00BA7724 /* Wealth DoctorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C397A8711E62CE4A00BA7724 /* Build configuration list for PBXNativeTarget "Wealth DoctorTests" */;
+			buildPhases = (
+				C397A8561E62CE4A00BA7724 /* Sources */,
+				C397A8571E62CE4A00BA7724 /* Frameworks */,
+				C397A8581E62CE4A00BA7724 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C397A85C1E62CE4A00BA7724 /* PBXTargetDependency */,
+			);
+			name = "Wealth DoctorTests";
+			productName = "Wealth DoctorTests";
+			productReference = C397A85A1E62CE4A00BA7724 /* Wealth DoctorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C397A8641E62CE4A00BA7724 /* Wealth DoctorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C397A8741E62CE4A00BA7724 /* Build configuration list for PBXNativeTarget "Wealth DoctorUITests" */;
+			buildPhases = (
+				C397A8611E62CE4A00BA7724 /* Sources */,
+				C397A8621E62CE4A00BA7724 /* Frameworks */,
+				C397A8631E62CE4A00BA7724 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C397A8671E62CE4A00BA7724 /* PBXTargetDependency */,
+			);
+			name = "Wealth DoctorUITests";
+			productName = "Wealth DoctorUITests";
+			productReference = C397A8651E62CE4A00BA7724 /* Wealth DoctorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C397A83B1E62CE4900BA7724 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = indianmoney.com;
+				TargetAttributes = {
+					C397A8421E62CE4A00BA7724 = {
+						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = VF624LR8S4;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
+					C397A8591E62CE4A00BA7724 = {
+						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = VF624LR8S4;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C397A8421E62CE4A00BA7724;
+					};
+					C397A8641E62CE4A00BA7724 = {
+						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = VF624LR8S4;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C397A8421E62CE4A00BA7724;
+					};
+				};
+			};
+			buildConfigurationList = C397A83E1E62CE4900BA7724 /* Build configuration list for PBXProject "Wealth Doctor" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C397A83A1E62CE4900BA7724;
+			productRefGroup = C397A8441E62CE4A00BA7724 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C397A8421E62CE4A00BA7724 /* Wealth Doctor */,
+				C397A8591E62CE4A00BA7724 /* Wealth DoctorTests */,
+				C397A8641E62CE4A00BA7724 /* Wealth DoctorUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C397A8411E62CE4A00BA7724 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C397A8541E62CE4A00BA7724 /* LaunchScreen.storyboard in Resources */,
+				C397A8511E62CE4A00BA7724 /* Assets.xcassets in Resources */,
+				C3BB326F1E6F1E4F00DD3D44 /* IQKeyboardManager.bundle in Resources */,
+				C397A84C1E62CE4A00BA7724 /* Main.storyboard in Resources */,
+				C3CCA6401E64845C0019A63E /* ic_launcher.png in Resources */,
+				C3CCA6421E6484660019A63E /* office_logo.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C397A8581E62CE4A00BA7724 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C397A8631E62CE4A00BA7724 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C397A83F1E62CE4A00BA7724 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3E702351E688F4800B596E8 /* OTPViewController.swift in Sources */,
+				C3E702371E68916500B596E8 /* intenetcheck.swift in Sources */,
+				C3A90B321E6C293200703389 /* ChatViewController.swift in Sources */,
+				C397A8491E62CE4A00BA7724 /* ViewController.swift in Sources */,
+				C3BB32671E6F1E4F00DD3D44 /* IQKeyboardManager.swift in Sources */,
+				C3BB32651E6F1E4F00DD3D44 /* IQKeyboardManagerConstants.swift in Sources */,
+				C3BB32621E6F1E4F00DD3D44 /* IQUIView+Hierarchy.swift in Sources */,
+				C3A90B221E6A94AC00703389 /* FMDatabase.m in Sources */,
+				C37253A21E73ED3500ED2A43 /* NewsArticlesCollectionViewCell.swift in Sources */,
+				C3A90B2B1E6A950600703389 /* DataBaseManager.swift in Sources */,
+				C397A8471E62CE4A00BA7724 /* AppDelegate.swift in Sources */,
+				C3A90B251E6A94AC00703389 /* FMDatabaseQueue.m in Sources */,
+				C3BB32661E6F1E4F00DD3D44 /* IQKeyboardManagerConstantsInternal.swift in Sources */,
+				C37253C41E73EF3F00ED2A43 /* SDWebImageDecoder.m in Sources */,
+				C3BB32641E6F1E4F00DD3D44 /* IQUIWindow+Hierarchy.swift in Sources */,
+				C37253C71E73EF3F00ED2A43 /* SDWebImageManager.m in Sources */,
+				C37253CC1E73EF3F00ED2A43 /* UIImageView+HighlightedWebCache.m in Sources */,
+				C3BB32691E6F1E4F00DD3D44 /* IQTextView.swift in Sources */,
+				C3BB325F1E6F1E4F00DD3D44 /* IQNSArray+Sort.swift in Sources */,
+				C37253CA1E73EF3F00ED2A43 /* UIImage+GIF.m in Sources */,
+				C3BB326A1E6F1E4F00DD3D44 /* IQBarButtonItem.swift in Sources */,
+				C3A90B281E6A94C200703389 /* FMResultSet.m in Sources */,
+				C37253C21E73EF3F00ED2A43 /* SDImageCache.m in Sources */,
+				C3BB32611E6F1E4F00DD3D44 /* IQUITextFieldView+Additions.swift in Sources */,
+				C37253C61E73EF3F00ED2A43 /* SDWebImageDownloaderOperation.m in Sources */,
+				C3BB326C1E6F1E4F00DD3D44 /* IQTitleBarButtonItem.swift in Sources */,
+				C37253CD1E73EF3F00ED2A43 /* UIImageView+WebCache.m in Sources */,
+				C3A90B241E6A94AC00703389 /* FMDatabasePool.m in Sources */,
+				C37253C91E73EF3F00ED2A43 /* UIButton+WebCache.m in Sources */,
+				C3BB32711E6F2EED00DD3D44 /* LabelPadding.swift in Sources */,
+				C37253D01E747E0100ED2A43 /* KnowMoreViewController.swift in Sources */,
+				C30DB1701E76ECB000980DCD /* TagsCollectionViewCell.swift in Sources */,
+				C37253C51E73EF3F00ED2A43 /* SDWebImageDownloader.m in Sources */,
+				C37253C11E73EF3F00ED2A43 /* NSData+ImageContentType.m in Sources */,
+				C37D749F1E7E621F00996448 /* MenuViewController.swift in Sources */,
+				C3BB32681E6F1E4F00DD3D44 /* IQKeyboardReturnKeyHandler.swift in Sources */,
+				C397A84F1E62CE4A00BA7724 /* Wealth_Doctor.xcdatamodeld in Sources */,
+				C3BB32631E6F1E4F00DD3D44 /* IQUIViewController+Additions.swift in Sources */,
+				C3BB326D1E6F1E4F00DD3D44 /* IQToolbar.swift in Sources */,
+				C397A8781E631A1A00BA7724 /* SettingPageCell.swift in Sources */,
+				C37253C81E73EF3F00ED2A43 /* SDWebImagePrefetcher.m in Sources */,
+				C37253CB1E73EF3F00ED2A43 /* UIImage+MultiFormat.m in Sources */,
+				C37253C31E73EF3F00ED2A43 /* SDWebImageCompat.m in Sources */,
+				C3A90B341E6C294300703389 /* ChatTableViewCell.swift in Sources */,
+				C37D749D1E7E620700996448 /* MenuCollectionViewCell.swift in Sources */,
+				C3EBD1D61E65FB0300E22661 /* SettingsPageVIewController.swift in Sources */,
+				C3A90B171E6A81D800703389 /* VerifyOTPViewController.swift in Sources */,
+				C3BB326B1E6F1E4F00DD3D44 /* IQPreviousNextView.swift in Sources */,
+				C3BB32601E6F1E4F00DD3D44 /* IQUIScrollView+Additions.swift in Sources */,
+				C37253CE1E73EF3F00ED2A43 /* UIView+WebCacheOperation.m in Sources */,
+				C3BB326E1E6F1E4F00DD3D44 /* IQUIView+IQKeyboardToolbar.swift in Sources */,
+				C3A90B301E6A995000703389 /* TableCreateViewController.swift in Sources */,
+				C3A90B231E6A94AC00703389 /* FMDatabaseAdditions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C397A8561E62CE4A00BA7724 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C397A85F1E62CE4A00BA7724 /* Wealth_DoctorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C397A8611E62CE4A00BA7724 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C397A86A1E62CE4A00BA7724 /* Wealth_DoctorUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C397A85C1E62CE4A00BA7724 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C397A8421E62CE4A00BA7724 /* Wealth Doctor */;
+			targetProxy = C397A85B1E62CE4A00BA7724 /* PBXContainerItemProxy */;
+		};
+		C397A8671E62CE4A00BA7724 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C397A8421E62CE4A00BA7724 /* Wealth Doctor */;
+			targetProxy = C397A8661E62CE4A00BA7724 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C397A84A1E62CE4A00BA7724 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C397A84B1E62CE4A00BA7724 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C397A8521E62CE4A00BA7724 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C397A8531E62CE4A00BA7724 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C397A86C1E62CE4A00BA7724 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C397A86D1E62CE4A00BA7724 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C397A86F1E62CE4A00BA7724 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = VF624LR8S4;
+				INFOPLIST_FILE = "Wealth Doctor/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.indianmoney.Wealth-Doctor";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Wealth Doctor/Wealth Doctor-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		C397A8701E62CE4A00BA7724 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = VF624LR8S4;
+				INFOPLIST_FILE = "Wealth Doctor/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.indianmoney.Wealth-Doctor";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Wealth Doctor/Wealth Doctor-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		C397A8721E62CE4A00BA7724 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = VF624LR8S4;
+				INFOPLIST_FILE = "Wealth DoctorTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.indianmoney.Wealth-DoctorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wealth Doctor.app/Wealth Doctor";
+			};
+			name = Debug;
+		};
+		C397A8731E62CE4A00BA7724 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = VF624LR8S4;
+				INFOPLIST_FILE = "Wealth DoctorTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.indianmoney.Wealth-DoctorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wealth Doctor.app/Wealth Doctor";
+			};
+			name = Release;
+		};
+		C397A8751E62CE4A00BA7724 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = VF624LR8S4;
+				INFOPLIST_FILE = "Wealth DoctorUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.indianmoney.Wealth-DoctorUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Wealth Doctor";
+			};
+			name = Debug;
+		};
+		C397A8761E62CE4A00BA7724 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = VF624LR8S4;
+				INFOPLIST_FILE = "Wealth DoctorUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.indianmoney.Wealth-DoctorUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Wealth Doctor";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C397A83E1E62CE4900BA7724 /* Build configuration list for PBXProject "Wealth Doctor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C397A86C1E62CE4A00BA7724 /* Debug */,
+				C397A86D1E62CE4A00BA7724 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C397A86E1E62CE4A00BA7724 /* Build configuration list for PBXNativeTarget "Wealth Doctor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C397A86F1E62CE4A00BA7724 /* Debug */,
+				C397A8701E62CE4A00BA7724 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C397A8711E62CE4A00BA7724 /* Build configuration list for PBXNativeTarget "Wealth DoctorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C397A8721E62CE4A00BA7724 /* Debug */,
+				C397A8731E62CE4A00BA7724 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C397A8741E62CE4A00BA7724 /* Build configuration list for PBXNativeTarget "Wealth DoctorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C397A8751E62CE4A00BA7724 /* Debug */,
+				C397A8761E62CE4A00BA7724 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C397A84D1E62CE4A00BA7724 /* Wealth_Doctor.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C397A84E1E62CE4A00BA7724 /* Wealth_Doctor.xcdatamodel */,
+			);
+			currentVersion = C397A84E1E62CE4A00BA7724 /* Wealth_Doctor.xcdatamodel */;
+			path = Wealth_Doctor.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = C397A83B1E62CE4900BA7724 /* Project object */;
+}
