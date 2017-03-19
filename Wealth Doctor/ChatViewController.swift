@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSource ,UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
+class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSource ,UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource{
     var secondPart : String!
     var selectedTag = ""
     var adviceOn = ""
@@ -18,9 +18,11 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var squareData = [String]()
      var curlyData = [String]()
     var tags = [String]()
+    var pickerArray = ["YES","NO"]
+
     
 var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
-    
+    let picker = UIPickerView()
     
     @IBOutlet var chatTableView: UITableView!
     var serverChatText = [String]()
@@ -30,7 +32,8 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     var productId = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        picker.delegate = self
+        picker.dataSource = self
         
         self.chatTableView.setNeedsLayout()
         self.chatTableView.layoutIfNeeded()
@@ -47,16 +50,18 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
         
         self.chatTableView.rowHeight = UITableViewAutomaticDimension
         chatTableView.backgroundView = UIImageView(image: UIImage(named: "chat_bg_image"))
-    
-      //  chatLoad()
-        
-   
-     //   lodingasending()
+        UserDefaults.standard.setValue(self.pickerArray, forKeyPath: "pickerArray")
+              UserDefaults.standard.synchronize()
+        if UserDefaults.standard.value(forKey: "type")  != nil {
+        let type1: String  = UserDefaults.standard.value(forKey: "type") as! String
+        if type1 == "4"{
+            self.chatTxt.inputView = self.picker
+        }
+        }
         
            }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
         
         
             }
@@ -66,6 +71,30 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
        
     }
     
+    ///pickerView
+    
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+       return pickerArray.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let pickerArraySaved = UserDefaults.standard.stringArray(forKey: "pickerArray") ?? [String]()
+        return pickerArraySaved[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let type: String  = UserDefaults.standard.value(forKey: "type") as! String
+        if type == "4"{
+            let pickerArraySaved = UserDefaults.standard.stringArray(forKey: "pickerArray") ?? [String]()
+        chatTxt.text = pickerArraySaved[row]
+        self.view.endEditing(false)
+        }
+    }
     
     
     
@@ -82,7 +111,6 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChatTableViewCell
        cell.userChatLabel.translatesAutoresizingMaskIntoConstraints = false
-      
         cell.backgroundColor = UIColor.clear
         cell.tagCollectionView.backgroundColor = UIColor.clear
         cell.bgView.backgroundColor = .clear
@@ -90,7 +118,8 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
         cell.userChatLabel.layer.cornerRadius = 5
         cell.userChatLabel.layer.masksToBounds = true
         
-        
+        let type: String  = UserDefaults.standard.value(forKey: "type") as! String
+        print(type)
         if type == "2" && indexPath.row == serverChatText.count - 1{
             
            cell.tagCollectionView.isHidden = false
@@ -159,7 +188,7 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
         cell.backgroundColor = UIColor.clear
         cell.tagLabel.layer.cornerRadius = 5
         cell.tagLabel.layer.masksToBounds = true
-        cell.tagLabel.preferredMaxLayoutWidth = 200
+     //   cell.tagLabel.preferredMaxLayoutWidth = 200
      
         if squareData.isEmpty{
         }else{
@@ -179,9 +208,7 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
         squareData = []
         
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 15)
-    }
+   
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -246,9 +273,11 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
                             let product_id = convertedJsonIntoArray["product_id"] as! String
                             let disable = convertedJsonIntoArray["desable"] as! String
                             let url = convertedJsonIntoArray["url"] as! String
-                            UserDefaults.standard.setValue(type, forKey: "type")
+                            UserDefaults.standard.setValue(type as String, forKey: "type")
                             UserDefaults.standard.synchronize()
                             self.type = type
+                            
+                            
                             var fullNameArr : [String] = nestedString.components(separatedBy: ". ")
                             
                             let firstName : String  = fullNameArr.removeLast()
@@ -268,7 +297,9 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
 
                           DispatchQueue.main.async {
 
-                            
+                            if type == "4"{
+                                self.chatTxt.inputView = self.picker
+                                                            }
                                     
                                     self.chatTableView.reloadData()
                                     self.lodingasending()
@@ -346,19 +377,20 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
                         if let sam = square[i] as? String {
                             let eee = sam.replacingOccurrences(of: "{", with: "")
                             let last = eee.replacingOccurrences(of: "}", with: "")
+                            print(last)
+                            
                          self.adviceOn = last
-     
+                            
                         }
                     }
                 }
                 
-                if self.adviceOn.isEmpty {
-                }
-                else{
+                if self.type == "2" {
+                    print(adviceOn)
                     serverChatText = [String]()
                     chat_id = [String]()
                     chatTime = [String]()
-                 DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time) values ( '\(type!)', '\(adviceOn)', '\(0)','\(0)','\(0)', '\(0)',\(1),DATETIME('now'));")
+                    DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time) values ( '\(type!)', '\(adviceOn)', '\(0)','\(0)','\(0)', '\(0)',\(1),DATETIME('now'));")
                     let userdata = DataBaseManager.shared.fetchData(Query: "select * from CHAT ;")
                     while userdata.next() {
                         let x = userdata.string(forColumn: "serverChat")
@@ -367,13 +399,16 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
                         
                         serverChatText.append(x!)
                         chat_id.append(y!)
-                  
+                        
                         chatTime.append(z!)
-                      
+                        
                         chatTableView.reloadData()
                         
                         
                     }
+  
+                }
+                else{
                 }
                 
                 
@@ -385,7 +420,7 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
             let lastIndex : IndexPath = NSIndexPath(row: self.serverChatText.count - 1, section: 0) as IndexPath
             print(lastIndex)
             
-            self.chatTableView.scrollToRow(at: [0,16] , at: .top, animated: false)
+            self.chatTableView.scrollToRow(at: lastIndex , at: .top, animated: false)
         }
     }
 
@@ -425,128 +460,8 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
         
         }
         else{
-            let networkStatus = Reeachability().connectionStatus()
-            switch networkStatus {
-            case .Unknown, .Offline:
-                displaymyalertmessage(usermessage: "no internet connection")
-                print("no internet connection")
-            default :
-           
-                 self.chatTxt.text = ""
-                let scriptUrl = "http://www.indianmoney.com/wealthDoctor/chatserver.php"
-                
-                let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
-                
-                let myUrl = URL(string: urlWithParams);
-                
-                var request = URLRequest(url:myUrl!)
-                
-                let postString = "mobile=9746594225&chatQuestion=\(chatTxt.text!)&ans_id=\(ansId)&product_id=\(productId)"
-                request.httpBody = postString.data(using: .utf8)
-                
-                request.httpMethod = "POST"
-                
-                let task = URLSession.shared.dataTask(with: request) {
-                    data, response, error in
-                    let responseString = String(data: data!, encoding: .utf8)
-                   
-                    if error != nil
-                    {
-                        print("error=\(error)")
-                        DispatchQueue.main.async {
-                            self.displaymyalertmessage(usermessage: "serverdown")
-                        }
-                        return
-                    }
-                    if responseString == "null\n"{
-                        
-                    }
-                    else{
-                        
-                        do {
-                            DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,userchat,time) values ( 0, 0, 0,0,0,0,'\(self.chatTxt.text!)',DATETIME('now'));")
-                            
-                                
-                                if let convertedJsonIntoArray = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]    {
-                                    //  print(convertedJsonIntoArray)
-                                    
-                                    let nestedString = convertedJsonIntoArray["text"] as! String
-                                    let type = convertedJsonIntoArray["type"] as! String
-                                    let ans_id = convertedJsonIntoArray["ans_id"] as! String
-                                    let product_id = convertedJsonIntoArray["product_id"] as! String
-                                    let disable = convertedJsonIntoArray["desable"] as! String
-                                    let url = convertedJsonIntoArray["url"] as! String
-                                    UserDefaults.standard.setValue(type, forKey: "type")
-                                    UserDefaults.standard.synchronize()
-                                    self.type = type
-                                    var fullNameArr : [String] = nestedString.components(separatedBy: ". ")
-                                    
-                                    let firstName : String  = fullNameArr.removeLast()
-                                    self.secondPart = firstName
-                                    
-                                    DataBaseManager.shared.ExecuteCommand(query: "insert into tags (advice, advice_id) values ( '\(self.secondPart!)', '\(0)');")
-                                    for i in 0..<fullNameArr.count {
-                                        let dataFromServer = fullNameArr[i] as String
-                                        
-                                        DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time) values ( '\(type)', '\(dataFromServer)', '\(ans_id)','\(url)','\(product_id)', '\(disable)',0,DATETIME('now'));")
-                                        
-                                        
-                                        
-                                        
-                                        //                            if square.count > 0{
-                                        //                                for i in 0...square.count-1{
-                                        //                                    if let sam = square[i] as? String {
-                                        //                                        let eee = sam.replacingOccurrences(of: "{", with: "")
-                                        //                                        let last = eee.replacingOccurrences(of: "}", with: "")
-                                        //                                        let curly = self.matches(for: "\\[.+?\\]", in: secondPart)
-                                        //                                        if curly.count > 0{
-                                        //                                            for i in 0...curly.count-1{
-                                        //                                                if let sam1 = curly[i] as? String {
-                                        //                                                    let eee1 = sam1.replacingOccurrences(of: "[", with: "")
-                                        //                                                    let last1 = eee1.replacingOccurrences(of: "]", with: "")
-                                        //
-                                        //
-                                        //                                                                                                   }
-                                        //                                            }
-                                        //                                        }
-                                        //
-                                        //                                        
-                                        //                                        
-                                        //                                        
-                                        //                                    }
-                                        //                                }
-                                        //                            }
-                                        
-                                    }
-                                    
-                                    DispatchQueue.main.async {
-                                        //
-                                        
-                                        
-                                        self.chatTableView.reloadData()
-                                        self.lodingasending()
-                                        
-                                        
-                                        
-                                    }
-                                    
-                                }
-                            } catch let error as NSError {
-                                print(error.localizedDescription)
-                                
-                            }
-                    }
-                }
-                
-                task.resume()
-                
-            }
-            
-
-        
+            dataToServer(chatTxt: chatTxt.text!, ans_id: ansId, product_id: productId)
         }
-        
-        
     }
     func matches(for regex: String, in text: String) -> [String] {
         do { let regex = try NSRegularExpression(pattern: regex, options: [])
@@ -619,7 +534,7 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
                                       print(convertedJsonIntoArray)
                                     
                                     let nestedString = convertedJsonIntoArray["text"] as! String
-                                    let type = convertedJsonIntoArray["type"] as! String
+                                    if let type = convertedJsonIntoArray["type"] as? String {
                                     let ans_id = convertedJsonIntoArray["ans_id"] as! String
                                     let product_id = convertedJsonIntoArray["product_id"] as! String
                                     let disable = convertedJsonIntoArray["desable"] as! String
@@ -628,7 +543,7 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
                                     UserDefaults.standard.synchronize()
                                     self.type = type
                                     var fullNameArr : [String] = nestedString.components(separatedBy: ". ")
-                                    
+                                    if type == "2" {
                                     let firstName : String  = fullNameArr.removeLast()
                                     self.secondPart = firstName
                                     
@@ -639,20 +554,36 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
                                         DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time) values ( '\(type)', '\(dataFromServer)', '\(ans_id)','\(url)','\(product_id)', '\(disable)',0,DATETIME('now'));")
                                         
                                         
-                                        
+                                        }
                                         
                                         
                                     }
                                     
+                                    if type == "4"{
+                                    
+                                        for i in 0..<fullNameArr.count {
+                                            let dataFromServer = fullNameArr[i] as String
+                                            
+                                            DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time) values ( '\(type)', '\(dataFromServer)', '\(ans_id)','\(url)','\(product_id)', '\(disable)',0,DATETIME('now'));")
+                                            
+                                            
+                                        }
+
+                                    
+                                    }
+                                    
                                     DispatchQueue.main.async {
                                         //
-                                        
+                                        if type == "4"{
+                                            self.chatTxt.inputView = self.picker
+                                        }
                                         
                                         self.chatTableView.reloadData()
                                         self.lodingasending()
                                         
                                         
                                         
+                                    }
                                     }
                                     
                                 }
