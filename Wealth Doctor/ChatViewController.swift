@@ -18,6 +18,8 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var squareData = [String]()
      var curlyData = [String]()
     var tags = [String]()
+    var pickerDisplayArray = [String]()
+    var serverGeneratedArray = [String]()
     var pickerArray = ["YES","NO"]
 
     
@@ -50,8 +52,7 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
         
         self.chatTableView.rowHeight = UITableViewAutomaticDimension
         chatTableView.backgroundView = UIImageView(image: UIImage(named: "chat_bg_image"))
-        UserDefaults.standard.setValue(self.pickerArray, forKeyPath: "pickerArray")
-              UserDefaults.standard.synchronize()
+        
         if UserDefaults.standard.value(forKey: "type")  != nil {
         let type1: String  = UserDefaults.standard.value(forKey: "type") as! String
         if type1 == "4"{
@@ -460,7 +461,10 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
         
         }
         else{
-            dataToServer(chatTxt: chatTxt.text!, ans_id: ansId, product_id: productId)
+            let itemIndex = pickerDisplayArray.index(of: "\(chatTxt.text!)")
+            let selecteditem = serverGeneratedArray[itemIndex!]
+            print(selecteditem)
+            dataToServer(chatTxt: selecteditem, ans_id: ansId, product_id: productId)
         }
     }
     func matches(for regex: String, in text: String) -> [String] {
@@ -539,6 +543,29 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
                                     let product_id = convertedJsonIntoArray["product_id"] as! String
                                     let disable = convertedJsonIntoArray["desable"] as! String
                                     let url = convertedJsonIntoArray["url"] as! String
+                                        self.ansId = ans_id
+                                        self.productId = product_id
+                                        if type == "4" {
+                                        if let questionsArray = convertedJsonIntoArray["questions"] as? NSArray{
+                                            if let questionArrayDict = questionsArray[0] as? [String:Any] {
+                                             let q_choice = questionArrayDict["q_choices"] as! String
+                                       
+                                            let q_choicesSeperated : [String] = q_choice.components(separatedBy: ", ")
+                                            for i in 0..<q_choicesSeperated.count {
+                                                let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
+                                                let choiceItemServer: String = q_choiceDisplay[0]
+                                                let choiceDisplayItem : String = q_choiceDisplay[1]
+                                                
+                                                self.pickerDisplayArray.append(choiceDisplayItem)
+                                                self.serverGeneratedArray.append(choiceItemServer)
+                                               print(self.pickerDisplayArray)
+                                                print(self.serverGeneratedArray)
+                                            }
+                                            
+                                            }
+                                        }
+                                        }
+                                        UserDefaults.standard.setValue(self.pickerDisplayArray, forKeyPath: "pickerArray")
                                     UserDefaults.standard.setValue(type, forKey: "type")
                                     UserDefaults.standard.synchronize()
                                     self.type = type
