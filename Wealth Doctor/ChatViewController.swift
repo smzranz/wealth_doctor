@@ -14,6 +14,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var adviceOn = ""
     var type = ""
     var i = ""
+    var questionId = ""
     @IBOutlet var chatTxt: UITextField!
     var squareData = [String]()
      var curlyData = [String]()
@@ -81,7 +82,8 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-       return pickerArray.count
+         let pickerArraySaved = UserDefaults.standard.stringArray(forKey: "pickerArray") ?? [String]()
+       return pickerArraySaved.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let pickerArraySaved = UserDefaults.standard.stringArray(forKey: "pickerArray") ?? [String]()
@@ -323,7 +325,8 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
         
     }
     func lodingasending(){
-        
+        UserDefaults.standard.setValue(nil, forKeyPath: "pickerArray")
+        UserDefaults.standard.synchronize()
         serverChatText = [String]()
         chat_id = [String]()
        chatTime = [String]()
@@ -409,7 +412,35 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
                     }
   
                 }
-                else{
+                else if UserDefaults.standard.value(forKey: "questionId") != nil{
+                    let rs = DataBaseManager.shared.fetchData(Query: "SELECT COUNT(*) as Count FROM questions")
+                    while rs.next() {
+                        pickerDisplayArray = [String]()
+                        serverGeneratedArray = [String]()
+                        let count = rs.int(forColumn: "Count")
+
+                    let userdata = DataBaseManager.shared.fetchData(Query: "select * from questions where slno= '\(count)';")
+                    while userdata.next() {
+                        let x = userdata.string(forColumn: "q_choice")
+                        let q_choicesSeperated : [String] = x!.components(separatedBy: ", ")
+                        for i in 0..<q_choicesSeperated.count {
+                            let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
+                            let choiceItemServer: String = q_choiceDisplay[0]
+                            let choiceDisplayItem : String = q_choiceDisplay[1]
+                            
+                            self.pickerDisplayArray.append(choiceDisplayItem)
+                            self.serverGeneratedArray.append(choiceItemServer)
+                            print(self.pickerDisplayArray)
+                            print(self.serverGeneratedArray)
+                        }
+                        
+                        UserDefaults.standard.setValue(self.pickerDisplayArray, forKeyPath: "pickerArray")
+                        UserDefaults.standard.synchronize()
+                            chatTableView.reloadData()
+                        
+                        
+                    }
+                    }
                 }
                 
                 
@@ -549,23 +580,14 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
                                         if let questionsArray = convertedJsonIntoArray["questions"] as? NSArray{
                                             if let questionArrayDict = questionsArray[0] as? [String:Any] {
                                              let q_choice = questionArrayDict["q_choices"] as! String
-                                       
-                                            let q_choicesSeperated : [String] = q_choice.components(separatedBy: ", ")
-                                            for i in 0..<q_choicesSeperated.count {
-                                                let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
-                                                let choiceItemServer: String = q_choiceDisplay[0]
-                                                let choiceDisplayItem : String = q_choiceDisplay[1]
                                                 
-                                                self.pickerDisplayArray.append(choiceDisplayItem)
-                                                self.serverGeneratedArray.append(choiceItemServer)
-                                               print(self.pickerDisplayArray)
-                                                print(self.serverGeneratedArray)
-                                            }
+                                       DataBaseManager.shared.ExecuteCommand(query: "insert into questions (q_choice, q_choice_id) values ( '\(q_choice)', '\(0)');")
+                                           
                                             
                                             }
                                         }
                                         }
-                                        UserDefaults.standard.setValue(self.pickerDisplayArray, forKeyPath: "pickerArray")
+                                        
                                     UserDefaults.standard.setValue(type, forKey: "type")
                                     UserDefaults.standard.synchronize()
                                     self.type = type
@@ -587,7 +609,9 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
                                     }
                                     
                                     if type == "4"{
-                                    
+                                    self.questionId = type
+                                        UserDefaults.standard.setValue(self.questionId, forKey: "questionId")
+                                        UserDefaults.standard.synchronize()
                                         for i in 0..<fullNameArr.count {
                                             let dataFromServer = fullNameArr[i] as String
                                             
