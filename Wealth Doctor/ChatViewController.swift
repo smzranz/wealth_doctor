@@ -21,7 +21,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var tags = [String]()
     var pickerDisplayArray = [String]()
     var serverGeneratedArray = [String]()
-    var pickerArray = ["YES","NO"]
+  
 
     
 var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
@@ -347,8 +347,8 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
             
         }
         
-       let type = UserDefaults.standard.value(forKey: "type")
-        if type != nil {
+       let type1 = UserDefaults.standard.value(forKey: "type")
+        if type == "2" {
             
              let rs = DataBaseManager.shared.fetchData(Query: "SELECT COUNT(*) as Count FROM tags")
                 while rs.next() {
@@ -394,7 +394,7 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
                     serverChatText = [String]()
                     chat_id = [String]()
                     chatTime = [String]()
-                    DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time) values ( '\(type!)', '\(adviceOn)', '\(0)','\(0)','\(0)', '\(0)',\(1),DATETIME('now'));")
+                    DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time) values ( '\(type1!)', '\(adviceOn)', '\(0)','\(0)','\(0)', '\(0)',\(1),DATETIME('now'));")
                     let userdata = DataBaseManager.shared.fetchData(Query: "select * from CHAT ;")
                     while userdata.next() {
                         let x = userdata.string(forColumn: "serverChat")
@@ -655,6 +655,16 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
     
     
+    @IBAction func deleteAllChat(_ sender: Any) {
+        
+        DataBaseManager.shared.ExecuteCommand(query: "DELETE FROM CHAT;")
+         DataBaseManager.shared.ExecuteCommand(query: "DELETE FROM tags;")
+         DataBaseManager.shared.ExecuteCommand(query: "DELETE FROM questions;")
+        UserDefaults.standard.setValue(nil, forKeyPath: "chat")
+        UserDefaults.standard.synchronize()
+    self.chatTableView.reloadData()
+        loadView()
+    }
     
     
     

@@ -509,7 +509,7 @@
 				TargetAttributes = {
 					C397A8421E62CE4A00BA7724 = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = VF624LR8S4;
+						DevelopmentTeam = FHWAW5DNUX;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -787,7 +787,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = VF624LR8S4;
+				DEVELOPMENT_TEAM = FHWAW5DNUX;
 				INFOPLIST_FILE = "Wealth Doctor/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.indianmoney.Wealth-Doctor";
@@ -803,7 +803,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = VF624LR8S4;
+				DEVELOPMENT_TEAM = FHWAW5DNUX;
 				INFOPLIST_FILE = "Wealth Doctor/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.indianmoney.Wealth-Doctor";
