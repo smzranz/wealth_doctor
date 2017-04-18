@@ -34,7 +34,7 @@ class VerifyOTPViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+ self.navigationController?.isNavigationBarHidden = true
       
     }
 
@@ -126,7 +126,7 @@ class VerifyOTPViewController: UIViewController {
                                                     
                                             DataBaseManager.shared.ExecuteCommand(query: "insert into STATES (stateID, stateNAME) values ( '\(state_id)', '\(state_name)');")
                                                     
-                                            DataBaseManager.shared.ExecuteCommand(query: "insert into CITIES (stateID, cityID,cityNAME) values ( '\(state_id)', '\(city_id)','\(city_name)');")
+                                            DataBaseManager.shared.ExecuteCommand(query: "insert into CITIES (stateID, cityID,cityNAME) values ( '\(state_name)', '\(city_id)','\(city_name)');")
                                                 }
                                             
                                             }
@@ -160,7 +160,7 @@ class VerifyOTPViewController: UIViewController {
                                 
                                 DispatchQueue.main.async {
                                     
-                                  //  self.performSegue(withIdentifier: "mobiletootp", sender: self)
+                                    self.performSegue(withIdentifier: "verifyToState", sender: self)
                                 }
                                 
                             }

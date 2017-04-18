@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C30DB1701E76ECB000980DCD /* TagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30DB16F1E76ECB000980DCD /* TagsCollectionViewCell.swift */; };
+		C310788C1E882ACC00598790 /* StateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C310788B1E882ACC00598790 /* StateViewController.swift */; };
 		C37253A21E73ED3500ED2A43 /* NewsArticlesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37253A11E73ED3500ED2A43 /* NewsArticlesCollectionViewCell.swift */; };
 		C37253C11E73EF3F00ED2A43 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = C37253A51E73EF3F00ED2A43 /* NSData+ImageContentType.m */; };
 		C37253C21E73EF3F00ED2A43 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C37253A71E73EF3F00ED2A43 /* SDImageCache.m */; };
@@ -90,6 +91,7 @@
 
 /* Begin PBXFileReference section */
 		C30DB16F1E76ECB000980DCD /* TagsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewCell.swift; sourceTree = "<group>"; };
+		C310788B1E882ACC00598790 /* StateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateViewController.swift; sourceTree = "<group>"; };
 		C37253A11E73ED3500ED2A43 /* NewsArticlesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsArticlesCollectionViewCell.swift; sourceTree = "<group>"; };
 		C37253A41E73EF3F00ED2A43 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
 		C37253A51E73EF3F00ED2A43 /* NSData+ImageContentType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+ImageContentType.m"; sourceTree = "<group>"; };
@@ -244,41 +246,48 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
-		C37D74A01E7E626A00996448 /* Chat */ = {
+		C37D74A01E7E626A00996448 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				C30DB16F1E76ECB000980DCD /* TagsCollectionViewCell.swift */,
+				C397A8481E62CE4A00BA7724 /* ViewController.swift */,
+				C310788B1E882ACC00598790 /* StateViewController.swift */,
 				C3A90B311E6C293200703389 /* ChatViewController.swift */,
-				C3A90B331E6C294300703389 /* ChatTableViewCell.swift */,
+				C3EBD1D51E65FB0300E22661 /* SettingsPageVIewController.swift */,
+				C3E702341E688F4800B596E8 /* OTPViewController.swift */,
+				C3A90B161E6A81D800703389 /* VerifyOTPViewController.swift */,
+				C37D749E1E7E621F00996448 /* MenuViewController.swift */,
+				C3A90B2F1E6A995000703389 /* TableCreateViewController.swift */,
+				C37253CF1E747E0100ED2A43 /* KnowMoreViewController.swift */,
 			);
-			name = Chat;
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		C37D74A11E7E629200996448 /* Article */ = {
 			isa = PBXGroup;
 			children = (
-				C397A8481E62CE4A00BA7724 /* ViewController.swift */,
-				C37253A11E73ED3500ED2A43 /* NewsArticlesCollectionViewCell.swift */,
 			);
 			name = Article;
 			sourceTree = "<group>";
 		};
-		C37D74A21E7E62AC00996448 /* Settings */ = {
+		C37D74A21E7E62AC00996448 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				C3EBD1D51E65FB0300E22661 /* SettingsPageVIewController.swift */,
+				C37253A11E73ED3500ED2A43 /* NewsArticlesCollectionViewCell.swift */,
+				C3A90B331E6C294300703389 /* ChatTableViewCell.swift */,
+				C30DB16F1E76ECB000980DCD /* TagsCollectionViewCell.swift */,
+				C37D749C1E7E620600996448 /* MenuCollectionViewCell.swift */,
 				C397A8771E631A1A00BA7724 /* SettingPageCell.swift */,
 			);
-			name = Settings;
+			name = Cells;
 			sourceTree = "<group>";
 		};
-		C37D74A31E7E62DA00996448 /* SideMenu */ = {
+		C37D74A31E7E62DA00996448 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C37D749C1E7E620600996448 /* MenuCollectionViewCell.swift */,
-				C37D749E1E7E621F00996448 /* MenuViewController.swift */,
+				C397A84A1E62CE4A00BA7724 /* Main.storyboard */,
+				C397A8521E62CE4A00BA7724 /* LaunchScreen.storyboard */,
 			);
-			name = SideMenu;
+			name = View;
 			sourceTree = "<group>";
 		};
 		C397A83A1E62CE4900BA7724 = {
@@ -307,21 +316,15 @@
 			children = (
 				C397A8461E62CE4A00BA7724 /* AppDelegate.swift */,
 				C37D74A11E7E629200996448 /* Article */,
-				C37D74A01E7E626A00996448 /* Chat */,
-				C37D74A21E7E62AC00996448 /* Settings */,
-				C37D74A31E7E62DA00996448 /* SideMenu */,
-				C3A90B161E6A81D800703389 /* VerifyOTPViewController.swift */,
-				C3E702341E688F4800B596E8 /* OTPViewController.swift */,
-				C37253CF1E747E0100ED2A43 /* KnowMoreViewController.swift */,
-				C3A90B2F1E6A995000703389 /* TableCreateViewController.swift */,
+				C37D74A01E7E626A00996448 /* ViewControllers */,
+				C37D74A21E7E62AC00996448 /* Cells */,
+				C37D74A31E7E62DA00996448 /* View */,
 				C3BB32701E6F2EED00DD3D44 /* LabelPadding.swift */,
 				C3E702361E68916500B596E8 /* intenetcheck.swift */,
-				C397A84A1E62CE4A00BA7724 /* Main.storyboard */,
 				C397A8501E62CE4A00BA7724 /* Assets.xcassets */,
 				C37253A31E73EF3F00ED2A43 /* SDWebImage */,
 				C3BB32471E6F1E4F00DD3D44 /* IQKeyboardManagerSwift */,
 				C3A90B291E6A94D000703389 /* FMDB */,
-				C397A8521E62CE4A00BA7724 /* LaunchScreen.storyboard */,
 				C397A8551E62CE4A00BA7724 /* Info.plist */,
 				C3CCA63F1E64845C0019A63E /* ic_launcher.png */,
 				C3CCA6411E6484660019A63E /* office_logo.png */,
@@ -630,6 +633,7 @@
 				C3EBD1D61E65FB0300E22661 /* SettingsPageVIewController.swift in Sources */,
 				C3A90B171E6A81D800703389 /* VerifyOTPViewController.swift in Sources */,
 				C3BB326B1E6F1E4F00DD3D44 /* IQPreviousNextView.swift in Sources */,
+				C310788C1E882ACC00598790 /* StateViewController.swift in Sources */,
 				C3BB32601E6F1E4F00DD3D44 /* IQUIScrollView+Additions.swift in Sources */,
 				C37253CE1E73EF3F00ED2A43 /* UIView+WebCacheOperation.m in Sources */,
 				C3BB326E1E6F1E4F00DD3D44 /* IQUIView+IQKeyboardToolbar.swift in Sources */,
@@ -790,7 +794,7 @@
 				DEVELOPMENT_TEAM = FHWAW5DNUX;
 				INFOPLIST_FILE = "Wealth Doctor/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.indianmoney.Wealth-Doctor";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.indianmoney.Wealth-Doctor1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wealth Doctor/Wealth Doctor-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -806,7 +810,7 @@
 				DEVELOPMENT_TEAM = FHWAW5DNUX;
 				INFOPLIST_FILE = "Wealth Doctor/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.indianmoney.Wealth-Doctor";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.indianmoney.Wealth-Doctor1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wealth Doctor/Wealth Doctor-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

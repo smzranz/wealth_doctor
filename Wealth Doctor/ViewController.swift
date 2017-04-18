@@ -36,7 +36,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         }
         else {
             UserDefaults.standard.setValue("first", forKey: "first")
-articleLoad(arttime: "\(artTime)", tag_id: "")
+            articleLoad(arttime: "\(artTime)", tag_id: "")
         }
     }
 
@@ -258,7 +258,7 @@ articleLoad(arttime: "\(artTime)", tag_id: "")
         
         if let myWebsite = URL(string: "http://itunes.apple.com/app/idXXXXXXXXX") {//Enter link to your app here
           //  let objectsToShare = [image]
-            let activityVC = UIActivityViewController(activityItems: [image,textToShare,myWebsite], applicationActivities: nil)
+            let activityVC = UIActivityViewController(activityItems: [image,myWebsite,textToShare], applicationActivities: nil)
             
             //Excluded Activities
             activityVC.excludedActivityTypes = [UIActivityType.airDrop, UIActivityType.addToReadingList,UIActivityType.message,UIActivityType.mail,UIActivityType.postToFacebook,UIActivityType.postToTwitter,UIActivityType.openInIBooks,UIActivityType.saveToCameraRoll]

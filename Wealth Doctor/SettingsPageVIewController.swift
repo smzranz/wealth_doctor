@@ -54,4 +54,47 @@ var tittleLabel = [String]()
         settingsCell.settingsIcon.image = settingImages[indexPath.row]
         return settingsCell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 2:
+            shareApp()
+        case 3 :
+            rateApp(appId: "id959379869") { success in
+                print("RateApp \(success)")
+            }
+        default:
+            break
+        }
+    }
+    
+    func rateApp(appId: String, completion: @escaping ((_ success: Bool)->())) {
+        //        guard let url = URL(string : "itms-apps://itunes.apple.com/app/" + appId) else {
+        //            completion(false)
+        //            return
+        //        }
+        guard let url = URL(string : "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appId)&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software") else {
+            completion(false)
+            return
+        }
+        guard #available(iOS 10, *) else {
+            completion(UIApplication.shared.openURL(url))
+            return
+        }
+        UIApplication.shared.open(url, options: [:], completionHandler: completion)
+    }
+    func shareApp(){
+        
+        let message = "About App"
+        //Set the link to share.
+        if let link = NSURL(string: "http://yoururl.com")
+        {
+            let objectsToShare = [message,link] as [Any]
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            activityVC.excludedActivityTypes = [UIActivityType.airDrop, UIActivityType.addToReadingList,UIActivityType.mail,UIActivityType.message,UIActivityType.postToFacebook,UIActivityType.postToTwitter]
+            self.present(activityVC, animated: true, completion: nil)
+        }
+        
+    }
+    
 }

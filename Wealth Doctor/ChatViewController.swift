@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSource ,UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource{
+class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSource ,UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UICollectionViewDelegateFlowLayout{
     var secondPart : String!
     var selectedTag = ""
     var adviceOn = ""
@@ -17,14 +17,14 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var questionId = ""
     @IBOutlet var chatTxt: UITextField!
     var squareData = [String]()
-     var curlyData = [String]()
+    var curlyData = [String]()
     var tags = [String]()
     var pickerDisplayArray = [String]()
     var serverGeneratedArray = [String]()
-  
-
     
-var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+    
+    
+    var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     let picker = UIPickerView()
     
     @IBOutlet var chatTableView: UITableView!
@@ -37,43 +37,47 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
         super.viewDidLoad()
         picker.delegate = self
         picker.dataSource = self
-        
-        self.chatTableView.setNeedsLayout()
-        self.chatTableView.layoutIfNeeded()
+        self.navigationController?.isNavigationBarHidden = false
         if UserDefaults.standard.value(forKey: "chat") != nil{
-        
-        lodingasending()
+            
+            lodingasending()
             
         }
         else {
-        UserDefaults.standard.setValue("chat", forKey: "chat")
+            UserDefaults.standard.setValue("chat", forKey: "chat")
             chatLoad()
         }
-        self.chatTableView.estimatedRowHeight = 200
         
-        self.chatTableView.rowHeight = UITableViewAutomaticDimension
         chatTableView.backgroundView = UIImageView(image: UIImage(named: "chat_bg_image"))
         
         if UserDefaults.standard.value(forKey: "type")  != nil {
-        let type1: String  = UserDefaults.standard.value(forKey: "type") as! String
-        if type1 == "4"{
-            self.chatTxt.inputView = self.picker
-        }
+            let type1: String  = UserDefaults.standard.value(forKey: "type") as! String
+            if type1 == "4"{
+                self.chatTxt.inputView = self.picker
+            }
         }
         
-           }
+        
+        //chatTableView.rowHeight = UITableViewAutomaticDimension
+       // chatTableView.estimatedRowHeight = 300
+        
+        
+        
+        self.chatTableView.setNeedsLayout()
+        self.chatTableView.layoutIfNeeded()
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
         
-            }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-       
     }
     
-    ///pickerView
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        
+    }
+    
+    //MARK: PickeView
     
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -82,8 +86,8 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-         let pickerArraySaved = UserDefaults.standard.stringArray(forKey: "pickerArray") ?? [String]()
-       return pickerArraySaved.count
+        let pickerArraySaved = UserDefaults.standard.stringArray(forKey: "pickerArray") ?? [String]()
+        return pickerArraySaved.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let pickerArraySaved = UserDefaults.standard.stringArray(forKey: "pickerArray") ?? [String]()
@@ -94,17 +98,19 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
         let type: String  = UserDefaults.standard.value(forKey: "type") as! String
         if type == "4"{
             let pickerArraySaved = UserDefaults.standard.stringArray(forKey: "pickerArray") ?? [String]()
-        chatTxt.text = pickerArraySaved[row]
-        self.view.endEditing(false)
+            chatTxt.text = pickerArraySaved[row]
+            self.view.endEditing(false)
         }
     }
     
     
-    
+    //MARK: TableView
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
         
     }
+    var cn1:NSLayoutConstraint!;
+    var cn111:NSLayoutConstraint!;
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return serverChatText.count
@@ -113,71 +119,180 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChatTableViewCell
-       cell.userChatLabel.translatesAutoresizingMaskIntoConstraints = false
+        cell.userChatLabel.translatesAutoresizingMaskIntoConstraints = false
+        cell.userChatLabel.preferredMaxLayoutWidth = view.frame.width/2
         cell.backgroundColor = UIColor.clear
         cell.tagCollectionView.backgroundColor = UIColor.clear
-        cell.bgView.backgroundColor = .clear
-   
+        
+        
+        
+        
+        
+        
         cell.userChatLabel.layer.cornerRadius = 5
         cell.userChatLabel.layer.masksToBounds = true
         
         let type: String  = UserDefaults.standard.value(forKey: "type") as! String
-        print(type)
+         /// let chattime  = UILabel(frame: CGRect(x: 20, y:  cell.tagCollectionView.frame.origin.y-3, width: cell.tagCollectionView.frame.width-40, height: 14) )
+        
+        
+        let chattime  = UILabel(frame: CGRect(x: 20, y:  cell.userChatLabel.frame.origin.y+cell.userChatLabel.frame.height, width: cell.tagCollectionView.frame.width-40, height: 14) )
+       
+        
+        
+        
         if type == "2" && indexPath.row == serverChatText.count - 1{
             
-           cell.tagCollectionView.isHidden = false
+            cell.tagCollectionView.isHidden = false
             
         }
         else{
-        
+            
             cell.tagCollectionView.isHidden = true
-
+            
         }
         if serverChatText.isEmpty {
-        
+            
         }else{
-          
+            
+            
+            
+            if chat_id[indexPath.row] == "0"{
+                
+                
+                for constraint in cell.contentView.constraints{
+                    
+                    if constraint.identifier == "lefticon"{
+                        
+                        cell.contentView.removeConstraint(constraint)
+                        
+                    }
+                    
+                    if constraint.identifier == "rightCon"{
+                        
+                        cell.contentView.removeConstraint(constraint)
+                        
+                    }
+                }
+                
+                chattime.textAlignment = .left
+                
+                cell.userChatLabel.backgroundColor = UIColor.white
+                cell.userChatLabel.textAlignment = .left
+                
+                cn1 = NSLayoutConstraint(item:cell.userChatLabel, attribute: .leading, relatedBy: .equal, toItem:cell.contentView ,attribute: .leadingMargin, multiplier: 1.0, constant: 10)
+                cn1.identifier="lefticon"
+                //
+                let cn12 = NSLayoutConstraint(item: cell.userChatLabel, attribute: .top, relatedBy: .equal, toItem: cell.contentView, attribute: .topMargin, multiplier: 1.0, constant: 10)
+                
+                let cn13 = NSLayoutConstraint(item: cell.tagCollectionView, attribute: .top, relatedBy: .equal, toItem: cell.userChatLabel, attribute: .bottom, multiplier: 1.0, constant: 5)
+                
+               // cell.contentView.backgroundColor=UIColor.green
+                
+                cell.contentView.addConstraint(cn1)
+                
+                cell.contentView.addConstraint(cn12)
+                cell.contentView.addConstraint(cn13)
+                
+            }
+            else if chat_id[indexPath.row] == "1" {
+                cell.userChatTime.text=chatTime[indexPath.row]
+                for constraint in cell.contentView.constraints{
+                    
+                    if constraint.identifier == "lefticon"{
+                        
+                        cell.contentView.removeConstraint(constraint)
+                        
+                    }
+                    
+                    if constraint.identifier == "rightCon"{
+                        
+                        cell.contentView.removeConstraint(constraint)
+                        
+                    }
+                }
+                
+                  chattime.textAlignment = .right
+                
+                cell.userChatLabel.textAlignment = .right
+                cell.userChatLabel.backgroundColor = UIColor.gray
+                cn111 = NSLayoutConstraint(item:cell.contentView, attribute: .trailingMargin, relatedBy: .equal, toItem:cell.userChatLabel ,attribute: .trailing, multiplier: 1.0, constant: 10)
+                cn111.identifier="rightCon"
+                let cn12 = NSLayoutConstraint(item: cell.userChatLabel, attribute: .top, relatedBy: .equal, toItem: cell.contentView, attribute: .topMargin, multiplier: 1.0, constant: 10)
+                
+                let cn13 = NSLayoutConstraint(item: cell.tagCollectionView, attribute: .top, relatedBy: .equal, toItem: cell.userChatLabel, attribute: .bottom, multiplier: 1.0, constant: 5)
+                
+                
+                
+                
+                cell.contentView.addConstraint(cn111)
+                
+                cell.contentView.addConstraint(cn12)
+                cell.contentView.addConstraint(cn13)
+                
+            }
+            else{}
+            
+            
+            
+            
+            for lbl in cell.contentView.subviews{
+                if lbl.tag == 1001{
+                    lbl.removeFromSuperview()
+                }
+                
+                
+            }
+            
+            
+              chattime.frame  =  CGRect(x: 20, y:  cell.layer.frame.height-30, width: cell.tagCollectionView.frame.width-40, height: 14)
+            chattime.textColor = UIColor.gray
+            chattime.tag = 1001
+            chattime.text=chatTime[indexPath.row]
+            chattime.font = UIFont(name: "Helvetica", size: 8)
+            cell.userChatTime.backgroundColor = UIColor.red
+            cell.contentView.addSubview(chattime)
+            
+            cell.userChatLabel.font = UIFont(name: "Helvetica", size: 12)
+           // cell.userChatTime.text=chatTime[indexPath.row]
 
-      //  cell.serverChatLabel.translatesAutoresizingMaskIntoConstraints = false
-        if chat_id[indexPath.row] == "0"{
-     cell.userChatLabel.addConstraint(NSLayoutConstraint(item: cell.userChatLabel, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 200))
-           // cell.userChatLabel.preferredMaxLayoutWidth = self.view.frame.width/2
-            cell.userChatLabel.backgroundColor = UIColor.white
-   cell.userChatLabel.textAlignment = .left
-            cell.userChatLabel.numberOfLines = 0
-          NSLayoutConstraint(item: cell.userChatLabel, attribute: .top, relatedBy: .equal, toItem: cell.contentView, attribute: .top, multiplier: 1, constant:10).isActive = true
             
-           NSLayoutConstraint(item: cell.userChatLabel, attribute: .leading, relatedBy: NSLayoutRelation.equal, toItem: cell.contentView, attribute: .leading, multiplier: 1, constant: 15).isActive = true
-          NSLayoutConstraint(item: cell.contentView, attribute: .bottom, relatedBy: NSLayoutRelation.equal, toItem: cell.userChatLabel, attribute: .bottom, multiplier: 1, constant: 25).isActive = true
-      
-            cell.userChatLabel.sizeToFit()
-       
-       //     NSLayoutConstraint.activate([verticalSpace,horizontalConstraint,bottomConstraint])
-            
+            cell.userChatLabel.text = serverChatText[indexPath.row]
         }
-        else if chat_id[indexPath.row] == "1" {
-           
-           
-          //  cell.userChatLabel.preferredMaxLayoutWidth = self.view.frame.width/2
-            cell.userChatLabel.textAlignment = .right
-        cell.userChatLabel.backgroundColor = UIColor.gray
-            cell.userChatLabel.addConstraint(NSLayoutConstraint(item: cell.userChatLabel, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 200))
-            cell.userChatLabel.sizeToFit()
-            NSLayoutConstraint(item: cell.userChatLabel, attribute: .top, relatedBy: .equal, toItem: cell.contentView, attribute: .top, multiplier: 1, constant: 10).isActive = true
-           NSLayoutConstraint(item: cell.contentView, attribute: .trailing, relatedBy: .equal, toItem: cell.userChatLabel, attribute: .trailing, multiplier: 1, constant: 15).isActive = true
-       NSLayoutConstraint(item: cell.contentView, attribute: .bottom, relatedBy: .equal, toItem: cell.userChatLabel, attribute: .bottom, multiplier: 1, constant: 25).isActive = true
-          //  NSLayoutConstraint.activate([horizontalConstraint,verticalSpace,bottomConstraint])
-        }
-        else{}
         
-        cell.userChatLabel.text = serverChatText[indexPath.row]
-                   }
-
         
         return cell
     }
     
     
+    
+    func calculateHeight(inString:String) -> CGFloat {
+        let messageString = inString
+        let attributes : [String : Any] = [NSFontAttributeName : UIFont.systemFont(ofSize: 15.0)]
+        
+        let attributedString : NSAttributedString = NSAttributedString(string: messageString, attributes: attributes)
+        
+        let rect : CGRect = attributedString.boundingRect(with: CGSize(width: 222.0, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, context: nil)
+        
+        let requredSize:CGRect = rect
+        return requredSize.height
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        //return UITableViewAutomaticDimension
+        
+       let heightOfRow = self.calculateHeight(inString:serverChatText[indexPath.row])
+        
+        return (heightOfRow + 60.0)
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    //MARK: CollectionView
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -191,34 +306,41 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
         cell.backgroundColor = UIColor.clear
         cell.tagLabel.layer.cornerRadius = 5
         cell.tagLabel.layer.masksToBounds = true
-     //   cell.tagLabel.preferredMaxLayoutWidth = 200
-     
+        cell.tagLabel.preferredMaxLayoutWidth = self.view.frame.width/2
+        
         if squareData.isEmpty{
         }else{
-          
-        cell.tagLabel.text = squareData[indexPath.row]
+            
+            cell.tagLabel.text = squareData[indexPath.row]
         }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! TagsCollectionViewCell
-       
         
-         selectedTag = cell.tagLabel.text!
-        collectionView.removeFromSuperview()
         
-        dataToServer(chatTxt: squareData[indexPath.row], ans_id: ansId, product_id: productId)
-        squareData = []
+        selectedTag = cell.tagLabel.text!
+        collectionView.isHidden = true
+        
+        dataToServer(chatTxt1: squareData[indexPath.row], ans_id: ansId, product_id: productId)
+        
         
     }
-   
     
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let collectionViewWidth = collectionView.bounds.size.width
+        return CGSize(width: collectionViewWidth, height: 35)
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         chatTxt.resignFirstResponder()
         return true
     }
-
+    
+    
+    //MARK: OtherMethods
+    
     func chatLoad(){
         let networkStatus = Reeachability().connectionStatus()
         switch networkStatus {
@@ -239,7 +361,7 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
             request.httpBody = postString.data(using: .utf8)
             
             request.httpMethod = "POST"
-        
+            
             let task = URLSession.shared.dataTask(with: request) {
                 data, response, error in
                 let networkStatus = Reeachability().connectionStatus()
@@ -248,76 +370,78 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
                     self.displaymyalertmessage(usermessage: "no internet connection")
                     print("no internet connection")
                 default :
-
-                let responseString = String(data: data!, encoding: .utf8)
-                // print("responseString = \(responseString)")
-                //self.actstop()
-                if error != nil
-                {
-                    print("error=\(error)")
-                    DispatchQueue.main.async {
-                        self.displaymyalertmessage(usermessage: "serverdown")
+                    // print("responseString = \(responseString)")
+                    //self.actstop()
+                    if error != nil
+                    {
+                        print("error=\(error)")
+                        DispatchQueue.main.async {
+                            self.displaymyalertmessage(usermessage: "serverdown")
+                        }
+                        return
                     }
-                    return
-                }
-                if responseString == "null\n"{
                     
-                }
-                else{
                     
-                    do {
+                    let responseString = String(data: data!, encoding: .utf8)
+                    
+                    if responseString == "null\n"{
                         
-                        if let convertedJsonIntoArray = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]    {
-                             //  print(convertedJsonIntoArray)
+                    }
+                    else{
+                        
+                        do {
                             
-                             let nestedString = convertedJsonIntoArray["text"] as! String
-                            let type = convertedJsonIntoArray["type"] as! String
-                            let ans_id = convertedJsonIntoArray["ans_id"] as! String
-                            let product_id = convertedJsonIntoArray["product_id"] as! String
-                            let disable = convertedJsonIntoArray["desable"] as! String
-                            let url = convertedJsonIntoArray["url"] as! String
-                            UserDefaults.standard.setValue(type as String, forKey: "type")
-                            UserDefaults.standard.synchronize()
-                            self.type = type
-                            
-                            
-                            var fullNameArr : [String] = nestedString.components(separatedBy: ". ")
-                            
-                            let firstName : String  = fullNameArr.removeLast()
-                             self.secondPart = firstName
-                            
-                            DataBaseManager.shared.ExecuteCommand(query: "insert into tags (advice, advice_id) values ( '\(self.secondPart!)', '\(0)');")
-                            for i in 0..<fullNameArr.count {
-                            let dataFromServer = fullNameArr[i] as String
-
-                             DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time) values ( '\(type)', '\(dataFromServer)', '\(ans_id)','\(url)','\(product_id)', '\(disable)',0,DATETIME('now'));")
-                           
+                            if let convertedJsonIntoArray = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]    {
+                                //  print(convertedJsonIntoArray)
+                                
+                                let nestedString = convertedJsonIntoArray["text"] as! String
+                                let type = convertedJsonIntoArray["type"] as! String
+                                let ans_id = convertedJsonIntoArray["ans_id"] as! String
+                                let product_id = convertedJsonIntoArray["product_id"] as! String
+                                let disable = convertedJsonIntoArray["desable"] as! String
+                                let url = convertedJsonIntoArray["url"] as! String
+                                UserDefaults.standard.setValue(type as String, forKey: "type")
+                                UserDefaults.standard.synchronize()
+                                self.type = type
                                 
                                 
+                                var fullNameArr : [String] = nestedString.components(separatedBy: ". ")
                                 
-
-                            }
-
-                          DispatchQueue.main.async {
-
-                            if type == "4"{
-                                self.chatTxt.inputView = self.picker
-                                                            }
+                                let firstName : String  = fullNameArr.removeLast()
+                                self.secondPart = firstName
+                                
+                                DataBaseManager.shared.ExecuteCommand(query: "insert into tags (advice, advice_id) values ( '\(self.secondPart!)', '\(0)');")
+                                for i in 0..<fullNameArr.count {
+                                    let dataFromServer = fullNameArr[i] as String
+                                    
+                                    DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time) values ( '\(type)', '\(dataFromServer)', '\(ans_id)','\(url)','\(product_id)', '\(disable)',0,DATETIME('now'));")
+                                    
+                                    
+                                    
+                                    
+                                    
+                                }
+                                
+                                DispatchQueue.main.async {
+                                    
+                                    if type == "4"{
+                                        self.chatTxt.inputView = self.picker
+                                    }
                                     
                                     self.chatTableView.reloadData()
                                     self.lodingasending()
                                     
-                            
-
-                                                         }
+                                    
+                                    
+                                }
+                                
+                            }
+                        } catch let error as NSError {
+                            print(error.localizedDescription)
                             
                         }
-                    } catch let error as NSError {
-                        print(error.localizedDescription)
-                        
                     }
                 }
-            }
             }
             task.resume()
             
@@ -329,7 +453,7 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
         UserDefaults.standard.synchronize()
         serverChatText = [String]()
         chat_id = [String]()
-       chatTime = [String]()
+        chatTime = [String]()
         
         let userdata = DataBaseManager.shared.fetchData(Query: "select * from CHAT ;")
         while userdata.next() {
@@ -337,125 +461,129 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
             let y = userdata.string(forColumn: "chat_id")
             let z = userdata.string(forColumn: "time")
             
-                      serverChatText.append(x!)
+            serverChatText.append(x!)
             chat_id.append(y!)
- 
+            
             chatTime.append(z!)
-        
-          chatTableView.reloadData()
-
+            
+            chatTableView.reloadData()
+            
             
         }
-        
-       let type1 = UserDefaults.standard.value(forKey: "type")
-        if type == "2" {
-            
-             let rs = DataBaseManager.shared.fetchData(Query: "SELECT COUNT(*) as Count FROM tags")
-                while rs.next() {
-                  
+        if  UserDefaults.standard.value(forKey: "type") == nil{
+            return
+        }
+        let type1 = UserDefaults.standard.value(forKey: "type") as! String
+        if type1 == "2" {
+            squareData = [String]()
+            let rs = DataBaseManager.shared.fetchData(Query: "SELECT COUNT(*) as Count FROM tags")
+            while rs.next() {
+                
                 let count = rs.int(forColumn: "Count")
-            
-            let userdata = DataBaseManager.shared.fetchData(Query: "select * from tags where slno= '\(count)';")
-            while userdata.next() {
-                let x = userdata.string(forColumn: "advice")
-                i = x!
                 
-                let curly = self.matches(for: "\\[.+?\\]", in: self.i)
-                if curly.count > 0{
-                    for i in 0...curly.count-1{
-                        if let sam1 = curly[i] as? String {
-                            let eee1 = sam1.replacingOccurrences(of: "[", with: "")
-                            let last1 = eee1.replacingOccurrences(of: "]", with: "")
-                            self.squareData.append(last1)
-                            
-                            
-                        
-                            self.chatTableView.reloadData()
+                let userdata = DataBaseManager.shared.fetchData(Query: "select * from tags where slno= '\(count)';")
+                while userdata.next() {
+                    let x = userdata.string(forColumn: "advice")
+                    i = x!
+                    
+                    let curly = self.matches(for: "\\[.+?\\]", in: self.i)
+                    if curly.count > 0{
+                        for i in 0...curly.count-1{
+                            if let sam1 = curly[i] as? String {
+                                let eee1 = sam1.replacingOccurrences(of: "[", with: "")
+                                let last1 = eee1.replacingOccurrences(of: "]", with: "")
+                                self.squareData.append(last1)
+                                
+                                
+                                
+                                self.chatTableView.reloadData()
+                            }
                         }
                     }
-                }
-              //  let y = userdata.string(forColumn: "advice_id")
-                let square = self.matches(for: "\\{.+?\\}", in: self.i)
-                if square.count > 0{
-                    for i in 0...square.count-1{
-                        if let sam = square[i] as? String {
-                            let eee = sam.replacingOccurrences(of: "{", with: "")
-                            let last = eee.replacingOccurrences(of: "}", with: "")
-                            print(last)
-                            
-                         self.adviceOn = last
-                            
+                    //  let y = userdata.string(forColumn: "advice_id")
+                    let square = self.matches(for: "\\{.+?\\}", in: self.i)
+                    if square.count > 0{
+                        for i in 0...square.count-1{
+                            if let sam = square[i] as? String {
+                                let eee = sam.replacingOccurrences(of: "{", with: "")
+                                let last = eee.replacingOccurrences(of: "}", with: "")
+                                //  print(last)
+                                
+                                self.adviceOn = last
+                                
+                            }
                         }
                     }
-                }
-                
-                if self.type == "2" {
-                    print(adviceOn)
-                    serverChatText = [String]()
-                    chat_id = [String]()
-                    chatTime = [String]()
-                    DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time) values ( '\(type1!)', '\(adviceOn)', '\(0)','\(0)','\(0)', '\(0)',\(1),DATETIME('now'));")
-                    let userdata = DataBaseManager.shared.fetchData(Query: "select * from CHAT ;")
-                    while userdata.next() {
-                        let x = userdata.string(forColumn: "serverChat")
-                        let y = userdata.string(forColumn: "chat_id")
-                        let z = userdata.string(forColumn: "time")
-                        
-                        serverChatText.append(x!)
-                        chat_id.append(y!)
-                        
-                        chatTime.append(z!)
-                        
-                        chatTableView.reloadData()
-                        
-                        
-                    }
-  
-                }
-                else if UserDefaults.standard.value(forKey: "questionId") != nil{
-                    let rs = DataBaseManager.shared.fetchData(Query: "SELECT COUNT(*) as Count FROM questions")
-                    while rs.next() {
-                        pickerDisplayArray = [String]()
-                        serverGeneratedArray = [String]()
-                        let count = rs.int(forColumn: "Count")
-
-                    let userdata = DataBaseManager.shared.fetchData(Query: "select * from questions where slno= '\(count)';")
-                    while userdata.next() {
-                        let x = userdata.string(forColumn: "q_choice")
-                        let q_choicesSeperated : [String] = x!.components(separatedBy: ", ")
-                        for i in 0..<q_choicesSeperated.count {
-                            let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
-                            let choiceItemServer: String = q_choiceDisplay[0]
-                            let choiceDisplayItem : String = q_choiceDisplay[1]
+                    
+                    if self.type == "2" {
+                        //  print(adviceOn)
+                        serverChatText = [String]()
+                        chat_id = [String]()
+                        chatTime = [String]()
+                        DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time) values ( '\(type1)', '\(adviceOn)', '\(0)','\(0)','\(0)', '\(0)',\(1),DATETIME('now'));")
+                        let userdata = DataBaseManager.shared.fetchData(Query: "select * from CHAT ;")
+                        while userdata.next() {
+                            let x = userdata.string(forColumn: "serverChat")
+                            let y = userdata.string(forColumn: "chat_id")
+                            let z = userdata.string(forColumn: "time")
                             
-                            self.pickerDisplayArray.append(choiceDisplayItem)
-                            self.serverGeneratedArray.append(choiceItemServer)
-                            print(self.pickerDisplayArray)
-                            print(self.serverGeneratedArray)
-                        }
-                        
-                        UserDefaults.standard.setValue(self.pickerDisplayArray, forKeyPath: "pickerArray")
-                        UserDefaults.standard.synchronize()
+                            serverChatText.append(x!)
+                            chat_id.append(y!)
+                            
+                            chatTime.append(z!)
+                            
                             chatTableView.reloadData()
+                            
+                            
+                        }
                         
-                        
-                    }
                     }
                 }
+                
                 
                 
             }
         }
-        
+        if UserDefaults.standard.value(forKey: "questionId") != nil{
+            let rs = DataBaseManager.shared.fetchData(Query: "SELECT COUNT(*) as Count FROM questions")
+            while rs.next() {
+                pickerDisplayArray = [String]()
+                serverGeneratedArray = [String]()
+                let count = rs.int(forColumn: "Count")
+                
+                let userdata = DataBaseManager.shared.fetchData(Query: "select * from questions where slno= '\(count)';")
+                while userdata.next() {
+                    let x = userdata.string(forColumn: "q_choice")
+                    let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
+                    for i in 0..<q_choicesSeperated.count {
+                        let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
+                        let choiceItemServer: String = q_choiceDisplay[0]
+                        let choiceDisplayItem : String = q_choiceDisplay[1]
+                        
+                        self.pickerDisplayArray.append(choiceDisplayItem)
+                        self.serverGeneratedArray.append(choiceItemServer)
+                        //  print(self.pickerDisplayArray)
+                        //  print(self.serverGeneratedArray)
+                    }
+                    
+                    UserDefaults.standard.setValue(self.pickerDisplayArray, forKeyPath: "pickerArray")
+                    UserDefaults.standard.synchronize()
+                    chatTableView.reloadData()
+                    
+                    
+                }
+            }
         }
+        
+        chatTableView.reloadData()
         DispatchQueue.main.async {
             let lastIndex : IndexPath = NSIndexPath(row: self.serverChatText.count - 1, section: 0) as IndexPath
-            print(lastIndex)
+            //   print(lastIndex)
             
             self.chatTableView.scrollToRow(at: lastIndex , at: .top, animated: false)
         }
     }
-
+    
     func displaymyalertmessage (usermessage:String) {
         let myalert = UIAlertController(title: "WARNING", message: usermessage, preferredStyle: UIAlertControllerStyle.alert )
         
@@ -484,18 +612,22 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
         activityIndicator.stopAnimating()
         UIApplication.shared.endIgnoringInteractionEvents()
     }
-
+    
     @IBAction func chatSentBtn(_ sender: Any) {
         
         if (chatTxt.text?.isEmpty)! {
-        
-        
+            
+            
         }
         else{
-            let itemIndex = pickerDisplayArray.index(of: "\(chatTxt.text!)")
-            let selecteditem = serverGeneratedArray[itemIndex!]
-            print(selecteditem)
-            dataToServer(chatTxt: selecteditem, ans_id: ansId, product_id: productId)
+            
+            if pickerDisplayArray.count > 0{
+                let itemIndex = pickerDisplayArray.index(of: "\(chatTxt.text!)")
+                
+                let selecteditem = serverGeneratedArray[itemIndex!]
+                //   print(chatTxt.text!)
+                dataToServer(chatTxt1: selecteditem, ans_id: ansId, product_id: productId)
+            }
         }
     }
     func matches(for regex: String, in text: String) -> [String] {
@@ -511,88 +643,102 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
         }
     }
     
-    func dataToServer(chatTxt :String, ans_id : String,product_id : String){
-    
+    func dataToServer(chatTxt1 :String, ans_id : String,product_id : String){
         
-            let networkStatus = Reeachability().connectionStatus()
-            switch networkStatus {
-            case .Unknown, .Offline:
-                displaymyalertmessage(usermessage: "no internet connection")
-                print("no internet connection")
-            default :
-                // view.endEditing(true)
-                
-              
-
-                
-                //  self.lodingasending()
-                self.chatTxt.text = ""
-                let scriptUrl = "http://www.indianmoney.com/wealthDoctor/chatserver.php"
-                
-                let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
-                
-                let myUrl = URL(string: urlWithParams);
-                
-                var request = URLRequest(url:myUrl!)
-                
-                let postString = "mobile=9746594225&chatQuestion=\(chatTxt)&ans_id=\(ans_id)&product_id=\(product_id)"
-                request.httpBody = postString.data(using: .utf8)
-                
-                request.httpMethod = "POST"
-                
-                let task = URLSession.shared.dataTask(with: request) {
-                    data, response, error in
-                    let responseString = String(data: data!, encoding: .utf8)
-                    // print("responseString = \(responseString)")
-                    //self.actstop()
-                    if error != nil
-                    {
-                        print("error=\(error)")
-                        DispatchQueue.main.async {
-                            self.displaymyalertmessage(usermessage: "serverdown")
-                        }
-                        return
+        
+        let networkStatus = Reeachability().connectionStatus()
+        switch networkStatus {
+        case .Unknown, .Offline:
+            displaymyalertmessage(usermessage: "no internet connection")
+            print("no internet connection")
+        default :
+            // view.endEditing(true)
+            
+            
+            
+            
+            //  self.lodingasending()
+            
+            let scriptUrl = "http://www.indianmoney.com/wealthDoctor/chatserver.php"
+            
+            let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
+            
+            let myUrl = URL(string: urlWithParams);
+            
+            var request = URLRequest(url:myUrl!)
+            
+            let postString = "mobile=9746594225&chatQuestion=\(chatTxt1)&ans_id=\(ans_id)&product_id=\(product_id)"
+            request.httpBody = postString.data(using: .utf8)
+            
+            request.httpMethod = "POST"
+            
+            let task = URLSession.shared.dataTask(with: request) {
+                data, response, error in
+                let responseString = String(data: data!, encoding: .utf8)
+                // print("responseString = \(responseString)")
+                //self.actstop()
+                if error != nil
+                {
+                    print("error=\(error)")
+                    DispatchQueue.main.async {
+                        self.displaymyalertmessage(usermessage: "serverdown")
                     }
-                    if responseString == "null\n"{
-                        
-                    }
-                    else{
-                     
+                    return
+                }
+                if responseString == "null\n"{
+                    
+                }
+                else{
+                    
+                    
+                    do {
+                        var chatQuestion = ""
+                        let type1 = UserDefaults.standard.value(forKey: "type") as! String
+                        if type1 == "2"{
+                            chatQuestion = chatTxt1
+                            //  print(chatQuestion)
                             
-                            do {
-                              
-                                    DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, chat_id,ans_id,url,product_id,disable,serverChat,time) values ( 0, 1, 0,0,0,0,'\(chatTxt)',DATETIME('now'));")
-                              
-                                
-                                
-                                if let convertedJsonIntoArray = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]    {
-                                      print(convertedJsonIntoArray)
-                                    
-                                    let nestedString = convertedJsonIntoArray["text"] as! String
-                                    if let type = convertedJsonIntoArray["type"] as? String {
-                                    let ans_id = convertedJsonIntoArray["ans_id"] as! String
-                                    let product_id = convertedJsonIntoArray["product_id"] as! String
-                                    let disable = convertedJsonIntoArray["desable"] as! String
-                                    let url = convertedJsonIntoArray["url"] as! String
-                                        self.ansId = ans_id
-                                        self.productId = product_id
-                                        if type == "4" {
-                                        if let questionsArray = convertedJsonIntoArray["questions"] as? NSArray{
-                                            if let questionArrayDict = questionsArray[0] as? [String:Any] {
-                                             let q_choice = questionArrayDict["q_choices"] as! String
-                                                
-                                       DataBaseManager.shared.ExecuteCommand(query: "insert into questions (q_choice, q_choice_id) values ( '\(q_choice)', '\(0)');")
-                                           
+                        }
+                        else{
+                            
+                            chatQuestion = self.chatTxt.text!
+                            //  print(self.chatTxt.text!)
+                        }
+                        
+                        
+                        DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, chat_id,ans_id,url,product_id,disable,serverChat,time) values ( 0, 1, 0,0,0,0,'\(chatQuestion)',DATETIME('now'));")
+                        
+                        
+                        
+                        if let convertedJsonIntoArray = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]    {
+                            //   print(convertedJsonIntoArray)
+                            
+                            let nestedString = convertedJsonIntoArray["text"] as! String
+                            if let type = convertedJsonIntoArray["type"] as? String {
+                                let ans_id = convertedJsonIntoArray["ans_id"] as! String
+                                let product_id = convertedJsonIntoArray["product_id"] as! String
+                                let disable = convertedJsonIntoArray["desable"] as! String
+                                let url = convertedJsonIntoArray["url"] as! String
+                                self.ansId = ans_id
+                                self.productId = product_id
+                                if type == "4" {
+                                    if let questionsArray = convertedJsonIntoArray["questions"] as? NSArray{
+                                        if let questionArrayDict = questionsArray[0] as? [String:Any] {
+                                            let q_choice = questionArrayDict["q_choices"] as! String
                                             
-                                            }
+                                            DataBaseManager.shared.ExecuteCommand(query: "insert into questions (q_choice, q_choice_id) values ( '\(q_choice)', '\(0)');")
+                                            
+                                            
                                         }
-                                        }
-                                        
-                                    UserDefaults.standard.setValue(type, forKey: "type")
-                                    UserDefaults.standard.synchronize()
-                                    self.type = type
-                                    var fullNameArr : [String] = nestedString.components(separatedBy: ". ")
-                                    if type == "2" {
+                                    }
+                                }
+                                
+                                UserDefaults.standard.setValue(type, forKey: "type")
+                                UserDefaults.standard.synchronize()
+                                self.type = type
+                                var fullNameArr : [String] = nestedString.components(separatedBy: ". ")
+                                if type == "2" {
+                                    
                                     let firstName : String  = fullNameArr.removeLast()
                                     self.secondPart = firstName
                                     
@@ -603,69 +749,74 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
                                         DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time) values ( '\(type)', '\(dataFromServer)', '\(ans_id)','\(url)','\(product_id)', '\(disable)',0,DATETIME('now'));")
                                         
                                         
-                                        }
-                                        
-                                        
                                     }
                                     
-                                    if type == "4"{
-                                    self.questionId = type
-                                        UserDefaults.standard.setValue(self.questionId, forKey: "questionId")
-                                        UserDefaults.standard.synchronize()
-                                        for i in 0..<fullNameArr.count {
-                                            let dataFromServer = fullNameArr[i] as String
-                                            
-                                            DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time) values ( '\(type)', '\(dataFromServer)', '\(ans_id)','\(url)','\(product_id)', '\(disable)',0,DATETIME('now'));")
-                                            
-                                            
-                                        }
-
-                                    
-                                    }
-                                    
-                                    DispatchQueue.main.async {
-                                        //
-                                        if type == "4"{
-                                            self.chatTxt.inputView = self.picker
-                                        }
-                                        
-                                        self.chatTableView.reloadData()
-                                        self.lodingasending()
-                                        
-                                        
-                                        
-                                    }
-                                    }
                                     
                                 }
-                            } catch let error as NSError {
-                                print(error.localizedDescription)
                                 
+                                if type == "4"{
+                                    self.questionId = type
+                                    //  print(self.questionId)
+                                    UserDefaults.standard.setValue(self.questionId, forKey: "questionId")
+                                    UserDefaults.standard.synchronize()
+                                    for i in 0..<fullNameArr.count {
+                                        let dataFromServer = fullNameArr[i] as String
+                                        
+                                        DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time) values ( '\(type)', '\(dataFromServer)', '\(ans_id)','\(url)','\(product_id)', '\(disable)',0,DATETIME('now'));")
+                                        
+                                        
+                                    }
+                                    
+                                    
+                                }
+                                
+                                DispatchQueue.main.async {
+                                    self.chatTxt.text = ""
+                                    if type == "4"{
+                                        self.chatTxt.attributedPlaceholder = NSAttributedString(string: "tap to input", attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                                        self.chatTxt.inputView = self.picker
+                                    }
+                                    else if type == "2"{
+                                        self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Chat", attributes: [NSForegroundColorAttributeName:UIColor.lightText])
+                                    }
+                                    
+                                    self.chatTableView.reloadData()
+                                    self.lodingasending()
+                                    
+                                    
+                                    
+                                }
                             }
+                            
+                        }
+                    } catch let error as NSError {
+                        print(error.localizedDescription)
+                        
                     }
                 }
-                
-                task.resume()
-                
             }
             
-            
+            task.resume()
             
         }
+        
+        
+        
+    }
     
     
     
     @IBAction func deleteAllChat(_ sender: Any) {
         
         DataBaseManager.shared.ExecuteCommand(query: "DELETE FROM CHAT;")
-         DataBaseManager.shared.ExecuteCommand(query: "DELETE FROM tags;")
-         DataBaseManager.shared.ExecuteCommand(query: "DELETE FROM questions;")
+        DataBaseManager.shared.ExecuteCommand(query: "DELETE FROM tags;")
+        DataBaseManager.shared.ExecuteCommand(query: "DELETE FROM questions;")
         UserDefaults.standard.setValue(nil, forKeyPath: "chat")
         UserDefaults.standard.synchronize()
-    self.chatTableView.reloadData()
+        self.chatTableView.reloadData()
         loadView()
     }
     
     
     
-   }
+}
