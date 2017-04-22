@@ -63,7 +63,7 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
                 
                 let task = URLSession.shared.dataTask(with: request) {
                     data, response, error in
-                    let responseString = String(data: data!, encoding: .utf8)
+                    if let responseString = String(data: data!, encoding: .utf8){
                    // print("responseString = \(responseString)")
                     self.actstop()
                     if error != nil
@@ -112,6 +112,12 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
                         }
                     }
                 }
+                else{
+                    DispatchQueue.main.async {
+                        self.displaymyalertmessage(usermessage: "serverdown")
+                    }
+                }
+            }
                 
                 task.resume()
                 

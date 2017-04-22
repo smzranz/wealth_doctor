@@ -42,8 +42,7 @@ class VerifyOTPViewController: UIViewController {
         super.didReceiveMemoryWarning()
            }
     
-    
-    @IBAction func otpVerifyBtn(_ sender: Any) {
+    @IBAction func otpVerifyContinue(_ sender: Any) {
         
         if (otpTxt.text?.isEmpty)!
         {
@@ -52,9 +51,10 @@ class VerifyOTPViewController: UIViewController {
         }
             
         else if otpTxt.text != otpNumber as? String{
-        
-        print("otp desnot match")
-        
+            
+            print("otp desnot match")
+            displaymyalertmessage(usermessage: "otp desnot match")
+            
         }
         else {
             
@@ -80,7 +80,7 @@ class VerifyOTPViewController: UIViewController {
                 
                 let task = URLSession.shared.dataTask(with: request) {
                     data, response, error in
-                    let responseString = String(data: data!, encoding: .utf8)
+                    if let responseString = String(data: data!, encoding: .utf8){
                     // print("responseString = \(responseString)")
                     self.actstop()
                     if error != nil
@@ -102,66 +102,90 @@ class VerifyOTPViewController: UIViewController {
                                 // print(convertedJsonDictioanry)
                                 
                                 if let states = convertedJsonDictioanry["state"] as? NSArray {
-                                
-                                  //  var statesArray: Array<State>?
-                                for i in 0..<states.count {
-                                    
-                                    if let stateData = states[i] as? NSDictionary {
-//                                        
-//                                        let aState: State = State(dictionay: stateData as! Dictionary<String, Any>)
-                                        //                                        "sl.no"
-                                      
-//                                        statesArray?.append(aState)
-                                    
-                                        if let city = stateData["city"] as? NSArray{
-                                        let state_id = stateData["s_id"] as! String
-                                            let state_name = stateData["s_name"] as! String
-                                            for i in 0..<city.count{
-                                                if let cities = city[i] as? NSDictionary{
-                                                
-                                                let city_id = cities["c_id"] as! String
-                                                    let city_name = cities["c_name"] as! String
-                                                  //  print(city_id)
-                                                  //  print(city_name)
-                                                    
-                                            DataBaseManager.shared.ExecuteCommand(query: "insert into STATES (stateID, stateNAME) values ( '\(state_id)', '\(state_name)');")
-                                                    
-                                            DataBaseManager.shared.ExecuteCommand(query: "insert into CITIES (stateID, cityID,cityNAME) values ( '\(state_name)', '\(city_id)','\(city_name)');")
-                                                }
-                                            
-                                            }
+                                  
+                                    //  var statesArray: Array<State>?
+                                    for i in 0..<states.count {
                                         
+                                        if let stateData = states[i] as? NSDictionary {
+                                            //
+                                            //                                        let aState: State = State(dictionay: stateData as! Dictionary<String, Any>)
+                                            //                                        "sl.no"
+                                            
+                                            //                                        statesArray?.append(aState)
+                                            let state_id = stateData["s_id"] as! String
+                                            let state_name = stateData["s_name"] as! String
+                                            DataBaseManager.shared.ExecuteCommand(query: "insert into STATES (stateID, stateNAME) values ( '\(state_id)', '\(state_name)');")
+                                            
+                                            if let city = stateData["city"] as? NSArray
+                                            {
+                                                                                                for i in 0..<city.count
+                                                {
+                                                    if let cities = city[i] as? NSDictionary
+                                                    {
+                                                        
+                                                        let city_id = cities["c_id"] as! String
+                                                        let city_name = cities["c_name"] as! String
+                                                        //  print(city_id)
+                                                        //  print(city_name)
+                                                        
+                                                        
+                                                        
+                                                        DataBaseManager.shared.ExecuteCommand(query: "insert into CITIES (stateID, cityID,cityNAME) values ( '\(state_name)', '\(city_id)','\(city_name)');")
+                                                    }
+                                                    
+                                                }
+                                                
+                                            }
+                                            //  print(stateData["s_id"] ?? "")
+                                            // print(stateData["s_name"] ?? "")
                                         }
-                                  //  print(stateData["s_id"] ?? "")
-                                   // print(stateData["s_name"] ?? "")
-                                    }
                                     }
                                     
-                                 //   print(states)
+                                    if let tags = convertedJsonDictioanry["tags"] as? NSArray {
+                                        for i in 0..<tags.count {
+                                            
+                                            if let tagData = tags[i] as? NSDictionary {
+                                            
+                                            let tag_id = tagData["tag_id"] as! String
+                                                let tag_name = tagData["tag_name"] as! String
+                                                DataBaseManager.shared.ExecuteCommand(query: "insert into USERTAGS (tag_id, tag_name) values ( '\(tag_id)', '\(tag_name)');")
+                                            }
+                                        }
+                                    
+                                    
+                                    
+                                    }
+                                    
+                                    DispatchQueue.main.async {
+                                        if states.count > 0{
+                                        self.performSegue(withIdentifier: "verifyToState", sender: self)
+                                        }
+                                        else{
+                                        
+                                        self.performSegue(withIdentifier: "verifyToNewsArticle", sender: self)
+                                        }
+                                    }
+ 
                                 }
                                 
                                 
-                                    
-                            
-//                                let nestedDictionary: Dictionary = Dictionary(convertedJsonIntoArray[0])
+                                
+                                
+                                //                                let nestedDictionary: Dictionary = Dictionary(convertedJsonIntoArray[0])
                                 //{
-                                    
-//                                    let otp = nestedDictionary["s_id"] as String
                                 
-
-                                    
-//                                    print(otp)
-//                                }
+                                //                                    let otp = nestedDictionary["s_id"] as String
                                 
                                 
+                                
+                                //                                    print(otp)
+                                //                                }
                                 
                                 
                                 
                                 
-                                DispatchQueue.main.async {
-                                    
-                                    self.performSegue(withIdentifier: "verifyToState", sender: self)
-                                }
+                                
+                                
                                 
                             }
                         } catch let error as NSError {
@@ -170,7 +194,13 @@ class VerifyOTPViewController: UIViewController {
                         }
                     }
                 }
-                
+                    else{
+                    
+                        DispatchQueue.main.async {
+                            self.displaymyalertmessage(usermessage: "serverdown")
+                        }
+                    }
+                }
                 task.resume()
                 
             }
@@ -178,8 +208,11 @@ class VerifyOTPViewController: UIViewController {
         }
         
         
-
+        
     }
+    
+    
+
     
     func displaymyalertmessage (usermessage:String) {
         let myalert = UIAlertController(title: "WARNING", message: usermessage, preferredStyle: UIAlertControllerStyle.alert )

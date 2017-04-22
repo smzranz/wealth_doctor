@@ -10,17 +10,17 @@ import UIKit
 
 class MenuViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDataSource,UITableViewDelegate {
     
-    var sectionItems2 : [String]!
-    var sectionItems1 : [String]!
+    @IBOutlet var tagsTableView: UITableView!
+    var sectionItems2 = [String]()
+    var sectionItems1 = [String]()
     var menuImagesArray : [UIImage]!
     var menuNameArray : [String]!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+tagLoad()
        menuImagesArray = [#imageLiteral(resourceName: "me_menu"),#imageLiteral(resourceName: "feeds_menu"),#imageLiteral(resourceName: "unread_menu"),#imageLiteral(resourceName: "bookmarks_menu"),#imageLiteral(resourceName: "tip_menu")]
         menuNameArray = ["My Profile","Main Stream","Unread","Favorites","My Tips"]
-        sectionItems2 = ["My Profile","Main Stream","Unread","Favorites","My Tips"]
-        sectionItems1 = ["My Profile","Favorites","My Tips"]
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -91,7 +91,9 @@ class MenuViewController: UIViewController,UICollectionViewDelegate,UICollection
         if indexPath.section == 0{
         cell.textLabel?.text = sectionItems1[indexPath.row]
         }
+        if sectionItems2.count > 0 {
         cell.textLabel?.text = sectionItems2[indexPath.row]
+        }
         return cell
     }
     
@@ -99,12 +101,35 @@ class MenuViewController: UIViewController,UICollectionViewDelegate,UICollection
         if section == 0 {
             return "bussiness"
     }
-        return "education"
+        return "Education"
     
     }
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
         view.tintColor = UIColor(displayP3Red: 89.0/255, green: 204/255, blue: 255/255, alpha: 0.5)
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = UIColor.white
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier :"articleViewController") as! ViewController
+        viewController.tagSelected = "\(indexPath.row)"
+        viewController.tagIsClicked = true
+         self.navigationController?.pushViewController(viewController, animated: true)
+       // self.present(viewController, animated: true)
+    }
+    
+    func tagLoad(){
+    
+        let userdata = DataBaseManager.shared.fetchData(Query: "select * from USERTAGS;")
+        while userdata.next() {
+            let x = userdata.string(forColumn: "tag_name")
+            
+            
+            self.sectionItems2.append(x!)
+        
+        }
+        self.tagsTableView.reloadData()
     }
 }

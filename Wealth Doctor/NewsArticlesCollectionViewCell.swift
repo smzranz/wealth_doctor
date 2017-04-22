@@ -12,6 +12,7 @@ class NewsArticlesCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var newsImage: UIImageView!
     
+    @IBOutlet var favoriteBtn: UIButton!
     @IBOutlet var tittleLabel: UILabel!
     @IBOutlet var newsContentLabel: UILabel!
     

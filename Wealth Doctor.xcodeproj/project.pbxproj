@@ -27,6 +27,9 @@
 		C37253D01E747E0100ED2A43 /* KnowMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37253CF1E747E0100ED2A43 /* KnowMoreViewController.swift */; };
 		C37D749D1E7E620700996448 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37D749C1E7E620600996448 /* MenuCollectionViewCell.swift */; };
 		C37D749F1E7E621F00996448 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37D749E1E7E621F00996448 /* MenuViewController.swift */; };
+		C393024E1EAA1FBE002D324B /* Terms&ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C393024D1EAA1FBE002D324B /* Terms&ConditionsViewController.swift */; };
+		C39302501EAA20D5002D324B /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C393024F1EAA20D5002D324B /* PrivacyViewController.swift */; };
+		C39302521EAB563A002D324B /* ChangeMobileNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39302511EAB563A002D324B /* ChangeMobileNumberViewController.swift */; };
 		C397A8471E62CE4A00BA7724 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397A8461E62CE4A00BA7724 /* AppDelegate.swift */; };
 		C397A8491E62CE4A00BA7724 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397A8481E62CE4A00BA7724 /* ViewController.swift */; };
 		C397A84C1E62CE4A00BA7724 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C397A84A1E62CE4A00BA7724 /* Main.storyboard */; };
@@ -125,6 +128,9 @@
 		C37253CF1E747E0100ED2A43 /* KnowMoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnowMoreViewController.swift; sourceTree = "<group>"; };
 		C37D749C1E7E620600996448 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		C37D749E1E7E621F00996448 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		C393024D1EAA1FBE002D324B /* Terms&ConditionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Terms&ConditionsViewController.swift"; sourceTree = "<group>"; };
+		C393024F1EAA20D5002D324B /* PrivacyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
+		C39302511EAB563A002D324B /* ChangeMobileNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeMobileNumberViewController.swift; sourceTree = "<group>"; };
 		C397A8431E62CE4A00BA7724 /* Wealth Doctor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wealth Doctor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C397A8461E62CE4A00BA7724 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C397A8481E62CE4A00BA7724 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -253,6 +259,9 @@
 				C310788B1E882ACC00598790 /* StateViewController.swift */,
 				C3A90B311E6C293200703389 /* ChatViewController.swift */,
 				C3EBD1D51E65FB0300E22661 /* SettingsPageVIewController.swift */,
+				C393024D1EAA1FBE002D324B /* Terms&ConditionsViewController.swift */,
+				C39302511EAB563A002D324B /* ChangeMobileNumberViewController.swift */,
+				C393024F1EAA20D5002D324B /* PrivacyViewController.swift */,
 				C3E702341E688F4800B596E8 /* OTPViewController.swift */,
 				C3A90B161E6A81D800703389 /* VerifyOTPViewController.swift */,
 				C37D749E1E7E621F00996448 /* MenuViewController.swift */,
@@ -588,6 +597,7 @@
 				C3E702351E688F4800B596E8 /* OTPViewController.swift in Sources */,
 				C3E702371E68916500B596E8 /* intenetcheck.swift in Sources */,
 				C3A90B321E6C293200703389 /* ChatViewController.swift in Sources */,
+				C39302501EAA20D5002D324B /* PrivacyViewController.swift in Sources */,
 				C397A8491E62CE4A00BA7724 /* ViewController.swift in Sources */,
 				C3BB32671E6F1E4F00DD3D44 /* IQKeyboardManager.swift in Sources */,
 				C3BB32651E6F1E4F00DD3D44 /* IQKeyboardManagerConstants.swift in Sources */,
@@ -603,6 +613,7 @@
 				C37253C71E73EF3F00ED2A43 /* SDWebImageManager.m in Sources */,
 				C37253CC1E73EF3F00ED2A43 /* UIImageView+HighlightedWebCache.m in Sources */,
 				C3BB32691E6F1E4F00DD3D44 /* IQTextView.swift in Sources */,
+				C39302521EAB563A002D324B /* ChangeMobileNumberViewController.swift in Sources */,
 				C3BB325F1E6F1E4F00DD3D44 /* IQNSArray+Sort.swift in Sources */,
 				C37253CA1E73EF3F00ED2A43 /* UIImage+GIF.m in Sources */,
 				C3BB326A1E6F1E4F00DD3D44 /* IQBarButtonItem.swift in Sources */,
@@ -622,6 +633,7 @@
 				C37D749F1E7E621F00996448 /* MenuViewController.swift in Sources */,
 				C3BB32681E6F1E4F00DD3D44 /* IQKeyboardReturnKeyHandler.swift in Sources */,
 				C397A84F1E62CE4A00BA7724 /* Wealth_Doctor.xcdatamodeld in Sources */,
+				C393024E1EAA1FBE002D324B /* Terms&ConditionsViewController.swift in Sources */,
 				C3BB32631E6F1E4F00DD3D44 /* IQUIViewController+Additions.swift in Sources */,
 				C3BB326D1E6F1E4F00DD3D44 /* IQToolbar.swift in Sources */,
 				C397A8781E631A1A00BA7724 /* SettingPageCell.swift in Sources */,

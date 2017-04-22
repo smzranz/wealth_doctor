@@ -60,7 +60,7 @@ class TableCreateViewController: UIViewController {
         
         var result = Bool()
         
-        result = DataBaseManager.shared.ExecuteQuery(query: "create table NewsArticle (\(slno) integer primary key autoincrement not null, a_audio_url text not null, a_content text not null, a_content_sort text not null ,a_id text not null, a_image text not null , a_tag text not null,a_title text not null,a_video_url text not null,like_count text not null,like_status text not null,n_date text not null,no_more_url text not null,tag_id text not null)")
+        result = DataBaseManager.shared.ExecuteQuery(query: "create table NewsArticle (\(slno) integer primary key autoincrement not null, a_audio_url text not null, a_content text not null, a_content_sort text not null ,a_id text not null, a_image text not null , a_tag text not null,a_title text not null,a_video_url text not null,like_count integer not null,like_status text not null,n_date text not null,no_more_url text not null,tag_id text not null,favorited text not null,newspaper text not null)")
         if result == true {
             
             print("NewsArticle table created succesfully")
@@ -84,6 +84,16 @@ class TableCreateViewController: UIViewController {
         if result == true {
             
             print("Questions table created succesfully")
+        }
+    }
+    func creatingUserTagTable(){
+        
+        var result = Bool()
+        
+        result = DataBaseManager.shared.ExecuteQuery(query: "create table USERTAGS (\(slno) integer primary key autoincrement not null, tag_id text not null, tag_name text not null)")
+        if result == true {
+            
+            print("User Tags table created succesfully")
         }
     }
 

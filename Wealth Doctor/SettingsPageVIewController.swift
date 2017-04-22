@@ -13,10 +13,10 @@ var tittleLabel = [String]()
     var settingImages = [UIImage]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        tittleLabel = ["Language","Notification","Invite","Rate","Feedback","Terms And Conditions","Privacy","Logout"]
+        tittleLabel = ["Language","Notification","Change Mobile Number","Invite","Rate","Feedback","Terms And Conditions","Privacy"]
         
         
-        settingImages = [#imageLiteral(resourceName: "language_menu"),#imageLiteral(resourceName: "notification_settings"),#imageLiteral(resourceName: "invite_settings"),#imageLiteral(resourceName: "rate_settings"),#imageLiteral(resourceName: "feedback_settings"),#imageLiteral(resourceName: "tc_menu"),#imageLiteral(resourceName: "privacy_settings"),#imageLiteral(resourceName: "logout")]
+        settingImages = [#imageLiteral(resourceName: "language_menu"),#imageLiteral(resourceName: "notification_settings"),#imageLiteral(resourceName: "chat_menu_copy"),#imageLiteral(resourceName: "invite_settings"),#imageLiteral(resourceName: "rate_settings"),#imageLiteral(resourceName: "feedback_settings"),#imageLiteral(resourceName: "tc_menu"),#imageLiteral(resourceName: "privacy_settings")]
         // Do any additional setup after loading the view.
     }
 
@@ -57,12 +57,18 @@ var tittleLabel = [String]()
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
-        case 2:
+        case 2 :
+            performSegue(withIdentifier: "toChangeNumber", sender: self)
+        case 3:
             shareApp()
-        case 3 :
+        case 4 :
             rateApp(appId: "id959379869") { success in
                 print("RateApp \(success)")
             }
+        case 6 :
+            performSegue(withIdentifier: "toTerms", sender: self)
+        case 7 :
+              performSegue(withIdentifier: "toPrivacy", sender: self)
         default:
             break
         }
