@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		518FF8741EAE32C600DF7849 /* wd_logo_1024X1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 518FF8731EAE32C600DF7849 /* wd_logo_1024X1024.png */; };
 		C30DB1701E76ECB000980DCD /* TagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30DB16F1E76ECB000980DCD /* TagsCollectionViewCell.swift */; };
 		C310788C1E882ACC00598790 /* StateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C310788B1E882ACC00598790 /* StateViewController.swift */; };
 		C37253A21E73ED3500ED2A43 /* NewsArticlesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37253A11E73ED3500ED2A43 /* NewsArticlesCollectionViewCell.swift */; };
@@ -93,6 +94,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		518FF8731EAE32C600DF7849 /* wd_logo_1024X1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wd_logo_1024X1024.png; sourceTree = "<group>"; };
 		C30DB16F1E76ECB000980DCD /* TagsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewCell.swift; sourceTree = "<group>"; };
 		C310788B1E882ACC00598790 /* StateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateViewController.swift; sourceTree = "<group>"; };
 		C37253A11E73ED3500ED2A43 /* NewsArticlesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsArticlesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 		C397A8451E62CE4A00BA7724 /* Wealth Doctor */ = {
 			isa = PBXGroup;
 			children = (
+				518FF8731EAE32C600DF7849 /* wd_logo_1024X1024.png */,
 				C397A8461E62CE4A00BA7724 /* AppDelegate.swift */,
 				C37D74A11E7E629200996448 /* Article */,
 				C37D74A01E7E626A00996448 /* ViewControllers */,
@@ -521,7 +524,7 @@
 				TargetAttributes = {
 					C397A8421E62CE4A00BA7724 = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = FHWAW5DNUX;
+						DevelopmentTeam = R53759X3UQ;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -567,6 +570,7 @@
 				C397A8541E62CE4A00BA7724 /* LaunchScreen.storyboard in Resources */,
 				C397A8511E62CE4A00BA7724 /* Assets.xcassets in Resources */,
 				C3BB326F1E6F1E4F00DD3D44 /* IQKeyboardManager.bundle in Resources */,
+				518FF8741EAE32C600DF7849 /* wd_logo_1024X1024.png in Resources */,
 				C397A84C1E62CE4A00BA7724 /* Main.storyboard in Resources */,
 				C3CCA6401E64845C0019A63E /* ic_launcher.png in Resources */,
 				C3CCA6421E6484660019A63E /* office_logo.png in Resources */,
@@ -803,10 +807,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = FHWAW5DNUX;
+				DEVELOPMENT_TEAM = R53759X3UQ;
 				INFOPLIST_FILE = "Wealth Doctor/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.indianmoney.Wealth-Doctor1";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.indianmoney.Wealth-Doctor2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wealth Doctor/Wealth Doctor-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -819,10 +823,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = FHWAW5DNUX;
+				DEVELOPMENT_TEAM = R53759X3UQ;
 				INFOPLIST_FILE = "Wealth Doctor/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.indianmoney.Wealth-Doctor1";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.indianmoney.Wealth-Doctor2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wealth Doctor/Wealth Doctor-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

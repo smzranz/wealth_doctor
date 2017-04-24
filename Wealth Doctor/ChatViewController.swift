@@ -21,7 +21,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var tags = [String]()
     var pickerDisplayArray = [String]()
     var serverGeneratedArray = [String]()
-    
+     var totalWidth : CGFloat = 0.0
     
     
     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
@@ -136,18 +136,31 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
          /// let chattime  = UILabel(frame: CGRect(x: 20, y:  cell.tagCollectionView.frame.origin.y-3, width: cell.tagCollectionView.frame.width-40, height: 14) )
         
         
-        let chattime  = UILabel(frame: CGRect(x: 20, y:  cell.userChatLabel.frame.origin.y+cell.userChatLabel.frame.height, width: cell.tagCollectionView.frame.width-40, height: 14) )
+        let chattime  = UILabel(frame: CGRect(x: 20, y:  cell.userChatLabel.frame.origin.y+cell.userChatLabel.frame.height+30, width: cell.tagCollectionView.frame.width-40, height: 14) )
        
         
         
         
         if type == "2" && indexPath.row == serverChatText.count - 1{
+            totalWidth = 0.0
+            for i in 0...squareData.count-1{
+                
+                let size = (squareData[i] as NSString).size(attributes: nil)
+                let width = size.width
+                
+                totalWidth = totalWidth + width
+                
+            }
+            
+                
             
             cell.tagCollectionView.isHidden = false
+            cell.collectionViewHeight.constant = 30+(totalWidth/(view.frame.width))*35
+            //+(totalWidth/(view.frame.width))*35
             
         }
         else{
-            
+             cell.collectionViewHeight.constant = 0
             cell.tagCollectionView.isHidden = true
             
         }
@@ -283,12 +296,31 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         //return UITableViewAutomaticDimension
         
-       let heightOfRow = self.calculateHeight(inString:serverChatText[indexPath.row])
+        let heightOfRow = self.calculateHeight(inString:serverChatText[indexPath.row])
+       
+       
         
-        return (heightOfRow + 60.0)
+      // let size = (squareData[indexPath.row] as NSString).size(attributes: nil)
+       
+        if type == "2" && indexPath.row == serverChatText.count-1{
+            totalWidth = 0.0
+            for i in 0...squareData.count-1{
+                
+                let size = (squareData[i] as NSString).size(attributes: nil)
+                let width = size.width
+                
+                totalWidth = totalWidth + width
+                
+            }
+        return (heightOfRow + 60.0+(totalWidth/(view.frame.width))*35)
+        
+        }
+        return (heightOfRow + 50.0)
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        
         return UITableViewAutomaticDimension
     }
     
@@ -309,8 +341,9 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         cell.tagLabel.preferredMaxLayoutWidth = self.view.frame.width/2
         
         if squareData.isEmpty{
-        }else{
-            
+        }else {
+            print(indexPath.row)
+            print(squareData.count)
             cell.tagLabel.text = squareData[indexPath.row]
         }
         return cell
@@ -329,8 +362,9 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let collectionViewWidth = collectionView.bounds.size.width
-        return CGSize(width: collectionViewWidth, height: 35)
+       // let collectionViewWidth = collectionView.bounds.size.width
+        let size = (squareData[indexPath.row] as NSString).size(attributes: nil)
+        return CGSize(width: size.width+6, height: 30)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -476,12 +510,9 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         let type1 = UserDefaults.standard.value(forKey: "type") as! String
         if type1 == "2" {
             squareData = [String]()
-            let rs = DataBaseManager.shared.fetchData(Query: "SELECT COUNT(*) as Count FROM tags")
-            while rs.next() {
-                
-                let count = rs.int(forColumn: "Count")
-                
-                let userdata = DataBaseManager.shared.fetchData(Query: "select * from tags where slno= '\(count)';")
+          //
+                let userdata = DataBaseManager.shared.fetchData(Query: "select * from tags ORDER BY slno DESC LIMIT 1;")
+            
                 while userdata.next() {
                     let x = userdata.string(forColumn: "advice")
                     i = x!
@@ -542,21 +573,22 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 
                 
                 
-            }
+           // }
         }
         if UserDefaults.standard.value(forKey: "questionId") != nil{
-            let rs = DataBaseManager.shared.fetchData(Query: "SELECT COUNT(*) as Count FROM questions")
-            while rs.next() {
+//            let rs = DataBaseManager.shared.fetchData(Query: "SELECT COUNT(*) as Count FROM questions")
+//            while rs.next() {
                 pickerDisplayArray = [String]()
                 serverGeneratedArray = [String]()
-                let count = rs.int(forColumn: "Count")
+             //   let count = rs.int(forColumn: "Count")
                 
-                let userdata = DataBaseManager.shared.fetchData(Query: "select * from questions where slno= '\(count)';")
+                let userdata = DataBaseManager.shared.fetchData(Query: "select * from questions ORDER BY slno DESC LIMIT 1;")
                 while userdata.next() {
                     let x = userdata.string(forColumn: "q_choice")
                     let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
                     for i in 0..<q_choicesSeperated.count {
                         let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
+                        if q_choiceDisplay.count == 2{
                         let choiceItemServer: String = q_choiceDisplay[0]
                         let choiceDisplayItem : String = q_choiceDisplay[1]
                         
@@ -564,6 +596,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                         self.serverGeneratedArray.append(choiceItemServer)
                         //  print(self.pickerDisplayArray)
                         //  print(self.serverGeneratedArray)
+                        }
                     }
                     
                     UserDefaults.standard.setValue(self.pickerDisplayArray, forKeyPath: "pickerArray")
@@ -572,7 +605,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     
                     
                 }
-            }
+          //  }
         }
         
         chatTableView.reloadData()
@@ -742,11 +775,11 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                     let firstName : String  = fullNameArr.removeLast()
                                     self.secondPart = firstName
                                     
-                                    DataBaseManager.shared.ExecuteCommand(query: "insert into tags (advice, advice_id) values ( '\(self.secondPart!)', '\(0)');")
+                                    DataBaseManager.shared.ExecuteCommand(query: "insert into tags (advice, advice_id) values ('\(self.secondPart!)','\(0)');")
                                     for i in 0..<fullNameArr.count {
                                         let dataFromServer = fullNameArr[i] as String
                                         
-                                        DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time) values ( '\(type)', '\(dataFromServer)', '\(ans_id)','\(url)','\(product_id)', '\(disable)',0,DATETIME('now'));")
+                                        DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type,serverChat,ans_id,url,product_id,disable,chat_id,time) values ('\(type)','\(dataFromServer)', '\(ans_id)','\(url)','\(product_id)', '\(disable)','\(0)',DATETIME('now'));")
                                         
                                         
                                     }
@@ -814,7 +847,8 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         UserDefaults.standard.setValue(nil, forKeyPath: "chat")
         UserDefaults.standard.synchronize()
         self.chatTableView.reloadData()
-        loadView()
+         chatLoad()
+       // loadView()
     }
     
     

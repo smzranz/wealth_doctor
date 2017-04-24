@@ -103,4 +103,21 @@ var tittleLabel = [String]()
         
     }
     
+    @IBAction func signOutBtn(_ sender: Any) {
+        let myalert = UIAlertController(title: "Call", message: "Do u want to call", preferredStyle: UIAlertControllerStyle.alert )
+        
+        let noaction = UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
+           self.performSegue(withIdentifier: "toNumber", sender: self)
+            UserDefaults.standard.set(nil, forKey: "mobile")
+            UserDefaults.standard.set(nil, forKey: "otp")
+            
+            UserDefaults.standard.synchronize()
+        }
+        myalert.addAction(noaction)
+        myalert.addAction(yesAction)
+        self.present(myalert, animated: true, completion: nil)
+        
+        
+    }
 }

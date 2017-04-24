@@ -16,9 +16,12 @@ class ChatTableViewCell: UITableViewCell {
     @IBOutlet var bgView: UIView!
     @IBOutlet var userChatLabel: UILabel!
     @IBOutlet var serverChatLabel: UILabel!
+    
+    @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-   
+  // tagCollectionView.collectionViewLayout = UICollectionViewFlowLayout
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
