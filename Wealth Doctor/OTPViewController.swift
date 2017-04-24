@@ -22,7 +22,7 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
         print(deviceID)
         print(gAppBuild)
         print(gAppVersion)
-    self.navigationController?.isNavigationBarHidden = true
+
     
     
     }

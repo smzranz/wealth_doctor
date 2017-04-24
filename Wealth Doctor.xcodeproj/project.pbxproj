@@ -10,6 +10,9 @@
 		518FF8741EAE32C600DF7849 /* wd_logo_1024X1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 518FF8731EAE32C600DF7849 /* wd_logo_1024X1024.png */; };
 		C30DB1701E76ECB000980DCD /* TagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30DB16F1E76ECB000980DCD /* TagsCollectionViewCell.swift */; };
 		C310788C1E882ACC00598790 /* StateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C310788B1E882ACC00598790 /* StateViewController.swift */; };
+		C31C996B1EAE4D3200E4040D /* NameEnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31C996A1EAE4D3200E4040D /* NameEnterViewController.swift */; };
+		C31C996D1EAE7DBB00E4040D /* WelcomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31C996C1EAE7DBB00E4040D /* WelcomePageViewController.swift */; };
+		C31C996F1EAE7DD500E4040D /* UsagePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31C996E1EAE7DD500E4040D /* UsagePageViewController.swift */; };
 		C37253A21E73ED3500ED2A43 /* NewsArticlesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37253A11E73ED3500ED2A43 /* NewsArticlesCollectionViewCell.swift */; };
 		C37253C11E73EF3F00ED2A43 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = C37253A51E73EF3F00ED2A43 /* NSData+ImageContentType.m */; };
 		C37253C21E73EF3F00ED2A43 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C37253A71E73EF3F00ED2A43 /* SDImageCache.m */; };
@@ -97,6 +100,9 @@
 		518FF8731EAE32C600DF7849 /* wd_logo_1024X1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wd_logo_1024X1024.png; sourceTree = "<group>"; };
 		C30DB16F1E76ECB000980DCD /* TagsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewCell.swift; sourceTree = "<group>"; };
 		C310788B1E882ACC00598790 /* StateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateViewController.swift; sourceTree = "<group>"; };
+		C31C996A1EAE4D3200E4040D /* NameEnterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameEnterViewController.swift; sourceTree = "<group>"; };
+		C31C996C1EAE7DBB00E4040D /* WelcomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomePageViewController.swift; sourceTree = "<group>"; };
+		C31C996E1EAE7DD500E4040D /* UsagePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsagePageViewController.swift; sourceTree = "<group>"; };
 		C37253A11E73ED3500ED2A43 /* NewsArticlesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsArticlesCollectionViewCell.swift; sourceTree = "<group>"; };
 		C37253A41E73EF3F00ED2A43 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
 		C37253A51E73EF3F00ED2A43 /* NSData+ImageContentType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+ImageContentType.m"; sourceTree = "<group>"; };
@@ -259,6 +265,8 @@
 			children = (
 				C397A8481E62CE4A00BA7724 /* ViewController.swift */,
 				C310788B1E882ACC00598790 /* StateViewController.swift */,
+				C31C996C1EAE7DBB00E4040D /* WelcomePageViewController.swift */,
+				C31C996E1EAE7DD500E4040D /* UsagePageViewController.swift */,
 				C3A90B311E6C293200703389 /* ChatViewController.swift */,
 				C3EBD1D51E65FB0300E22661 /* SettingsPageVIewController.swift */,
 				C393024D1EAA1FBE002D324B /* Terms&ConditionsViewController.swift */,
@@ -266,6 +274,7 @@
 				C393024F1EAA20D5002D324B /* PrivacyViewController.swift */,
 				C3E702341E688F4800B596E8 /* OTPViewController.swift */,
 				C3A90B161E6A81D800703389 /* VerifyOTPViewController.swift */,
+				C31C996A1EAE4D3200E4040D /* NameEnterViewController.swift */,
 				C37D749E1E7E621F00996448 /* MenuViewController.swift */,
 				C3A90B2F1E6A995000703389 /* TableCreateViewController.swift */,
 				C37253CF1E747E0100ED2A43 /* KnowMoreViewController.swift */,
@@ -615,6 +624,7 @@
 				C37253C41E73EF3F00ED2A43 /* SDWebImageDecoder.m in Sources */,
 				C3BB32641E6F1E4F00DD3D44 /* IQUIWindow+Hierarchy.swift in Sources */,
 				C37253C71E73EF3F00ED2A43 /* SDWebImageManager.m in Sources */,
+				C31C996F1EAE7DD500E4040D /* UsagePageViewController.swift in Sources */,
 				C37253CC1E73EF3F00ED2A43 /* UIImageView+HighlightedWebCache.m in Sources */,
 				C3BB32691E6F1E4F00DD3D44 /* IQTextView.swift in Sources */,
 				C39302521EAB563A002D324B /* ChangeMobileNumberViewController.swift in Sources */,
@@ -632,6 +642,7 @@
 				C3BB32711E6F2EED00DD3D44 /* LabelPadding.swift in Sources */,
 				C37253D01E747E0100ED2A43 /* KnowMoreViewController.swift in Sources */,
 				C30DB1701E76ECB000980DCD /* TagsCollectionViewCell.swift in Sources */,
+				C31C996B1EAE4D3200E4040D /* NameEnterViewController.swift in Sources */,
 				C37253C51E73EF3F00ED2A43 /* SDWebImageDownloader.m in Sources */,
 				C37253C11E73EF3F00ED2A43 /* NSData+ImageContentType.m in Sources */,
 				C37D749F1E7E621F00996448 /* MenuViewController.swift in Sources */,
@@ -639,6 +650,7 @@
 				C397A84F1E62CE4A00BA7724 /* Wealth_Doctor.xcdatamodeld in Sources */,
 				C393024E1EAA1FBE002D324B /* Terms&ConditionsViewController.swift in Sources */,
 				C3BB32631E6F1E4F00DD3D44 /* IQUIViewController+Additions.swift in Sources */,
+				C31C996D1EAE7DBB00E4040D /* WelcomePageViewController.swift in Sources */,
 				C3BB326D1E6F1E4F00DD3D44 /* IQToolbar.swift in Sources */,
 				C397A8781E631A1A00BA7724 /* SettingPageCell.swift in Sources */,
 				C37253C81E73EF3F00ED2A43 /* SDWebImagePrefetcher.m in Sources */,

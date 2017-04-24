@@ -20,7 +20,9 @@ class StateViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 let pickerTableView = UITableView()
  var pickerData = [String]()
     var pickerData1 = [String]()
-    
+    let name = UserDefaults.standard.value(forKey: "Name")
+    let mobileNumber = UserDefaults.standard.value(forKey: "mobile")
+    let mr = UserDefaults.standard.value(forKey: "Mr")
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -152,9 +154,84 @@ let pickerTableView = UITableView()
     
     @IBAction func NextBtn(_ sender: Any) {
         
-        self.performSegue(withIdentifier: "toArticle", sender: self)
+            
+            let networkStatus = Reeachability().connectionStatus()
+            switch networkStatus {
+            case .Unknown, .Offline:
+                displaymyalertmessage(usermessage: "no internet connection")
+                print("no internet connection")
+            default :
+                
+                self.performSegue(withIdentifier: "nameToState", sender: self)
+                let scriptUrl = "http://www.indianmoney.com/wealthDoctor/ios/verifyLoginOtp.php"
+                
+                let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
+                
+                let myUrl = URL(string: urlWithParams);
+                
+                var request = URLRequest(url:myUrl!)
+                
+                let postString = "mobile=\(mobileNumber!)&gen=\(mr)&city=\(selectedCity)"
+                request.httpBody = postString.data(using: .utf8)
+                
+                request.httpMethod = "POST"
+                
+                let task = URLSession.shared.dataTask(with: request) {
+                    data, response, error in
+                    if let responseString = String(data: data!, encoding: .utf8){
+                        // print("responseString = \(responseString)")
+                        // self.actstop()
+                        if error != nil
+                        {
+                            print("error=\(error)")
+                            DispatchQueue.main.async {
+                                self.displaymyalertmessage(usermessage: "serverdown")
+                            }
+                            return
+                        }
+                        if responseString == "null\n"{
+                            
+                        }
+                        else{
+                            
+                            do {
+                                
+                                if let convertedJsonDictioanry = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]    {
+                                    
+                                    
+                                    
+                                    DispatchQueue.main.async {
+                                        self.performSegue(withIdentifier: "toArticle", sender: self)
+                                    }
+                                }
+                            } catch let error as NSError {
+                                print(error.localizedDescription)
+                                
+                            }
+                        }
+                    }
+                    else{
+                        
+                        DispatchQueue.main.async {
+                            self.displaymyalertmessage(usermessage: "serverdown")
+                        }
+                    }
+                }
+                task.resume()
+                
+            }
+            
+        }
+       
         
-    }
     
+    
+    func displaymyalertmessage (usermessage:String) {
+        let myalert = UIAlertController(title: "WARNING", message: usermessage, preferredStyle: UIAlertControllerStyle.alert )
+        
+        let okaction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+        myalert.addAction(okaction)
+        self.present(myalert, animated: true, completion: nil)
 
+}
 }

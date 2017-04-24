@@ -707,7 +707,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
             let task = URLSession.shared.dataTask(with: request) {
                 data, response, error in
-                let responseString = String(data: data!, encoding: .utf8)
+                if let responseString = String(data: data!, encoding: .utf8){
                 // print("responseString = \(responseString)")
                 //self.actstop()
                 if error != nil
@@ -828,7 +828,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     }
                 }
             }
-            
+            }
             task.resume()
             
         }
