@@ -9,6 +9,7 @@
 import UIKit
 
 class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSource ,UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UICollectionViewDelegateFlowLayout{
+    var isChatLoadEnable:Bool = false
     var secondPart : String!
     var selectedTag = ""
     var adviceOn = ""
@@ -120,7 +121,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChatTableViewCell
         cell.userChatLabel.translatesAutoresizingMaskIntoConstraints = false
-        cell.userChatLabel.preferredMaxLayoutWidth = view.frame.width/2
+        cell.userChatLabel.preferredMaxLayoutWidth = self.chatTableView.frame.width-80
         cell.backgroundColor = UIColor.clear
         cell.tagCollectionView.backgroundColor = UIColor.clear
         
@@ -136,7 +137,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
          /// let chattime  = UILabel(frame: CGRect(x: 20, y:  cell.tagCollectionView.frame.origin.y-3, width: cell.tagCollectionView.frame.width-40, height: 14) )
         
         
-        let chattime  = UILabel(frame: CGRect(x: 20, y:  cell.userChatLabel.frame.origin.y+cell.userChatLabel.frame.height+30, width: cell.tagCollectionView.frame.width-40, height: 14) )
+        let chattime  = UILabel(frame: CGRect(x: 20, y:  cell.frame.height-14, width: cell.tagCollectionView.frame.width-40, height: 14) )
        
         
         
@@ -191,25 +192,25 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 chattime.textAlignment = .left
                 
                 cell.userChatLabel.backgroundColor = UIColor.white
-                cell.userChatLabel.textAlignment = .left
+               // cell.userChatLabel.textAlignment = .left
                 
                 cn1 = NSLayoutConstraint(item:cell.userChatLabel, attribute: .leading, relatedBy: .equal, toItem:cell.contentView ,attribute: .leadingMargin, multiplier: 1.0, constant: 10)
                 cn1.identifier="lefticon"
                 //
                 let cn12 = NSLayoutConstraint(item: cell.userChatLabel, attribute: .top, relatedBy: .equal, toItem: cell.contentView, attribute: .topMargin, multiplier: 1.0, constant: 10)
                 
-                let cn13 = NSLayoutConstraint(item: cell.tagCollectionView, attribute: .top, relatedBy: .equal, toItem: cell.userChatLabel, attribute: .bottom, multiplier: 1.0, constant: 5)
+              //  let cn13 = NSLayoutConstraint(item: cell.tagCollectionView, attribute: .top, relatedBy: .equal, toItem: cell.userChatLabel, attribute: .bottom, multiplier: 1.0, constant: 5)
                 
                // cell.contentView.backgroundColor=UIColor.green
                 
                 cell.contentView.addConstraint(cn1)
                 
                 cell.contentView.addConstraint(cn12)
-                cell.contentView.addConstraint(cn13)
-                
+              //  cell.contentView.addConstraint(cn13)
+              
             }
             else if chat_id[indexPath.row] == "1" {
-                cell.userChatTime.text=chatTime[indexPath.row]
+               // cell.userChatTime.text=chatTime[indexPath.row]
                 for constraint in cell.contentView.constraints{
                     
                     if constraint.identifier == "lefticon"{
@@ -227,13 +228,13 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 
                   chattime.textAlignment = .right
                 
-                cell.userChatLabel.textAlignment = .right
+              //  cell.userChatLabel.textAlignment = .right
                 cell.userChatLabel.backgroundColor = UIColor.gray
                 cn111 = NSLayoutConstraint(item:cell.contentView, attribute: .trailingMargin, relatedBy: .equal, toItem:cell.userChatLabel ,attribute: .trailing, multiplier: 1.0, constant: 10)
                 cn111.identifier="rightCon"
                 let cn12 = NSLayoutConstraint(item: cell.userChatLabel, attribute: .top, relatedBy: .equal, toItem: cell.contentView, attribute: .topMargin, multiplier: 1.0, constant: 10)
                 
-                let cn13 = NSLayoutConstraint(item: cell.tagCollectionView, attribute: .top, relatedBy: .equal, toItem: cell.userChatLabel, attribute: .bottom, multiplier: 1.0, constant: 5)
+             //   let cn13 = NSLayoutConstraint(item: cell.tagCollectionView, attribute: .top, relatedBy: .equal, toItem: cell.userChatLabel, attribute: .bottom, multiplier: 1.0, constant: 5)
                 
                 
                 
@@ -241,10 +242,14 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 cell.contentView.addConstraint(cn111)
                 
                 cell.contentView.addConstraint(cn12)
-                cell.contentView.addConstraint(cn13)
+              //  cell.contentView.addConstraint(cn13)
                 
             }
-            else{}
+                
+//
+            else{
+            
+            }
             
             
             
@@ -258,19 +263,33 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             }
             
             
-              chattime.frame  =  CGRect(x: 20, y:  cell.layer.frame.height-30, width: cell.tagCollectionView.frame.width-40, height: 14)
+              chattime.frame  =  CGRect(x: 20, y:  cell.frame.height-14, width: cell.tagCollectionView.frame.width-40, height: 14)
             chattime.textColor = UIColor.gray
             chattime.tag = 1001
             chattime.text=chatTime[indexPath.row]
             chattime.font = UIFont(name: "Helvetica", size: 8)
-            cell.userChatTime.backgroundColor = UIColor.red
-            cell.contentView.addSubview(chattime)
+          //  chattime.backgroundColor = UIColor.red
+           // cell.userChatTime.backgroundColor = UIColor.red
             
-            cell.userChatLabel.font = UIFont(name: "Helvetica", size: 12)
+            
+          //  cell.userChatLabel.font = UIFont(name: "Helvetica", size: 12)
            // cell.userChatTime.text=chatTime[indexPath.row]
 
             
             cell.userChatLabel.text = serverChatText[indexPath.row]
+            if indexPath.row == serverChatText.count-1{
+                cell.contentView.addSubview(chattime)
+                
+                        }
+            else{
+            if chat_id[indexPath.row] == chat_id[indexPath.row+1]{
+                chattime.removeFromSuperview()
+            }else{
+                
+               cell.contentView.addSubview(chattime)
+                
+            }
+            }
         }
         
         
@@ -279,25 +298,25 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     
     
-    func calculateHeight(inString:String) -> CGFloat {
+    
+    func calculateHeight(inString:String) -> CGFloat
+    {
         let messageString = inString
         let attributes : [String : Any] = [NSFontAttributeName : UIFont.systemFont(ofSize: 15.0)]
         
         let attributedString : NSAttributedString = NSAttributedString(string: messageString, attributes: attributes)
         
-        let rect : CGRect = attributedString.boundingRect(with: CGSize(width: 222.0, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, context: nil)
+        let rect : CGRect = attributedString.boundingRect(with: CGSize(width: self.chatTableView.frame.width-80, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, context: nil)
         
         let requredSize:CGRect = rect
         return requredSize.height
     }
     
     
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         //return UITableViewAutomaticDimension
         
         let heightOfRow = self.calculateHeight(inString:serverChatText[indexPath.row])
-       
        
         
       // let size = (squareData[indexPath.row] as NSString).size(attributes: nil)
@@ -312,10 +331,37 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 totalWidth = totalWidth + width
                 
             }
-        return (heightOfRow + 60.0+(totalWidth/(view.frame.width))*35)
+            
+        return (heightOfRow + 80+(totalWidth/(view.frame.width))*35)
         
         }
-        return (heightOfRow + 50.0)
+       else if chat_id[indexPath.row] == chat_id[indexPath.row+1]{
+            return (heightOfRow + 30)
+            
+            
+        }
+        else{
+            if chat_id[indexPath.row] == "0"{
+                
+                return (heightOfRow + 50)
+            }
+            else{
+                
+                
+            }
+        }
+
+//            if chat_id[indexPath.row] == chat_id[indexPath.row+1]{
+//            }else{
+//               return (heightOfRow + 70+(totalWidth/(view.frame.width))*35)
+//                
+//                
+//            }
+        
+//        if chat_id[indexPath.row] == "0"{
+//        return (heightOfRow + 50)
+//        }
+        return (heightOfRow + 70)
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -338,13 +384,15 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         cell.backgroundColor = UIColor.clear
         cell.tagLabel.layer.cornerRadius = 5
         cell.tagLabel.layer.masksToBounds = true
-        cell.tagLabel.preferredMaxLayoutWidth = self.view.frame.width/2
+       // cell.tagLabel.preferredMaxLayoutWidth = self.view.frame.width/2
         
         if squareData.isEmpty{
         }else {
+            if indexPath.row<squareData.count{
             print(indexPath.row)
             print(squareData.count)
             cell.tagLabel.text = squareData[indexPath.row]
+            }
         }
         return cell
     }
@@ -376,6 +424,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     //MARK: OtherMethods
     
     func chatLoad(){
+        isChatLoadEnable = true
         let networkStatus = Reeachability().connectionStatus()
         switch networkStatus {
         case .Unknown, .Offline:
@@ -688,7 +737,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             // view.endEditing(true)
             
             
-            
+            isChatLoadEnable = true
             
             //  self.lodingasending()
             
