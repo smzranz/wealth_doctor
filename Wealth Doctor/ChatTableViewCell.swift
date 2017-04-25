@@ -11,11 +11,11 @@ import UIKit
 class ChatTableViewCell: UITableViewCell {
 
     @IBOutlet var tagCollectionView: UICollectionView!
-    @IBOutlet var serverChatTime: UILabel!
-    @IBOutlet var userChatTime: UILabel!
-    @IBOutlet var bgView: UIView!
+  //  @IBOutlet var serverChatTime: UILabel!
+//    @IBOutlet var userChatTime: UILabel!
+   // @IBOutlet var bgView: UIView!
     @IBOutlet var userChatLabel: UILabel!
-    @IBOutlet var serverChatLabel: UILabel!
+   // @IBOutlet var serverChatLabel: UILabel!
     
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
     

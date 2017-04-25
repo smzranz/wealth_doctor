@@ -137,9 +137,9 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
          /// let chattime  = UILabel(frame: CGRect(x: 20, y:  cell.tagCollectionView.frame.origin.y-3, width: cell.tagCollectionView.frame.width-40, height: 14) )
         
         
-        let chattime  = UILabel(frame: CGRect(x: 20, y:  cell.frame.height-14, width: cell.tagCollectionView.frame.width-40, height: 14) )
+        let chattime  = UILabel(frame: CGRect(x: 20, y:  cell.frame.height-14, width: view.frame.width-40, height: 14) )
        
-        
+       
         
         
         if type == "2" && indexPath.row == serverChatText.count - 1{
@@ -190,14 +190,14 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 }
                 
                 chattime.textAlignment = .left
-                
+                cell.userChatLabel.textColor = UIColor.black
                 cell.userChatLabel.backgroundColor = UIColor.white
                // cell.userChatLabel.textAlignment = .left
                 
                 cn1 = NSLayoutConstraint(item:cell.userChatLabel, attribute: .leading, relatedBy: .equal, toItem:cell.contentView ,attribute: .leadingMargin, multiplier: 1.0, constant: 10)
                 cn1.identifier="lefticon"
                 //
-                let cn12 = NSLayoutConstraint(item: cell.userChatLabel, attribute: .top, relatedBy: .equal, toItem: cell.contentView, attribute: .topMargin, multiplier: 1.0, constant: 10)
+                let cn12 = NSLayoutConstraint(item: cell.userChatLabel, attribute: .top, relatedBy: .equal, toItem: cell.contentView, attribute: .topMargin, multiplier: 1.0, constant: 3)
                 
               //  let cn13 = NSLayoutConstraint(item: cell.tagCollectionView, attribute: .top, relatedBy: .equal, toItem: cell.userChatLabel, attribute: .bottom, multiplier: 1.0, constant: 5)
                 
@@ -227,12 +227,12 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 }
                 
                   chattime.textAlignment = .right
-                
+                cell.userChatLabel.textColor = UIColor.black
               //  cell.userChatLabel.textAlignment = .right
-                cell.userChatLabel.backgroundColor = UIColor.gray
+                cell.userChatLabel.backgroundColor = UIColor.white
                 cn111 = NSLayoutConstraint(item:cell.contentView, attribute: .trailingMargin, relatedBy: .equal, toItem:cell.userChatLabel ,attribute: .trailing, multiplier: 1.0, constant: 10)
                 cn111.identifier="rightCon"
-                let cn12 = NSLayoutConstraint(item: cell.userChatLabel, attribute: .top, relatedBy: .equal, toItem: cell.contentView, attribute: .topMargin, multiplier: 1.0, constant: 10)
+                let cn12 = NSLayoutConstraint(item: cell.userChatLabel, attribute: .top, relatedBy: .equal, toItem: cell.contentView, attribute: .topMargin, multiplier: 1.0, constant: 3)
                 
              //   let cn13 = NSLayoutConstraint(item: cell.tagCollectionView, attribute: .top, relatedBy: .equal, toItem: cell.userChatLabel, attribute: .bottom, multiplier: 1.0, constant: 5)
                 
@@ -263,7 +263,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             }
             
             
-              chattime.frame  =  CGRect(x: 20, y:  cell.frame.height-14, width: cell.tagCollectionView.frame.width-40, height: 14)
+          //    chattime.frame  =  CGRect(x: 20, y:  cell.frame.height-14, width: cell.tagCollectionView.frame.width-40, height: 14)
             chattime.textColor = UIColor.gray
             chattime.tag = 1001
             chattime.text=chatTime[indexPath.row]
@@ -283,10 +283,23 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                         }
             else{
             if chat_id[indexPath.row] == chat_id[indexPath.row+1]{
+                
+               
                 chattime.removeFromSuperview()
             }else{
                 
                cell.contentView.addSubview(chattime)
+                if chat_id[indexPath.row] == "1"{
+                    
+                    cell.userChatLabel.backgroundColor = UIColor(colorLiteralRed: 36.0/255, green: 157.0/255, blue: 202.0/255, alpha: 1.0)
+                    cell.userChatLabel.textColor = UIColor.white
+                    
+                }
+                else{
+                    
+                    cell.userChatLabel.backgroundColor = UIColor.white
+                    cell.userChatLabel.textColor = UIColor.black
+                }
                 
             }
             }
@@ -335,20 +348,21 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         return (heightOfRow + 80+(totalWidth/(view.frame.width))*35)
         
         }
-       else if chat_id[indexPath.row] == chat_id[indexPath.row+1]{
-            return (heightOfRow + 30)
-            
-            
+        else if indexPath.row != serverChatText.count-1{
+            if chat_id[indexPath.row] == chat_id[indexPath.row+1]{
+            return (heightOfRow + 35)
         }
-        else{
             if chat_id[indexPath.row] == "0"{
                 
-                return (heightOfRow + 50)
+                return (heightOfRow + 45)
             }
             else{
                 
                 
             }
+    }
+        else{
+           
         }
 
 //            if chat_id[indexPath.row] == chat_id[indexPath.row+1]{
@@ -749,7 +763,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
             var request = URLRequest(url:myUrl!)
             
-            let postString = "mobile=9746594225&chatQuestion=\(chatTxt1)&ans_id=\(ans_id)&product_id=\(product_id)"
+            let postString = "mobile=9567019109&chatQuestion=\(chatTxt1)&ans_id=\(ans_id)&product_id=\(product_id)"
             request.httpBody = postString.data(using: .utf8)
             
             request.httpMethod = "POST"
@@ -807,6 +821,9 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                     if let questionsArray = convertedJsonIntoArray["questions"] as? NSArray{
                                         if let questionArrayDict = questionsArray[0] as? [String:Any] {
                                             let q_choice = questionArrayDict["q_choices"] as! String
+                                            let q_type = questionArrayDict["q_type"] as! String
+                                            let q_id = questionArrayDict["q_id"] as! String
+                                            let question = questionArrayDict["question"] as! String
                                             
                                             DataBaseManager.shared.ExecuteCommand(query: "insert into questions (q_choice, q_choice_id) values ( '\(q_choice)', '\(0)');")
                                             
