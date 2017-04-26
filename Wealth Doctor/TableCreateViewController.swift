@@ -50,7 +50,7 @@ class TableCreateViewController: UIViewController {
         
         var result = Bool()
         
-        result = DataBaseManager.shared.ExecuteQuery(query: "create table CHAT (\(slno) integer primary key autoincrement not null, type text not null, \(server_Chat) text not null, ans_id text not null ,url text not null, product_id text not null , disable text not null,chat_id text not null,time text not null)")
+        result = DataBaseManager.shared.ExecuteQuery(query: "create table CHAT (\(slno) integer primary key autoincrement not null, type text not null, \(server_Chat) text not null, ans_id text not null ,url text not null, product_id text not null , disable text not null,chat_id text not null,time text not null,color text not null)")
         if result == true {
             
             print("chat table created succesfully")

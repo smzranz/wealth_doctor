@@ -20,7 +20,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var questionId = ""
     @IBOutlet var chatTxt: UITextField!
     @IBOutlet weak var textFieldBgView: UIView!
-    
+    let datePicker = UIDatePicker()
     @IBOutlet weak var loaderView: UIView!
     var squareData = [String]()
     var curlyData = [String]()
@@ -36,6 +36,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     @IBOutlet var chatTableView: UITableView!
     var serverChatText = [String]()
     var chat_id = [String]()
+    var color_id = [String]()
     var chatTime   = [String]()
     var ansId = ""
     var productId = ""
@@ -60,7 +61,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         if UserDefaults.standard.value(forKey: "type")  != nil {
             let type1: String  = UserDefaults.standard.value(forKey: "type") as! String
             if type1 == "4"{
-                self.chatTxt.inputView = self.picker
+            //    self.chatTxt.inputView = self.picker
             }
         }
         
@@ -126,7 +127,11 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChatTableViewCell
-        
+        cell.userChatLabel.textColor = UIColor.black
+        //  cell.userChatLabel.textAlignment = .right
+        cell.userChatLabel.backgroundColor = UIColor.white
+      
+       
         cell.userChatLabel.translatesAutoresizingMaskIntoConstraints = false
         cell.userChatLabel.preferredMaxLayoutWidth = self.chatTableView.frame.width-80
         cell.backgroundColor = UIColor.clear
@@ -197,11 +202,11 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 }
                 
                 chattime.textAlignment = .left
-                cell.userChatLabel.textColor = UIColor.black
-                cell.userChatLabel.backgroundColor = UIColor.white
+              //  cell.userChatLabel.textColor = UIColor.black
+               // cell.userChatLabel.backgroundColor = UIColor.white
                // cell.userChatLabel.textAlignment = .left
                 
-                cn1 = NSLayoutConstraint(item:cell.userChatLabel, attribute: .leading, relatedBy: .equal, toItem:cell.contentView ,attribute: .leadingMargin, multiplier: 1.0, constant: 10)
+                cn1 = NSLayoutConstraint(item:cell.userChatLabel, attribute: .leading, relatedBy: .equal, toItem:cell.contentView ,attribute: .leadingMargin, multiplier: 1.0, constant: 0)
                 cn1.identifier="lefticon"
                 //
                 let cn12 = NSLayoutConstraint(item: cell.userChatLabel, attribute: .top, relatedBy: .equal, toItem: cell.contentView, attribute: .topMargin, multiplier: 1.0, constant: 3)
@@ -217,6 +222,14 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
               
             }
             else if chat_id[indexPath.row] == "1" {
+                if color_id[indexPath.row] == "1"{
+                    
+                    
+                    cell.userChatLabel.backgroundColor = UIColor(colorLiteralRed: 36.0/255, green: 157.0/255, blue: 202.0/255, alpha: 1.0)
+                    cell.userChatLabel.textColor = UIColor.white
+                    
+                    
+                }
                // cell.userChatTime.text=chatTime[indexPath.row]
                 for constraint in cell.contentView.constraints{
                     
@@ -234,10 +247,10 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 }
                 
                   chattime.textAlignment = .right
-                cell.userChatLabel.textColor = UIColor.black
-              //  cell.userChatLabel.textAlignment = .right
-                cell.userChatLabel.backgroundColor = UIColor.white
-                cn111 = NSLayoutConstraint(item:cell.contentView, attribute: .trailingMargin, relatedBy: .equal, toItem:cell.userChatLabel ,attribute: .trailing, multiplier: 1.0, constant: 10)
+                if color_id.isEmpty{}else{
+            
+                }
+                cn111 = NSLayoutConstraint(item:cell.contentView, attribute: .trailingMargin, relatedBy: .equal, toItem:cell.userChatLabel ,attribute: .trailing, multiplier: 1.0, constant: 0)
                 cn111.identifier="rightCon"
                 let cn12 = NSLayoutConstraint(item: cell.userChatLabel, attribute: .top, relatedBy: .equal, toItem: cell.contentView, attribute: .topMargin, multiplier: 1.0, constant: 3)
                 
@@ -284,6 +297,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
             
             cell.userChatLabel.text = serverChatText[indexPath.row]
+         
             if indexPath.row == serverChatText.count-1{
                 cell.contentView.addSubview(chattime)
                 
@@ -298,14 +312,13 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                cell.contentView.addSubview(chattime)
                 if chat_id[indexPath.row] == "1"{
                     
-                    cell.userChatLabel.backgroundColor = UIColor(colorLiteralRed: 36.0/255, green: 157.0/255, blue: 202.0/255, alpha: 1.0)
-                    cell.userChatLabel.textColor = UIColor.white
+                  
                     
                 }
                 else{
                     
-                    cell.userChatLabel.backgroundColor = UIColor.white
-                    cell.userChatLabel.textColor = UIColor.black
+                //    cell.userChatLabel.backgroundColor = UIColor.white
+                 //   cell.userChatLabel.textColor = UIColor.black
                 }
                 
             }
@@ -468,7 +481,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         selectedTag = cell.tagLabel.text!
         collectionView.isHidden = true
         
-        dataToServer(chatTxt1: squareData[indexPath.row], ans_id: ansId, product_id: productId)
+        dataToServer(chatTxt1: squareData[indexPath.row], ans_id: ansId, product_id: productId,colorEnable:true)
         
         
     }
@@ -563,7 +576,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                 for i in 0..<fullNameArr.count {
                                     let dataFromServer = fullNameArr[i] as String
                                     
-                                    DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time) values ( '\(type)', '\(dataFromServer)', '\(ans_id)','\(url)','\(product_id)', '\(disable)',0,DATETIME('now'));")
+                                    DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time,color) values ( '\(type)', '\(dataFromServer)', '\(ans_id)','\(url)','\(product_id)', '\(disable)',0,DATETIME('now'),0);")
                                     
                                     
                                     
@@ -574,7 +587,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                 DispatchQueue.main.async {
                                     
                                     if type == "4"{
-                                        self.chatTxt.inputView = self.picker
+                                      //  self.chatTxt.inputView = self.picker
                                     }
                                     
                                     self.chatTableView.reloadData()
@@ -609,12 +622,15 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             let x = userdata.string(forColumn: "serverChat")
             let y = userdata.string(forColumn: "chat_id")
             let z = userdata.string(forColumn: "time")
+            let w = userdata.string(forColumn: "color")
+
             
             serverChatText.append(x!)
             chat_id.append(y!)
             
             chatTime.append(z!)
-            
+            color_id.append(w!)
+            print(color_id)
             chatTableView.reloadData()
             
             
@@ -666,18 +682,19 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                         serverChatText = [String]()
                         chat_id = [String]()
                         chatTime = [String]()
-                        DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time) values ( '\(type1)', '\(adviceOn)', '\(0)','\(0)','\(0)', '\(0)',\(1),DATETIME('now'));")
+                        DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time,color) values ( '\(type1)', '\(adviceOn)', '\(0)','\(0)','\(0)', '\(0)',\(1),DATETIME('now'),0);")
                         let userdata = DataBaseManager.shared.fetchData(Query: "select * from CHAT ;")
                         while userdata.next() {
                             let x = userdata.string(forColumn: "serverChat")
                             let y = userdata.string(forColumn: "chat_id")
                             let z = userdata.string(forColumn: "time")
+                             let w = userdata.string(forColumn: "color")
                             
                             serverChatText.append(x!)
                             chat_id.append(y!)
                             
                             chatTime.append(z!)
-                            
+                            color_id.append(w!)
                             chatTableView.reloadData()
                             
                             
@@ -704,8 +721,16 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     let qtype = y!
                     if qtype == "13"{
                     
-                    
+                        self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Calendar", attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                       // let datePicker = UIDatePicker()
+                        datePicker.datePickerMode = .date
+                        
+                        self.chatTxt.inputView = self.datePicker
+                        self.datePicker.addTarget(self, action: #selector(datePickerChanged(sender:)), for: .valueChanged)
+                        print("This Worked")
+                       // self.chatTxt.inputView = self.picker
                     }
+                    else{
                     let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
                     for i in 0..<q_choicesSeperated.count {
                         let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
@@ -719,9 +744,12 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                         //  print(self.serverGeneratedArray)
                         }
                     }
-                    
+            
                     UserDefaults.standard.setValue(self.pickerDisplayArray, forKeyPath: "pickerArray")
                     UserDefaults.standard.synchronize()
+                        self.chatTxt.attributedPlaceholder = NSAttributedString(string: "tap to input", attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                        self.chatTxt.inputView = self.picker
+                    }
                     chatTableView.reloadData()
                     
                     
@@ -780,8 +808,10 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 
                 let selecteditem = serverGeneratedArray[itemIndex!]
                 //   print(chatTxt.text!)
-                dataToServer(chatTxt1: selecteditem, ans_id: ansId, product_id: productId)
+                dataToServer(chatTxt1: selecteditem, ans_id: ansId, product_id: productId,colorEnable:false)
             }
+            
+           dataToServer(chatTxt1: chatTxt.text!, ans_id: ansId, product_id: productId,colorEnable:false)
         }
     }
     func matches(for regex: String, in text: String) -> [String] {
@@ -797,7 +827,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
     }
     
-    func dataToServer(chatTxt1 :String, ans_id : String,product_id : String){
+    func dataToServer(chatTxt1 :String, ans_id : String,product_id : String,colorEnable:Bool){
         
         
         let networkStatus = Reeachability().connectionStatus()
@@ -860,11 +890,18 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                             chatQuestion = self.chatTxt.text!
                             //  print(self.chatTxt.text!)
                         }
+                        var color = "0"
+                        if colorEnable == true{
+                        color = "1"
                         
+                        }
+                        else{
+                        color = "0"
+                        }
                         
-                        DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, chat_id,ans_id,url,product_id,disable,serverChat,time) values ( 0, 1, 0,0,0,0,'\(chatQuestion)',DATETIME('now'));")
+                        DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, chat_id,ans_id,url,product_id,disable,serverChat,time,color) values ( 0, 1, 0,0,0,0,'\(chatQuestion)',DATETIME('now'),'\(color)');")
                         
-                        
+                        color = "0"
                         
                         if let convertedJsonIntoArray = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]    {
                             //   print(convertedJsonIntoArray)
@@ -885,7 +922,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                             let q_id = questionArrayDict["q_id"] as! String
                                             let question = questionArrayDict["question"] as! String
                                             
-                                            DataBaseManager.shared.ExecuteCommand(query: "insert into questions (q_choice, q_choice_id,q_type,q_id,question) values ( '\(q_choice)', '\(0)', '\(q_type)', '\(q_id)''\(question)');")
+                                            DataBaseManager.shared.ExecuteCommand(query: "insert into questions (q_choice, q_choice_id,q_type,q_id,question) values ( '\(q_choice)', '\(0)', '\(q_type)', '\(q_id)','\(question)');")
                                             
                                             
                                         }
@@ -905,7 +942,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                     for i in 0..<fullNameArr.count {
                                         let dataFromServer = fullNameArr[i] as String
                                         
-                                        DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type,serverChat,ans_id,url,product_id,disable,chat_id,time) values ('\(type)','\(dataFromServer)', '\(ans_id)','\(url)','\(product_id)', '\(disable)','\(0)',DATETIME('now'));")
+                                        DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type,serverChat,ans_id,url,product_id,disable,chat_id,time,color) values ('\(type)','\(dataFromServer)', '\(ans_id)','\(url)','\(product_id)', '\(disable)','\(0)',DATETIME('now'),'\(color)');")
                                         
                                         
                                     }
@@ -921,7 +958,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                     for i in 0..<fullNameArr.count {
                                         let dataFromServer = fullNameArr[i] as String
                                         
-                                        DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time) values ( '\(type)', '\(dataFromServer)', '\(ans_id)','\(url)','\(product_id)', '\(disable)',0,DATETIME('now'));")
+                                        DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time,color) values ( '\(type)', '\(dataFromServer)', '\(ans_id)','\(url)','\(product_id)', '\(disable)',0,DATETIME('now'),'\(color)');")
                                         
                                         
                                     }
@@ -932,8 +969,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                 DispatchQueue.main.async {
                                     self.chatTxt.text = ""
                                     if type == "4"{
-                                        self.chatTxt.attributedPlaceholder = NSAttributedString(string: "tap to input", attributes: [NSForegroundColorAttributeName:UIColor.orange])
-                                        self.chatTxt.inputView = self.picker
+                                     
                                     }
                                     else if type == "2"{
                                         self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Chat", attributes: [NSForegroundColorAttributeName:UIColor.lightText])
@@ -977,6 +1013,12 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
        // loadView()
     }
     
-    
+    func datePickerChanged(sender: UIDatePicker) {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        chatTxt.text = formatter.string(from: sender.date)
+        
+        print("Try this at home")
+    }
     
 }
