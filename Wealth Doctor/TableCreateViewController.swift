@@ -79,8 +79,7 @@ class TableCreateViewController: UIViewController {
     func creatingQuestionsTable(){
         
         var result = Bool()
-        
-        result = DataBaseManager.shared.ExecuteQuery(query: "create table questions (\(slno) integer primary key autoincrement not null, q_choice text not null, q_choice_id text not null)")
+        result = DataBaseManager.shared.ExecuteQuery(query: "create table questions (\(slno) integer primary key autoincrement not null, q_choice text not null, q_choice_id text not null, q_type text not null, q_id text not null, question text not null)")
         if result == true {
             
             print("Questions table created succesfully")

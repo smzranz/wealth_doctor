@@ -9,6 +9,8 @@
 import UIKit
 
 class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSource ,UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UICollectionViewDelegateFlowLayout{
+    
+    var lastIndexPath : Int = 0
     var isChatLoadEnable:Bool = false
     var secondPart : String!
     var selectedTag = ""
@@ -17,6 +19,9 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var i = ""
     var questionId = ""
     @IBOutlet var chatTxt: UITextField!
+    @IBOutlet weak var textFieldBgView: UIView!
+    
+    @IBOutlet weak var loaderView: UIView!
     var squareData = [String]()
     var curlyData = [String]()
     var tags = [String]()
@@ -36,6 +41,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var productId = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loaderView.isHidden = true
         picker.delegate = self
         picker.dataSource = self
         self.navigationController?.isNavigationBarHidden = false
@@ -120,6 +126,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChatTableViewCell
+        
         cell.userChatLabel.translatesAutoresizingMaskIntoConstraints = false
         cell.userChatLabel.preferredMaxLayoutWidth = self.chatTableView.frame.width-80
         cell.backgroundColor = UIColor.clear
@@ -306,10 +313,54 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
         
         
+//        if isChatLoadEnable == true{
+//            cell.alpha = 0.0
+//        let delay = 6.0; //calculate delay
+//       
+//            if indexPath.row > lastIndexPath{
+//                print(indexPath.row)
+//                print(lastIndexPath)
+//                sleep(3)
+//       // UIView.animate(withDuration: 0.2, delay: delay, options: .curveEaseIn, animations: {
+//            cell.alpha = 1.0
+//      //  }, completion: nil)
+//               
+//                
+//        }
+//        }
+       
+        
         return cell
+       // let lastIndex : IndexPath = NSIndexPath(row: self.serverChatText.count - 1, section: 0) as IndexPath
+        //   print(lastIndex)
+        
+       // self.chatTableView.scrollToRow(at: indexPath , at: .top, animated: false)
     }
     
-    
+//    var shownIndexes : [IndexPath] = []
+//    
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        if isChatLoadEnable == true{
+//            cell.alpha = 0.0
+//            let delay = 6.0; //calculate delay
+//            
+//            if indexPath.row > lastIndexPath{
+//                print(indexPath.row)
+//                print(lastIndexPath)
+//                
+//                UIView.animate(withDuration: 0.2, delay: delay, options: .curveEaseIn, animations: {
+//                    cell.alpha = 1.0
+//                }, completion: nil)
+//                
+//              //  sleep(3)
+//            }
+//        }
+//        if indexPath.row ==  serverChatText.count-1{
+//            isChatLoadEnable = false
+//            self.loaderView.isHidden = true
+//        }
+//        lastIndexPath = indexPath.row
+//    }
     
     
     func calculateHeight(inString:String) -> CGFloat
@@ -395,6 +446,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! TagsCollectionViewCell
+       // cell.alpha = 0.0
         cell.backgroundColor = UIColor.clear
         cell.tagLabel.layer.cornerRadius = 5
         cell.tagLabel.layer.masksToBounds = true
@@ -403,8 +455,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         if squareData.isEmpty{
         }else {
             if indexPath.row<squareData.count{
-            print(indexPath.row)
-            print(squareData.count)
+           
             cell.tagLabel.text = squareData[indexPath.row]
             }
         }
@@ -438,14 +489,14 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     //MARK: OtherMethods
     
     func chatLoad(){
-        isChatLoadEnable = true
+        
         let networkStatus = Reeachability().connectionStatus()
         switch networkStatus {
         case .Unknown, .Offline:
             displaymyalertmessage(usermessage: "no internet connection")
             print("no internet connection")
         default :
-            
+            self.loaderView.isHidden = false
             let scriptUrl = "http://www.indianmoney.com/wealthDoctor/chatserver.php"
             
             let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
@@ -473,6 +524,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     {
                         print("error=\(error)")
                         DispatchQueue.main.async {
+                            self.loaderView.isHidden = true
                             self.displaymyalertmessage(usermessage: "serverdown")
                         }
                         return
@@ -527,7 +579,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                     
                                     self.chatTableView.reloadData()
                                     self.lodingasending()
-                                    
+                                    self.loaderView.isHidden = true
                                     
                                     
                                 }
@@ -648,6 +700,12 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 let userdata = DataBaseManager.shared.fetchData(Query: "select * from questions ORDER BY slno DESC LIMIT 1;")
                 while userdata.next() {
                     let x = userdata.string(forColumn: "q_choice")
+                    let y = userdata.string(forColumn: "q_type")
+                    let qtype = y!
+                    if qtype == "13"{
+                    
+                    
+                    }
                     let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
                     for i in 0..<q_choicesSeperated.count {
                         let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
@@ -750,7 +808,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         default :
             // view.endEditing(true)
             
-            
+            self.loaderView.isHidden = false
             isChatLoadEnable = true
             
             //  self.lodingasending()
@@ -776,7 +834,9 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 if error != nil
                 {
                     print("error=\(error)")
+                    
                     DispatchQueue.main.async {
+                        self.loaderView.isHidden = true
                         self.displaymyalertmessage(usermessage: "serverdown")
                     }
                     return
@@ -825,7 +885,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                             let q_id = questionArrayDict["q_id"] as! String
                                             let question = questionArrayDict["question"] as! String
                                             
-                                            DataBaseManager.shared.ExecuteCommand(query: "insert into questions (q_choice, q_choice_id) values ( '\(q_choice)', '\(0)');")
+                                            DataBaseManager.shared.ExecuteCommand(query: "insert into questions (q_choice, q_choice_id,q_type,q_id,question) values ( '\(q_choice)', '\(0)', '\(q_type)', '\(q_id)''\(question)');")
                                             
                                             
                                         }
