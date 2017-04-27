@@ -9,15 +9,29 @@
 import UIKit
 
 class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSource ,UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UICollectionViewDelegateFlowLayout{
+    var selectedTextFromDropDown = ""
+    
+    var dropDownTableview = UITableView()
+    
+    @IBOutlet weak var popUpCallBtn: UIButton!
+    @IBOutlet weak var popupBgView: UIView!
+    
+    @IBOutlet weak var popUpView: UIView!
+    
+    @IBOutlet weak var popUpDropDownBtn: UIButton!
+    
+    @IBOutlet weak var popUpTxtField: UITextField!
     
     var lastIndexPath : Int = 0
     var isChatLoadEnable:Bool = false
+    
     var secondPart : String!
     var selectedTag = ""
     var adviceOn = ""
     var type = ""
     var i = ""
     var questionId = ""
+    let mobileNumber = UserDefaults.standard.value(forKey: "mobile")
     @IBOutlet var chatTxt: UITextField!
     @IBOutlet weak var textFieldBgView: UIView!
     let datePicker = UIDatePicker()
@@ -42,9 +56,12 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var productId = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.popupBgView.isHidden = true
+        popUpCallBtn.isHidden = true
         self.loaderView.isHidden = true
         picker.delegate = self
         picker.dataSource = self
+        popUpDropDownBtn.addTarget(self, action: #selector(popUpDropDownBtnClick(sender:)), for: .touchUpInside)
         self.navigationController?.isNavigationBarHidden = false
         if UserDefaults.standard.value(forKey: "chat") != nil{
             
@@ -121,11 +138,20 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var cn111:NSLayoutConstraint!;
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView == dropDownTableview{
+        
+        }
         return serverChatText.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView == dropDownTableview{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as UITableViewCell
+            
+            return cell
+
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChatTableViewCell
         cell.userChatLabel.textColor = UIColor.black
         //  cell.userChatLabel.textAlignment = .right
@@ -392,7 +418,10 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         //return UITableViewAutomaticDimension
+        if tableView == dropDownTableview{
         
+        return 44
+        }
         let heightOfRow = self.calculateHeight(inString:serverChatText[indexPath.row])
        
         
@@ -446,6 +475,18 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         
         return UITableViewAutomaticDimension
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == dropDownTableview{
+            
+            selectedTextFromDropDown = "\(indexPath.row)"
+        dropDownTableview.removeFromSuperview()
+            popUpDropDownBtn.setTitle(selectedTextFromDropDown, for: .normal)
+        
+        
+        }
     }
     
     //MARK: CollectionView
@@ -616,6 +657,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         serverChatText = [String]()
         chat_id = [String]()
         chatTime = [String]()
+        color_id = [String]()
         
         let userdata = DataBaseManager.shared.fetchData(Query: "select * from CHAT ;")
         while userdata.next() {
@@ -682,6 +724,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                         serverChatText = [String]()
                         chat_id = [String]()
                         chatTime = [String]()
+                        color_id = [String]()
                         DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time,color) values ( '\(type1)', '\(adviceOn)', '\(0)','\(0)','\(0)', '\(0)',\(1),DATETIME('now'),0);")
                         let userdata = DataBaseManager.shared.fetchData(Query: "select * from CHAT ;")
                         while userdata.next() {
@@ -719,10 +762,132 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     let x = userdata.string(forColumn: "q_choice")
                     let y = userdata.string(forColumn: "q_type")
                     let qtype = y!
-                    if qtype == "13"{
                     
+                    if qtype == "1"{
+                    
+                    self.textFieldBgView.isHidden = false
+                        self.chatTxt.inputView = nil
+                        self.chatTxt.keyboardType = .default
+                    }
+                    else if qtype == "2"{
+                        self.textFieldBgView.isHidden = false
+                            let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
+                            for i in 0..<q_choicesSeperated.count {
+                                let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
+                                if q_choiceDisplay.count == 2{
+                                    let choiceItemServer: String = q_choiceDisplay[0]
+                                    let choiceDisplayItem : String = q_choiceDisplay[1]
+                                    
+                                    self.pickerDisplayArray.append(choiceDisplayItem)
+                                    self.serverGeneratedArray.append(choiceItemServer)
+                                    
+                                }
+                            }
+                            
+                            UserDefaults.standard.setValue(self.pickerDisplayArray, forKeyPath: "pickerArray")
+                            UserDefaults.standard.synchronize()
+                            self.chatTxt.attributedPlaceholder = NSAttributedString(string: "tap to input", attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                            self.chatTxt.inputView = self.picker
+                        
+                    }
+                    else if qtype == "3"{
+                        self.textFieldBgView.isHidden = false
+                    self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Calendar", attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                        
+                        self.textFieldBgView.isHidden = false
+                        self.chatTxt.inputView = nil
+                        self.chatTxt.keyboardType = .numberPad
+                    }
+                    else if qtype == "4"{
+                        self.textFieldBgView.isHidden = false
+                        let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
+                        for i in 0..<q_choicesSeperated.count {
+                            let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
+                            if q_choiceDisplay.count == 2{
+                                let choiceItemServer: String = q_choiceDisplay[0]
+                                let choiceDisplayItem : String = q_choiceDisplay[1]
+                                
+                                self.pickerDisplayArray.append(choiceDisplayItem)
+                                self.serverGeneratedArray.append(choiceItemServer)
+                                
+                            }
+                        }
+                        
+                        UserDefaults.standard.setValue(self.pickerDisplayArray, forKeyPath: "pickerArray")
+                        UserDefaults.standard.synchronize()
+                        self.chatTxt.attributedPlaceholder = NSAttributedString(string: "tap to input", attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                        self.chatTxt.inputView = self.picker
+                        
+                    }
+                    else if qtype == "5"{
+                        self.textFieldBgView.isHidden = false
+                        datePicker.datePickerMode = .date
+                        self.chatTxt.inputView = self.datePicker
+                        self.datePicker.addTarget(self, action: #selector(datePickerChanged(sender:)), for: .valueChanged)
+                    }
+                    else if qtype == "6"{
+                    print("multiselect")
+                    }
+                    else if qtype == "7"{
+                    self.popUpCallBtn.isHidden = false
+                    
+                    }
+                    else if qtype == "8"{}
+                    else if qtype == "9"{}
+                    else if qtype == "10"{}
+                    else if qtype == "11"{
+                        self.textFieldBgView.isHidden = false
                         self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Calendar", attributes: [NSForegroundColorAttributeName:UIColor.orange])
-                       // let datePicker = UIDatePicker()
+                        
+//                        var components = DateComponents()
+//                        components.year = -100
+//                        let minDate = Calendar.current.date(byAdding: components, to: Date())
+//                        
+//                        components.year = -18
+//                        let maxDate = Calendar.current.date(byAdding: components, to: Date())
+                        
+                        datePicker.minimumDate = Date()
+                       // datePicker.maximumDate = maxDate
+                        
+                        datePicker.datePickerMode = .date
+                        
+                        self.chatTxt.inputView = self.datePicker
+                        self.datePicker.addTarget(self, action: #selector(datePickerChanged(sender:)), for: .valueChanged)
+                    }
+                    else if qtype == "12"{
+                        self.textFieldBgView.isHidden = false
+                        
+                        self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Calendar", attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                        
+                        //                        var components = DateComponents()
+                        //                        components.year = -100
+                        //                        let minDate = Calendar.current.date(byAdding: components, to: Date())
+                        //
+                        //                        components.year = -18
+                        //                        let maxDate = Calendar.current.date(byAdding: components, to: Date())
+                        
+                        datePicker.maximumDate = Date()
+                        // datePicker.maximumDate = maxDate
+                        
+                        datePicker.datePickerMode = .date
+                        
+                        self.chatTxt.inputView = self.datePicker
+                        self.datePicker.addTarget(self, action: #selector(datePickerChanged(sender:)), for: .valueChanged)
+                    }
+                    if qtype == "13"{
+                    self.textFieldBgView.isHidden = false
+                        self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Calendar", attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                       
+                        var components = DateComponents()
+                        components.year = -100
+                        let minDate = Calendar.current.date(byAdding: components, to: Date())
+                        
+                        components.year = -18
+                        let maxDate = Calendar.current.date(byAdding: components, to: Date())
+                        
+                        datePicker.minimumDate = minDate
+                        datePicker.maximumDate = maxDate
+                        
                         datePicker.datePickerMode = .date
                         
                         self.chatTxt.inputView = self.datePicker
@@ -740,8 +905,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                         
                         self.pickerDisplayArray.append(choiceDisplayItem)
                         self.serverGeneratedArray.append(choiceItemServer)
-                        //  print(self.pickerDisplayArray)
-                        //  print(self.serverGeneratedArray)
+                        
                         }
                     }
             
@@ -810,8 +974,9 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 //   print(chatTxt.text!)
                 dataToServer(chatTxt1: selecteditem, ans_id: ansId, product_id: productId,colorEnable:false)
             }
-            
+            else{
            dataToServer(chatTxt1: chatTxt.text!, ans_id: ansId, product_id: productId,colorEnable:false)
+            }
         }
     }
     func matches(for regex: String, in text: String) -> [String] {
@@ -1008,9 +1173,9 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         DataBaseManager.shared.ExecuteCommand(query: "DELETE FROM questions;")
         UserDefaults.standard.setValue(nil, forKeyPath: "chat")
         UserDefaults.standard.synchronize()
-        self.chatTableView.reloadData()
-         chatLoad()
-       // loadView()
+//        self.chatTableView.reloadData()
+//         chatLoad()
+        loadView()
     }
     
     func datePickerChanged(sender: UIDatePicker) {
@@ -1021,4 +1186,33 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         print("Try this at home")
     }
     
+    @IBAction func popUpCancelBtn(_ sender: Any) {
+         self.popupBgView.isHidden = true
+        
+    }
+    
+    @IBAction func popUpSubmitBtn(_ sender: Any) {
+        
+        if (popUpTxtField.text?.isEmpty)!{
+        
+        
+        
+        
+        }
+        else{
+        
+        dataToServer(chatTxt1: "", ans_id: ansId, product_id: productId,colorEnable:false)
+        }
+    }
+    
+    @IBAction func addPopUp(_ sender: Any) {
+        self.popupBgView.isHidden = false
+        
+    }
+    func popUpDropDownBtnClick(sender: UIButton) {
+    
+    dropDownTableview.frame = CGRect(x: 70, y: 330, width: popUpDropDownBtn.frame.width, height: 300)
+        popupBgView.addSubview(dropDownTableview)
+    
+    }
 }

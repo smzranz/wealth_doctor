@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		516377FB1EB05298003EB293 /* DotsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516377FA1EB05298003EB293 /* DotsLoader.swift */; };
-		516F76891EAF0FFA00D34C43 /* SCPopDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516F76881EAF0FFA00D34C43 /* SCPopDatePicker.swift */; };
 		516F768B1EAF10A900D34C43 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516F768A1EAF10A900D34C43 /* ProfileViewController.swift */; };
 		518FF8741EAE32C600DF7849 /* wd_logo_1024X1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 518FF8731EAE32C600DF7849 /* wd_logo_1024X1024.png */; };
 		C30DB1701E76ECB000980DCD /* TagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30DB16F1E76ECB000980DCD /* TagsCollectionViewCell.swift */; };
@@ -101,7 +100,6 @@
 
 /* Begin PBXFileReference section */
 		516377FA1EB05298003EB293 /* DotsLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotsLoader.swift; sourceTree = "<group>"; };
-		516F76881EAF0FFA00D34C43 /* SCPopDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPopDatePicker.swift; sourceTree = "<group>"; };
 		516F768A1EAF10A900D34C43 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		518FF8731EAE32C600DF7849 /* wd_logo_1024X1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wd_logo_1024X1024.png; sourceTree = "<group>"; };
 		C30DB16F1E76ECB000980DCD /* TagsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -342,7 +340,6 @@
 			isa = PBXGroup;
 			children = (
 				518FF8731EAE32C600DF7849 /* wd_logo_1024X1024.png */,
-				516F76881EAF0FFA00D34C43 /* SCPopDatePicker.swift */,
 				C397A8461E62CE4A00BA7724 /* AppDelegate.swift */,
 				C37D74A11E7E629200996448 /* Article */,
 				C37D74A01E7E626A00996448 /* ViewControllers */,
@@ -633,7 +630,6 @@
 				C3BB32661E6F1E4F00DD3D44 /* IQKeyboardManagerConstantsInternal.swift in Sources */,
 				C37253C41E73EF3F00ED2A43 /* SDWebImageDecoder.m in Sources */,
 				C3BB32641E6F1E4F00DD3D44 /* IQUIWindow+Hierarchy.swift in Sources */,
-				516F76891EAF0FFA00D34C43 /* SCPopDatePicker.swift in Sources */,
 				C37253C71E73EF3F00ED2A43 /* SDWebImageManager.m in Sources */,
 				C31C996F1EAE7DD500E4040D /* UsagePageViewController.swift in Sources */,
 				C37253CC1E73EF3F00ED2A43 /* UIImageView+HighlightedWebCache.m in Sources */,
