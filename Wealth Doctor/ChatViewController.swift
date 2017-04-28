@@ -8,8 +8,9 @@
 
 import UIKit
 
-class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSource ,UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UICollectionViewDelegateFlowLayout{
+class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSource ,UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UICollectionViewDelegateFlowLayout,UIGestureRecognizerDelegate{
     var selectedTextFromDropDown = ""
+    var textInputFromPopUP = ""
     
     var dropDownTableview = UITableView()
     
@@ -56,11 +57,37 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var productId = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        textFieldBgView.isHidden = true
+        dropDownTableview.layer.borderWidth = 1
+        dropDownTableview.layer.cornerRadius = 5
+        dropDownTableview.layer.borderColor = UIColor.lightGray.cgColor
+        dropDownTableview.delegate = self
+        dropDownTableview.dataSource = self
+      //  dropDownTableview.isHidden = true
+        dropDownTableview.separatorStyle = .singleLine
+        dropDownTableview.bounces = false
+        dropDownTableview.register(UITableViewCell.self, forCellReuseIdentifier: "autocell")
+        dropDownTableview.backgroundColor = UIColor(colorLiteralRed: 255, green: 255, blue: 155, alpha: 1)
+        
+        
+        popUpDropDownBtn.layer.cornerRadius = 5
+        popUpDropDownBtn.layer.borderColor = UIColor.darkGray.cgColor
+        popUpDropDownBtn.layer.borderWidth = 2
+        popUpDropDownBtn.layer.masksToBounds = true
+        
+        popUpTxtField.layer.cornerRadius = 5
+        popUpTxtField.layer.borderColor = UIColor.darkGray.cgColor
+        popUpTxtField.layer.borderWidth = 2
+        popUpTxtField.layer.masksToBounds = true
         self.popupBgView.isHidden = true
         popUpCallBtn.isHidden = true
         self.loaderView.isHidden = true
         picker.delegate = self
         picker.dataSource = self
+        let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.dropDownBgViewAction(sender:)))
+        gesture.delegate = self
+        self.popupBgView.addGestureRecognizer(gesture)
+     //   popupBgView.addTarget(self, action: #selector(popUpDropDownBtnClick()), for: .touchUpInside)
         popUpDropDownBtn.addTarget(self, action: #selector(popUpDropDownBtnClick(sender:)), for: .touchUpInside)
         self.navigationController?.isNavigationBarHidden = false
         if UserDefaults.standard.value(forKey: "chat") != nil{
@@ -139,7 +166,8 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == dropDownTableview{
-        
+          //  let pickerArraySaved = UserDefaults.standard.stringArray(forKey: "pickerArray") ?? [String]()
+       return pickerDisplayArray.count
         }
         return serverChatText.count
     }
@@ -147,8 +175,9 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == dropDownTableview{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as UITableViewCell
-            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "autocell", for: indexPath) as UITableViewCell
+            let pickerArraySaved = UserDefaults.standard.stringArray(forKey: "pickerArray") ?? [String]()
+            cell.textLabel?.text = pickerArraySaved[indexPath.row]
             return cell
 
         }
@@ -481,7 +510,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == dropDownTableview{
             
-            selectedTextFromDropDown = "\(indexPath.row)"
+            selectedTextFromDropDown = pickerDisplayArray[indexPath.row]
         dropDownTableview.removeFromSuperview()
             popUpDropDownBtn.setTitle(selectedTextFromDropDown, for: .normal)
         
@@ -672,11 +701,12 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
             chatTime.append(z!)
             color_id.append(w!)
-            print(color_id)
             chatTableView.reloadData()
             
             
         }
+        
+        userdata.close()
         if  UserDefaults.standard.value(forKey: "type") == nil{
             return
         }
@@ -744,6 +774,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                         }
                         
                     }
+                    userdata.close()
                 }
                 
                 
@@ -829,10 +860,33 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     print("multiselect")
                     }
                     else if qtype == "7"{
-                    self.popUpCallBtn.isHidden = false
+                    
                     
                     }
-                    else if qtype == "8"{}
+                    else if qtype == "8"{
+                        
+                        let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
+                        for i in 0..<q_choicesSeperated.count {
+                            let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
+                            if q_choiceDisplay.count == 2{
+                                let choiceItemServer: String = q_choiceDisplay[0]
+                                let choiceDisplayItem : String = q_choiceDisplay[1]
+                                
+                                self.pickerDisplayArray.append(choiceDisplayItem)
+                                self.serverGeneratedArray.append(choiceItemServer)
+                                
+                            }
+                            UserDefaults.standard.setValue(self.pickerDisplayArray, forKeyPath: "pickerArray")
+                            UserDefaults.standard.synchronize()
+                        
+                    }
+                        textFieldBgView.isHidden = false
+                        self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Tap to input", attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                        self.popUpCallBtn.isHidden = false
+                        self.dropDownTableview.reloadData()
+                       
+                        
+                    }
                     else if qtype == "9"{}
                     else if qtype == "10"{}
                     else if qtype == "11"{
@@ -896,28 +950,30 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                        // self.chatTxt.inputView = self.picker
                     }
                     else{
-                    let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
-                    for i in 0..<q_choicesSeperated.count {
-                        let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
-                        if q_choiceDisplay.count == 2{
-                        let choiceItemServer: String = q_choiceDisplay[0]
-                        let choiceDisplayItem : String = q_choiceDisplay[1]
-                        
-                        self.pickerDisplayArray.append(choiceDisplayItem)
-                        self.serverGeneratedArray.append(choiceItemServer)
-                        
-                        }
-                    }
-            
-                    UserDefaults.standard.setValue(self.pickerDisplayArray, forKeyPath: "pickerArray")
-                    UserDefaults.standard.synchronize()
-                        self.chatTxt.attributedPlaceholder = NSAttributedString(string: "tap to input", attributes: [NSForegroundColorAttributeName:UIColor.orange])
-                        self.chatTxt.inputView = self.picker
+//                    let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
+//                    for i in 0..<q_choicesSeperated.count {
+//                        let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
+//                        if q_choiceDisplay.count == 2{
+//                        let choiceItemServer: String = q_choiceDisplay[0]
+//                        let choiceDisplayItem : String = q_choiceDisplay[1]
+//                        
+//                        self.pickerDisplayArray.append(choiceDisplayItem)
+//                        self.serverGeneratedArray.append(choiceItemServer)
+//                        
+//                        }
+//                    }
+//            
+//                    UserDefaults.standard.setValue(self.pickerDisplayArray, forKeyPath: "pickerArray")
+//                    UserDefaults.standard.synchronize()
+//                        self.chatTxt.attributedPlaceholder = NSAttributedString(string: "tap to input", attributes: [NSForegroundColorAttributeName:UIColor.orange])
+//                        self.chatTxt.inputView = self.picker
+//                    }
                     }
                     chatTableView.reloadData()
                     
                     
                 }
+            userdata.close()
           //  }
         }
         
@@ -1142,7 +1198,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                     
                                     self.chatTableView.reloadData()
                                     self.lodingasending()
-                                    
+                                    self.loaderView.isHidden = true
                                     
                                     
                                 }
@@ -1200,8 +1256,15 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         }
         else{
-        
-        dataToServer(chatTxt1: "", ans_id: ansId, product_id: productId,colorEnable:false)
+      textInputFromPopUP = popUpTxtField.text!
+            
+            
+            self.popupBgView.isHidden = true
+            self.popUpCallBtn.isHidden = true
+            let totaltext = "\(textInputFromPopUP)_\(selectedTextFromDropDown)"
+            
+            chatTxt.text = totaltext
+        dataToServer(chatTxt1: totaltext, ans_id: ansId, product_id: productId,colorEnable:false)
         }
     }
     
@@ -1211,8 +1274,13 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     func popUpDropDownBtnClick(sender: UIButton) {
     
-    dropDownTableview.frame = CGRect(x: 70, y: 330, width: popUpDropDownBtn.frame.width, height: 300)
-        popupBgView.addSubview(dropDownTableview)
+    dropDownTableview.frame = CGRect(x: 70, y: 330, width: Int(popUpDropDownBtn.frame.width), height: 44*pickerDisplayArray.count)
+        view.addSubview(dropDownTableview)
     
+    }
+    
+    func dropDownBgViewAction(sender : UITapGestureRecognizer) {
+        popupBgView.isHidden = true
+        self.dropDownTableview.removeFromSuperview()
     }
 }
