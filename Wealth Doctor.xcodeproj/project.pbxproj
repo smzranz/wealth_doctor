@@ -79,6 +79,7 @@
 		C3E702351E688F4800B596E8 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E702341E688F4800B596E8 /* OTPViewController.swift */; };
 		C3E702371E68916500B596E8 /* intenetcheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E702361E68916500B596E8 /* intenetcheck.swift */; };
 		C3EBD1D61E65FB0300E22661 /* SettingsPageVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EBD1D51E65FB0300E22661 /* SettingsPageVIewController.swift */; };
+		C3EED7B81EB49CD7003A67FE /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EED7B71EB49CD7003A67FE /* CollectionReusableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,6 +201,7 @@
 		C3E702341E688F4800B596E8 /* OTPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		C3E702361E68916500B596E8 /* intenetcheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = intenetcheck.swift; sourceTree = "<group>"; };
 		C3EBD1D51E65FB0300E22661 /* SettingsPageVIewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPageVIewController.swift; sourceTree = "<group>"; };
+		C3EED7B71EB49CD7003A67FE /* CollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,6 +301,7 @@
 			children = (
 				C37253A11E73ED3500ED2A43 /* NewsArticlesCollectionViewCell.swift */,
 				C3A90B331E6C294300703389 /* ChatTableViewCell.swift */,
+				C3EED7B71EB49CD7003A67FE /* CollectionReusableView.swift */,
 				C30DB16F1E76ECB000980DCD /* TagsCollectionViewCell.swift */,
 				C37D749C1E7E620600996448 /* MenuCollectionViewCell.swift */,
 				C397A8771E631A1A00BA7724 /* SettingPageCell.swift */,
@@ -613,6 +616,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3EED7B81EB49CD7003A67FE /* CollectionReusableView.swift in Sources */,
 				C3E702351E688F4800B596E8 /* OTPViewController.swift in Sources */,
 				C3E702371E68916500B596E8 /* intenetcheck.swift in Sources */,
 				C3A90B321E6C293200703389 /* ChatViewController.swift in Sources */,

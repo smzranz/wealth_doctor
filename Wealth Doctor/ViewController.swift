@@ -9,12 +9,14 @@
 import UIKit
 
 class ViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
-    
+    var loadFavorited : Bool = false
     
     @IBOutlet var refreshBtnOulet: UIBarButtonItem!
     let mobileNumber = UserDefaults.standard.value(forKey: "mobile")
-    
-    
+    var lastIndexPath: Int = 0
+    let row = UserDefaults.standard.integer(forKey: "row")
+    let section = UserDefaults.standard.integer(forKey: "section")
+    var scrollToUnreadNews : Bool = false
     @IBOutlet var newNewsBtn: UIButton!
     
     var refresher : UIRefreshControl!
@@ -38,7 +40,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     @IBOutlet var newsArticleTableView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+     //   print(lastIndexPath)
         newNewsBtn.isHidden = true
         gamer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
         newNewsBtn.layer.cornerRadius = newNewsBtn.frame.height/2
@@ -76,6 +78,13 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
             UINavigationBar.appearance().isTranslucent = true
         
     }
+    
+    override func viewDidLayoutSubviews() {
+        if scrollToUnreadNews == true{
+        newsArticleTableView.scrollToItem(at: [section,row], at: .bottom, animated: false)
+        
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -91,6 +100,16 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! NewsArticlesCollectionViewCell
+        if row < indexPath.row{
+            let defaults = UserDefaults.standard
+            defaults.set(indexPath.row, forKey: "row")
+            defaults.set(indexPath.section, forKey: "section")
+            //  UserDefaults.standard.setValue(indexPath, forKey: "indexPath")
+            UserDefaults.standard.synchronize()
+        }
+        
+        
+      //  lastIndexPath = indexPath
         let remoteImageUrlString = "\(images[indexPath.row])"
        
        // let imageUrl  = NSURL(string:remoteImageUrlString)!
@@ -274,7 +293,43 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
          tagId = [String]()
         knowMoreUrl = [String]()
         favorited = [String]()
-    
+        
+        if loadFavorited == true{
+        
+            let userdata = DataBaseManager.shared.fetchData(Query: "select * from NewsArticle where favorited = 1 ;")
+            while userdata.next() {
+                let x = userdata.string(forColumn: "a_image")
+                let y = userdata.string(forColumn: "a_title")
+                let z = userdata.string(forColumn: "a_content")
+                let a = userdata.string(forColumn: "n_date")
+                let b = userdata.string(forColumn: "like_status")
+                let c = userdata.string(forColumn: "no_more_url")
+                let d = userdata.string(forColumn: "like_count")
+                let e = userdata.string(forColumn: "a_tag")
+                let f = userdata.string(forColumn: "a_id")
+                let g = userdata.string(forColumn: "newspaper")
+                let h = userdata.string(forColumn: "favorited")
+                //    let sam = d?.components(separatedBy: "_")
+                
+                
+                images.append(x!)
+                content.append(z!)
+                tittle.append(y!)
+                date.append(a!)
+                likeStatus.append(b!)
+                knowMore.append(g!)
+                likeCount.append(d!)
+                tag.append(e!)
+                id.append(f!)
+                knowMoreUrl.append(c!)
+                favorited.append(h!)
+                
+                self.newsArticleTableView.reloadData()
+            }
+        
+        userdata.close()
+        }
+        else{
         let userdata = DataBaseManager.shared.fetchData(Query: "select * from NewsArticle ;")
         while userdata.next() {
             let x = userdata.string(forColumn: "a_image")
@@ -305,8 +360,9 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
             
     self.newsArticleTableView.reloadData()
     }
-  
-
+            userdata.close()
+        }
+      
 }
     func pressed(sender: UIButton!) {
         
@@ -361,7 +417,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         
         if let myWebsite = URL(string: "http://itunes.apple.com/app/idXXXXXXXXX") {//Enter link to your app here
           //  let objectsToShare = [image]
-            let activityVC = UIActivityViewController(activityItems: [image,myWebsite,textToShare], applicationActivities: nil)
+            let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
             
             //Excluded Activities
             activityVC.excludedActivityTypes = [UIActivityType.airDrop, UIActivityType.addToReadingList,UIActivityType.message,UIActivityType.mail,UIActivityType.postToFacebook,UIActivityType.postToTwitter,UIActivityType.openInIBooks,UIActivityType.saveToCameraRoll]
@@ -427,7 +483,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         
         var request = URLRequest(url:myUrl!)
         
-        let postString = "mobile=\(mobile as! String)&art_time=\(arttime)&tag_id=\(tag_id)"
+        let postString = "mobile=\(mobileNumber as! String)&art_time=\(arttime)&tag_id=\(tag_id)"
         request.httpBody = postString.data(using: .utf8)
         
         request.httpMethod = "POST"

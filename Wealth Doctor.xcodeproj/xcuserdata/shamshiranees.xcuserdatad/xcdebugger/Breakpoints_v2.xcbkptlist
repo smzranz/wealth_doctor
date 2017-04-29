@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wealth Doctor/ChatViewController.swift"
-            timestampString = "514924879.536802"
+            timestampString = "515183124.877075"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "586"
-            endingLineNumber = "586"
+            startingLineNumber = "589"
+            endingLineNumber = "589"
             landmarkName = "chatLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,44 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wealth Doctor/ChatViewController.swift"
-            timestampString = "514924879.536802"
+            timestampString = "515183124.877075"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "590"
-            endingLineNumber = "590"
+            startingLineNumber = "593"
+            endingLineNumber = "593"
             landmarkName = "chatLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wealth Doctor/ChatViewController.swift"
-            timestampString = "514925140.423677"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "737"
-            endingLineNumber = "737"
-            landmarkName = "lodingasending()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wealth Doctor/ChatViewController.swift"
-            timestampString = "514925140.423677"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "743"
-            endingLineNumber = "743"
-            landmarkName = "lodingasending()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,13 +42,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wealth Doctor/ChatViewController.swift"
-            timestampString = "514924879.536802"
+            timestampString = "515183124.877075"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "357"
-            endingLineNumber = "357"
-            landmarkName = "ChatViewController"
-            landmarkType = "3">
+            startingLineNumber = "360"
+            endingLineNumber = "360"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -90,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wealth Doctor/StateViewController.swift"
-            timestampString = "514752319.351347"
+            timestampString = "515181940.963433"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wealth Doctor/ViewController.swift"
-            timestampString = "514576341.323429"
+            timestampString = "515181940.963433"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "455"
-            endingLineNumber = "455"
+            startingLineNumber = "511"
+            endingLineNumber = "511"
             landmarkName = "tagClick(mobile:arttime:tag_id:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -170,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wealth Doctor/ViewController.swift"
-            timestampString = "514576341.323429"
+            timestampString = "515181940.963433"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "485"
-            endingLineNumber = "485"
+            startingLineNumber = "541"
+            endingLineNumber = "541"
             landmarkName = "tagClick(mobile:arttime:tag_id:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -186,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wealth Doctor/ViewController.swift"
-            timestampString = "514576341.323429"
+            timestampString = "515179251.993505"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
             landmarkName = "articleLoad(arttime:tag_id:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -202,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wealth Doctor/ViewController.swift"
-            timestampString = "514576341.323429"
+            timestampString = "515179251.993505"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "articleLoad(arttime:tag_id:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -218,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wealth Doctor/ChatViewController.swift"
-            timestampString = "514925140.423677"
+            timestampString = "515183124.877075"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "723"
-            endingLineNumber = "723"
+            startingLineNumber = "864"
+            endingLineNumber = "864"
             landmarkName = "lodingasending()"
             landmarkType = "7">
          </BreakpointContent>
@@ -234,11 +202,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wealth Doctor/ChatViewController.swift"
-            timestampString = "514925140.423677"
+            timestampString = "515183124.877075"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "854"
-            endingLineNumber = "854"
+            startingLineNumber = "635"
+            endingLineNumber = "635"
+            landmarkName = "chatLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wealth Doctor/ChatViewController.swift"
+            timestampString = "515183124.877075"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1145"
+            endingLineNumber = "1145"
             landmarkName = "dataToServer(chatTxt1:ans_id:product_id:colorEnable:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -250,13 +234,125 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wealth Doctor/ChatViewController.swift"
-            timestampString = "514924971.870982"
+            timestampString = "515183124.877075"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "632"
-            endingLineNumber = "632"
+            startingLineNumber = "1171"
+            endingLineNumber = "1171"
+            landmarkName = "dataToServer(chatTxt1:ans_id:product_id:colorEnable:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wealth Doctor/ChatViewController.swift"
+            timestampString = "515183124.877075"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "718"
+            endingLineNumber = "718"
             landmarkName = "lodingasending()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wealth Doctor/MenuViewController.swift"
+            timestampString = "515179592.865564"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
+            landmarkName = "tagLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wealth Doctor/MenuViewController.swift"
+            timestampString = "515179592.865564"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "tagLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wealth Doctor/MenuViewController.swift"
+            timestampString = "515157853.870353"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "MenuViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wealth Doctor/MenuViewController.swift"
+            timestampString = "515158006.206707"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "MenuViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wealth Doctor/MenuViewController.swift"
+            timestampString = "515158014.959875"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "MenuViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wealth Doctor/MenuViewController.swift"
+            timestampString = "515158043.03351"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "MenuViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

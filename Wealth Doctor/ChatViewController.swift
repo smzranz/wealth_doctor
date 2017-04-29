@@ -32,7 +32,8 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var type = ""
     var i = ""
     var questionId = ""
-    let mobileNumber = UserDefaults.standard.value(forKey: "mobile")
+   // let mobileNumber = UserDefaults.standard.value(forKey: "mobile")
+    let mobileNumber = "9567019109"
     @IBOutlet var chatTxt: UITextField!
     @IBOutlet weak var textFieldBgView: UIView!
     let datePicker = UIDatePicker()
@@ -57,6 +58,8 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var productId = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        picker.backgroundColor = UIColor.white
+        datePicker.backgroundColor = UIColor.white
         textFieldBgView.isHidden = true
         dropDownTableview.layer.borderWidth = 1
         dropDownTableview.layer.cornerRadius = 5
@@ -71,12 +74,12 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         
         popUpDropDownBtn.layer.cornerRadius = 5
-        popUpDropDownBtn.layer.borderColor = UIColor.darkGray.cgColor
+        popUpDropDownBtn.layer.borderColor = UIColor.lightGray.cgColor
         popUpDropDownBtn.layer.borderWidth = 2
         popUpDropDownBtn.layer.masksToBounds = true
         
         popUpTxtField.layer.cornerRadius = 5
-        popUpTxtField.layer.borderColor = UIColor.darkGray.cgColor
+        popUpTxtField.layer.borderColor = UIColor.lightGray.cgColor
         popUpTxtField.layer.borderWidth = 2
         popUpTxtField.layer.masksToBounds = true
         self.popupBgView.isHidden = true
@@ -192,7 +195,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         cell.backgroundColor = UIColor.clear
         cell.tagCollectionView.backgroundColor = UIColor.clear
         
-        
+        cell.tagCollectionView.reloadData()
         
         
         
@@ -455,8 +458,8 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
        
         
       // let size = (squareData[indexPath.row] as NSString).size(attributes: nil)
-       
-        if type == "2" && indexPath.row == serverChatText.count-1{
+       let type1 = UserDefaults.standard.value(forKey: "type") as! String
+        if type1 == "2" && indexPath.row == serverChatText.count-1{
             totalWidth = 0.0
             for i in 0...squareData.count-1{
                 
@@ -467,7 +470,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 
             }
             
-        return (heightOfRow + 80+(totalWidth/(view.frame.width))*35)
+        return (heightOfRow + 85+(totalWidth/(view.frame.width))*35)
         
         }
         else if indexPath.row != serverChatText.count-1{
@@ -588,7 +591,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
             var request = URLRequest(url:myUrl!)
             
-            let postString = "mobile=9746594225&chatQuestion=hi&ans_id=0&product_id=0"
+            let postString = "mobile=\(mobileNumber as! String)&chatQuestion=hi&ans_id=0&product_id=0"
             request.httpBody = postString.data(using: .utf8)
             
             request.httpMethod = "POST"
@@ -712,6 +715,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
         let type1 = UserDefaults.standard.value(forKey: "type") as! String
         if type1 == "2" {
+            
             squareData = [String]()
           //
                 let userdata = DataBaseManager.shared.fetchData(Query: "select * from tags ORDER BY slno DESC LIMIT 1;")
@@ -750,6 +754,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     }
                     
                     if self.type == "2" {
+                        textFieldBgView.isHidden = true
                         //  print(adviceOn)
                         serverChatText = [String]()
                         chat_id = [String]()
@@ -777,7 +782,8 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     userdata.close()
                 }
                 
-                
+                textFieldBgView.isHidden = true
+            chatTxt.isHidden = true
                 
            // }
         }
@@ -797,11 +803,13 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     if qtype == "1"{
                     
                     self.textFieldBgView.isHidden = false
+                        self.chatTxt.isHidden = false
                         self.chatTxt.inputView = nil
                         self.chatTxt.keyboardType = .default
                     }
                     else if qtype == "2"{
                         self.textFieldBgView.isHidden = false
+                        self.chatTxt.isHidden = false
                             let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
                             for i in 0..<q_choicesSeperated.count {
                                 let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
@@ -823,6 +831,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     }
                     else if qtype == "3"{
                         self.textFieldBgView.isHidden = false
+                        self.chatTxt.isHidden = false
                     self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Calendar", attributes: [NSForegroundColorAttributeName:UIColor.orange])
                         
                         self.textFieldBgView.isHidden = false
@@ -831,6 +840,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     }
                     else if qtype == "4"{
                         self.textFieldBgView.isHidden = false
+                        self.chatTxt.isHidden = false
                         let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
                         for i in 0..<q_choicesSeperated.count {
                             let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
@@ -852,6 +862,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     }
                     else if qtype == "5"{
                         self.textFieldBgView.isHidden = false
+                        self.chatTxt.isHidden = false
                         datePicker.datePickerMode = .date
                         self.chatTxt.inputView = self.datePicker
                         self.datePicker.addTarget(self, action: #selector(datePickerChanged(sender:)), for: .valueChanged)
@@ -864,7 +875,8 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     
                     }
                     else if qtype == "8"{
-                        
+                        self.textFieldBgView.isHidden = false
+                        self.chatTxt.isHidden = false
                         let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
                         for i in 0..<q_choicesSeperated.count {
                             let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
@@ -891,6 +903,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     else if qtype == "10"{}
                     else if qtype == "11"{
                         self.textFieldBgView.isHidden = false
+                        self.chatTxt.isHidden = false
                         self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Calendar", attributes: [NSForegroundColorAttributeName:UIColor.orange])
                         
 //                        var components = DateComponents()
@@ -910,6 +923,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     }
                     else if qtype == "12"{
                         self.textFieldBgView.isHidden = false
+                        self.chatTxt.isHidden = false
                         
                         self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Calendar", attributes: [NSForegroundColorAttributeName:UIColor.orange])
                         
@@ -929,7 +943,8 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                         self.datePicker.addTarget(self, action: #selector(datePickerChanged(sender:)), for: .valueChanged)
                     }
                     if qtype == "13"{
-                    self.textFieldBgView.isHidden = false
+                        self.textFieldBgView.isHidden = false
+                        self.chatTxt.isHidden = false
                         self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Calendar", attributes: [NSForegroundColorAttributeName:UIColor.orange])
                        
                         var components = DateComponents()
@@ -1072,7 +1087,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
             var request = URLRequest(url:myUrl!)
             
-            let postString = "mobile=9567019109&chatQuestion=\(chatTxt1)&ans_id=\(ans_id)&product_id=\(product_id)"
+            let postString = "mobile=\(mobileNumber as! String)&chatQuestion=\(chatTxt1)&ans_id=\(ans_id)&product_id=\(product_id)"
             request.httpBody = postString.data(using: .utf8)
             
             request.httpMethod = "POST"
@@ -1262,7 +1277,8 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             self.popupBgView.isHidden = true
             self.popUpCallBtn.isHidden = true
             let totaltext = "\(textInputFromPopUP)_\(selectedTextFromDropDown)"
-            
+            chatTxt.endEditing(true)
+            view.resignFirstResponder()
             chatTxt.text = totaltext
         dataToServer(chatTxt1: totaltext, ans_id: ansId, product_id: productId,colorEnable:false)
         }

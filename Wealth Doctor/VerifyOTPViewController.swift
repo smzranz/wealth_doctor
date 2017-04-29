@@ -104,7 +104,7 @@ class VerifyOTPViewController: UIViewController {
                                 if let states = convertedJsonDictioanry["state"] as? NSArray {
                                   
                                     //  var statesArray: Array<State>?
-                                    for i in 0..<states.count {
+                                    for i in 0..<states.count-1 {
                                         
                                         if let stateData = states[i] as? NSDictionary {
                                             //
