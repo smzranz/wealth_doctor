@@ -17,6 +17,7 @@ class MenuViewController: UIViewController,UICollectionViewDelegate,UICollection
    
     @IBOutlet var tagsTableView: UITableView!
     var sectionItems2 = [String]()
+    var sectionItem2_id = [String]()
     var sectionItems1 = [String]()
     var menuImagesArray : [UIImage]!
     var menuNameArray : [String]!
@@ -69,7 +70,7 @@ tagLoad()
            
         cell.tagLabel.layer.cornerRadius = 8
             cell.tagLabel.layer.borderWidth = 1
-            cell.tagLabel.layer.borderColor = UIColor.lightText.cgColor
+            cell.tagLabel.layer.borderColor = UIColor.darkGray.cgColor
             cell.tagLabel.layer.masksToBounds = true
             return cell
         
@@ -86,7 +87,7 @@ tagLoad()
                 
                         cell.tagLabel.layer.cornerRadius = 8
                             cell.tagLabel.layer.borderWidth = 1
-                            cell.tagLabel.layer.borderColor = UIColor.lightText.cgColor
+                            cell.tagLabel.layer.borderColor = UIColor.darkGray.cgColor
                             cell.tagLabel.layer.masksToBounds = true
                             return cell
             
@@ -146,8 +147,11 @@ tagLoad()
         
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "SectionHeader", for: indexPath) as! SectionHeaderCollectionReusableView
             
-            header.label.text = "Bussiness"
-            
+            header.label.text = "Suggested Topics"
+            header.label.layer.cornerRadius = 3
+            header.label.layer.borderColor = UIColor(colorLiteralRed: 28/255, green: 126/255, blue: 211/255, alpha: 1.0).cgColor
+          header.label.layer.borderWidth = 1
+            header.label.layer.masksToBounds = true
             return header
         }
         else if indexPath.section == 2{
@@ -155,7 +159,10 @@ tagLoad()
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "SectionHeader", for: indexPath) as! SectionHeaderCollectionReusableView
             
             header.label.text = "Education"
-            
+            header.label.layer.cornerRadius = 3
+            header.label.layer.borderColor = UIColor(colorLiteralRed: 28/255, green: 126/255, blue: 211/255, alpha: 1.0).cgColor
+            header.label.layer.borderWidth = 1
+            header.label.layer.masksToBounds = true
             return header
         
         }
@@ -180,7 +187,7 @@ tagLoad()
         if indexPath.section == 1 || indexPath.section == 2{
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier :"articleViewController") as! ViewController
-            viewController.tagSelected = "\(indexPath.row)"
+            viewController.tagSelected = "\(sectionItem2_id[indexPath.row])"
             viewController.tagIsClicked = true
             self.navigationController?.pushViewController(viewController, animated: true)
         
@@ -227,10 +234,10 @@ tagLoad()
         let userdata = DataBaseManager.shared.fetchData(Query: "select * from USERTAGS;")
         while userdata.next() {
             let x = userdata.string(forColumn: "tag_name")
-            
+            let y = userdata.string(forColumn: "tag_id")
             
             self.sectionItems2.append(x!)
-        
+            self.sectionItem2_id.append(y!)
         }
         self.collectionView.reloadData()
        // self.tagsTableView.reloadData()

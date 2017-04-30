@@ -111,7 +111,7 @@ let pickerTableView = UITableView()
         pickerTableView.reloadData()
         self.pickerTableView.isHidden = false
         
-        self.pickerTableView.frame = CGRect(x: 30, y: 300, width: 300, height: 200)
+        self.pickerTableView.frame = CGRect(x: 30, y: 330, width: 300, height: 200)
         self.view.addSubview(pickerTableView)
     }
     
@@ -136,7 +136,7 @@ let pickerTableView = UITableView()
         }
       
         
-        pickerTableView.frame = CGRect(x: 30, y: 360, width: 300, height: 200)
+        pickerTableView.frame = CGRect(x: 30, y: 390, width: 300, height: 200)
         self.view.addSubview(pickerTableView)
         pickerTableView.reloadData()
 

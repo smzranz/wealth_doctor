@@ -32,8 +32,8 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var type = ""
     var i = ""
     var questionId = ""
-   // let mobileNumber = UserDefaults.standard.value(forKey: "mobile")
-    let mobileNumber = "9567019109"
+let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
+   // let mobileNumber = "9567019109"
     @IBOutlet var chatTxt: UITextField!
     @IBOutlet weak var textFieldBgView: UIView!
     let datePicker = UIDatePicker()
@@ -99,7 +99,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
         }
         else {
-            UserDefaults.standard.setValue("chat", forKey: "chat")
+           
             chatLoad()
         }
         
@@ -658,7 +658,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                 }
                                 
                                 DispatchQueue.main.async {
-                                    
+                                     UserDefaults.standard.setValue("chat", forKey: "chat")
                                     if type == "4"{
                                       //  self.chatTxt.inputView = self.picker
                                     }

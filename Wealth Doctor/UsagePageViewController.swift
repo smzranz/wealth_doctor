@@ -29,7 +29,7 @@ class UsagePageViewController: UIViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier :"OTPViewController") as! OTPViewController
-        UserDefaults.standard.set("welcomePage", forKey: "welcomePage")
+        UserDefaults.standard.setValue("welcome", forKey: "welcome")
         UserDefaults.standard.synchronize()
         self.present(viewController, animated: true)
         

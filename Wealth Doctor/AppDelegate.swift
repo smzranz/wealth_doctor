@@ -18,7 +18,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
           IQKeyboardManager.sharedManager().enable = true
-       
+        window = UIWindow()
+        let story = UIStoryboard(name: "Main", bundle: nil)
+        if UserDefaults.standard.value(forKey: "welcome")  != nil
+        {
+            if UserDefaults.standard.value(forKey: "mobileverified")  != nil
+            {
+                
+                let home = story.instantiateViewController(withIdentifier: "articleViewController")
+                let navigationController = UINavigationController.init(rootViewController: home)
+                self.window?.rootViewController = navigationController
+                
+                self.window?.makeKeyAndVisible()
+              //  self.window?.rootViewController = home
+                
+            }
+            else
+            {
+                let login = story.instantiateViewController(withIdentifier: "OTPViewController")
+                self.window?.rootViewController = login
+                
+            }
+            
+            
+        }
+        else
+        {
+            let firststart = story.instantiateViewController(withIdentifier: "welcomePageViewController")
+            self.window?.rootViewController = firststart
+        }
+        
+
         // Override point for customization after application launch.
         return true
     }

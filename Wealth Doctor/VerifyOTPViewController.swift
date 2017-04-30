@@ -24,18 +24,18 @@ class State {
     
 }
 
-class VerifyOTPViewController: UIViewController {
+class VerifyOTPViewController: UIViewController, UITextFieldDelegate {
     let deviceID = UIDevice.current.identifierForVendor!.uuidString
     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     @IBOutlet var otpTxt: UITextField!
-    
+    let limitLength = 4
     let otpNumber = UserDefaults.standard.value(forKey: "otp")
     let mobileNumber = UserDefaults.standard.value(forKey: "mobile")
     
     override func viewDidLoad() {
         super.viewDidLoad()
  self.navigationController?.isNavigationBarHidden = true
-      
+      otpTxt.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -157,6 +157,9 @@ class VerifyOTPViewController: UIViewController {
                                     }
                                     
                                     DispatchQueue.main.async {
+                                        
+                                        UserDefaults.standard.set(self.mobileNumber, forKey: "mobileverified")
+                                        UserDefaults.standard.synchronize()
                                         if states.count > 0{
                                         self.performSegue(withIdentifier: "verifyToState", sender: self)
                                         }
@@ -241,6 +244,11 @@ class VerifyOTPViewController: UIViewController {
         activityIndicator.stopAnimating()
         UIApplication.shared.endIgnoringInteractionEvents()
     }
-    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength = text.characters.count + string.characters.count - range.length
+        return newLength <= limitLength
+    }
     
 }
+

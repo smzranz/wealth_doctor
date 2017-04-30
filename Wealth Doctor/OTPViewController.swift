@@ -8,13 +8,13 @@
 
 import UIKit
 
-class OTPViewController: UIViewController {
+class OTPViewController: UIViewController,UITextFieldDelegate {
     
     let deviceID = UIDevice.current.identifierForVendor!.uuidString
    
     let gAppVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "0"
     let gAppBuild = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") ?? "0"
-    
+    let limitLength = 10
 var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     @IBOutlet var phoneTxt: UITextField!
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
         print(gAppBuild)
         print(gAppVersion)
 
-    
+    phoneTxt.delegate = self
     
     }
 
@@ -156,6 +156,10 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
         UIApplication.shared.endIgnoringInteractionEvents()
     }
     
-
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength = text.characters.count + string.characters.count - range.length
+        return newLength <= limitLength
+    }
   
 }

@@ -12,7 +12,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     var loadFavorited : Bool = false
     
     @IBOutlet var refreshBtnOulet: UIBarButtonItem!
-    let mobileNumber = UserDefaults.standard.value(forKey: "mobile")
+    let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
     var lastIndexPath: Int = 0
     let row = UserDefaults.standard.integer(forKey: "row")
     let section = UserDefaults.standard.integer(forKey: "section")
@@ -136,7 +136,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         else {
             cell.favoriteBtn.isSelected = true
         }
-        
+        cell.favoriteBtn.titleLabel?.textAlignment = .left
        // cell.askBtn.addTarget(self, action: #selector(ask(sender:)), for: .touchUpInside)
         cell.askBtn.tag = indexPath.row
         cell.knowMorebtn.addTarget(self, action: #selector(knowMore(sender:)), for: .touchUpInside)
@@ -147,13 +147,13 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         cell.favoriteBtn.tag = indexPath.row
         cell.likeBtn.addTarget(self, action: #selector(pressed(sender:)), for: .touchUpInside)
         cell.likeBtn.layer.cornerRadius = cell.likeBtn.frame.height/2
-        cell.likeBtn.layer.borderColor = UIColor.blue.cgColor
+        cell.likeBtn.layer.borderColor = UIColor(colorLiteralRed: 28/255, green: 126/255, blue: 211/255, alpha: 1.0).cgColor
         cell.likeBtn.layer.borderWidth = 1
          cell.likeBtn.tag = indexPath.row
         cell.favoriteBtn.setTitle(tittle[indexPath.row], for: .normal)
           cell.favoriteBtn.setTitle(tittle[indexPath.row], for: .selected)
         cell.favoriteBtn.setTitleColor(UIColor.black, for: .normal)
-        cell.favoriteBtn.setTitleColor(UIColor.blue, for: .selected)
+        cell.favoriteBtn.setTitleColor(UIColor(colorLiteralRed: 28/255, green: 126/255, blue: 211/255, alpha: 1.0), for: .selected)
         
         cell.likeBtn.isUserInteractionEnabled = true
         cell.likeBtn.setImage(#imageLiteral(resourceName: "like"), for: .normal)
@@ -192,7 +192,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.width, height: self.view.frame.height-20)
+        return CGSize(width: self.view.frame.width, height: self.view.frame.height)
     }
     
     
@@ -515,38 +515,43 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                                 
                                 if let news = nestedString[i] as? NSDictionary {
                                     
-                                    let a_id = news["a_id"] as! String
-                                    let a_title = news["a_title"] as! String
-                                    let a_content = news["a_content"] as! String
-                                    let a_image = news["a_image"] as! String
-                                    let tag_id = news["tag_id"] as! String
-                                    let a_tag = news["a_tag"] as! String
-                                    //   let a_audio_url = news["a_audio_url"] as! String
-                                    //    let a_video_url = news["a_video_url"] as! String
-                                    let no_more_url = news["no_more_url"] as! String
-                                    //   let a_content_sort = news["a_content_sort"] as! String
-                                    if let like_count = news["like_count"] as? String{
-                                    self.likeCount.append(like_count)
-                                    }
-                                    let n_date = news["n_date"] as! String
-                                    // let like_status = news["like_status"] as! String
+                                    
+                                        let news_paper = news["news_paper"]as! String
+                                        let a_id = news["a_id"] as! String
+                                        let a_title = news["a_title"] as! String
+                                        let a_content = news["a_content"] as! String
+                                        let a_image = news["a_image"] as! String
+                                        let tag_id = news["tag_id"] as! String
+                                        let a_tag = news["a_tag"] as! String
+                                        //   let a_audio_url = news["a_audio_url"] as! String
+                                        //    let a_video_url = news["a_video_url"] as! String
+                                        let no_more_url = news["no_more_url"] as! String
+                                        //   let a_content_sort = news["a_content_sort"] as! String
+                                        let like_count = news["like_count"] as! String
+                                        
+                                        let n_date = news["n_date"] as! String
+                                        // let like_status = news["like_status"] as! String
+                                    
+                                        
+                                    
+
                                     
                                     self.images.append(a_image)
                                     self.content.append(a_content)
                                     self.tittle.append(a_title)
                                     self.date.append(n_date)
                                   //  self.likeStatus.append(b!)
-                                    //   knowMore.append(sam![1])
-                                    
+                                       self.knowMore.append(news_paper)
+                                    self.likeCount.append(like_count)
                                     self.tag.append(a_tag)
                                     self.id.append(no_more_url)
                                     self.knowMoreUrl.append(a_id)
                                     self.likeStatus.append("0")
                                     self.favorited.append("0")
-                                    self.newsArticleTableView.reloadData()
+                                    
                                     
                                 }
-                                
+                              self.newsArticleTableView.reloadData()  
                             }
                             
                         }
@@ -577,7 +582,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     }
     
     func refresh(){
-    
+    DataBaseManager.shared.ExecuteCommand(query: "DELETE FROM NewsArticle;")
     articleLoad(arttime: "NEW", tag_id: "")
         
     }
@@ -590,6 +595,8 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                                               at: .top,
                                               animated: true)
     //    scrollViewDidScrollToTop(newsArticleTableView)
+        }else{
+        refresh()
         }
         
     }
@@ -599,7 +606,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         newNewsBtn.isHidden = true
     }
     func runTimedCode() {
-        newNewsBtn.isHidden = false
+        newNewsBtn.isHidden = true
         
         
     }
