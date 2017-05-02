@@ -39,6 +39,10 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
             phoneTxt.attributedPlaceholder = NSAttributedString(string: "username", attributes: [NSForegroundColorAttributeName:UIColor.red])
            
         }
+        else if validate(phoneNumber: phoneTxt.text!) == false {
+        
+        displaymyalertmessage(usermessage: "Enter a valid mobile number")
+        }
         else {
             
             let networkStatus = Reeachability().connectionStatus()
@@ -161,5 +165,10 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
         let newLength = text.characters.count + string.characters.count - range.length
         return newLength <= limitLength
     }
-  
+    func validate(phoneNumber: String) -> Bool {
+        let charcterSet  = NSCharacterSet(charactersIn: "+0123456789").inverted
+        let inputString = phoneNumber.components(separatedBy: charcterSet)
+        let filtered = inputString.joined(separator: "")
+        return  phoneNumber == filtered
+    }
 }
