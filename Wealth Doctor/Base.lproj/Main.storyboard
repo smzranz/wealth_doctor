@@ -25,7 +25,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fCQ-43-ccP">
-                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="5" id="co1-Zu-LgP">
                                     <size key="itemSize" width="393" height="663"/>
@@ -141,7 +141,7 @@
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <state key="normal" title="Button">
-                                                        <color key="titleColor" patternImage="B8188965-BE6A-4529-BB21-FB338A3C2D62" colorSpace="pattern"/>
+                                                        <color key="titleColor" patternImage="DCB3CBA8-0616-4DBC-AE5B-64A40ABFFD82" colorSpace="pattern"/>
                                                     </state>
                                                 </button>
                                             </subviews>
@@ -213,8 +213,8 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="fCQ-43-ccP" secondAttribute="trailing" id="6wf-0p-SGh"/>
                             <constraint firstItem="rDI-GB-kod" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="GIh-4i-COO"/>
-                            <constraint firstItem="fCQ-43-ccP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="R3l-WM-4qh"/>
                             <constraint firstItem="rDI-GB-kod" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UMJ-qN-XYX"/>
+                            <constraint firstItem="fCQ-43-ccP" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ijE-3i-9Jt"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fCQ-43-ccP" secondAttribute="bottom" id="vBr-zb-jAw"/>
                             <constraint firstItem="fCQ-43-ccP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zhF-sN-6cL"/>
                         </constraints>
@@ -1973,7 +1973,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="B8188965-BE6A-4529-BB21-FB338A3C2D62" width="640" height="920">
+        <image name="Checked Checkbox Filled-50" width="16" height="16"/>
+        <image name="Checked Checkbox-50 (1)" width="16" height="16"/>
+        <image name="DCB3CBA8-0616-4DBC-AE5B-64A40ABFFD82" width="640" height="920">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -41301,8 +41303,6 @@ ACP+8wAj/vcAI/7+ACP/BgAj/xMAI/8YACP/GgAj/xwAI/8hACP/KQAj/ywAI/8xACP/OQAj/zwAI/9O
 ACP/UQAj/1YAAAAAAAAEAQAAAAAAAABBAAAAAAAAAAAAAAAAACP/WA
 </mutableData>
         </image>
-        <image name="Checked Checkbox Filled-50" width="16" height="16"/>
-        <image name="Checked Checkbox-50 (1)" width="16" height="16"/>
         <image name="IQButtonBarArrowLeft.png" width="12" height="21"/>
         <image name="chat_attach" width="16" height="16"/>
         <image name="chat_menu_call" width="16" height="16"/>

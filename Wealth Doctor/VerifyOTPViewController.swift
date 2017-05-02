@@ -105,6 +105,7 @@ class VerifyOTPViewController: UIViewController, UITextFieldDelegate {
                                 if let states = convertedJsonDictioanry["state"] as? NSArray {
                                   
                                     //  var statesArray: Array<State>?
+                                    if states.count>1{
                                     for i in 0..<states.count-1 {
                                         
                                         if let stateData = states[i] as? NSDictionary {
@@ -141,7 +142,7 @@ class VerifyOTPViewController: UIViewController, UITextFieldDelegate {
                                             // print(stateData["s_name"] ?? "")
                                         }
                                     }
-                                    
+                                    }
                                     if let tags = convertedJsonDictioanry["tags"] as? NSArray {
                                         for i in 0..<tags.count {
                                             

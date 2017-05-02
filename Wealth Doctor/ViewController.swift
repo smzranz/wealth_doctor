@@ -192,7 +192,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.width, height: self.view.frame.height-64)
+        return CGSize(width: self.view.frame.width, height: self.view.frame.height)
     }
     
     
@@ -456,7 +456,11 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
             let application:UIApplication = UIApplication.shared
             if (application.canOpenURL(phoneCallURL)) {
-                application.open(phoneCallURL, options: [:], completionHandler: nil)
+                if #available(iOS 10.0, *) {
+                    application.open(phoneCallURL, options: [:], completionHandler: nil)
+                } else {
+                    // Fallback on earlier versions
+                }
             }
         }
     }
