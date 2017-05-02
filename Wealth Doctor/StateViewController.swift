@@ -174,68 +174,68 @@ let pickerTableView = UITableView()
                 print("no internet connection")
             default :
                 
-                self.performSegue(withIdentifier: "stateToNews", sender: self)
-//                let scriptUrl = "http://www.indianmoney.com/wealthDoctor/ios/updatepro.php"
-//                
-//                let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
-//                
-//                let myUrl = URL(string: urlWithParams);
-//                
-//                var request = URLRequest(url:myUrl!)
-//                
-//                let postString = "name=\(name!)&mobile=\(mobileNumber!)&tittle=\(mr)&city_id=\(city_id)&state_id=\(state_id)"
-//                request.httpBody = postString.data(using: .utf8)
-//                
-//                request.httpMethod = "POST"
-//                
-//                let task = URLSession.shared.dataTask(with: request) {
-//                    data, response, error in
-//                    if let responseString = String(data: data!, encoding: .utf8){
-//                        // print("responseString = \(responseString)")
-//                        // self.actstop()
-//                        if error != nil
-//                        {
-//                            print("error=\(error)")
-//                            DispatchQueue.main.async {
-//                                self.displaymyalertmessage(usermessage: "serverdown")
-//                            }
-//                            return
-//                        }
-//                        if responseString == "null\n"{
-//                            
-//                        }
-//                        else{
-//                            
-//                            do {
-//                                
-//                                if let convertedJsonDictioanry = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]    {
-//                                    
-//                                    
-//                                    
-//                                    DispatchQueue.main.async {
-//                                        self.performSegue(withIdentifier: "toArticle", sender: self)
-//                                    }
-//                                }
-//                            } catch let error as NSError {
-//                                print(error.localizedDescription)
-//                                
-//                            }
-//                        }
-//                    }
-//                    else{
-//                        
-//                        DispatchQueue.main.async {
-//                            self.displaymyalertmessage(usermessage: "serverdown")
-//                        }
-//                    }
-//                }
-//                task.resume()
-//                
-//            }
-            
+             //   self.performSegue(withIdentifier: "stateToNews", sender: self)
+                let scriptUrl = "http://www.indianmoney.com/wealthDoctor/ios/updatepro.php"
+                
+                let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
+                
+                let myUrl = URL(string: urlWithParams);
+                
+                var request = URLRequest(url:myUrl!)
+                
+                let postString = "name=\(name!)&mobile=\(mobileNumber!)&tittle=\(mr)&city_id=\(city_id)&state_id=\(state_id)"
+                request.httpBody = postString.data(using: .utf8)
+                
+                request.httpMethod = "POST"
+                
+                let task = URLSession.shared.dataTask(with: request) {
+                    data, response, error in
+                    if let responseString = String(data: data!, encoding: .utf8){
+                        // print("responseString = \(responseString)")
+                        // self.actstop()
+                        if error != nil
+                        {
+                            print("error=\(error)")
+                            DispatchQueue.main.async {
+                                self.displaymyalertmessage(usermessage: "serverdown")
+                            }
+                            return
+                        }
+                        if responseString == "null\n"{
+                            
+                        }
+                        else{
+                            
+                            do {
+                                
+                                if let convertedJsonDictioanry = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]    {
+                                    
+                                    
+                                    
+                                    DispatchQueue.main.async {
+                                        self.performSegue(withIdentifier: "toArticle", sender: self)
+                                    }
+                                }
+                            } catch let error as NSError {
+                                print(error.localizedDescription)
+                                
+                            }
+                        }
+                    }
+                    else{
+                        
+                        DispatchQueue.main.async {
+                            self.displaymyalertmessage(usermessage: "serverdown")
+                        }
+                    }
+                }
+                task.resume()
+                
+            }
+        
         }
        
-    }
+    
     
     
     func displaymyalertmessage (usermessage:String) {
