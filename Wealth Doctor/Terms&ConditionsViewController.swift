@@ -22,6 +22,9 @@ class Terms_ConditionsViewController: UIViewController {
         default :
             let webUrl = URLRequest(url: URL(string: "http://www.indianmoney.com/wealthDoctor/terms_n_cond.php")!)
             self.terms2.loadRequest(webUrl)
+            
+            
+            self.navigationController?.navigationBar.isHidden = false
         }
         // Do any additional setup after loading the view.
     }

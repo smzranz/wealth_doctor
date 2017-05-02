@@ -64,7 +64,7 @@ class VerifyOTPViewController: UIViewController, UITextFieldDelegate {
                 displaymyalertmessage(usermessage: "no internet connection")
                 print("no internet connection")
             default :
-                
+                actstart()
                 let scriptUrl = "http://www.indianmoney.com/wealthDoctor/ios/verifyLoginOtp.php"
                 
                 let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
@@ -82,11 +82,12 @@ class VerifyOTPViewController: UIViewController, UITextFieldDelegate {
                     data, response, error in
                     if let responseString = String(data: data!, encoding: .utf8){
                     // print("responseString = \(responseString)")
-                    self.actstop()
+                   // self.actstop()
                     if error != nil
                     {
                         print("error=\(error)")
                         DispatchQueue.main.async {
+                            self.actstop()
                             self.displaymyalertmessage(usermessage: "serverdown")
                         }
                         return
@@ -157,7 +158,7 @@ class VerifyOTPViewController: UIViewController, UITextFieldDelegate {
                                     }
                                     
                                     DispatchQueue.main.async {
-                                        
+                                        self.actstop()
                                         UserDefaults.standard.set(self.mobileNumber, forKey: "mobileverified")
                                         UserDefaults.standard.synchronize()
                                         if states.count > 0{

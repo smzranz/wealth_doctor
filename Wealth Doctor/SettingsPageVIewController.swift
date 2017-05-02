@@ -62,7 +62,7 @@ var tittleLabel = [String]()
         case 3:
             shareApp()
         case 4 :
-            rateApp(appId: "id959379869") { success in
+            rateApp(appId: "id1232131220") { success in
                 print("RateApp \(success)")
             }
         case 6 :
@@ -104,7 +104,7 @@ var tittleLabel = [String]()
     }
     
     @IBAction func signOutBtn(_ sender: Any) {
-        let myalert = UIAlertController(title: "Call", message: "Do u want to call", preferredStyle: UIAlertControllerStyle.alert )
+        let myalert = UIAlertController(title: "Alert!", message: "Are you sure want to sign out", preferredStyle: UIAlertControllerStyle.alert )
         
         let noaction = UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil)
         let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in

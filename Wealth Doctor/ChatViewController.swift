@@ -832,7 +832,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                     else if qtype == "3"{
                         self.textFieldBgView.isHidden = false
                         self.chatTxt.isHidden = false
-                    self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Calendar", attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                    self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Tap to input", attributes: [NSForegroundColorAttributeName:UIColor.orange])
                         
                         self.textFieldBgView.isHidden = false
                         self.chatTxt.inputView = nil
@@ -904,7 +904,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                     else if qtype == "11"{
                         self.textFieldBgView.isHidden = false
                         self.chatTxt.isHidden = false
-                        self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Calendar", attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                        self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Tap to input", attributes: [NSForegroundColorAttributeName:UIColor.orange])
                         
 //                        var components = DateComponents()
 //                        components.year = -100
@@ -925,7 +925,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                         self.textFieldBgView.isHidden = false
                         self.chatTxt.isHidden = false
                         
-                        self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Calendar", attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                        self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Tap to input", attributes: [NSForegroundColorAttributeName:UIColor.orange])
                         
                         //                        var components = DateComponents()
                         //                        components.year = -100
@@ -945,7 +945,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                     if qtype == "13"{
                         self.textFieldBgView.isHidden = false
                         self.chatTxt.isHidden = false
-                        self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Calendar", attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                        self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Tap to input", attributes: [NSForegroundColorAttributeName:UIColor.orange])
                        
                         var components = DateComponents()
                         components.year = -100
@@ -1244,9 +1244,11 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
         DataBaseManager.shared.ExecuteCommand(query: "DELETE FROM questions;")
         UserDefaults.standard.setValue(nil, forKeyPath: "chat")
         UserDefaults.standard.synchronize()
+        popupBgView.isHidden = true
+        popUpView.isHidden = true
 //        self.chatTableView.reloadData()
-//         chatLoad()
-        loadView()
+         chatLoad()
+       // loadView()
     }
     
     func datePickerChanged(sender: UIDatePicker) {

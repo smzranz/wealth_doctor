@@ -111,7 +111,7 @@ let pickerTableView = UITableView()
         pickerTableView.reloadData()
         self.pickerTableView.isHidden = false
         
-        self.pickerTableView.frame = CGRect(x: 30, y: 330, width: 300, height: 200)
+        self.pickerTableView.frame = CGRect(x: 30, y: 340, width: 300, height: 200)
         self.view.addSubview(pickerTableView)
     }
     
@@ -213,7 +213,7 @@ let pickerTableView = UITableView()
                                     
                                     
                                     DispatchQueue.main.async {
-                                        self.performSegue(withIdentifier: "toArticle", sender: self)
+                                        self.performSegue(withIdentifier: "stateToNews", sender: self)
                                     }
                                 }
                             } catch let error as NSError {

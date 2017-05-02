@@ -69,13 +69,13 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-            UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-            // Sets shadow (line below the bar) to a blank image
-            UINavigationBar.appearance().shadowImage = UIImage()
-            // Sets the translucent background color
-            UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25)
-            // Set translucent. (Default value is already true, so this can be removed if desired.)
-            UINavigationBar.appearance().isTranslucent = true
+//            UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+//            // Sets shadow (line below the bar) to a blank image
+//            UINavigationBar.appearance().shadowImage = UIImage()
+//            // Sets the translucent background color
+//            UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25)
+//            // Set translucent. (Default value is already true, so this can be removed if desired.)
+//            UINavigationBar.appearance().isTranslucent = true
         
     }
     
@@ -192,7 +192,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.width, height: self.view.frame.height)
+        return CGSize(width: self.view.frame.width, height: self.view.frame.height-64)
     }
     
     
@@ -610,6 +610,32 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         
         
     }
+    
+    func showAnimationLeftToRight() {
+        let transition = CATransition()
+        transition.duration = 0.25
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromLeft
+        view.window!.layer.add(transition, forKey: kCATransition)
+    }
+    func showAnimationRightToLeft() {
+        let transition = CATransition()
+        transition.duration = 0.25
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromRight
+        view.window!.layer.add(transition, forKey: kCATransition)
+    }
+    
+    
+    @IBAction func menuButtonPressed(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier :"MenuViewController") as! MenuViewController
+        showAnimationRightToLeft()
+        self.navigationController?.pushViewController(viewController, animated: false)
+     //   self.present(viewController, animated: false)
+        
+    }
+    
 }
 extension UIView{
     

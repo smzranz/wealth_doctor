@@ -51,7 +51,7 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
                 displaymyalertmessage(usermessage: "no internet connection")
                 print("no internet connection")
             default :
-                
+                actstart()
                 let scriptUrl = "http://www.indianmoney.com/wealthDoctor/login.php"
                 
                 let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
@@ -74,6 +74,7 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
                     {
                         print("error=\(error)")
                         DispatchQueue.main.async {
+                            self.actstop()
                             self.displaymyalertmessage(usermessage: "serverdown")
                         }
                         return
@@ -105,7 +106,7 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
                                 
                                 
                                 DispatchQueue.main.async {
-                                    
+                                    self.actstop()
                                     self.performSegue(withIdentifier: "mobiletootp", sender: self)
                                                         }
                                 
