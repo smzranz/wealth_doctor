@@ -58,6 +58,8 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
     var productId = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.hidesBarsOnSwipe = false
         picker.backgroundColor = UIColor.white
         datePicker.backgroundColor = UIColor.white
         textFieldBgView.isHidden = true
@@ -209,7 +211,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
         
         let chattime  = UILabel(frame: CGRect(x: 20, y:  cell.frame.height-14, width: view.frame.width-40, height: 14) )
        
-       
+     //  sleep(4)
         
         
         if type == "2" && indexPath.row == serverChatText.count - 1{
@@ -809,6 +811,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                     }
                     else if qtype == "2"{
                         self.textFieldBgView.isHidden = false
+                        
                         self.chatTxt.isHidden = false
                             let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
                             for i in 0..<q_choicesSeperated.count {
@@ -893,6 +896,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                         
                     }
                         textFieldBgView.isHidden = false
+                        
                         self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Tap to input", attributes: [NSForegroundColorAttributeName:UIColor.orange])
                         self.popUpCallBtn.isHidden = false
                         self.dropDownTableview.reloadData()
@@ -903,6 +907,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                     else if qtype == "10"{}
                     else if qtype == "11"{
                         self.textFieldBgView.isHidden = false
+                        
                         self.chatTxt.isHidden = false
                         self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Tap to input", attributes: [NSForegroundColorAttributeName:UIColor.orange])
                         
@@ -1288,6 +1293,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
     
     @IBAction func addPopUp(_ sender: Any) {
         self.popupBgView.isHidden = false
+        self.popUpView.isHidden = false
         
     }
     func popUpDropDownBtnClick(sender: UIButton) {

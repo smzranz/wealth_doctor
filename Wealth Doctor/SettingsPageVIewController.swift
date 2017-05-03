@@ -14,7 +14,8 @@ var tittleLabel = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
         tittleLabel = ["Language","Notification","Change Mobile Number","Invite","Rate","Feedback","Terms And Conditions","Privacy"]
-        
+        navigationController?.hidesBarsOnSwipe = false
+
         
         settingImages = [#imageLiteral(resourceName: "language_menu"),#imageLiteral(resourceName: "notification_settings"),#imageLiteral(resourceName: "chat_menu_copy"),#imageLiteral(resourceName: "invite_settings"),#imageLiteral(resourceName: "rate_settings"),#imageLiteral(resourceName: "feedback_settings"),#imageLiteral(resourceName: "tc_menu"),#imageLiteral(resourceName: "privacy_settings")]
         // Do any additional setup after loading the view.

@@ -42,7 +42,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
      //   print(lastIndexPath)
-        
+       // navigationController?.navigationBar.isHidden = true
         favoritedToolTip.isHidden = true
         favoritedToolTip.layer.cornerRadius = 8
         favoritedToolTip.layer.masksToBounds = true
@@ -200,7 +200,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.width, height: self.view.frame.height)
+        return CGSize(width: self.view.frame.width, height: self.view.frame.height-20)
     }
     
     
@@ -401,7 +401,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
             favoritedToolTip.isHidden = false
         Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.update), userInfo: nil, repeats: false);
             DataBaseManager.shared.ExecuteCommand(query: "UPDATE NewsArticle SET favorited = 0 WHERE a_id=\(id[buttonindex]);")
-          /  loadData()
+           loadData()
             sender.isSelected = false
         }
         else{

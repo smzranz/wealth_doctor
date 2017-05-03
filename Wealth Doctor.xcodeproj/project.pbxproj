@@ -837,6 +837,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 2HYG9JX3WQ;
 				INFOPLIST_FILE = "Wealth Doctor/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.indianmoney.WealthDoctorApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -856,6 +857,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 2HYG9JX3WQ;
 				INFOPLIST_FILE = "Wealth Doctor/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.indianmoney.WealthDoctorApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
