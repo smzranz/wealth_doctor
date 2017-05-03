@@ -23,6 +23,9 @@ class MenuViewController: UIViewController,UICollectionViewDelegate,UICollection
     var menuNameArray : [String]!
     override func viewDidLoad() {
         super.viewDidLoad()
+        let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10)
+        collectionView.collectionViewLayout = layout
         menuImagesArray = [#imageLiteral(resourceName: "me_menu"),#imageLiteral(resourceName: "feeds_menu"),#imageLiteral(resourceName: "unread_menu"),#imageLiteral(resourceName: "bookmarks_menu"),#imageLiteral(resourceName: "tip_menu")]
         menuNameArray = ["My Profile","Main Stream","Unread","Favorites","My Tips"]
        
@@ -65,12 +68,12 @@ tagLoad()
             
                 cell.tagLabel.text = sectionItems1[indexPath.row]
             
-            
+            cell.tagLabel.textColor = UIColor.gray
             
            
         cell.tagLabel.layer.cornerRadius = 8
             cell.tagLabel.layer.borderWidth = 1
-            cell.tagLabel.layer.borderColor = UIColor.darkGray.cgColor
+            cell.tagLabel.layer.borderColor = UIColor.lightGray.cgColor
             cell.tagLabel.layer.masksToBounds = true
             return cell
         
@@ -82,12 +85,12 @@ tagLoad()
                 
                                 cell.tagLabel.text = sectionItems2[indexPath.row]
                 
-                
+                cell.tagLabel.textColor = UIColor.gray
                 
                 
                         cell.tagLabel.layer.cornerRadius = 8
                             cell.tagLabel.layer.borderWidth = 1
-                            cell.tagLabel.layer.borderColor = UIColor.darkGray.cgColor
+                            cell.tagLabel.layer.borderColor = UIColor.lightGray.cgColor
                             cell.tagLabel.layer.masksToBounds = true
                             return cell
             
@@ -96,13 +99,14 @@ tagLoad()
         else if indexPath.section == 0{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)  as! MenuCollectionViewCell
         
-//        cell.bgView.layer.cornerRadius = 5
-//        cell.bgView.layer.borderWidth = 1
-//        cell.bgView.layer.borderColor = UIColor.lightGray.cgColor
-       // cell.bgView.layer.masksToBounds = true
+        cell.bgView.layer.cornerRadius = 8
+        cell.bgView.layer.borderWidth = 1
+        cell.bgView.layer.borderColor = UIColor.lightGray.cgColor
+        cell.bgView.layer.masksToBounds = true
         
         cell.menuImage.image = menuImagesArray[indexPath.row]
         cell.menuLabel.text = menuNameArray[indexPath.row]
+            cell.menuLabel.textColor = UIColor.gray
         return cell
         }
         
@@ -137,8 +141,14 @@ tagLoad()
         if indexPath.section == 0{
                     return CGSize(width: 100, height: 100)
                     }
-
-        return CGSize(width: 100.0, height: 30.0)
+        else if indexPath.section == 1{
+        let size = (sectionItems1[indexPath.row] as NSString).size(attributes: nil)
+        return CGSize(width: size.width+6, height: 30.0)
+        }
+        let width = UIScreen.main.bounds.size.width
+        //calculation of cell size
+        let size = (sectionItems2[indexPath.row] as NSString).size(attributes: nil)
+        return CGSize(width: ((width / 2) - 15)   , height: 35.0)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -180,7 +190,7 @@ tagLoad()
         
         return CGSize(width: 0, height: 0)
         }
-    return CGSize(width: 300, height: 44)
+    return CGSize(width: 300, height: 40)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

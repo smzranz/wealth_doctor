@@ -75,12 +75,12 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
         
         popUpDropDownBtn.layer.cornerRadius = 5
         popUpDropDownBtn.layer.borderColor = UIColor.lightGray.cgColor
-        popUpDropDownBtn.layer.borderWidth = 2
+        popUpDropDownBtn.layer.borderWidth = 1
         popUpDropDownBtn.layer.masksToBounds = true
         
         popUpTxtField.layer.cornerRadius = 5
         popUpTxtField.layer.borderColor = UIColor.lightGray.cgColor
-        popUpTxtField.layer.borderWidth = 2
+        popUpTxtField.layer.borderWidth = 1
         popUpTxtField.layer.masksToBounds = true
         self.popupBgView.isHidden = true
         popUpCallBtn.isHidden = true
@@ -1292,7 +1292,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
     }
     func popUpDropDownBtnClick(sender: UIButton) {
     
-    dropDownTableview.frame = CGRect(x: 70, y: 330, width: Int(popUpDropDownBtn.frame.width), height: 44*pickerDisplayArray.count)
+    dropDownTableview.frame = CGRect(x: 70, y: 330, width: Int(popUpDropDownBtn.frame.width), height: 44*5)
         view.addSubview(dropDownTableview)
     
     }

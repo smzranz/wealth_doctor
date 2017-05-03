@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     var loadFavorited : Bool = false
     
+    @IBOutlet weak var favoritedToolTip: PaddingLabel!
     @IBOutlet var refreshBtnOulet: UIBarButtonItem!
     let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
     var lastIndexPath: Int = 0
@@ -41,6 +42,10 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
      //   print(lastIndexPath)
+        
+        favoritedToolTip.isHidden = true
+        favoritedToolTip.layer.cornerRadius = 8
+        favoritedToolTip.layer.masksToBounds = true
         newNewsBtn.isHidden = true
         gamer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
         newNewsBtn.layer.cornerRadius = newNewsBtn.frame.height/2
@@ -100,6 +105,8 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! NewsArticlesCollectionViewCell
+        
+        cell.askBtn.setImage(#imageLiteral(resourceName: "hs_ask"), for: .normal)
         if row < indexPath.row{
             let defaults = UserDefaults.standard
             defaults.set(indexPath.row, forKey: "row")
@@ -149,6 +156,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         cell.likeBtn.layer.cornerRadius = cell.likeBtn.frame.height/2
         cell.likeBtn.layer.borderColor = UIColor(colorLiteralRed: 28/255, green: 126/255, blue: 211/255, alpha: 1.0).cgColor
         cell.likeBtn.layer.borderWidth = 1
+        cell.likeBtn.layer.masksToBounds = true
          cell.likeBtn.tag = indexPath.row
         cell.favoriteBtn.setTitle(tittle[indexPath.row], for: .normal)
           cell.favoriteBtn.setTitle(tittle[indexPath.row], for: .selected)
@@ -389,14 +397,20 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         let buttonindex =  sender.tag
         if (sender.isSelected){
             print("unselected")
-            
+            favoritedToolTip.text = "Removed from favourites"
+            favoritedToolTip.isHidden = false
+        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.update), userInfo: nil, repeats: false);
             DataBaseManager.shared.ExecuteCommand(query: "UPDATE NewsArticle SET favorited = 0 WHERE a_id=\(id[buttonindex]);")
-            loadData()
+          /  loadData()
             sender.isSelected = false
         }
         else{
             print("selected")
-            print(buttonindex)
+            
+            favoritedToolTip.text = "Added to favourites"
+            favoritedToolTip.isHidden = false
+                    Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.update), userInfo: nil, repeats: false);
+           // print(buttonindex)
             DataBaseManager.shared.ExecuteCommand(query: "UPDATE NewsArticle SET favorited = 1 WHERE a_id=\(id[buttonindex]);")
             print(id[buttonindex])
             loadData()
@@ -433,7 +447,9 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier :"secondViewController") as! KnowMoreViewController
         viewController.urlstring = knowMoreUrl[buttonindex]
-        self.present(viewController, animated: true)
+       // self.present(viewController, animated: true)
+        self.showAnimationRightToLeft()
+        self.navigationController?.pushViewController(viewController, animated: false)
     
     
     }
@@ -634,12 +650,15 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     @IBAction func menuButtonPressed(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier :"MenuViewController") as! MenuViewController
-        showAnimationRightToLeft()
+       showAnimationLeftToRight()
         self.navigationController?.pushViewController(viewController, animated: false)
      //   self.present(viewController, animated: false)
         
     }
+    func update() {
     
+    favoritedToolTip.isHidden = true
+    }
 }
 extension UIView{
     
