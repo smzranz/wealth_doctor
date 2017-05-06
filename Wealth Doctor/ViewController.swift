@@ -401,7 +401,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
             favoritedToolTip.isHidden = false
         Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.update), userInfo: nil, repeats: false);
             DataBaseManager.shared.ExecuteCommand(query: "UPDATE NewsArticle SET favorited = 0 WHERE a_id=\(id[buttonindex]);")
-          /  loadData()
+            loadData()
             sender.isSelected = false
         }
         else{
