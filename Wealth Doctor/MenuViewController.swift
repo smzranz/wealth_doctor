@@ -109,7 +109,7 @@ tagLoad()
             cell.menuLabel.textColor = UIColor.gray
             
             if indexPath.row == sideSelected{
-                cell.menuImage.backgroundColor = ColorFile().getPrimaryColor()
+                cell.bgView.backgroundColor = ColorFile().getPrimaryColor()
                 
             }
         return cell
