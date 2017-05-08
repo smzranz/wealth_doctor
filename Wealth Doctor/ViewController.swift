@@ -403,7 +403,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
             favoritedToolTip.isHidden = false
         Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.update), userInfo: nil, repeats: false);
             DataBaseManager.shared.ExecuteCommand(query: "UPDATE NewsArticle SET favorited = 0 WHERE a_id=\(id[buttonindex]);")
-           loadData()
+            loadData()
             sender.isSelected = false
         }
         else{
@@ -652,6 +652,8 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     @IBAction func menuButtonPressed(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier :"MenuViewController") as! MenuViewController
+        
+        viewController.sideSelected = 1
        showAnimationLeftToRight()
         self.navigationController?.pushViewController(viewController, animated: false)
      //   self.present(viewController, animated: false)

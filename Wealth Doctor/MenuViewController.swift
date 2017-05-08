@@ -10,7 +10,7 @@ import UIKit
 
 class MenuViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     var header = ["bussiness","Education"]
-    
+    var sideSelected : Int = 0
     
     @IBOutlet var collectionView: UICollectionView!
     
@@ -65,7 +65,7 @@ tagLoad()
         if indexPath.section  == 1{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tags", for: indexPath) as! TagsCollectionViewCell
             
-           
+            
             
                 cell.tagLabel.text = sectionItems1[indexPath.row]
             
@@ -82,8 +82,7 @@ tagLoad()
         else if indexPath.section  == 2{
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tags", for: indexPath) as! TagsCollectionViewCell
                 //
-                
-                
+          
                                 cell.tagLabel.text = sectionItems2[indexPath.row]
                 
                 cell.tagLabel.textColor = UIColor.gray
@@ -108,6 +107,11 @@ tagLoad()
         cell.menuImage.image = menuImagesArray[indexPath.row]
         cell.menuLabel.text = menuNameArray[indexPath.row]
             cell.menuLabel.textColor = UIColor.gray
+            
+            if indexPath.row == sideSelected{
+                cell.menuImage.backgroundColor = ColorFile().getPrimaryColor()
+                
+            }
         return cell
         }
         

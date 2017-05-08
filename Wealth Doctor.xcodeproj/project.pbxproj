@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1FFBC521FB3A055F495DFB84 /* Pods_Wealth_DoctorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B86C813944F50BEA67481DB /* Pods_Wealth_DoctorTests.framework */; };
+		30064E8D4C369FE81ADC42C8 /* Pods_Wealth_Doctor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A094B41A84D60E9309E5C7F /* Pods_Wealth_Doctor.framework */; };
+		3FD906FC5B2FCFBE3E99E3E5 /* Pods_Wealth_DoctorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50EE19117689EA6F46B58056 /* Pods_Wealth_DoctorUITests.framework */; };
 		516377FB1EB05298003EB293 /* DotsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516377FA1EB05298003EB293 /* DotsLoader.swift */; };
 		516F768B1EAF10A900D34C43 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516F768A1EAF10A900D34C43 /* ProfileViewController.swift */; };
 		518FF8741EAE32C600DF7849 /* wd_logo_1024X1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 518FF8731EAE32C600DF7849 /* wd_logo_1024X1024.png */; };
@@ -101,10 +104,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3040A624454A4D12727B7855 /* Pods-Wealth DoctorUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wealth DoctorUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wealth DoctorUITests/Pods-Wealth DoctorUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		30B660CED809624C70EEE511 /* Pods-Wealth DoctorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wealth DoctorTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wealth DoctorTests/Pods-Wealth DoctorTests.release.xcconfig"; sourceTree = "<group>"; };
+		436B177EE1A863DA4A87D67C /* Pods-Wealth DoctorUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wealth DoctorUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wealth DoctorUITests/Pods-Wealth DoctorUITests.release.xcconfig"; sourceTree = "<group>"; };
+		50EE19117689EA6F46B58056 /* Pods_Wealth_DoctorUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wealth_DoctorUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		516377FA1EB05298003EB293 /* DotsLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotsLoader.swift; sourceTree = "<group>"; };
 		516F768A1EAF10A900D34C43 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		518FF8731EAE32C600DF7849 /* wd_logo_1024X1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wd_logo_1024X1024.png; sourceTree = "<group>"; };
 		51F694071EBC83C2009BFB01 /* ColorFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorFile.swift; sourceTree = "<group>"; };
+		5A094B41A84D60E9309E5C7F /* Pods_Wealth_Doctor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wealth_Doctor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B86C813944F50BEA67481DB /* Pods_Wealth_DoctorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wealth_DoctorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BC9F65F3F5555DBCCE044B1 /* Pods-Wealth DoctorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wealth DoctorTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wealth DoctorTests/Pods-Wealth DoctorTests.debug.xcconfig"; sourceTree = "<group>"; };
+		83B2408C1264ADA9CEFF2BFD /* Pods-Wealth Doctor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wealth Doctor.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wealth Doctor/Pods-Wealth Doctor.release.xcconfig"; sourceTree = "<group>"; };
 		C30DB16F1E76ECB000980DCD /* TagsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewCell.swift; sourceTree = "<group>"; };
 		C310788B1E882ACC00598790 /* StateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateViewController.swift; sourceTree = "<group>"; };
 		C31C996A1EAE4D3200E4040D /* NameEnterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameEnterViewController.swift; sourceTree = "<group>"; };
@@ -204,6 +215,7 @@
 		C3E702361E68916500B596E8 /* intenetcheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = intenetcheck.swift; sourceTree = "<group>"; };
 		C3EBD1D51E65FB0300E22661 /* SettingsPageVIewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPageVIewController.swift; sourceTree = "<group>"; };
 		C3EED7B71EB49CD7003A67FE /* CollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
+		C9273C8F62B22E44AD9A4AC4 /* Pods-Wealth Doctor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wealth Doctor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wealth Doctor/Pods-Wealth Doctor.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3A90B2E1E6A964900703389 /* libsqlite3.tbd in Frameworks */,
+				30064E8D4C369FE81ADC42C8 /* Pods_Wealth_Doctor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +232,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FFBC521FB3A055F495DFB84 /* Pods_Wealth_DoctorTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,12 +240,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FD906FC5B2FCFBE3E99E3E5 /* Pods_Wealth_DoctorUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06C84338273E430F8C9431CE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C9273C8F62B22E44AD9A4AC4 /* Pods-Wealth Doctor.debug.xcconfig */,
+				83B2408C1264ADA9CEFF2BFD /* Pods-Wealth Doctor.release.xcconfig */,
+				6BC9F65F3F5555DBCCE044B1 /* Pods-Wealth DoctorTests.debug.xcconfig */,
+				30B660CED809624C70EEE511 /* Pods-Wealth DoctorTests.release.xcconfig */,
+				3040A624454A4D12727B7855 /* Pods-Wealth DoctorUITests.debug.xcconfig */,
+				436B177EE1A863DA4A87D67C /* Pods-Wealth DoctorUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		C37253A31E73EF3F00ED2A43 /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,6 +357,7 @@
 				C397A8681E62CE4A00BA7724 /* Wealth DoctorUITests */,
 				C397A8441E62CE4A00BA7724 /* Products */,
 				C3A90B2C1E6A964900703389 /* Frameworks */,
+				06C84338273E430F8C9431CE /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -408,6 +437,9 @@
 			isa = PBXGroup;
 			children = (
 				C3A90B2D1E6A964900703389 /* libsqlite3.tbd */,
+				5A094B41A84D60E9309E5C7F /* Pods_Wealth_Doctor.framework */,
+				5B86C813944F50BEA67481DB /* Pods_Wealth_DoctorTests.framework */,
+				50EE19117689EA6F46B58056 /* Pods_Wealth_DoctorUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -484,9 +516,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C397A86E1E62CE4A00BA7724 /* Build configuration list for PBXNativeTarget "Wealth Doctor" */;
 			buildPhases = (
+				0B4167BE094F1BCEB6452FFC /* [CP] Check Pods Manifest.lock */,
 				C397A83F1E62CE4A00BA7724 /* Sources */,
 				C397A8401E62CE4A00BA7724 /* Frameworks */,
 				C397A8411E62CE4A00BA7724 /* Resources */,
+				531F85AB8ED58FC89482261E /* [CP] Embed Pods Frameworks */,
+				582837D601AC9EA4CFCDBC14 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -501,9 +536,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C397A8711E62CE4A00BA7724 /* Build configuration list for PBXNativeTarget "Wealth DoctorTests" */;
 			buildPhases = (
+				0CD42C9AC5025F3DDC7745AE /* [CP] Check Pods Manifest.lock */,
 				C397A8561E62CE4A00BA7724 /* Sources */,
 				C397A8571E62CE4A00BA7724 /* Frameworks */,
 				C397A8581E62CE4A00BA7724 /* Resources */,
+				1FDF3058DE9775ECB02A02AA /* [CP] Embed Pods Frameworks */,
+				E4E4A5D4EC41DC5F1A2F0573 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -519,9 +557,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C397A8741E62CE4A00BA7724 /* Build configuration list for PBXNativeTarget "Wealth DoctorUITests" */;
 			buildPhases = (
+				1C6F242CB384C3923893C97F /* [CP] Check Pods Manifest.lock */,
 				C397A8611E62CE4A00BA7724 /* Sources */,
 				C397A8621E62CE4A00BA7724 /* Frameworks */,
 				C397A8631E62CE4A00BA7724 /* Resources */,
+				B9C94A440244011723E348F9 /* [CP] Embed Pods Frameworks */,
+				CCFE576FA342E96F504C6F9C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -616,6 +657,144 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0B4167BE094F1BCEB6452FFC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		0CD42C9AC5025F3DDC7745AE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		1C6F242CB384C3923893C97F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		1FDF3058DE9775ECB02A02AA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wealth DoctorTests/Pods-Wealth DoctorTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		531F85AB8ED58FC89482261E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wealth Doctor/Pods-Wealth Doctor-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		582837D601AC9EA4CFCDBC14 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wealth Doctor/Pods-Wealth Doctor-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B9C94A440244011723E348F9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wealth DoctorUITests/Pods-Wealth DoctorUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CCFE576FA342E96F504C6F9C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wealth DoctorUITests/Pods-Wealth DoctorUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4E4A5D4EC41DC5F1A2F0573 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wealth DoctorTests/Pods-Wealth DoctorTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C397A83F1E62CE4A00BA7724 /* Sources */ = {
@@ -835,11 +1014,12 @@
 		};
 		C397A86F1E62CE4A00BA7724 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C9273C8F62B22E44AD9A4AC4 /* Pods-Wealth Doctor.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2HYG9JX3WQ;
 				INFOPLIST_FILE = "Wealth Doctor/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -855,11 +1035,12 @@
 		};
 		C397A8701E62CE4A00BA7724 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83B2408C1264ADA9CEFF2BFD /* Pods-Wealth Doctor.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2HYG9JX3WQ;
 				INFOPLIST_FILE = "Wealth Doctor/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -874,6 +1055,7 @@
 		};
 		C397A8721E62CE4A00BA7724 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BC9F65F3F5555DBCCE044B1 /* Pods-Wealth DoctorTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -889,6 +1071,7 @@
 		};
 		C397A8731E62CE4A00BA7724 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30B660CED809624C70EEE511 /* Pods-Wealth DoctorTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -904,6 +1087,7 @@
 		};
 		C397A8751E62CE4A00BA7724 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3040A624454A4D12727B7855 /* Pods-Wealth DoctorUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = VF624LR8S4;
@@ -918,6 +1102,7 @@
 		};
 		C397A8761E62CE4A00BA7724 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 436B177EE1A863DA4A87D67C /* Pods-Wealth DoctorUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = VF624LR8S4;

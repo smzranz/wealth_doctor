@@ -24,6 +24,20 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     var qanswer = [String]()
     var question = [String]()
     
+    @IBOutlet weak var bgView8: UIView!
+     @IBOutlet weak var bgView7: UIView!
+     @IBOutlet weak var bgView6: UIView!
+     @IBOutlet weak var bgView5: UIView!
+     @IBOutlet weak var bgView4: UIView!
+     @IBOutlet weak var bgView3: UIView!
+     @IBOutlet weak var bgView2: UIView!
+     @IBOutlet weak var bgView1: UIView!
+    
+    
+    
+    
+    
+    
 
     @IBOutlet var titleTxt: UITextField!
     @IBOutlet var NameTxt: UITextField!
@@ -40,10 +54,25 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        self.navigationItem.title = "Profile"
+        
+        let btn1 = UIButton(type: .custom)
+        btn1.setImage(UIImage(named: "menu"), for: .normal)
+        btn1.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        //btn1.contentEdgeInsets = UIEdgeInsetsMake(5, 10, 5, 10)
+        btn1.addTarget(self, action: #selector(leftMenuPressed), for: .touchUpInside)
+        let item1 = UIBarButtonItem(customView: btn1)
+        self.navigationItem.setLeftBarButton(item1, animated: true)
 loadProfile()
         
-        
+        bgView1.layer.cornerRadius = 6
+        bgView2.layer.cornerRadius = 6
+        bgView3.layer.cornerRadius = 6
+        bgView4.layer.cornerRadius = 6
+        bgView5.layer.cornerRadius = 6
+        bgView6.layer.cornerRadius = 6
+        bgView7.layer.cornerRadius = 6
+        bgView8.layer.cornerRadius = 6
         
       
         
@@ -282,6 +311,22 @@ loadProfile()
         }
         
     }
+    
+    func leftMenuPressed() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier :"MenuViewController") as! MenuViewController
+        viewController.sideSelected = 0
+        showAnimationLeftToRight()
+        self.navigationController?.pushViewController(viewController, animated: false)
+    }
+    func showAnimationLeftToRight() {
+        let transition = CATransition()
+        transition.duration = 0.25
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromLeft
+        view.window!.layer.add(transition, forKey: kCATransition)
+    }
+
     func displaymyalertmessage (usermessage:String) {
         let myalert = UIAlertController(title: "WARNING", message: usermessage, preferredStyle: UIAlertControllerStyle.alert )
         
