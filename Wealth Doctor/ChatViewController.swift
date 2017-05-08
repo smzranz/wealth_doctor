@@ -14,6 +14,10 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     var dropDownTableview = UITableView()
     
+    
+    @IBOutlet var popUpDrownDownTxtField: UITextField!
+    
+    
     @IBOutlet weak var popUpCallBtn: UIButton!
     @IBOutlet weak var popupBgView: UIView!
     
@@ -717,7 +721,9 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
         }
         let type1 = UserDefaults.standard.value(forKey: "type") as! String
         if type1 == "2" {
-            
+            UserDefaults.standard.setValue(nil, forKey: "questionId")
+            UserDefaults.standard.synchronize()
+            textFieldBgView.isHidden = true
             squareData = [String]()
           //
                 let userdata = DataBaseManager.shared.fetchData(Query: "select * from tags ORDER BY slno DESC LIMIT 1;")
@@ -779,11 +785,11 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                             
                             
                         }
-                        
+                        userdata.close()
                     }
-                    userdata.close()
+                   
                 }
-                
+                 userdata.close()
                 textFieldBgView.isHidden = true
             chatTxt.isHidden = true
                 
@@ -867,6 +873,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                         self.textFieldBgView.isHidden = false
                         self.chatTxt.isHidden = false
                         datePicker.datePickerMode = .date
+                        
                         self.chatTxt.inputView = self.datePicker
                         self.datePicker.addTarget(self, action: #selector(datePickerChanged(sender:)), for: .valueChanged)
                     }
@@ -874,8 +881,33 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                     print("multiselect")
                     }
                     else if qtype == "7"{
-                    
-                    
+                        
+                        
+                        self.textFieldBgView.isHidden = false
+                        self.chatTxt.isHidden = false
+                        let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
+                        for i in 0..<q_choicesSeperated.count {
+                            let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
+                            if q_choiceDisplay.count == 2{
+                                let choiceItemServer: String = q_choiceDisplay[0]
+                                let choiceDisplayItem : String = q_choiceDisplay[1]
+                                
+                                self.pickerDisplayArray.append(choiceDisplayItem)
+                                self.serverGeneratedArray.append(choiceItemServer)
+                                
+                            }
+                            UserDefaults.standard.setValue(self.pickerDisplayArray, forKeyPath: "pickerArray")
+                            UserDefaults.standard.synchronize()
+                            
+                        }
+                        textFieldBgView.isHidden = false
+                        self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Tap to input", attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                        self.popUpCallBtn.isHidden = false
+                        self.dropDownTableview.reloadData()
+                        
+                        self.popUpTxtField.attributedPlaceholder = NSAttributedString(string: "Input your value", attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                        self.popUpTxtField.inputView = nil
+                        self.popUpTxtField.keyboardType = .default
                     }
                     else if qtype == "8"{
                         self.textFieldBgView.isHidden = false
@@ -900,11 +932,67 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                         self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Tap to input", attributes: [NSForegroundColorAttributeName:UIColor.orange])
                         self.popUpCallBtn.isHidden = false
                         self.dropDownTableview.reloadData()
+                        self.popUpTxtField.attributedPlaceholder = NSAttributedString(string: "Input a number", attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                        self.popUpTxtField.inputView = nil
+                        self.popUpTxtField.keyboardType = .numberPad
                        
                         
                     }
-                    else if qtype == "9"{}
-                    else if qtype == "10"{}
+                    else if qtype == "9"{
+                        self.textFieldBgView.isHidden = false
+                        self.chatTxt.isHidden = false
+                        let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
+                        for i in 0..<q_choicesSeperated.count {
+                            let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
+                            if q_choiceDisplay.count == 2{
+                                let choiceItemServer: String = q_choiceDisplay[0]
+                                let choiceDisplayItem : String = q_choiceDisplay[1]
+                                
+                                self.pickerDisplayArray.append(choiceDisplayItem)
+                                self.serverGeneratedArray.append(choiceItemServer)
+                                
+                            }
+                            UserDefaults.standard.setValue(self.pickerDisplayArray, forKeyPath: "pickerArray")
+                            UserDefaults.standard.synchronize()
+                            
+                        }
+                        textFieldBgView.isHidden = false
+                        self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Tap to input", attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                        self.popUpCallBtn.isHidden = false
+                        self.dropDownTableview.reloadData()
+                        
+                        
+                    }
+                    else if qtype == "10"{
+                    
+                    
+                            self.textFieldBgView.isHidden = false
+                            self.chatTxt.isHidden = false
+                            let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
+                            for i in 0..<q_choicesSeperated.count {
+                                let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
+                                if q_choiceDisplay.count == 2{
+                                    let choiceItemServer: String = q_choiceDisplay[0]
+                                    let choiceDisplayItem : String = q_choiceDisplay[1]
+                                    
+                                    self.pickerDisplayArray.append(choiceDisplayItem)
+                                    self.serverGeneratedArray.append(choiceItemServer)
+                                    
+                                }
+                                UserDefaults.standard.setValue(self.pickerDisplayArray, forKeyPath: "pickerArray")
+                                UserDefaults.standard.synchronize()
+                                
+                            }
+                            textFieldBgView.isHidden = false
+                            self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Tap to input", attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                            self.popUpCallBtn.isHidden = false
+                            self.dropDownTableview.reloadData()
+                            self.popUpTxtField.attributedPlaceholder = NSAttributedString(string: "Select a date", attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                            self.popUpTxtField.inputView = datePicker
+                            
+                            
+                            
+                        }
                     else if qtype == "11"{
                         self.textFieldBgView.isHidden = false
                         
@@ -1140,13 +1228,13 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                         color = "0"
                         }
                         
-                        DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, chat_id,ans_id,url,product_id,disable,serverChat,time,color) values ( 0, 1, 0,0,0,0,'\(chatQuestion)',DATETIME('now'),'\(color)');")
-                        
-                        color = "0"
+                     
                         
                         if let convertedJsonIntoArray = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]    {
                             //   print(convertedJsonIntoArray)
+                            DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, chat_id,ans_id,url,product_id,disable,serverChat,time,color) values ( 0, 1, 0,0,0,0,'\(chatQuestion)',DATETIME('now'),'\(color)');")
                             
+                            color = "0"
                             let nestedString = convertedJsonIntoArray["text"] as! String
                             if let type = convertedJsonIntoArray["type"] as? String {
                                 let ans_id = convertedJsonIntoArray["ans_id"] as! String
@@ -1205,6 +1293,10 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                                     }
                                     
                                     
+                                }else{
+                                
+                                    UserDefaults.standard.setValue(nil, forKey: "questionId")
+                                    UserDefaults.standard.synchronize()
                                 }
                                 
                                 DispatchQueue.main.async {
@@ -1259,6 +1351,8 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
     func datePickerChanged(sender: UIDatePicker) {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
+       // let dateFormatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
         chatTxt.text = formatter.string(from: sender.date)
         
         print("Try this at home")

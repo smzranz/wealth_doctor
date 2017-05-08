@@ -208,7 +208,10 @@ tagLoad()
         else{
         switch indexPath.row {
         case 0:
-            break
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier :"ProfileViewController") as! ProfileViewController
+            
+            self.navigationController?.pushViewController(viewController, animated: true)
         case 1:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier :"articleViewController") as! ViewController

@@ -12,26 +12,56 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var eventStartText: UITextField!
     let sam = UIButton()
     let datePicker = UIDatePicker()
-  
+    var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+  let deviceID = UIDevice.current.identifierForVendor!.uuidString
+     let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
+    
+    var otp_req = [String]()
+    var q_choices = [String]()
+    var q_hint = [String]()
+    var q_id = [String]()
+    var q_type = [String]()
+    var qanswer = [String]()
+    var question = [String]()
+    
+
+    @IBOutlet var titleTxt: UITextField!
+    @IBOutlet var NameTxt: UITextField!
+    @IBOutlet var EmailTxt: UITextField!
+    @IBOutlet var dobTxt: UITextField!
+    @IBOutlet var addressTxt: UITextField!
+    @IBOutlet var occupationTxt: UITextField!
+    @IBOutlet var languagesTxt: UITextField!
+    @IBOutlet var maritalStatusTxt: UITextField!
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
       
-
+loadProfile()
+        
+        
+        
+      
+        
         datePicker.datePickerMode = .date
       //  datePicker.backgroundColor
-        sam.frame = CGRect(x: 30, y: 30, width: 50, height: 50)
-        sam.backgroundColor = UIColor.red
-        view.addSubview(sam)
-        sam.addTarget(self, action: #selector(samClick(sender:)), for: .touchUpInside)
-        eventStartText.delegate = self
-        var components = DateComponents()
-        components.year = -18
-        let minDate = Calendar.current.date(byAdding: components, to: Date())
-        
-        components.year = -100
-        let maxDate = Calendar.current.date(byAdding: components, to: Date())
-        print(minDate ?? 000)
-        print(maxDate ?? 000)
+//        sam.frame = CGRect(x: 30, y: 30, width: 50, height: 50)
+//        sam.backgroundColor = UIColor.red
+//        view.addSubview(sam)
+//        sam.addTarget(self, action: #selector(samClick(sender:)), for: .touchUpInside)
+//        eventStartText.delegate = self
+//        var components = DateComponents()
+//        components.year = -18
+//        let minDate = Calendar.current.date(byAdding: components, to: Date())
+//        
+//        components.year = -100
+//        let maxDate = Calendar.current.date(byAdding: components, to: Date())
+//        print(minDate ?? 000)
+//        print(maxDate ?? 000)
         // Do any additional setup after loading the view.
     }
     
@@ -94,4 +124,190 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
      // Pass the selected object to the new view controller.
      }
      */
+    
+    func loadProfile(){
+        
+        let networkStatus = Reeachability().connectionStatus()
+        switch networkStatus {
+        case .Unknown, .Offline:
+            displaymyalertmessage(usermessage: "no internet connection")
+            print("no internet connection")
+        default :
+            actstart()
+            let scriptUrl = "http://www.indianmoney.com/wealthDoctor/myprofile.php"
+            
+            let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
+            
+            let myUrl = URL(string: urlWithParams);
+            
+            var request = URLRequest(url:myUrl!)
+            
+            let postString = "mobile=\(mobileNumber!)&gcm=\(deviceID)"
+            request.httpBody = postString.data(using: .utf8)
+            
+            request.httpMethod = "POST"
+            
+            let task = URLSession.shared.dataTask(with: request) {
+                data, response, error in
+                if let responseString = String(data: data!, encoding: .utf8){
+                    // print("responseString = \(responseString)")
+                    self.actstop()
+                    if error != nil
+                    {
+                        print("error=\(error)")
+                        DispatchQueue.main.async {
+                            self.actstop()
+                            self.displaymyalertmessage(usermessage: "serverdown")
+                        }
+                        return
+                    }
+                    if responseString == "null\n"{
+                        
+                    }
+                    else{
+                        
+                        do {
+                            
+                            if let convertedJsonIntoArray = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]    {
+                                //   print(convertedJsonIntoArray)
+                                
+                                if let nestedDictionary = convertedJsonIntoArray["qarray"] as? [String:Any] {
+//
+                                    let dic = nestedDictionary["que_and_ans"] as! NSArray
+//                                   
+                                    
+                                    for i in 0...dic.count-1 {
+                                      
+                                        let elementes = dic[i] as! [String:Any]
+                                    let otp_req = elementes["otp_req"] as! String
+                                        let q_choices = elementes["q_choices"] as! String
+                                        let q_hint = elementes["q_hint"] as! String
+                                        let q_id = elementes["q_id"] as! String
+                                        let q_type = elementes["q_type"] as! String
+                                        let qanswer = elementes["qanswer"] as! String
+                                        let question = elementes["question"] as! String
+                                    self.otp_req.append(otp_req)
+                                        self.q_choices.append(q_choices)
+                                        self.q_hint.append(q_hint)
+                                        self.q_id.append(q_id)
+                                        self.q_type.append(q_type)
+                                        self.qanswer.append(qanswer)
+                                        self.question.append(question)
+                                        
+                                    
+                                    
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    
+//                                    
+                                  //  print(nestedDictionary)
+                                }
+                                
+                                 self.actstop()
+                                
+                                
+                                
+                                
+                                DispatchQueue.main.async {
+                                   
+                                    self.titleTxt.text = self.qanswer[0]
+                                    self.NameTxt.text = self.qanswer[1]
+                                    
+                                    if self.qanswer[2] == "0"{
+                                    
+                                    self.EmailTxt.attributedPlaceholder = NSAttributedString(string: self.question[2], attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                                    }
+                                    else{
+                                    self.EmailTxt.text = self.qanswer[2]
+                                    }
+                                    if self.qanswer[3] == "0"{
+                                        
+                                        self.dobTxt.attributedPlaceholder = NSAttributedString(string: self.question[3], attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                                    }
+                                    else{
+                                    self.dobTxt.text = self.qanswer[3]
+                                    }
+                                    if self.qanswer[4] == "0"{
+                                        
+                                        self.addressTxt.attributedPlaceholder = NSAttributedString(string: self.question[4], attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                                    }
+                                    else{
+                                    self.addressTxt.text = self.qanswer[4]
+                                    }
+                                    if self.qanswer[5] == "0"{
+                                        
+                                        self.occupationTxt.attributedPlaceholder = NSAttributedString(string: self.question[5], attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                                    }
+                                    else{
+                                    self.occupationTxt.text = self.qanswer[5]
+                                    }
+                                    if self.qanswer[6] == "0,"{
+                                        
+                                        self.languagesTxt.attributedPlaceholder = NSAttributedString(string: self.question[6], attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                                    }
+                                    else{
+                                    self.languagesTxt.text = self.qanswer[6]
+                                    }
+                                    if self.qanswer[7] == "0"{
+                                        
+                                        self.maritalStatusTxt.attributedPlaceholder = NSAttributedString(string: self.question[7], attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                                    }
+                                    else{
+                                    self.maritalStatusTxt.text = self.qanswer[7]
+                                    
+                                    }
+                                    
+                                  //  self.performSegue(withIdentifier: "mobiletootp", sender: self)
+                                }
+                                
+                            }
+                        } catch let error as NSError {
+                            print(error.localizedDescription)
+                            
+                        }
+                    }
+                }
+                else{
+                    DispatchQueue.main.async {
+                     //   self.displaymyalertmessage(usermessage: "serverdown")
+                    }
+                }
+            }
+            
+            task.resume()
+            
+        }
+        
+    }
+    func displaymyalertmessage (usermessage:String) {
+        let myalert = UIAlertController(title: "WARNING", message: usermessage, preferredStyle: UIAlertControllerStyle.alert )
+        
+        let okaction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+        myalert.addAction(okaction)
+        self.present(myalert, animated: true, completion: nil)
+        
+        
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func actstart(){
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+    }
+    func actstop(){
+        
+        activityIndicator.stopAnimating()
+        UIApplication.shared.endIgnoringInteractionEvents()
+    }
+    
 }
