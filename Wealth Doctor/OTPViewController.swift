@@ -39,7 +39,8 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
             phoneTxt.attributedPlaceholder = NSAttributedString(string: "username", attributes: [NSForegroundColorAttributeName:UIColor.red])
            
         }
-        else if validate(phoneNumber: phoneTxt.text!) == false {
+        else if validate(value: phoneTxt.text!) == false
+        {
         
         displaymyalertmessage(usermessage: "Enter a valid mobile number")
         }
@@ -171,5 +172,12 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
         let inputString = phoneNumber.components(separatedBy: charcterSet)
         let filtered = inputString.joined(separator: "")
         return  phoneNumber == filtered
+    }
+    
+    func validate(value: String) -> Bool {
+    let PHONE_REGEX = "^\\d{10}$"
+    let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
+    let result =  phoneTest.evaluate(with: value)
+    return result
     }
 }

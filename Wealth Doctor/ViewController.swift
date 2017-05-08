@@ -43,6 +43,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         super.viewDidLoad()
      //   print(lastIndexPath)
        // navigationController?.navigationBar.isHidden = true
+         navigationController?.hidesBarsOnSwipe = true
         favoritedToolTip.isHidden = true
         favoritedToolTip.layer.cornerRadius = 8
         favoritedToolTip.layer.masksToBounds = true
@@ -74,6 +75,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        navigationController?.hidesBarsOnSwipe = true
 //            UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
 //            // Sets shadow (line below the bar) to a blank image
 //            UINavigationBar.appearance().shadowImage = UIImage()

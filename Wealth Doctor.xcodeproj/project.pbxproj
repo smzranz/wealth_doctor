@@ -10,6 +10,7 @@
 		516377FB1EB05298003EB293 /* DotsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516377FA1EB05298003EB293 /* DotsLoader.swift */; };
 		516F768B1EAF10A900D34C43 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516F768A1EAF10A900D34C43 /* ProfileViewController.swift */; };
 		518FF8741EAE32C600DF7849 /* wd_logo_1024X1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 518FF8731EAE32C600DF7849 /* wd_logo_1024X1024.png */; };
+		51F694081EBC83C2009BFB01 /* ColorFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F694071EBC83C2009BFB01 /* ColorFile.swift */; };
 		C30DB1701E76ECB000980DCD /* TagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30DB16F1E76ECB000980DCD /* TagsCollectionViewCell.swift */; };
 		C310788C1E882ACC00598790 /* StateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C310788B1E882ACC00598790 /* StateViewController.swift */; };
 		C31C996B1EAE4D3200E4040D /* NameEnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31C996A1EAE4D3200E4040D /* NameEnterViewController.swift */; };
@@ -103,6 +104,7 @@
 		516377FA1EB05298003EB293 /* DotsLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotsLoader.swift; sourceTree = "<group>"; };
 		516F768A1EAF10A900D34C43 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		518FF8731EAE32C600DF7849 /* wd_logo_1024X1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wd_logo_1024X1024.png; sourceTree = "<group>"; };
+		51F694071EBC83C2009BFB01 /* ColorFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorFile.swift; sourceTree = "<group>"; };
 		C30DB16F1E76ECB000980DCD /* TagsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewCell.swift; sourceTree = "<group>"; };
 		C310788B1E882ACC00598790 /* StateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateViewController.swift; sourceTree = "<group>"; };
 		C31C996A1EAE4D3200E4040D /* NameEnterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameEnterViewController.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 		C37D74A11E7E629200996448 /* Article */ = {
 			isa = PBXGroup;
 			children = (
+				51F694071EBC83C2009BFB01 /* ColorFile.swift */,
 			);
 			name = Article;
 			sourceTree = "<group>";
@@ -547,7 +550,7 @@
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = 2HYG9JX3WQ;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					C397A8591E62CE4A00BA7724 = {
 						CreatedOnToolsVersion = 8.2;
@@ -660,6 +663,7 @@
 				C37253C51E73EF3F00ED2A43 /* SDWebImageDownloader.m in Sources */,
 				C37253C11E73EF3F00ED2A43 /* NSData+ImageContentType.m in Sources */,
 				C37D749F1E7E621F00996448 /* MenuViewController.swift in Sources */,
+				51F694081EBC83C2009BFB01 /* ColorFile.swift in Sources */,
 				C3BB32681E6F1E4F00DD3D44 /* IQKeyboardReturnKeyHandler.swift in Sources */,
 				C397A84F1E62CE4A00BA7724 /* Wealth_Doctor.xcdatamodeld in Sources */,
 				C393024E1EAA1FBE002D324B /* Terms&ConditionsViewController.swift in Sources */,
@@ -834,15 +838,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 2HYG9JX3WQ;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Wealth Doctor/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.indianmoney.WealthDoctorApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7680969e-12a8-4f4f-b67f-6f9af8177a15";
-				PROVISIONING_PROFILE_SPECIFIER = "Wealth Doctor";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wealth Doctor/Wealth Doctor-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -854,15 +858,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 2HYG9JX3WQ;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Wealth Doctor/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.indianmoney.WealthDoctorApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7680969e-12a8-4f4f-b67f-6f9af8177a15";
-				PROVISIONING_PROFILE_SPECIFIER = "Wealth Doctor";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wealth Doctor/Wealth Doctor-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

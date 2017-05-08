@@ -23,6 +23,7 @@ class MenuViewController: UIViewController,UICollectionViewDelegate,UICollection
     var menuNameArray : [String]!
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.hidesBarsOnSwipe = false
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10)
         collectionView.collectionViewLayout = layout
