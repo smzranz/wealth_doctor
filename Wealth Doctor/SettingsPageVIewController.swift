@@ -15,6 +15,23 @@ var tittleLabel = [String]()
     var settingImages = [UIImage]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let btn1 = UIButton(type: .custom)
+        btn1.setImage(UIImage(named: "home_close_menu"), for: .normal)
+        btn1.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        //btn1.contentEdgeInsets = UIEdgeInsetsMake(5, 10, 5, 10)
+        btn1.addTarget(self, action: #selector(leftMenuPressed), for: .touchUpInside)
+        let item1 = UIBarButtonItem(customView: btn1)
+        self.navigationItem.setRightBarButton(item1, animated: true)
+        
+        let btn = UIButton(type: .custom)
+        btn.setTitle("Settings", for: .normal)
+        btn.frame = CGRect(x: 0, y: 0, width: 150, height: 50)
+         btn.setTitleColor(ColorFile().getMarkerDarkAshColor(), for: .normal)
+        btn.titleLabel?.textAlignment = .left
+        let item = UIBarButtonItem(customView: btn)
+        self.navigationItem.setLeftBarButton(item, animated: true)
+        
         tittleLabel = ["Language","Notification","Change Mobile Number","Invite","Rate","Feedback","Terms And Conditions","Privacy"]
         navigationController?.hidesBarsOnSwipe = false
 
@@ -120,11 +137,19 @@ var tittleLabel = [String]()
         
         let noaction = UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil)
         let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
-           self.performSegue(withIdentifier: "toNumber", sender: self)
-            UserDefaults.standard.set(nil, forKey: "mobile")
-            UserDefaults.standard.set(nil, forKey: "otp")
+//            let appDomain = Bundle.main.bundleIdentifier!
+//            UserDefaults.standard.removePersistentDomain(forName: appDomain)
+            
+            
+            UserDefaults.standard.removeObject(forKey: "mobile")
+            UserDefaults.standard.removeObject(forKey: "mobileverified")
+            UserDefaults.standard.removeObject(forKey: "otp")
+//            UserDefaults.standard.set(nil, forKey: "mobile")
+//             UserDefaults.standard.set(nil, forKey: "mobileverified")
+//            UserDefaults.standard.set(nil, forKey: "otp")
             
             UserDefaults.standard.synchronize()
+            self.performSegue(withIdentifier: "toNumber", sender: self)
         }
         myalert.addAction(noaction)
         myalert.addAction(yesAction)
@@ -153,5 +178,10 @@ var tittleLabel = [String]()
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }
+    func leftMenuPressed() {
+        self.navigationController?.popViewController(animated: true)
+        //self.navigationController?.pushViewController(viewController, animated: false)
+    }
+
 
 }

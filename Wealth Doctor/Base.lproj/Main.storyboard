@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ScY-si-nXk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -15,7 +15,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController restorationIdentifier="articleViewController" storyboardIdentifier="articleViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="Wealth_Doctor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="articleViewController" storyboardIdentifier="articleViewController" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" customModule="Wealth_Doctor" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -93,7 +93,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vGX-zK-9Kc">
-                                                            <rect key="frame" x="298" y="-19.666666666666629" width="45" height="45"/>
+                                                            <rect key="frame" x="293" y="-22" width="50" height="50"/>
                                                             <state key="normal" image="hs_ask"/>
                                                             <connections>
                                                                 <segue destination="sW3-UC-TU0" kind="show" id="DAd-Ax-4Hd"/>
@@ -145,6 +145,13 @@
                                                     </constraints>
                                                     <state key="normal" image="chat_menu_share"/>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JTO-mX-2D0">
+                                                    <rect key="frame" x="10" y="568" width="113" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="O0e-hQ-NzY"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -152,8 +159,9 @@
                                             <constraint firstItem="y3H-cg-95m" firstAttribute="centerX" secondItem="ggO-L2-bZ2" secondAttribute="centerX" id="6QT-B2-h5b"/>
                                             <constraint firstItem="ggO-L2-bZ2" firstAttribute="top" secondItem="eyb-Gj-BL1" secondAttribute="bottom" constant="6" id="7Je-AE-gkx"/>
                                             <constraint firstItem="y3H-cg-95m" firstAttribute="height" secondItem="ggO-L2-bZ2" secondAttribute="height" id="7hT-Fv-jUA"/>
+                                            <constraint firstItem="NGA-jH-OIR" firstAttribute="top" secondItem="JTO-mX-2D0" secondAttribute="bottom" id="Apk-qv-WMR"/>
                                             <constraint firstItem="aOL-6a-l4l" firstAttribute="top" secondItem="NGA-jH-OIR" secondAttribute="bottom" id="EbE-VB-9Qq"/>
-                                            <constraint firstItem="vGX-zK-9Kc" firstAttribute="height" secondItem="pw6-by-eSd" secondAttribute="height" constant="10" id="Eh0-oc-hpM"/>
+                                            <constraint firstItem="vGX-zK-9Kc" firstAttribute="height" secondItem="pw6-by-eSd" secondAttribute="height" constant="15" id="Eh0-oc-hpM"/>
                                             <constraint firstItem="2uh-dW-nPI" firstAttribute="leading" secondItem="dBl-q9-d2f" secondAttribute="leading" constant="10" id="K5z-EN-2za"/>
                                             <constraint firstItem="pw6-by-eSd" firstAttribute="leading" secondItem="vGX-zK-9Kc" secondAttribute="trailing" constant="10" id="MRT-64-Yk3"/>
                                             <constraint firstAttribute="bottom" secondItem="pw6-by-eSd" secondAttribute="bottom" constant="24" id="NBt-Y2-PCt"/>
@@ -169,7 +177,9 @@
                                             <constraint firstItem="y3H-cg-95m" firstAttribute="centerY" secondItem="ggO-L2-bZ2" secondAttribute="centerY" id="aOZ-8V-dCZ"/>
                                             <constraint firstItem="zEs-3R-cJn" firstAttribute="trailing" secondItem="dBl-q9-d2f" secondAttribute="trailingMargin" constant="-5" id="azL-Ln-6j0"/>
                                             <constraint firstItem="zEs-3R-cJn" firstAttribute="leading" secondItem="ggO-L2-bZ2" secondAttribute="trailing" constant="10" id="cIi-CS-am8"/>
-                                            <constraint firstItem="vGX-zK-9Kc" firstAttribute="width" secondItem="pw6-by-eSd" secondAttribute="width" constant="10" id="daa-ZR-BXd"/>
+                                            <constraint firstItem="vGX-zK-9Kc" firstAttribute="width" secondItem="pw6-by-eSd" secondAttribute="width" constant="15" id="daa-ZR-BXd"/>
+                                            <constraint firstItem="JTO-mX-2D0" firstAttribute="centerX" secondItem="NGA-jH-OIR" secondAttribute="centerX" id="gpX-jK-7FP"/>
+                                            <constraint firstItem="JTO-mX-2D0" firstAttribute="leading" secondItem="dBl-q9-d2f" secondAttribute="leadingMargin" constant="2" id="gyH-lI-GAS"/>
                                             <constraint firstItem="vGX-zK-9Kc" firstAttribute="centerY" secondItem="pw6-by-eSd" secondAttribute="centerY" id="ha2-56-ix3"/>
                                             <constraint firstAttribute="trailing" secondItem="pw6-by-eSd" secondAttribute="trailing" constant="5" id="jIl-TI-GZr"/>
                                             <constraint firstAttribute="trailing" secondItem="aOL-6a-l4l" secondAttribute="trailing" id="mcm-Fo-DrM"/>
@@ -186,6 +196,7 @@
                                             <outlet property="newsContentLabel" destination="2uh-dW-nPI" id="mSO-uP-gWE"/>
                                             <outlet property="newsImage" destination="eyb-Gj-BL1" id="EXu-3p-Xwb"/>
                                             <outlet property="shareBtn" destination="zEs-3R-cJn" id="Q9c-63-2XB"/>
+                                            <outlet property="tagBtn" destination="JTO-mX-2D0" id="u1W-lM-0KS"/>
                                             <outlet property="tittleLabel" destination="ggO-L2-bZ2" id="Fdh-8w-bdg"/>
                                         </connections>
                                     </collectionViewCell>
@@ -270,11 +281,12 @@
                         <outlet property="newNewsBtn" destination="rDI-GB-kod" id="JZR-oD-8jK"/>
                         <outlet property="newsArticleTableView" destination="fCQ-43-ccP" id="H60-cP-nsc"/>
                         <outlet property="refreshBtnOulet" destination="Nga-1m-ZPg" id="mkI-Uw-8Ov"/>
+                        <outlet property="titleName" destination="9TD-6I-3gZ" id="hmd-jQ-rcD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1160.8695652173915" y="780.97826086956525"/>
+            <point key="canvasLocation" x="998.55072463768124" y="822.554347826087"/>
         </scene>
         <!--Settings-->
         <scene sceneID="PYc-3G-wzc">
@@ -416,11 +428,7 @@
                             <constraint firstItem="6cH-yZ-g84" firstAttribute="leading" secondItem="igN-p7-wpk" secondAttribute="leading" id="uGR-8b-xX2"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Settings" id="WeW-hE-zkX">
-                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="rdX-Wg-xbO">
-                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Settings" id="WeW-hE-zkX"/>
                     <connections>
                         <segue destination="AnX-1y-g4q" kind="show" identifier="toTerms" id="md4-dm-w8O"/>
                         <segue destination="Xwd-Eb-Zw5" kind="show" identifier="toPrivacy" id="TV6-mN-lMU"/>
@@ -41766,9 +41774,9 @@ ACP/UQAj/1YAAAAAAAAEAQAAAAAAAABBAAAAAAAAAAAAAAAAACP/WA
         <image name="welcome_qus_logo" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="md4-dm-w8O"/>
         <segue reference="0gP-yP-xzO"/>
-        <segue reference="l8E-7I-egG"/>
-        <segue reference="28a-uz-052"/>
+        <segue reference="5zx-3e-sdh"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
 </document>

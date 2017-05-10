@@ -20,14 +20,34 @@ class MenuViewController: UIViewController,UICollectionViewDelegate,UICollection
     var sectionItem2_id = [String]()
     var sectionItems1 = [String]()
     var menuImagesArray : [UIImage]!
+    var selectedmenuImagesArray : [UIImage]!
     var menuNameArray : [String]!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let btn1 = UIButton(type: .custom)
+        btn1.setImage(UIImage(named: "home_close_menu"), for: .normal)
+        btn1.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        //btn1.contentEdgeInsets = UIEdgeInsetsMake(5, 10, 5, 10)
+        btn1.addTarget(self, action: #selector(leftMenuPressed), for: .touchUpInside)
+        let item1 = UIBarButtonItem(customView: btn1)
+        self.navigationItem.setRightBarButton(item1, animated: true)
+        
+        let btn = UIButton(type: .custom)
+        btn.setTitle("Categories", for: .normal)
+        
+        btn.setTitleColor(ColorFile().getMarkerDarkAshColor(), for: .normal)
+        btn.frame = CGRect(x: 0, y: 0, width: 150, height: 50)
+       // btn.titleLabel?.textAlignment = .left
+        let item = UIBarButtonItem(customView: btn)
+        self.navigationItem.setLeftBarButton(item, animated: true)
+        
         navigationController?.hidesBarsOnSwipe = false
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10)
         collectionView.collectionViewLayout = layout
         menuImagesArray = [#imageLiteral(resourceName: "me_menu"),#imageLiteral(resourceName: "feeds_menu"),#imageLiteral(resourceName: "unread_menu"),#imageLiteral(resourceName: "bookmarks_menu"),#imageLiteral(resourceName: "tip_menu")]
+        selectedmenuImagesArray = [#imageLiteral(resourceName: "me_menu1"),#imageLiteral(resourceName: "feeds_menu1"),#imageLiteral(resourceName: "unread_menu1"),#imageLiteral(resourceName: "bookmarks_menu1"),#imageLiteral(resourceName: "tip_menu1")]
         menuNameArray = ["My Profile","Main Stream","Unread","Favorites","My Tips"]
        
 tagLoad()
@@ -109,7 +129,8 @@ tagLoad()
             cell.menuLabel.textColor = UIColor.gray
             
             if indexPath.row == sideSelected{
-                cell.menuImage.backgroundColor = ColorFile().getPrimaryColor()
+                cell.bgView.backgroundColor = ColorFile().getPrimaryColor()
+                cell.menuImage.image = selectedmenuImagesArray[indexPath.row]
                 
             }
         return cell
@@ -203,6 +224,7 @@ tagLoad()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier :"articleViewController") as! ViewController
             viewController.tagSelected = "\(sectionItem2_id[indexPath.row])"
+            viewController.tagForTitle = "\(sectionItems2[indexPath.row])"
             viewController.tagIsClicked = true
             self.navigationController?.pushViewController(viewController, animated: true)
         
@@ -259,5 +281,10 @@ tagLoad()
         }
         self.collectionView.reloadData()
        // self.tagsTableView.reloadData()
+    }
+    
+    func leftMenuPressed() {
+        self.navigationController?.popViewController(animated: true)
+        //self.navigationController?.pushViewController(viewController, animated: false)
     }
 }

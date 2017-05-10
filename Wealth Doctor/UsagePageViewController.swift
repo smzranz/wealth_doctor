@@ -11,11 +11,15 @@ import UIKit
 class UsagePageViewController: UIViewController {
 
     let swipeUp = UISwipeGestureRecognizer()
+    let swipeDown = UISwipeGestureRecognizer()
     override func viewDidLoad() {
         super.viewDidLoad()
         swipeUp.direction = UISwipeGestureRecognizerDirection.up
-        swipeUp.addTarget(self, action: #selector(WelcomePageViewController.swipedViewUp))
+        swipeUp.addTarget(self, action: #selector(swipedViewUp))
         view.addGestureRecognizer(swipeUp)
+        swipeDown.direction = UISwipeGestureRecognizerDirection.down
+        swipeDown.addTarget(self, action: #selector(swipedViewDown))
+        view.addGestureRecognizer(swipeDown)
         // Do any additional setup after loading the view.
     }
     
@@ -35,8 +39,21 @@ class UsagePageViewController: UIViewController {
         
     }
 
-    
-
+    func swipedViewDown(){
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier :"welcomePageViewController") as! WelcomePageViewController
+        showAnimationFromTop()
+        self.present(viewController, animated: false)
+        
+    }
+    func showAnimationFromTop() {
+        let transition = CATransition()
+        transition.duration = 0.25
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromBottom
+        view.window!.layer.add(transition, forKey: kCATransition)
+    }
     /*
     // MARK: - Navigation
 

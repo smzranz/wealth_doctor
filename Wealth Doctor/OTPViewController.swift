@@ -11,7 +11,7 @@ import UIKit
 class OTPViewController: UIViewController,UITextFieldDelegate {
     
     let deviceID = UIDevice.current.identifierForVendor!.uuidString
-   
+   let swipeDown = UISwipeGestureRecognizer()
     let gAppVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "0"
     let gAppBuild = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") ?? "0"
     let limitLength = 10
@@ -19,6 +19,10 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     @IBOutlet var phoneTxt: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        swipeDown.direction = UISwipeGestureRecognizerDirection.down
+        swipeDown.addTarget(self, action: #selector(swipedViewDown))
+        view.addGestureRecognizer(swipeDown)
         print(deviceID)
         print(gAppBuild)
         print(gAppVersion)
@@ -26,6 +30,7 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     phoneTxt.delegate = self
     
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -179,5 +184,23 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
     let result =  phoneTest.evaluate(with: value)
     return result
+    }
+    
+    func swipedViewDown(){
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier :"usagePageViewController") as! UsagePageViewController
+        
+        showAnimationFromTop()
+        self.present(viewController, animated: false)
+        
+    }
+    
+    func showAnimationFromTop() {
+        let transition = CATransition()
+        transition.duration = 0.25
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromBottom
+        view.window!.layer.add(transition, forKey: kCATransition)
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class WelcomePageViewController: UIViewController {
 let swipeUp = UISwipeGestureRecognizer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         swipeUp.direction = UISwipeGestureRecognizerDirection.up

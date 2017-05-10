@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     var loadFavorited : Bool = false
     
+    @IBOutlet weak var titleName: UIBarButtonItem!
     @IBOutlet weak var favoritedToolTip: PaddingLabel!
     @IBOutlet var refreshBtnOulet: UIBarButtonItem!
     let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
@@ -19,7 +20,9 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     let section = UserDefaults.standard.integer(forKey: "section")
     var scrollToUnreadNews : Bool = false
     @IBOutlet var newNewsBtn: UIButton!
+   // var tagEnabled : Bool = false
     
+    var tagForTitle = ""
     var refresher : UIRefreshControl!
         var images = [String]()
     var content = [String]()
@@ -71,6 +74,24 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         tagClick(mobile: "", arttime: "NEW", tag_id: tagSelected)
         
         }
+        
+        
+        if loadFavorited == true{
+            self.titleName.title = "Favorites"
+//self.navigationItem.title = "Favorites"
+            
+        }  else{
+            
+            if tagIsClicked == true{
+                 self.titleName.title = "\(tagForTitle)"
+              //  self.navigationItem.title = "\(tagForTitle)"
+            }
+            else{
+                 self.titleName.title = "Main Stream"
+       //   self.navigationItem.title = "Main Stream"
+            }
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -89,7 +110,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     override func viewDidLayoutSubviews() {
         if scrollToUnreadNews == true{
         newsArticleTableView.scrollToItem(at: [section,row], at: .bottom, animated: false)
-        
+        scrollToUnreadNews = false
         }
     }
 
@@ -178,8 +199,14 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         cell.newsContentLabel.text = content[indexPath.row]
         if likeCount.count>0{
         cell.likesCountLabel.text = "\(likeCount[indexPath.row]) Likes"
+        cell.tagBtn.layer.cornerRadius = 15
+            cell.tagBtn.layer.borderColor = ColorFile().getMarkerLightAshColor().cgColor
+            cell.tagBtn.layer.borderWidth = 1
+            cell.tagBtn.setTitle(" \(tag[indexPath.row] )", for: .normal)
+            if tag[indexPath.row] == ""{
+            cell.tagBtn.isHidden = true
             
-            
+            }
             if indexPath.row == images.count-1{
             
             self.articleLoad(arttime: "old", tag_id: "")
@@ -262,8 +289,15 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                                     let like_count = news["like_count"]
                                     
                                     let n_date = news["n_date"] as! String
+                                    var tag = ""
+                                    if a_tag == ""{
+                                    
+                                    tag = "0"
+                                    }else{
+                                    tag = a_tag
+                                    }
                                    // let like_status = news["like_status"] as! String
-                                     DataBaseManager.shared.ExecuteCommand(query: "insert into NewsArticle (a_audio_url , a_content , a_content_sort ,a_id , a_image , a_tag ,a_title ,a_video_url ,like_count ,like_status ,n_date ,no_more_url,tag_id,favorited,newspaper)values ( '\(0)', '\(a_content)', '\(0)','\(a_id)','\(a_image)', '\(a_tag)','\(a_title)','\(0)','\(like_count!)',0,'\(n_date)','\(no_more_url)','\(tag_id)','\(0)','\(news_paper)');")
+                                     DataBaseManager.shared.ExecuteCommand(query: "insert into NewsArticle (a_audio_url , a_content , a_content_sort ,a_id , a_image , a_tag ,a_title ,a_video_url ,like_count ,like_status ,n_date ,no_more_url,tag_id,favorited,newspaper)values ( '\(0)', '\(a_content)', '\(0)','\(a_id)','\(a_image)', '\(tag)','\(a_title)','\(0)','\(like_count!)',0,'\(n_date)','\(no_more_url)','\(tag_id)','\(0)','\(news_paper)');")
                                     
                                 }
                             }
@@ -303,44 +337,21 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
          tagId = [String]()
         knowMoreUrl = [String]()
         favorited = [String]()
-        
+        var userdata = FMResultSet()
         if loadFavorited == true{
         
-            let userdata = DataBaseManager.shared.fetchData(Query: "select * from NewsArticle where favorited = 1 ;")
-            while userdata.next() {
-                let x = userdata.string(forColumn: "a_image")
-                let y = userdata.string(forColumn: "a_title")
-                let z = userdata.string(forColumn: "a_content")
-                let a = userdata.string(forColumn: "n_date")
-                let b = userdata.string(forColumn: "like_status")
-                let c = userdata.string(forColumn: "no_more_url")
-                let d = userdata.string(forColumn: "like_count")
-                let e = userdata.string(forColumn: "a_tag")
-                let f = userdata.string(forColumn: "a_id")
-                let g = userdata.string(forColumn: "newspaper")
-                let h = userdata.string(forColumn: "favorited")
-                //    let sam = d?.components(separatedBy: "_")
-                
-                
-                images.append(x!)
-                content.append(z!)
-                tittle.append(y!)
-                date.append(a!)
-                likeStatus.append(b!)
-                knowMore.append(g!)
-                likeCount.append(d!)
-                tag.append(e!)
-                id.append(f!)
-                knowMoreUrl.append(c!)
-                favorited.append(h!)
-                
-                self.newsArticleTableView.reloadData()
+             userdata = DataBaseManager.shared.fetchData(Query: "select * from NewsArticle where favorited = 1 ;")
+            
+        }  else{
+            
+            if tagIsClicked == true{
+            
+            userdata = DataBaseManager.shared.fetchData(Query: "select * from NewsArticle where tag_id = '\(tagSelected)' ;")
             }
-        
-        userdata.close()
-        }
-        else{
-        let userdata = DataBaseManager.shared.fetchData(Query: "select * from NewsArticle ;")
+            else{
+         userdata = DataBaseManager.shared.fetchData(Query: "select * from NewsArticle ;")
+            }
+            }
         while userdata.next() {
             let x = userdata.string(forColumn: "a_image")
             let y = userdata.string(forColumn: "a_title")
@@ -368,12 +379,14 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
             knowMoreUrl.append(c!)
             favorited.append(h!)
             
-    self.newsArticleTableView.reloadData()
+   
     }
+         self.newsArticleTableView.reloadData()
+        print(tag)
             userdata.close()
         }
       
-}
+
     func pressed(sender: UIButton!) {
         
         let buttonindex =  sender.tag
@@ -513,31 +526,29 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         let task = URLSession.shared.dataTask(with: request) {
             data, response, error in
             if let responseString = String(data: data!, encoding: .utf8){
-            //     print("responseString = \(responseString)")
-            
-            if error != nil
-            {
-                print("error=\(error)")
-                DispatchQueue.main.async {
-                    //  self.displaymyalertmessage(usermessage: "serverdown")
+                //     print("responseString = \(responseString)")
+                
+                if error != nil
+                {
+                    print("error=\(error)")
+                    DispatchQueue.main.async {
+                        //  self.displaymyalertmessage(usermessage: "serverdown")
+                    }
+                    return
                 }
-                return
-            }
-            if responseString == "null\n"{
-                
-            }
-            else{
-                
-                do {
+                if responseString == "null\n"{
                     
-                    if let convertedJsonDictioanry = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]    {
-                        //  print(convertedJsonDictioanry)
-                        if let nestedString = convertedJsonDictioanry["news"] as? NSArray{
-                            for i in 0..<nestedString.count {
-                                
-                                if let news = nestedString[i] as? NSDictionary {
+                }
+                else{
+                    
+                    do {
+                        
+                        if let convertedJsonDictioanry = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]    {
+                            //  print(convertedJsonDictioanry)
+                            if let nestedString = convertedJsonDictioanry["news"] as? NSArray{
+                                for i in 0..<nestedString.count {
                                     
-                                    
+                                    if let news = nestedString[i] as? NSDictionary {
                                         let news_paper = news["news_paper"]as! String
                                         let a_id = news["a_id"] as! String
                                         let a_title = news["a_title"] as! String
@@ -549,54 +560,38 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                                         //    let a_video_url = news["a_video_url"] as! String
                                         let no_more_url = news["no_more_url"] as! String
                                         //   let a_content_sort = news["a_content_sort"] as! String
-                                        let like_count = news["like_count"] as! String
+                                        let like_count = news["like_count"]
                                         
                                         let n_date = news["n_date"] as! String
+                                        var tag = ""
+                                        if a_tag == ""{
+                                            
+                                            tag = "0"
+                                        }else{
+                                            tag = a_tag
+                                        }
                                         // let like_status = news["like_status"] as! String
-                                    
+                                        DataBaseManager.shared.ExecuteCommand(query: "insert into NewsArticle (a_audio_url , a_content , a_content_sort ,a_id , a_image , a_tag ,a_title ,a_video_url ,like_count ,like_status ,n_date ,no_more_url,tag_id,favorited,newspaper)values ( '\(0)', '\(a_content)', '\(0)','\(a_id)','\(a_image)', '\(tag)','\(a_title)','\(0)','\(like_count!)',0,'\(n_date)','\(no_more_url)','\(tag_id)','\(0)','\(news_paper)');")
                                         
-                                    
-
-                                    
-                                    self.images.append(a_image)
-                                    self.content.append(a_content)
-                                    self.tittle.append(a_title)
-                                    self.date.append(n_date)
-                                  //  self.likeStatus.append(b!)
-                                       self.knowMore.append(news_paper)
-                                    self.likeCount.append(like_count)
-                                    self.tag.append(a_tag)
-                                    self.id.append(no_more_url)
-                                    self.knowMoreUrl.append(a_id)
-                                    self.likeStatus.append("0")
-                                    self.favorited.append("0")
-                                    
-                                    
+                                    }
                                 }
-                              self.newsArticleTableView.reloadData()  
+                                
                             }
                             
+                            DispatchQueue.main.async {
+                                self.loadData()
+                              //  UserDefaults.standard.setValue("first", forKey: "first")
+                                self.refresher.endRefreshing()
+                            }
                         }
                         
-                        DispatchQueue.main.async {
-                            
-                            self.newsArticleTableView.reloadData()
-                            //  self.performSegue(withIdentifier: "mobiletootp", sender: self)
-                        }
+                    } catch let error as NSError {
+                        print(error.localizedDescription)
+                        
                     }
-                    
-                } catch let error as NSError {
-                    print(error.localizedDescription)
-                    
                 }
             }
-        }
-            else{
-                DispatchQueue.main.async {
-                    //  self.displaymyalertmessage(usermessage: "serverdown")
-                }
-                
-            }
+            else{}
         }
        
         task.resume()
@@ -652,8 +647,14 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     @IBAction func menuButtonPressed(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier :"MenuViewController") as! MenuViewController
-        
+        if scrollToUnreadNews == true{
+        viewController.sideSelected = 2
+        }else if loadFavorited == true{
+            viewController.sideSelected = 3
+        }
+        else{
         viewController.sideSelected = 1
+        }
        showAnimationLeftToRight()
         self.navigationController?.pushViewController(viewController, animated: false)
      //   self.present(viewController, animated: false)
