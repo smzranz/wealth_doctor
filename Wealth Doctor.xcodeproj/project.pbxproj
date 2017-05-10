@@ -121,6 +121,7 @@
 		C31C996A1EAE4D3200E4040D /* NameEnterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameEnterViewController.swift; sourceTree = "<group>"; };
 		C31C996C1EAE7DBB00E4040D /* WelcomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomePageViewController.swift; sourceTree = "<group>"; };
 		C31C996E1EAE7DD500E4040D /* UsagePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsagePageViewController.swift; sourceTree = "<group>"; };
+		C36EB61E1EC0B45200FA1F72 /* Wealth Doctor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Wealth Doctor.entitlements"; sourceTree = "<group>"; };
 		C37253A11E73ED3500ED2A43 /* NewsArticlesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsArticlesCollectionViewCell.swift; sourceTree = "<group>"; };
 		C37253A41E73EF3F00ED2A43 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
 		C37253A51E73EF3F00ED2A43 /* NSData+ImageContentType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+ImageContentType.m"; sourceTree = "<group>"; };
@@ -374,6 +375,7 @@
 		C397A8451E62CE4A00BA7724 /* Wealth Doctor */ = {
 			isa = PBXGroup;
 			children = (
+				C36EB61E1EC0B45200FA1F72 /* Wealth Doctor.entitlements */,
 				518FF8731EAE32C600DF7849 /* wd_logo_1024X1024.png */,
 				C397A8461E62CE4A00BA7724 /* AppDelegate.swift */,
 				C37D74A11E7E629200996448 /* Article */,
@@ -592,6 +594,11 @@
 						DevelopmentTeam = 2HYG9JX3WQ;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 					C397A8591E62CE4A00BA7724 = {
 						CreatedOnToolsVersion = 8.2;

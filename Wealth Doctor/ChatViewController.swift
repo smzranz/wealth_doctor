@@ -37,6 +37,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var i = ""
     var questionId = ""
 let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
+
    // let mobileNumber = "9567019109"
     @IBOutlet var chatTxt: UITextField!
     @IBOutlet weak var textFieldBgView: UIView!
@@ -1136,7 +1137,9 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                 
                 let selecteditem = serverGeneratedArray[itemIndex!]
                 //   print(chatTxt.text!)
-                dataToServer(chatTxt1: selecteditem, ans_id: ansId, product_id: productId,colorEnable:false)
+                let ans_Id = UserDefaults.standard.value(forKey: "ans_id")
+                let product_id = UserDefaults.standard.value(forKey: "product_id")
+                dataToServer(chatTxt1: selecteditem, ans_id: ans_Id as! String, product_id: product_id as! String,colorEnable:true)
             }
             else{
            dataToServer(chatTxt1: chatTxt.text!, ans_id: ansId, product_id: productId,colorEnable:false)
@@ -1241,6 +1244,8 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                                 let product_id = convertedJsonIntoArray["product_id"] as! String
                                 let disable = convertedJsonIntoArray["desable"] as! String
                                 let url = convertedJsonIntoArray["url"] as! String
+                                UserDefaults.standard.setValue(ans_id, forKey: "ans_id")
+                                UserDefaults.standard.setValue(product_id, forKey: "product_id")
                                 self.ansId = ans_id
                                 self.productId = product_id
                                 if type == "4" {
