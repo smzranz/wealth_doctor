@@ -610,6 +610,19 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                                         let like_count = news["like_count"]
                                         
                                         let n_date = news["n_date"] as! String
+                                        // let dateString = "2017-03-30 10:30:11"
+                                        let dateFormatter = DateFormatter()
+                                        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                                        dateFormatter.locale = Locale.init(identifier: "en_IN")
+                                        
+                                        let dateObj = dateFormatter.date(from: n_date)
+                                        
+                                        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                                        print("Dateobj: \(dateFormatter.string(from: dateObj!))")
+                                        let now = Date()
+                                        let timeOffset3 = now.offset(from: dateObj!)
+                                        print(timeOffset3)
+                                        
                                         var tag = ""
                                         if a_tag == ""{
                                             
@@ -618,7 +631,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                                             tag = a_tag
                                         }
                                         // let like_status = news["like_status"] as! String
-                                        DataBaseManager.shared.ExecuteCommand(query: "insert into NewsArticle (a_audio_url , a_content , a_content_sort ,a_id , a_image , a_tag ,a_title ,a_video_url ,like_count ,like_status ,n_date ,no_more_url,tag_id,favorited,newspaper)values ( '\(0)', '\(a_content)', '\(0)','\(a_id)','\(a_image)', '\(tag)','\(a_title)','\(0)','\(like_count!)',0,'\(n_date)','\(no_more_url)','\(tag_id)','\(0)','\(news_paper)');")
+                                        DataBaseManager.shared.ExecuteCommand(query: "insert into NewsArticle (a_audio_url , a_content , a_content_sort ,a_id , a_image , a_tag ,a_title ,a_video_url ,like_count ,like_status ,n_date ,no_more_url,tag_id,favorited,newspaper)values ( '\(0)', '\(a_content)', '\(0)','\(a_id)','\(a_image)', '\(tag)','\(a_title)','\(0)','\(like_count!)',0,'\(timeOffset3)','\(no_more_url)','\(tag_id)','\(0)','\(news_paper)');")
                                         
                                     }
                                 }
