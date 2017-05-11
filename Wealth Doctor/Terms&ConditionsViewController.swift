@@ -14,8 +14,12 @@ class Terms_ConditionsViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        navigationItem.title = "Terms & Conditions"
         let networkStatus = Reeachability().connectionStatus()
         switch networkStatus {
+            
+            
         case .Unknown, .Offline:
             displaymyalertmessage(usermessage: "no internet connection")
             print("no internet connection")

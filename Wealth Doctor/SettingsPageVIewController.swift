@@ -24,13 +24,21 @@ var tittleLabel = [String]()
         let item1 = UIBarButtonItem(customView: btn1)
         self.navigationItem.setRightBarButton(item1, animated: true)
         
-        let btn = UIButton(type: .custom)
-        btn.setTitle("Settings", for: .normal)
-        btn.frame = CGRect(x: 0, y: 0, width: 150, height: 50)
-         btn.setTitleColor(ColorFile().getMarkerDarkAshColor(), for: .normal)
-        btn.titleLabel?.textAlignment = .left
-        let item = UIBarButtonItem(customView: btn)
-        self.navigationItem.setLeftBarButton(item, animated: true)
+        
+        
+        let rightBarButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: nil)
+        //UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ViewController.myRightSideBarButtonItemTapped(_:)))
+        rightBarButton.tintColor = ColorFile().getMarkerDarkAshColor()
+        self.navigationItem.leftBarButtonItem = rightBarButton
+        
+//        let btn = UIButton(type: .custom)
+//        btn.setTitle("Settings", for: .normal)
+//        btn.frame = CGRect(x: -15, y: 0, width: 150, height: 30)
+//         btn.setTitleColor(ColorFile().getMarkerDarkAshColor(), for: .normal)
+//        btn.titleLabel?.textAlignment = .right
+//      //  btn.titleLabel?.text = "Settings"
+//        let item = UIBarButtonItem(customView: btn)
+//        self.navigationItem.setLeftBarButton(item, animated: true)
         
         tittleLabel = ["Language","Notification","Change Mobile Number","Invite","Rate","Feedback","Terms And Conditions","Privacy"]
         navigationController?.hidesBarsOnSwipe = false

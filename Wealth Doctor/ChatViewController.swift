@@ -49,7 +49,8 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
     var pickerDisplayArray = [String]()
     var serverGeneratedArray = [String]()
      var totalWidth : CGFloat = 0.0
-    
+    var isTagPressed : Bool = false
+    var selectedTagFromNews = ""
     
     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     let picker = UIPickerView()
@@ -101,13 +102,26 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
         popUpDropDownBtn.addTarget(self, action: #selector(popUpDropDownBtnClick(sender:)), for: .touchUpInside)
         self.navigationController?.isNavigationBarHidden = false
         if UserDefaults.standard.value(forKey: "chat") != nil{
+           
             
             lodingasending()
-            
+            if isTagPressed == true{
+                let ans_Id = UserDefaults.standard.value(forKey: "ans_id") as! String
+                let product_id = UserDefaults.standard.value(forKey: "product_id") as! String
+                dataToServer(chatTxt1: selectedTagFromNews, ans_id: ans_Id, product_id: product_id,colorEnable:true)
+                
+            }
         }
         else {
            
             chatLoad()
+            if isTagPressed == true{
+                let ans_Id = UserDefaults.standard.value(forKey: "ans_id") as! String
+                let product_id = UserDefaults.standard.value(forKey: "product_id") as! String
+             dataToServer(chatTxt1: selectedTagFromNews, ans_id: ans_Id, product_id: product_id,colorEnable:true)
+            
+            }
+            
         }
         
         chatTableView.backgroundView = UIImageView(image: UIImage(named: "chat_bg_image"))
@@ -560,8 +574,9 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
         
         selectedTag = cell.tagLabel.text!
         collectionView.isHidden = true
-        
-        dataToServer(chatTxt1: squareData[indexPath.row], ans_id: ansId, product_id: productId,colorEnable:true)
+        let ans_Id = UserDefaults.standard.value(forKey: "ans_id") as! String
+        let product_id = UserDefaults.standard.value(forKey: "product_id") as! String
+        dataToServer(chatTxt1: squareData[indexPath.row], ans_id: ans_Id, product_id: product_id,colorEnable:true)
         
         
     }
@@ -1142,7 +1157,9 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                 dataToServer(chatTxt1: selecteditem, ans_id: ans_Id as! String, product_id: product_id as! String,colorEnable:true)
             }
             else{
-           dataToServer(chatTxt1: chatTxt.text!, ans_id: ansId, product_id: productId,colorEnable:false)
+                let ans_Id = UserDefaults.standard.value(forKey: "ans_id")
+                let product_id = UserDefaults.standard.value(forKey: "product_id")
+           dataToServer(chatTxt1: chatTxt.text!, ans_id: ans_Id as! String, product_id: product_id as! String,colorEnable:false)
             }
         }
     }

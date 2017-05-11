@@ -27,20 +27,29 @@ class MenuViewController: UIViewController,UICollectionViewDelegate,UICollection
         
         let btn1 = UIButton(type: .custom)
         btn1.setImage(UIImage(named: "home_close_menu"), for: .normal)
-        btn1.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        btn1.frame = CGRect(x: -50, y: 0, width: 50, height: 50)
         //btn1.contentEdgeInsets = UIEdgeInsetsMake(5, 10, 5, 10)
         btn1.addTarget(self, action: #selector(leftMenuPressed), for: .touchUpInside)
         let item1 = UIBarButtonItem(customView: btn1)
         self.navigationItem.setRightBarButton(item1, animated: true)
         
-        let btn = UIButton(type: .custom)
-        btn.setTitle("Categories", for: .normal)
         
-        btn.setTitleColor(ColorFile().getMarkerDarkAshColor(), for: .normal)
-        btn.frame = CGRect(x: 0, y: 0, width: 150, height: 50)
-       // btn.titleLabel?.textAlignment = .left
-        let item = UIBarButtonItem(customView: btn)
-        self.navigationItem.setLeftBarButton(item, animated: true)
+        let rightBarButton = UIBarButtonItem(title: "Categories", style: .plain, target: self, action: nil)
+            //UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ViewController.myRightSideBarButtonItemTapped(_:)))
+        rightBarButton.tintColor = ColorFile().getMarkerDarkAshColor()
+        self.navigationItem.leftBarButtonItem = rightBarButton
+
+        
+
+//        let btn = UIButton(type: .custom)
+//        btn.setTitle("Categories", for: .normal)
+//                btn.setTitleColor(ColorFile().getMarkerDarkAshColor(), for: .normal)
+//        btn.frame = CGRect(x: -25, y: 0, width: 150, height: 30)
+//        btn.titleLabel?.textAlignment = .right
+//        btn.backgroundColor = UIColor.black
+//      //  btn.titleLabel?.text = "Categories"
+//        let item = UIBarButtonItem(customView: btn)
+      //  self.navigationItem.setLeftBarButton(item, animated: true)
         
         navigationController?.hidesBarsOnSwipe = false
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -129,6 +138,7 @@ tagLoad()
             cell.menuLabel.textColor = UIColor.gray
             
             if indexPath.row == sideSelected{
+                cell.bgView.layer.borderWidth = 0
                 cell.bgView.backgroundColor = ColorFile().getPrimaryColor()
                 cell.menuImage.image = selectedmenuImagesArray[indexPath.row]
                 
@@ -246,6 +256,7 @@ tagLoad()
         case 2:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier :"articleViewController") as! ViewController
+            viewController.fromUnread = 1
             viewController.scrollToUnreadNews = true
             
             self.navigationController?.pushViewController(viewController, animated: true)

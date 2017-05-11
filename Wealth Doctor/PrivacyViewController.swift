@@ -14,6 +14,7 @@ class PrivacyViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+         navigationItem.title = "Privacy Policy"
         let networkStatus = Reeachability().connectionStatus()
         switch networkStatus {
         case .Unknown, .Offline:

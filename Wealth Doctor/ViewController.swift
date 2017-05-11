@@ -19,9 +19,11 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     let row = UserDefaults.standard.integer(forKey: "row")
     let section = UserDefaults.standard.integer(forKey: "section")
     var scrollToUnreadNews : Bool = false
+    var fromUnread = 0
     @IBOutlet var newNewsBtn: UIButton!
    // var tagEnabled : Bool = false
-    
+    let dateComponentsFormatter = DateComponentsFormatter()
+
     var tagForTitle = ""
     var refresher : UIRefreshControl!
         var images = [String]()
@@ -44,6 +46,11 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     @IBOutlet var newsArticleTableView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dateComponentsFormatter.allowedUnits = [.year,.month,.weekOfYear,.day,.hour,.minute,.second]
+        dateComponentsFormatter.maximumUnitCount = 1
+        dateComponentsFormatter.unitsStyle = .full
+        dateComponentsFormatter.string(from: Date(), to: Date(timeIntervalSinceNow: 4000000))
      //   print(lastIndexPath)
        // navigationController?.navigationBar.isHidden = true
          navigationController?.hidesBarsOnSwipe = true
@@ -85,7 +92,12 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
             if tagIsClicked == true{
                  self.titleName.title = "\(tagForTitle)"
               //  self.navigationItem.title = "\(tagForTitle)"
+            }else if fromUnread == 1{
+            
+            self.titleName.title = "Unread"
             }
+                
+                
             else{
                  self.titleName.title = "Main Stream"
        //   self.navigationItem.title = "Main Stream"
@@ -147,7 +159,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
             
             
             
-            print("Image with url \(remoteImageUrlString) is loaded")
+          //  print("Image with url \(remoteImageUrlString) is loaded")
             
         }
         if likeStatus[indexPath.row] == "0"{
@@ -199,13 +211,20 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         cell.newsContentLabel.text = content[indexPath.row]
         if likeCount.count>0{
         cell.likesCountLabel.text = "\(likeCount[indexPath.row]) Likes"
-        cell.tagBtn.layer.cornerRadius = 15
-            cell.tagBtn.layer.borderColor = ColorFile().getMarkerLightAshColor().cgColor
+        cell.tagBtn.layer.cornerRadius = 10
+            cell.tagBtn.layer.borderColor = UIColor.lightGray.cgColor
             cell.tagBtn.layer.borderWidth = 1
-            cell.tagBtn.setTitle(" \(tag[indexPath.row] )", for: .normal)
-            if tag[indexPath.row] == ""{
+            cell.tagBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+            cell.tagBtn.tintColor = ColorFile().getMarkerDarkAshColor()
+           cell.tagBtn.addTarget(self, action: #selector(tagPressed(sender:)), for: .touchUpInside)
+            cell.tagBtn.tag = indexPath.row
+            cell.gdpLabel.text = "\(date[indexPath.row]) Ago"
+            if tag[indexPath.row] == "0"{
             cell.tagBtn.isHidden = true
             
+            }else{
+            cell.tagBtn.isHidden = false
+             cell.tagBtn.setTitle("  \(tag[indexPath.row])  ", for: .normal)
             }
             if indexPath.row == images.count-1{
             
@@ -287,8 +306,23 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                                     let no_more_url = news["no_more_url"] as! String
                                  //   let a_content_sort = news["a_content_sort"] as! String
                                     let like_count = news["like_count"]
-                                    
+                                  //  dd MMM yyyy
+                                    // 2017-03-30 10:30:11
+                                    //        2017-05-11 09:13:44 +0000
                                     let n_date = news["n_date"] as! String
+                                   // let dateString = "2017-03-30 10:30:11"
+                                    let dateFormatter = DateFormatter()
+                                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                                    dateFormatter.locale = Locale.init(identifier: "en_IN")
+                                    
+                                    let dateObj = dateFormatter.date(from: n_date)
+                                    
+                                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                                    print("Dateobj: \(dateFormatter.string(from: dateObj!))")
+                                    let now = Date()
+                                    let timeOffset3 = now.offset(from: dateObj!)
+                                    print(timeOffset3)
+                                    
                                     var tag = ""
                                     if a_tag == ""{
                                     
@@ -297,7 +331,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                                     tag = a_tag
                                     }
                                    // let like_status = news["like_status"] as! String
-                                     DataBaseManager.shared.ExecuteCommand(query: "insert into NewsArticle (a_audio_url , a_content , a_content_sort ,a_id , a_image , a_tag ,a_title ,a_video_url ,like_count ,like_status ,n_date ,no_more_url,tag_id,favorited,newspaper)values ( '\(0)', '\(a_content)', '\(0)','\(a_id)','\(a_image)', '\(tag)','\(a_title)','\(0)','\(like_count!)',0,'\(n_date)','\(no_more_url)','\(tag_id)','\(0)','\(news_paper)');")
+                                     DataBaseManager.shared.ExecuteCommand(query: "insert into NewsArticle (a_audio_url , a_content , a_content_sort ,a_id , a_image , a_tag ,a_title ,a_video_url ,like_count ,like_status ,n_date ,no_more_url,tag_id,favorited,newspaper)values ( '\(0)', '\(a_content)', '\(0)','\(a_id)','\(a_image)', '\(tag)','\(a_title)','\(0)','\(like_count!)',0,'\(timeOffset3)','\(no_more_url)','\(tag_id)','\(0)','\(news_paper)');")
                                     
                                 }
                             }
@@ -378,11 +412,10 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
             id.append(f!)
             knowMoreUrl.append(c!)
             favorited.append(h!)
-            
    
     }
          self.newsArticleTableView.reloadData()
-        print(tag)
+       // print(date)
             userdata.close()
         }
       
@@ -456,7 +489,21 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
             self.present(activityVC, animated: true, completion: nil)
         }
     }
+    func tagPressed(sender: UIButton!){
     
+        let buttonindex =  sender.tag
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier :"chatViewController") as! ChatViewController
+        
+        viewController.isTagPressed = true
+        viewController.selectedTagFromNews = tag[buttonindex]
+       // viewController.urlstring = knowMoreUrl[buttonindex]
+        // self.present(viewController, animated: true)
+        self.showAnimationRightToLeft()
+        self.navigationController?.pushViewController(viewController, animated: false)
+
+    
+    }
     func knowMore(sender: UIButton!){
     let buttonindex =  sender.tag
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -647,7 +694,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     @IBAction func menuButtonPressed(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier :"MenuViewController") as! MenuViewController
-        if scrollToUnreadNews == true{
+        if fromUnread == 1{
         viewController.sideSelected = 2
         }else if loadFavorited == true{
             viewController.sideSelected = 3
@@ -675,5 +722,46 @@ extension UIView{
         let screenShot = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         return screenShot!
+    }
+}
+extension Date {
+    /// Returns the amount of years from another date
+    func years(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.year], from: date, to: self).year ?? 0
+    }
+    /// Returns the amount of months from another date
+    func months(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.month], from: date, to: self).month ?? 0
+    }
+    /// Returns the amount of weeks from another date
+    func weeks(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.weekOfMonth], from: date, to: self).weekOfMonth ?? 0
+    }
+    /// Returns the amount of days from another date
+    func days(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.day], from: date, to: self).day ?? 0
+    }
+    /// Returns the amount of hours from another date
+    func hours(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.hour], from: date, to: self).hour ?? 0
+    }
+    /// Returns the amount of minutes from another date
+    func minutes(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.minute], from: date, to: self).minute ?? 0
+    }
+    /// Returns the amount of seconds from another date
+    func seconds(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.second], from: date, to: self).second ?? 0
+    }
+    /// Returns the a custom time interval description from another date
+    func offset(from date: Date) -> String {
+        if years(from: date)   > 0 { return "\(years(from: date)) Year"   }
+        if months(from: date)  > 0 { return "\(months(from: date)) Month"  }
+        if weeks(from: date)   > 0 { return "\(weeks(from: date)) Week"   }
+        if days(from: date)    > 0 { return "\(days(from: date)) Day"    }
+        if hours(from: date)   > 0 { return "\(hours(from: date)) Hour"   }
+        if minutes(from: date) > 0 { return "\(minutes(from: date)) Mins" }
+        if seconds(from: date) > 0 { return "\(seconds(from: date)) Seconds" }
+        return ""
     }
 }
