@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Flurry_iOS_SDK
 
 class ViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     var loadFavorited : Bool = false
@@ -14,6 +15,9 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     @IBOutlet weak var titleName: UIBarButtonItem!
     @IBOutlet weak var favoritedToolTip: PaddingLabel!
     @IBOutlet var refreshBtnOulet: UIBarButtonItem!
+    
+    
+     let name = UserDefaults.standard.value(forKey: "Name")
     let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
     var lastIndexPath: Int = 0
     let row = UserDefaults.standard.integer(forKey: "row")
@@ -47,6 +51,8 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let parameters = ["mobile number":mobileNumber as! String]
+        Flurry.logEvent("Started to Read Articles", withParameters: parameters,timed:true);
         dateComponentsFormatter.allowedUnits = [.year,.month,.weekOfYear,.day,.hour,.minute,.second]
         dateComponentsFormatter.maximumUnitCount = 1
         dateComponentsFormatter.unitsStyle = .full
@@ -105,7 +111,12 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         }
         
     }
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        
+        
+        Flurry.endTimedEvent("Started to Read Articles", withParameters: nil)
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         navigationController?.hidesBarsOnSwipe = true
@@ -454,7 +465,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         }
         else{
             print("selected")
-            
+            Flurry.logEvent("Favorited", withParameters: ["Article Headline":"\(tittle[buttonindex])"]);
             favoritedToolTip.text = "Added to favourites"
             favoritedToolTip.isHidden = false
                     Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.update), userInfo: nil, repeats: false);

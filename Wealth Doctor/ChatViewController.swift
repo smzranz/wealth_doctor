@@ -13,7 +13,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var textInputFromPopUP = ""
     
     var dropDownTableview = UITableView()
-    
+    var disable = [String]()
     
     @IBOutlet var popUpDrownDownTxtField: UITextField!
     
@@ -657,6 +657,9 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                                 let product_id = convertedJsonIntoArray["product_id"] as! String
                                 let disable = convertedJsonIntoArray["desable"] as! String
                                 let url = convertedJsonIntoArray["url"] as! String
+                                UserDefaults.standard.setValue(disable, forKey: "disable")
+                                UserDefaults.standard.setValue(ans_id, forKey: "ans_id")
+                                UserDefaults.standard.setValue(product_id, forKey: "product_id")
                                 UserDefaults.standard.setValue(type as String, forKey: "type")
                                 UserDefaults.standard.synchronize()
                                 self.type = type
@@ -719,18 +722,28 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
             let y = userdata.string(forColumn: "chat_id")
             let z = userdata.string(forColumn: "time")
             let w = userdata.string(forColumn: "color")
+            let u = userdata.string(forColumn: "disable")
 
             
             serverChatText.append(x!)
             chat_id.append(y!)
-            
+            disable.append(u!)
             chatTime.append(z!)
             color_id.append(w!)
-            chatTableView.reloadData()
             
             
-        }
         
+        }
+//        if disable[disable.count-1] == "0"{
+//            textFieldBgView.isHidden = true
+//            chatTxt.isHidden = true
+//        }
+//        else{
+//        
+//        textFieldBgView.isHidden = false
+//            chatTxt.isHidden = false
+//        }
+        chatTableView.reloadData()
         userdata.close()
         if  UserDefaults.standard.value(forKey: "type") == nil{
             return
@@ -1252,7 +1265,8 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                         
                         if let convertedJsonIntoArray = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]    {
                             //   print(convertedJsonIntoArray)
-                            DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, chat_id,ans_id,url,product_id,disable,serverChat,time,color) values ( 0, 1, 0,0,0,0,'\(chatQuestion)',DATETIME('now'),'\(color)');")
+                            let disable = UserDefaults.standard.value(forKey: "disable") as! String
+                            DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, chat_id,ans_id,url,product_id,disable,serverChat,time,color) values ( 0, 1, '\(disable)',0,0,0,'\(chatQuestion)',DATETIME('now'),'\(color)');")
                             
                             color = "0"
                             let nestedString = convertedJsonIntoArray["text"] as! String
@@ -1261,6 +1275,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                                 let product_id = convertedJsonIntoArray["product_id"] as! String
                                 let disable = convertedJsonIntoArray["desable"] as! String
                                 let url = convertedJsonIntoArray["url"] as! String
+                                UserDefaults.standard.setValue(disable, forKey: "disable")
                                 UserDefaults.standard.setValue(ans_id, forKey: "ans_id")
                                 UserDefaults.standard.setValue(product_id, forKey: "product_id")
                                 self.ansId = ans_id

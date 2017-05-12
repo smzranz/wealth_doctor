@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-
+import Flurry_iOS_SDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        let builder = FlurrySessionBuilder.init()
+            .withAppVersion("1.0")
+            .withLogLevel(FlurryLogLevelAll)
+            .withCrashReporting(true)
+            .withSessionContinueSeconds(10)
+        
+        // Replace YOUR_API_KEY with the api key in the downloaded package
+        Flurry.startSession("SVF6RJ5W46HJ7V62G5W3", with: builder)
           IQKeyboardManager.sharedManager().enable = true
         window = UIWindow()
         let story = UIStoryboard(name: "Main", bundle: nil)
