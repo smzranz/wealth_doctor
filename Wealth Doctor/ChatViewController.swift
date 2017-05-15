@@ -9,6 +9,15 @@
 import UIKit
 
 class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSource ,UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UICollectionViewDelegateFlowLayout,UIGestureRecognizerDelegate{
+    var multiSelectionIsEnable :Bool = false
+    
+    
+    @IBOutlet weak var doneBtnOutlet: UIButton!
+    
+    @IBOutlet weak var multiSelectTableview: UITableView!
+    var selectedoptions = ""
+    var multiSelectDisplayArray = [String]()
+    var multiSelectSentArray = [String]()
     var selectedTextFromDropDown = ""
     var textInputFromPopUP = ""
     
@@ -65,6 +74,9 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.multiSelectTableview.isHidden = true
+        self.doneBtnOutlet.isHidden = true
+        popUpCallBtn.isHidden = true
         navigationController?.hidesBarsOnSwipe = false
         picker.backgroundColor = UIColor.white
         datePicker.backgroundColor = UIColor.white
@@ -104,13 +116,14 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
         if UserDefaults.standard.value(forKey: "chat") != nil{
            
             
-            lodingasending()
+          
             if isTagPressed == true{
                 let ans_Id = UserDefaults.standard.value(forKey: "ans_id") as! String
                 let product_id = UserDefaults.standard.value(forKey: "product_id") as! String
                 dataToServer(chatTxt1: selectedTagFromNews, ans_id: ans_Id, product_id: product_id,colorEnable:true)
                 
             }
+              lodingasending()
         }
         else {
            
@@ -193,6 +206,10 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
           //  let pickerArraySaved = UserDefaults.standard.stringArray(forKey: "pickerArray") ?? [String]()
        return pickerDisplayArray.count
         }
+        if tableView == multiSelectTableview{
+            //  let pickerArraySaved = UserDefaults.standard.stringArray(forKey: "pickerArray") ?? [String]()
+            return pickerDisplayArray.count
+        }
         return serverChatText.count
     }
     
@@ -204,6 +221,27 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
             cell.textLabel?.text = pickerArraySaved[indexPath.row]
             return cell
 
+        }
+        if tableView == multiSelectTableview{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "multicell", for: indexPath) as UITableViewCell
+          //  let pickerArraySaved = UserDefaults.standard.stringArray(forKey: "pickerArray") ?? [String]()
+            cell.textLabel?.text = pickerDisplayArray[indexPath.row]
+            if cell.isSelected
+            {
+                cell.isSelected = false
+                if cell.accessoryType == UITableViewCellAccessoryType.none
+                {
+                    cell.accessoryType = UITableViewCellAccessoryType.checkmark
+                }
+                else
+                {
+                    cell.accessoryType = UITableViewCellAccessoryType.none
+                }
+            }
+            
+            return cell
+        
+        
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChatTableViewCell
         cell.userChatLabel.textColor = UIColor.black
@@ -420,7 +458,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
 //                
 //        }
 //        }
-       
+      // sleep(2)
         
         return cell
        // let lastIndex : IndexPath = NSIndexPath(row: self.serverChatText.count - 1, section: 0) as IndexPath
@@ -474,6 +512,10 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
         if tableView == dropDownTableview{
         
         return 44
+        }
+        if tableView == multiSelectTableview{
+            //  let pickerArraySaved = UserDefaults.standard.stringArray(forKey: "pickerArray") ?? [String]()
+            return 44
         }
         let heightOfRow = self.calculateHeight(inString:serverChatText[indexPath.row])
        
@@ -538,6 +580,29 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
         dropDownTableview.removeFromSuperview()
             popUpDropDownBtn.setTitle(selectedTextFromDropDown, for: .normal)
         
+        
+        }
+        if tableView == multiSelectTableview{
+        
+            let cell = tableView.cellForRow(at: indexPath)
+            
+            if cell!.isSelected
+            {
+                cell!.isSelected = false
+                if cell!.accessoryType == UITableViewCellAccessoryType.none
+                {
+                    cell!.accessoryType = UITableViewCellAccessoryType.checkmark
+                    
+                    selectedoptions = selectedoptions+"-\(serverGeneratedArray[indexPath.row])"
+                }
+                else
+                {
+                    
+                 selectedoptions = selectedoptions.replacingOccurrences(of: "-\(serverGeneratedArray[indexPath.row])", with: "")
+                    cell!.accessoryType = UITableViewCellAccessoryType.none
+                }
+            }
+            
         
         }
     }
@@ -688,7 +753,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                                       //  self.chatTxt.inputView = self.picker
                                     }
                                     
-                                    self.chatTableView.reloadData()
+                              //      self.chatTableView.reloadData()
                                     self.lodingasending()
                                     self.loaderView.isHidden = true
                                     
@@ -743,7 +808,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
 //        textFieldBgView.isHidden = false
 //            chatTxt.isHidden = false
 //        }
-        chatTableView.reloadData()
+   //     chatTableView.reloadData()
         userdata.close()
         if  UserDefaults.standard.value(forKey: "type") == nil{
             return
@@ -771,7 +836,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                                 
                                 
                                 
-                                self.chatTableView.reloadData()
+                            //    self.chatTableView.reloadData()
                             }
                         }
                     }
@@ -789,7 +854,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                             }
                         }
                     }
-                    
+                    if adviceOn != ""{
                     if self.type == "2" {
                         textFieldBgView.isHidden = true
                         //  print(adviceOn)
@@ -810,13 +875,13 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                             
                             chatTime.append(z!)
                             color_id.append(w!)
-                            chatTableView.reloadData()
+                        //    chatTableView.reloadData()
                             
                             
                         }
                         userdata.close()
                     }
-                   
+                    }
                 }
                  userdata.close()
                 textFieldBgView.isHidden = true
@@ -907,6 +972,23 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                         self.datePicker.addTarget(self, action: #selector(datePickerChanged(sender:)), for: .valueChanged)
                     }
                     else if qtype == "6"{
+                        self.textFieldBgView.isHidden = false
+                        self.chatTxt.isHidden = false
+                        let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
+                        for i in 0..<q_choicesSeperated.count {
+                            let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
+                            if q_choiceDisplay.count == 2{
+                                let choiceItemServer: String = q_choiceDisplay[0]
+                                let choiceDisplayItem : String = q_choiceDisplay[1]
+                                
+                                self.pickerDisplayArray.append(choiceDisplayItem)
+                                self.serverGeneratedArray.append(choiceItemServer)
+                                
+                            }
+                        }
+                        multiSelectionIsEnable = true
+                        self.popUpCallBtn.isHidden = false
+                        self.multiSelectTableview.reloadData()
                     print("multiselect")
                     }
                     else if qtype == "7"{
@@ -1106,7 +1188,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
 //                        self.chatTxt.inputView = self.picker
 //                    }
                     }
-                    chatTableView.reloadData()
+                 //   chatTableView.reloadData()
                     
                     
                 }
@@ -1242,15 +1324,22 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                     do {
                         var chatQuestion = ""
                         let type1 = UserDefaults.standard.value(forKey: "type") as! String
-                        if type1 == "2"{
+//                        if type1 == "2"{
+//                                                        //  print(chatQuestion)
+//                            
+//                        }
+//                        else{
+//                            
+//                            
+//                            //  print(self.chatTxt.text!)
+//                        }
+                        if (self.chatTxt.text?.isEmpty)!{
                             chatQuestion = chatTxt1
-                            //  print(chatQuestion)
-                            
-                        }
-                        else{
-                            
-                            chatQuestion = self.chatTxt.text!
-                            //  print(self.chatTxt.text!)
+
+                        
+                        }else{
+                        chatQuestion = self.chatTxt.text!
+                        
                         }
                         var color = "0"
                         if colorEnable == true{
@@ -1264,7 +1353,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                      
                         
                         if let convertedJsonIntoArray = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]    {
-                            //   print(convertedJsonIntoArray)
+                               print(convertedJsonIntoArray)
                             let disable = UserDefaults.standard.value(forKey: "disable") as! String
                             DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, chat_id,ans_id,url,product_id,disable,serverChat,time,color) values ( 0, 1, '\(disable)',0,0,0,'\(chatQuestion)',DATETIME('now'),'\(color)');")
                             
@@ -1345,7 +1434,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                                         self.chatTxt.attributedPlaceholder = NSAttributedString(string: "Chat", attributes: [NSForegroundColorAttributeName:UIColor.lightText])
                                     }
                                     
-                                    self.chatTableView.reloadData()
+                                  //  self.chatTableView.reloadData()
                                     self.lodingasending()
                                     self.loaderView.isHidden = true
                                     
@@ -1378,6 +1467,10 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
         DataBaseManager.shared.ExecuteCommand(query: "DELETE FROM questions;")
         UserDefaults.standard.setValue(nil, forKeyPath: "chat")
         UserDefaults.standard.synchronize()
+        multiSelectionIsEnable = false
+        self.multiSelectTableview.isHidden = true
+        self.doneBtnOutlet.isHidden = true
+        popUpCallBtn.isHidden = true
         popupBgView.isHidden = true
         popUpView.isHidden = true
 //        self.chatTableView.reloadData()
@@ -1418,24 +1511,53 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
             chatTxt.endEditing(true)
             view.resignFirstResponder()
             chatTxt.text = totaltext
-        dataToServer(chatTxt1: totaltext, ans_id: ansId, product_id: productId,colorEnable:false)
+            let ans_Id = UserDefaults.standard.value(forKey: "ans_id") as! String
+            let product_id = UserDefaults.standard.value(forKey: "product_id") as! String
+        dataToServer(chatTxt1: totaltext, ans_id: ans_Id, product_id: product_id,colorEnable:false)
         }
     }
     
     @IBAction func addPopUp(_ sender: Any) {
         self.popupBgView.isHidden = false
+        if multiSelectionIsEnable == true{
+            self.multiSelectTableview.isHidden = false
+            self.doneBtnOutlet.isHidden = false
+            
+        }
+        else{
         self.popUpView.isHidden = false
-        
+        }
     }
     func popUpDropDownBtnClick(sender: UIButton) {
-    
+       
     dropDownTableview.frame = CGRect(x: 70, y: 330, width: Int(popUpDropDownBtn.frame.width), height: 44*5)
         view.addSubview(dropDownTableview)
     
     }
     
     func dropDownBgViewAction(sender : UITapGestureRecognizer) {
+        
+        self.multiSelectTableview.isHidden = true
+        self.doneBtnOutlet.isHidden = true
         popupBgView.isHidden = true
         self.dropDownTableview.removeFromSuperview()
     }
+    
+    @IBAction func DoneBtn(_ sender: Any) {
+        if selectedoptions == "" {}
+        
+        else{
+            let ans_Id = UserDefaults.standard.value(forKey: "ans_id") as! String
+            let product_id = UserDefaults.standard.value(forKey: "product_id") as! String
+        dataToServer(chatTxt1: selectedoptions, ans_id: ans_Id, product_id: product_id,colorEnable:true)
+            multiSelectionIsEnable = false
+            self.popUpCallBtn.isHidden = true
+            self.popupBgView.isHidden = true
+        self.multiSelectTableview.isHidden = true
+            self.doneBtnOutlet.isHidden = true
+        }
+        
+        
+    }
+    
 }

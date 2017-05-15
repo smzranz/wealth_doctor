@@ -204,6 +204,17 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         cell.likeBtn.layer.borderWidth = 1
         cell.likeBtn.layer.masksToBounds = true
          cell.likeBtn.tag = indexPath.row
+        
+        
+//        if tittle[indexPath.row] == "share"{
+//        
+//        cell.imageViewheignt.constant = self.view.frame.height-80
+//       
+//        }
+//        else{
+//        
+//        cell.imageViewheignt.constant = self.view.frame.height-self.view.frame.height/2
+//        }
         cell.favoriteBtn.setTitle(tittle[indexPath.row], for: .normal)
           cell.favoriteBtn.setTitle(tittle[indexPath.row], for: .selected)
         cell.favoriteBtn.setTitleColor(UIColor.black, for: .normal)
@@ -341,8 +352,15 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                                     }else{
                                     tag = a_tag
                                     }
+                                    var mainTittle = ""
+                                    if a_title == ""{
+                                        
+                                        mainTittle = "0"
+                                    }else{
+                                        mainTittle = a_title
+                                    }
                                    // let like_status = news["like_status"] as! String
-                                     DataBaseManager.shared.ExecuteCommand(query: "insert into NewsArticle (a_audio_url , a_content , a_content_sort ,a_id , a_image , a_tag ,a_title ,a_video_url ,like_count ,like_status ,n_date ,no_more_url,tag_id,favorited,newspaper)values ( '\(0)', '\(a_content)', '\(0)','\(a_id)','\(a_image)', '\(tag)','\(a_title)','\(0)','\(like_count!)',0,'\(timeOffset3)','\(no_more_url)','\(tag_id)','\(0)','\(news_paper)');")
+                                     DataBaseManager.shared.ExecuteCommand(query: "insert into NewsArticle (a_audio_url , a_content , a_content_sort ,a_id , a_image , a_tag ,a_title ,a_video_url ,like_count ,like_status ,n_date ,no_more_url,tag_id,favorited,newspaper)values ( '\(0)', '\(a_content)', '\(0)','\(a_id)','\(a_image)', '\(tag)','\(mainTittle)','\(0)','\(like_count!)',0,'\(timeOffset3)','\(no_more_url)','\(tag_id)','\(0)','\(news_paper)');")
                                     
                                 }
                             }
@@ -641,8 +659,15 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                                         }else{
                                             tag = a_tag
                                         }
+                                        var mainTittle = ""
+                                        if a_title == ""{
+                                            
+                                            mainTittle = "0"
+                                        }else{
+                                            mainTittle = a_title
+                                        }
                                         // let like_status = news["like_status"] as! String
-                                        DataBaseManager.shared.ExecuteCommand(query: "insert into NewsArticle (a_audio_url , a_content , a_content_sort ,a_id , a_image , a_tag ,a_title ,a_video_url ,like_count ,like_status ,n_date ,no_more_url,tag_id,favorited,newspaper)values ( '\(0)', '\(a_content)', '\(0)','\(a_id)','\(a_image)', '\(tag)','\(a_title)','\(0)','\(like_count!)',0,'\(timeOffset3)','\(no_more_url)','\(tag_id)','\(0)','\(news_paper)');")
+                                        DataBaseManager.shared.ExecuteCommand(query: "insert into NewsArticle (a_audio_url , a_content , a_content_sort ,a_id , a_image , a_tag ,a_title ,a_video_url ,like_count ,like_status ,n_date ,no_more_url,tag_id,favorited,newspaper)values ( '\(0)', '\(a_content)', '\(0)','\(a_id)','\(a_image)', '\(tag)','\(mainTittle)','\(0)','\(like_count!)',0,'\(timeOffset3)','\(no_more_url)','\(tag_id)','\(0)','\(news_paper)');")
                                         
                                     }
                                 }

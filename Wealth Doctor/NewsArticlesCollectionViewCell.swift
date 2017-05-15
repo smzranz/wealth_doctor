@@ -21,6 +21,7 @@ class NewsArticlesCollectionViewCell: UICollectionViewCell {
     @IBOutlet var likesCountLabel: UILabel!
     @IBOutlet var shareBtn: UIButton!
     
+    @IBOutlet weak var imageViewheignt: NSLayoutConstraint!
     @IBOutlet var likeBtn: UIButton!
     @IBOutlet var gdpLabel: UILabel!
     @IBOutlet var askBtn: UIButton!

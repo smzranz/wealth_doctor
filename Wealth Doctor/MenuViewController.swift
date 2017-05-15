@@ -268,8 +268,12 @@ tagLoad()
             viewController.loadFavorited = true
             
             self.navigationController?.pushViewController(viewController, animated: true)
-        case 0:
-            break
+        case 4:
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier :"tipsViewController") as! TipsViewController
+            
+            self.navigationController?.pushViewController(viewController, animated: true)
+
        
             
         default:
