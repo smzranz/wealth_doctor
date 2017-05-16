@@ -8,6 +8,7 @@
 
 import UIKit
 import MessageUI
+import StoreKit
 
 class SettingsPageVIewController: UIViewController,UITableViewDelegate,UITableViewDataSource,MFMailComposeViewControllerDelegate {
 var tittleLabel = [String]()
@@ -90,8 +91,17 @@ var tittleLabel = [String]()
         case 3:
             shareApp()
         case 4 :
-            rateApp(appId: "id1232131220") { success in
-                print("RateApp \(success)")
+            if #available(iOS 10.3, *) {
+                
+                // Present rating alert
+                SKStoreReviewController.requestReview()
+                
+            } else {
+                
+                self.rateApp(appId: "389801252") { success in
+                    print("RateApp \(success)")
+                    
+                }
             }
         case 5 :
             let mailComposeViewController = configuredMailComposeViewController()
