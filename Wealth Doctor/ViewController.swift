@@ -11,6 +11,20 @@ import Flurry_iOS_SDK
 
 class ViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     var loadFavorited : Bool = false
+     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+    
+    
+    @IBOutlet weak var bottomWishLabel: UILabel!
+    @IBOutlet weak var mesageLabel: UILabel!
+    
+    @IBOutlet weak var closeButton: UIButton!
+    
+    @IBOutlet weak var greetingImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var wishLabel: UILabel!
+    @IBOutlet weak var greetingView: UIView!
+    @IBOutlet weak var morngBgView: UIView!
     
     @IBOutlet weak var titleName: UIBarButtonItem!
     @IBOutlet weak var favoritedToolTip: PaddingLabel!
@@ -50,6 +64,31 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     @IBOutlet var newsArticleTableView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        if UserDefaults.standard.value(forKey: "date") == nil{
+            
+             self.morngBgView.isHidden = true
+            
+            UserDefaults.standard.set(Date(), forKey: "date")
+        }else{
+            
+            let yourDate = UserDefaults.standard.object(forKey: "date") as? Date
+            let day = Calendar.current.component(.hour, from: yourDate!)
+            
+            let today = Calendar.current.component(.hour, from: Date())
+            if day != today{
+                greetings(mobile: mobileNumber as! String, last_id: "12", first_id: "0", daily_report: "1")
+               
+                UserDefaults.standard.set(Date(), forKey: "date")
+            }
+            else{
+              //  greetings(mobile: mobileNumber as! String, last_id: "12", first_id: "0", daily_report: "1")
+             self.morngBgView.isHidden = true
+                self.newNewsBtn.isHidden = true
+            }
+            
+        }
+        
+        
         
         let parameters = ["mobile number":mobileNumber as! String]
         Flurry.logEvent("Started to Read Articles", withParameters: parameters,timed:true);
@@ -63,8 +102,8 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         favoritedToolTip.isHidden = true
         favoritedToolTip.layer.cornerRadius = 8
         favoritedToolTip.layer.masksToBounds = true
-        newNewsBtn.isHidden = true
-        gamer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
+      //  newNewsBtn.isHidden = true
+      //  gamer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
         newNewsBtn.layer.cornerRadius = newNewsBtn.frame.height/2
         refresher  = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to Refresh")
@@ -715,7 +754,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     }
     
     @IBAction func newNewsClick(_ sender: Any) {
-        
+         refresh()
         newNewsBtn.isHidden = true
     }
     func runTimedCode() {
@@ -759,7 +798,158 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     func update() {
     
     favoritedToolTip.isHidden = true
+        
     }
+    
+    
+    @IBAction func closeBtnAction(_ sender: Any) {
+        
+        self.morngBgView.isHidden = true
+       
+        
+    }
+    
+    func greetings(mobile:String,last_id:String,first_id:String,daily_report:String){
+        
+        let networkStatus = Reeachability().connectionStatus()
+        switch networkStatus {
+        case .Unknown, .Offline:
+            displaymyalertmessage(usermessage: "no internet connection")
+            print("no internet connection")
+        default :
+          //  actstart()
+            let scriptUrl = "http://www.indianmoney.com/wealthDoctor/ios/newnewscount.php"
+            
+            let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
+            
+            let myUrl = URL(string: urlWithParams);
+            
+            var request = URLRequest(url:myUrl!)
+            
+            let postString = "mobile=\(mobile)&last_id=\(last_id)&first_id=\(first_id)&daily_report=\(daily_report)"
+            request.httpBody = postString.data(using: .utf8)
+            
+            request.httpMethod = "POST"
+            
+            let task = URLSession.shared.dataTask(with: request) {
+                data, response, error in
+                if let responseString = String(data: data!, encoding: .utf8){
+                    // print("responseString = \(responseString)")
+                   
+                    if error != nil
+                    {
+                        print("error=\(error)")
+                        DispatchQueue.main.async {
+                            
+                        }
+                        return
+                    }
+                    if responseString == "null\n"{
+                        
+                    }
+                    else{
+                        
+                        do {
+                            
+                            if let convertedJsonIntoArray = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]    {
+                                //   print(convertedJsonIntoArray)
+                                
+                              let count = convertedJsonIntoArray["count"] as! String
+                                let app_version = convertedJsonIntoArray["app_version"] as! String
+                                let greetings = convertedJsonIntoArray["greetings"] as! String
+                                let Message = convertedJsonIntoArray["Message"] as! String
+                                let wish = convertedJsonIntoArray["wish"] as! String
+                                let imgurl = convertedJsonIntoArray["imgurl"] as! String
+                                
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    //
+                                    //  print(nestedDictionary)
+                                
+                                
+                               // self.actstop()
+                                
+                                
+                                
+                                
+                                DispatchQueue.main.async {
+                                    self.wishLabel.attributedText =  self.stringFromHtml(string: greetings)
+                                    self.greetingImageView.sd_setImage(with: URL(string: imgurl), placeholderImage: UIImage(named: "placeHolder"))
+                                    
+                                    self.newNewsBtn.setTitle("\(count) new news", for: .normal)
+                                    self.bottomWishLabel.text = wish
+                                    self.mesageLabel.attributedText = self.stringFromHtml(string: Message)
+                                    
+                                     self.morngBgView.isHidden = false
+                                    self.newNewsBtn.isHidden = false
+                                    //  self.performSegue(withIdentifier: "mobiletootp", sender: self)
+                                }
+                                
+                            }
+                        } catch let error as NSError {
+                            print(error.localizedDescription)
+                            
+                        }
+                    }
+                }
+                else{
+                    DispatchQueue.main.async {
+                        //   self.displaymyalertmessage(usermessage: "serverdown")
+                    }
+                }
+            }
+            
+            task.resume()
+            
+        }
+        
+    }
+    func displaymyalertmessage (usermessage:String) {
+        let myalert = UIAlertController(title: "WARNING", message: usermessage, preferredStyle: UIAlertControllerStyle.alert )
+        
+        let okaction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+        myalert.addAction(okaction)
+        self.present(myalert, animated: true, completion: nil)
+        
+        
+    }
+    
+   
+    
+    func actstart(){
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+    }
+    func actstop(){
+        
+        activityIndicator.stopAnimating()
+        UIApplication.shared.endIgnoringInteractionEvents()
+    }
+    
+    
+        func stringFromHtml(string: String) -> NSAttributedString? {
+            do {
+                let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                if let d = data {
+                    let str = try NSAttributedString(data: d,
+                                                     options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+                                                     documentAttributes: nil)
+                    return str
+                }
+            } catch {
+            }
+            return nil
+        }
+    
+    
+ 
 }
 extension UIView{
     
@@ -772,6 +962,9 @@ extension UIView{
         UIGraphicsEndImageContext();
         return screenShot!
     }
+    
+    
+    
 }
 extension Date {
     /// Returns the amount of years from another date
@@ -812,5 +1005,25 @@ extension Date {
         if minutes(from: date) > 0 { return "\(minutes(from: date)) Mins" }
         if seconds(from: date) > 0 { return "\(seconds(from: date)) Seconds" }
         return ""
+    }
+    
+    
+}
+extension String {
+    
+    
+    var html2AttributedString: NSAttributedString? {
+        guard
+            let data = data(using: String.Encoding.utf8)
+            else { return nil }
+        do {
+            return try NSAttributedString(data: data, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:String.Encoding.utf8], documentAttributes: nil)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+            return  nil
+        }
+    }
+    var html2String: String {
+        return html2AttributedString?.string ?? ""
     }
 }

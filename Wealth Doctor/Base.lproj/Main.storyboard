@@ -46,7 +46,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="dBl-q9-d2f" customClass="NewsArticlesCollectionViewCell" customModule="Wealth_Doctor" customModuleProvider="target">
-                                        <rect key="frame" x="11" y="0.0" width="393" height="663"/>
+                                        <rect key="frame" x="10.666666666666666" y="0.0" width="393" height="663"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="663"/>
@@ -251,90 +251,60 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lO2-LR-HXZ">
                                         <rect key="frame" x="56" y="150" width="302" height="360"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5jg-CG-Rko">
-                                                <rect key="frame" x="8" y="51" width="286" height="128"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="128" id="FSh-0p-8gD"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yesterday you learnt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fak-T7-eW6">
-                                                <rect key="frame" x="84" y="184" width="135" height="18"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6 lessons on Investment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hym-CK-jDh">
-                                                <rect key="frame" x="70" y="230" width="163" height="18"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 lesson on Saving" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDp-bS-Uf8">
-                                                <rect key="frame" x="89" y="207" width="125" height="18"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6 lessons on Investment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0I-yZ-0Qf">
-                                                <rect key="frame" x="70" y="253" width="163" height="18"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6 lessons on Investment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSx-qK-poh">
-                                                <rect key="frame" x="70" y="276" width="163" height="18"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yesterday you learnt" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fak-T7-eW6">
+                                                <rect key="frame" x="70" y="192" width="144" height="19"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good Morning" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kuc-zA-xNM">
-                                                <rect key="frame" x="25" y="8" width="114" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <rect key="frame" x="91.333333333333329" y="8" width="119.99999999999999" height="21.666666666666657"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Abhar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cd7-nq-ZRw">
-                                                <rect key="frame" x="144" y="8" width="49" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ba-ou-kgI">
-                                                <rect key="frame" x="272" y="12" width="16" height="22"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ba-ou-kgI">
+                                                <rect key="frame" x="268" y="14" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="HJM-kk-B6p"/>
+                                                    <constraint firstAttribute="height" constant="20" id="U7G-S2-dNI"/>
+                                                </constraints>
                                                 <state key="normal" image="home_close_menu"/>
+                                                <connections>
+                                                    <action selector="closeBtnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="De3-ss-n7d"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have a Nice Day..! Be Wise Get Rich" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jvH-RZ-PJE">
-                                                <rect key="frame" x="17" y="325" width="268" height="20"/>
+                                                <rect key="frame" x="17.666666666666686" y="325" width="267.66666666666663" height="20"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.49803921569999998" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5jg-CG-Rko">
+                                                <rect key="frame" x="8" y="56" width="286" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="FSh-0p-8gD"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="jvH-RZ-PJE" secondAttribute="bottom" constant="15" id="2tQ-xR-prb"/>
-                                            <constraint firstItem="Hym-CK-jDh" firstAttribute="top" secondItem="fDp-bS-Uf8" secondAttribute="bottom" constant="5" id="3Mk-aD-1pK"/>
-                                            <constraint firstItem="K0I-yZ-0Qf" firstAttribute="top" secondItem="Hym-CK-jDh" secondAttribute="bottom" constant="5" id="Ag2-FJ-e83"/>
-                                            <constraint firstItem="WSx-qK-poh" firstAttribute="top" secondItem="K0I-yZ-0Qf" secondAttribute="bottom" constant="5" id="Cci-q1-1ET"/>
-                                            <constraint firstItem="5jg-CG-Rko" firstAttribute="top" secondItem="Kuc-zA-xNM" secondAttribute="bottom" constant="22" id="H8y-Si-FId"/>
+                                            <constraint firstItem="5jg-CG-Rko" firstAttribute="top" secondItem="4ba-ou-kgI" secondAttribute="bottom" constant="22" id="7yt-PL-TxZ"/>
+                                            <constraint firstItem="5jg-CG-Rko" firstAttribute="leading" secondItem="lO2-LR-HXZ" secondAttribute="leading" constant="8" id="Dfq-X0-nee"/>
+                                            <constraint firstItem="4ba-ou-kgI" firstAttribute="top" secondItem="lO2-LR-HXZ" secondAttribute="top" constant="14" id="Ezk-cT-Sj2"/>
+                                            <constraint firstItem="Kuc-zA-xNM" firstAttribute="top" secondItem="lO2-LR-HXZ" secondAttribute="top" constant="8" id="KEj-sb-bsI"/>
                                             <constraint firstItem="5jg-CG-Rko" firstAttribute="leading" secondItem="lO2-LR-HXZ" secondAttribute="leading" constant="8" id="Liu-RH-th9"/>
-                                            <constraint firstItem="Hym-CK-jDh" firstAttribute="centerX" secondItem="lO2-LR-HXZ" secondAttribute="centerX" id="Mk3-tc-Fxk"/>
-                                            <constraint firstItem="Kuc-zA-xNM" firstAttribute="top" secondItem="lO2-LR-HXZ" secondAttribute="top" constant="8" id="R1L-vH-ifh"/>
                                             <constraint firstAttribute="trailing" secondItem="5jg-CG-Rko" secondAttribute="trailing" constant="8" id="THQ-7C-ai0"/>
-                                            <constraint firstItem="Kuc-zA-xNM" firstAttribute="leading" secondItem="lO2-LR-HXZ" secondAttribute="leading" constant="25" id="TOk-Xk-bcP"/>
+                                            <constraint firstItem="fak-T7-eW6" firstAttribute="top" secondItem="5jg-CG-Rko" secondAttribute="bottom" constant="8" id="Tx6-Zb-wbS"/>
                                             <constraint firstItem="5jg-CG-Rko" firstAttribute="centerX" secondItem="lO2-LR-HXZ" secondAttribute="centerX" id="V29-AG-Fvw"/>
-                                            <constraint firstItem="fak-T7-eW6" firstAttribute="top" secondItem="5jg-CG-Rko" secondAttribute="bottom" constant="5" id="aCb-se-zGi"/>
+                                            <constraint firstAttribute="trailing" secondItem="4ba-ou-kgI" secondAttribute="trailing" constant="14" id="V8i-aQ-laI"/>
                                             <constraint firstAttribute="width" constant="302" id="cRa-V9-6Tf"/>
-                                            <constraint firstItem="fDp-bS-Uf8" firstAttribute="top" secondItem="fak-T7-eW6" secondAttribute="bottom" constant="5" id="cgT-mr-TvC"/>
                                             <constraint firstItem="jvH-RZ-PJE" firstAttribute="centerX" secondItem="lO2-LR-HXZ" secondAttribute="centerX" id="d3g-Zg-jtD"/>
                                             <constraint firstAttribute="height" constant="360" id="eCo-ce-b0A"/>
-                                            <constraint firstItem="cd7-nq-ZRw" firstAttribute="centerY" secondItem="Kuc-zA-xNM" secondAttribute="centerY" id="eND-SE-et3"/>
-                                            <constraint firstItem="cd7-nq-ZRw" firstAttribute="leading" secondItem="Kuc-zA-xNM" secondAttribute="trailing" constant="5" id="g28-Kp-tuR"/>
-                                            <constraint firstItem="fak-T7-eW6" firstAttribute="centerX" secondItem="lO2-LR-HXZ" secondAttribute="centerX" id="hT4-mi-tW4"/>
-                                            <constraint firstItem="fDp-bS-Uf8" firstAttribute="centerX" secondItem="lO2-LR-HXZ" secondAttribute="centerX" id="rDf-Xt-QEN"/>
-                                            <constraint firstItem="K0I-yZ-0Qf" firstAttribute="centerX" secondItem="lO2-LR-HXZ" secondAttribute="centerX" id="x1R-69-Nze"/>
-                                            <constraint firstItem="WSx-qK-poh" firstAttribute="centerX" secondItem="lO2-LR-HXZ" secondAttribute="centerX" id="zZP-Qa-phu"/>
+                                            <constraint firstItem="fak-T7-eW6" firstAttribute="leading" secondItem="lO2-LR-HXZ" secondAttribute="leading" constant="70" id="hOa-q4-ZsP"/>
+                                            <constraint firstItem="Kuc-zA-xNM" firstAttribute="centerX" secondItem="lO2-LR-HXZ" secondAttribute="centerX" id="jU0-Bu-P1M"/>
+                                            <constraint firstAttribute="trailing" secondItem="5jg-CG-Rko" secondAttribute="trailing" constant="8" id="tHc-Yy-GF9"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -393,11 +363,18 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="bottomWishLabel" destination="jvH-RZ-PJE" id="sWE-IC-hJX"/>
+                        <outlet property="closeButton" destination="4ba-ou-kgI" id="j2Y-0G-CVN"/>
                         <outlet property="favoritedToolTip" destination="Dxc-0s-nfD" id="uQh-Rm-aWY"/>
+                        <outlet property="greetingImageView" destination="5jg-CG-Rko" id="VSF-tW-EEe"/>
+                        <outlet property="greetingView" destination="lO2-LR-HXZ" id="YhD-lL-Y5H"/>
+                        <outlet property="mesageLabel" destination="fak-T7-eW6" id="Tzv-QK-eND"/>
+                        <outlet property="morngBgView" destination="Es4-Ct-H8Q" id="M7A-k0-b8F"/>
                         <outlet property="newNewsBtn" destination="rDI-GB-kod" id="JZR-oD-8jK"/>
                         <outlet property="newsArticleTableView" destination="fCQ-43-ccP" id="H60-cP-nsc"/>
                         <outlet property="refreshBtnOulet" destination="Nga-1m-ZPg" id="mkI-Uw-8Ov"/>
                         <outlet property="titleName" destination="9TD-6I-3gZ" id="hmd-jQ-rcD"/>
+                        <outlet property="wishLabel" destination="Kuc-zA-xNM" id="I3R-Q8-W7H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -1450,7 +1427,7 @@
                                         <rect key="frame" x="0.0" y="28" width="314" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vnc-Hf-7dK" id="Ame-IG-zVf">
-                                            <rect key="frame" x="0.0" y="0.0" width="314" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="314" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
