@@ -64,29 +64,6 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     @IBOutlet var newsArticleTableView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        if UserDefaults.standard.value(forKey: "date") == nil{
-            
-             self.morngBgView.isHidden = true
-            
-            UserDefaults.standard.set(Date(), forKey: "date")
-        }else{
-            
-            let yourDate = UserDefaults.standard.object(forKey: "date") as? Date
-            let day = Calendar.current.component(.hour, from: yourDate!)
-            
-            let today = Calendar.current.component(.hour, from: Date())
-            if day != today{
-                greetings(mobile: mobileNumber as! String, last_id: "12", first_id: "0", daily_report: "1")
-               
-                UserDefaults.standard.set(Date(), forKey: "date")
-            }
-            else{
-              //  greetings(mobile: mobileNumber as! String, last_id: "12", first_id: "0", daily_report: "1")
-             self.morngBgView.isHidden = true
-                self.newNewsBtn.isHidden = true
-            }
-            
-        }
         
         
         
@@ -127,7 +104,30 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         
         }
         
-        
+        if UserDefaults.standard.value(forKey: "date") == nil{
+            
+            self.morngBgView.isHidden = true
+            self.newNewsBtn.isHidden = true
+            UserDefaults.standard.set(Date(), forKey: "date")
+        }else{
+            
+            let yourDate = UserDefaults.standard.object(forKey: "date") as? Date
+            let day = Calendar.current.component(.day, from: yourDate!)
+            
+            let today = Calendar.current.component(.day, from: Date())
+            if day != today{
+                greetings(mobile: mobileNumber as! String, last_id: id[id.count-1], first_id: id[0], daily_report: "1")
+                
+                UserDefaults.standard.set(Date(), forKey: "date")
+            }
+            else{
+                //  greetings(mobile: mobileNumber as! String, last_id: "12", first_id: "0", daily_report: "1")
+                self.morngBgView.isHidden = true
+                self.newNewsBtn.isHidden = true
+            }
+            
+        }
+
         if loadFavorited == true{
             self.titleName.title = "Favorites"
 //self.navigationItem.title = "Favorites"
@@ -589,7 +589,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         
         let noaction = UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil)
       let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
-            self.callNumber(phoneNumber: "9567019109")
+            self.callNumber(phoneNumber: "02261816111")
         }
         myalert.addAction(noaction)
         myalert.addAction(yesAction)

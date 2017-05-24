@@ -266,7 +266,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
          /// let chattime  = UILabel(frame: CGRect(x: 20, y:  cell.tagCollectionView.frame.origin.y-3, width: cell.tagCollectionView.frame.width-40, height: 14) )
         
         
-        let chattime  = UILabel(frame: CGRect(x: 20, y:  cell.frame.height-14, width: view.frame.width-40, height: 14) )
+        let chattime  = UILabel(frame: CGRect(x: 20, y:  cell.frame.height-10, width: view.frame.width-40, height: 10) )
        
      //  sleep(4)
         
@@ -1560,4 +1560,32 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
         
     }
     
+    
+    @IBAction func callAction(_ sender: Any) {
+        
+        let myalert = UIAlertController(title: "Call", message: "Do u want to call", preferredStyle: UIAlertControllerStyle.alert )
+        
+        let noaction = UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
+            self.callNumber(phoneNumber: "02261816111")
+        }
+        myalert.addAction(noaction)
+        myalert.addAction(yesAction)
+        self.present(myalert, animated: true, completion: nil)
+        
+        
+        
+    }
+    func callNumber(phoneNumber:String) {
+        if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
+            let application:UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL)) {
+                if #available(iOS 10.0, *) {
+                    application.open(phoneCallURL, options: [:], completionHandler: nil)
+                } else {
+                    // Fallback on earlier versions
+                }
+            }
+        }
+    }
 }

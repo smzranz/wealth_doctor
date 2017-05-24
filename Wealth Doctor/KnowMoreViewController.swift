@@ -8,13 +8,42 @@
 
 import UIKit
 
-class KnowMoreViewController: UIViewController {
+class KnowMoreViewController: UIViewController,UIWebViewDelegate {
 var urlstring = ""
     
     
     @IBOutlet var terms1: UIWebView!
+    var myActivityIndicator: UIActivityIndicatorView!
+    var colorObject = ColorFile()
+    func webViewDidStartLoad(_ webView: UIWebView)
+    {
+        
+        myActivityIndicator.startAnimating()
+        
+        
+        
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView)
+    {
+        myActivityIndicator.stopAnimating()
+        
+        
+        
+        
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+        //  myActivityIndicator.center = webView.center
+        
+        myActivityIndicator.frame = CGRect(x: Double(self.view.frame.width/2)-Double(myActivityIndicator.frame.width/2), y: Double(self.view.frame.height/2)-Double(myActivityIndicator.frame.height/2)-44, width: Double(myActivityIndicator.frame.width), height: Double(myActivityIndicator.frame.height))
+        myActivityIndicator.startAnimating()
+        myActivityIndicator.color = colorObject.getPrimaryColor()
+        terms1.addSubview(myActivityIndicator)
+          navigationController?.hidesBarsOnSwipe = false
         print(urlstring)
         let networkStatus = Reeachability().connectionStatus()
         switch networkStatus {

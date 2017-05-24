@@ -162,7 +162,7 @@ loadProfile()
             displaymyalertmessage(usermessage: "no internet connection")
             print("no internet connection")
         default :
-            actstart()
+          //  actstart()
             let scriptUrl = "http://www.indianmoney.com/wealthDoctor/myprofile.php"
             
             let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
@@ -180,7 +180,7 @@ loadProfile()
                 data, response, error in
                 if let responseString = String(data: data!, encoding: .utf8){
                     // print("responseString = \(responseString)")
-                    self.actstop()
+                 //   self.actstop()
                     if error != nil
                     {
                         print("error=\(error)")
@@ -230,67 +230,71 @@ loadProfile()
                                     
                                     
                                     
-                                    
+                                    DispatchQueue.main.async {
+                                        
+                                        self.titleTxt.text = self.qanswer[0]
+                                        self.NameTxt.text = self.qanswer[1]
+                                        
+                                        if self.qanswer[2] == "0"{
+                                            
+                                            self.EmailTxt.attributedPlaceholder = NSAttributedString(string: self.question[2], attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                                        }
+                                        else{
+                                            self.EmailTxt.text = self.qanswer[2]
+                                        }
+                                        if self.qanswer[3] == "0"{
+                                            
+                                            self.dobTxt.attributedPlaceholder = NSAttributedString(string: self.question[3], attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                                        }
+                                        else{
+                                            self.dobTxt.text = self.qanswer[3]
+                                        }
+                                        if self.qanswer[4] == "0"{
+                                            
+                                            self.addressTxt.attributedPlaceholder = NSAttributedString(string: self.question[4], attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                                        }
+                                        else{
+                                            self.addressTxt.text = self.qanswer[4]
+                                        }
+                                        if self.qanswer[5] == "0"{
+                                            
+                                            self.occupationTxt.attributedPlaceholder = NSAttributedString(string: self.question[5], attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                                        }
+                                        else{
+                                            self.occupationTxt.text = self.qanswer[5]
+                                        }
+                                        if self.qanswer[6] == "0,"{
+                                            
+                                            self.languagesTxt.attributedPlaceholder = NSAttributedString(string: self.question[6], attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                                        }
+                                        else{
+                                            self.languagesTxt.text = self.qanswer[6]
+                                        }
+                                        if self.qanswer[7] == "0"{
+                                            
+                                            self.maritalStatusTxt.attributedPlaceholder = NSAttributedString(string: self.question[7], attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                                        }
+                                        else{
+                                            self.maritalStatusTxt.text = self.qanswer[7]
+                                            
+                                        }
+                                        
+                                        //  self.performSegue(withIdentifier: "mobiletootp", sender: self)
+                                    }
 //                                    
                                   //  print(nestedDictionary)
                                 }
                                 
-                                 self.actstop()
+                                // self.actstop()
                                 
-                                
-                                
-                                
-                                DispatchQueue.main.async {
-                                   
-                                    self.titleTxt.text = self.qanswer[0]
-                                    self.NameTxt.text = self.qanswer[1]
-                                    
-                                    if self.qanswer[2] == "0"{
-                                    
-                                    self.EmailTxt.attributedPlaceholder = NSAttributedString(string: self.question[2], attributes: [NSForegroundColorAttributeName:UIColor.orange])
+                                else{
+                                    DispatchQueue.main.async {
+                                           self.displaymyalertmessage(usermessage: "please logout from other devices")
                                     }
-                                    else{
-                                    self.EmailTxt.text = self.qanswer[2]
-                                    }
-                                    if self.qanswer[3] == "0"{
-                                        
-                                        self.dobTxt.attributedPlaceholder = NSAttributedString(string: self.question[3], attributes: [NSForegroundColorAttributeName:UIColor.orange])
-                                    }
-                                    else{
-                                    self.dobTxt.text = self.qanswer[3]
-                                    }
-                                    if self.qanswer[4] == "0"{
-                                        
-                                        self.addressTxt.attributedPlaceholder = NSAttributedString(string: self.question[4], attributes: [NSForegroundColorAttributeName:UIColor.orange])
-                                    }
-                                    else{
-                                    self.addressTxt.text = self.qanswer[4]
-                                    }
-                                    if self.qanswer[5] == "0"{
-                                        
-                                        self.occupationTxt.attributedPlaceholder = NSAttributedString(string: self.question[5], attributes: [NSForegroundColorAttributeName:UIColor.orange])
-                                    }
-                                    else{
-                                    self.occupationTxt.text = self.qanswer[5]
-                                    }
-                                    if self.qanswer[6] == "0,"{
-                                        
-                                        self.languagesTxt.attributedPlaceholder = NSAttributedString(string: self.question[6], attributes: [NSForegroundColorAttributeName:UIColor.orange])
-                                    }
-                                    else{
-                                    self.languagesTxt.text = self.qanswer[6]
-                                    }
-                                    if self.qanswer[7] == "0"{
-                                        
-                                        self.maritalStatusTxt.attributedPlaceholder = NSAttributedString(string: self.question[7], attributes: [NSForegroundColorAttributeName:UIColor.orange])
-                                    }
-                                    else{
-                                    self.maritalStatusTxt.text = self.qanswer[7]
-                                    
-                                    }
-                                    
-                                  //  self.performSegue(withIdentifier: "mobiletootp", sender: self)
                                 }
+                                
+                                
+                               
                                 
                             }
                         } catch let error as NSError {
