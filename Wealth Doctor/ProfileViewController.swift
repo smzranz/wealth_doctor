@@ -8,7 +8,15 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UITextFieldDelegate {
+class ProfileViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource{
+    
+    var changedMr = ""
+    var changedjob = ""
+    var changedlanguage = ""
+    var changedstatus = ""
+    
+    var selectedIndex : Int = 0
+    var pickerTableView = UITableView()
     @IBOutlet var eventStartText: UITextField!
     let sam = UIButton()
     let datePicker = UIDatePicker()
@@ -49,11 +57,29 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var maritalStatusTxt: UITextField!
     
     
-    
-    
+    var mr = [String]()
+    var job = [String]()
+var language = [String]()
+    var status = [String]()
+    var mr1 = [String]()
+    var job1 = [String]()
+    var language1 = [String]()
+    var status1 = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        pickerTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+      
+        pickerTableView.delegate = self
+        pickerTableView.dataSource = self
+        
+       pickerTableView.bounces = false
+        pickerTableView.layer.cornerRadius = 5
+        pickerTableView.layer.borderColor = UIColor.darkGray.cgColor
+        pickerTableView.layer.borderWidth = 1
         self.navigationItem.title = "Profile"
         
         let btn1 = UIButton(type: .custom)
@@ -77,21 +103,7 @@ loadProfile()
       
         
         datePicker.datePickerMode = .date
-      //  datePicker.backgroundColor
-//        sam.frame = CGRect(x: 30, y: 30, width: 50, height: 50)
-//        sam.backgroundColor = UIColor.red
-//        view.addSubview(sam)
-//        sam.addTarget(self, action: #selector(samClick(sender:)), for: .touchUpInside)
-//        eventStartText.delegate = self
-//        var components = DateComponents()
-//        components.year = -18
-//        let minDate = Calendar.current.date(byAdding: components, to: Date())
-//        
-//        components.year = -100
-//        let maxDate = Calendar.current.date(byAdding: components, to: Date())
-//        print(minDate ?? 000)
-//        print(maxDate ?? 000)
-        // Do any additional setup after loading the view.
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -99,14 +111,53 @@ loadProfile()
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: TextField Delegate
-//    func datePickerChanged(sender: UIDatePicker) {
-//        let formatter = DateFormatter()
-//        formatter.dateStyle = .short
-//        eventStartText.text = formatter.string(from: sender.date)
-//        
-//        print("Try this at home")
-//    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return mr.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+       cell.textLabel?.text = mr[indexPath.row]
+        return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if selectedIndex == 1{
+        
+        changedMr = mr1[indexPath.row]
+            titleTxt.text = mr[indexPath.row]
+        }
+        else if selectedIndex == 2{
+            changedjob = mr1[indexPath.row]
+            occupationTxt.text = mr[indexPath.row]
+        
+        }
+        else if selectedIndex == 3{
+            changedlanguage = mr1[indexPath.row]
+            languagesTxt.text = mr[indexPath.row]
+            
+        }else{
+            changedstatus = mr1[indexPath.row]
+            
+            maritalStatusTxt.text = mr[indexPath.row]
+        }
+        
+    
+            
+            
+                pickerTableView.removeFromSuperview()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 40
+    }
+    
     func samClick(sender: UIButton) {
     
         if eventStartText.inputView == datePicker{
@@ -279,6 +330,36 @@ loadProfile()
                                             
                                         }
                                         
+                                        
+//                                        let mrSeperated = self.q_choices[0].components(separatedBy: ",")
+//                                        for i in 0...mrSeperated.count-1{
+//                                        let names = mrSeperated[i].components(separatedBy: "_")
+//                                            self.mr1.append(names[0])
+//                                            self.mr.append(names[1])
+//                                        
+//                                        }
+//                                        let mrSeperated2 = self.q_choices[5].components(separatedBy: ",")
+//                                        for i in 0...mrSeperated2.count-1{
+//                                            let names = mrSeperated[i].components(separatedBy: "_")
+//                                            self.job1.append(names[0])
+//                                            self.job.append(names[1])
+//                                            
+//                                        }
+//                                        let mrSeperated3 = self.q_choices[6].components(separatedBy: ",")
+//                                        for i in 0...mrSeperated3.count-1{
+//                                            let names = mrSeperated[i].components(separatedBy: "_")
+//                                            self.language1.append(names[0])
+//                                            self.language.append(names[1])
+//                                            
+//                                        }
+//                                        let mrSeperated4 = self.q_choices[7].components(separatedBy: ",")
+//                                        for i in 0...mrSeperated4.count-1{
+//                                            let names = mrSeperated[i].components(separatedBy: "_")
+//                                            self.status1.append(names[0])
+//                                            self.status.append(names[1])
+//                                            
+//                                        }
+                                        
                                         //  self.performSegue(withIdentifier: "mobiletootp", sender: self)
                                     }
 //                                    
@@ -359,4 +440,74 @@ loadProfile()
         UIApplication.shared.endIgnoringInteractionEvents()
     }
     
+    
+    @IBAction func btn1(_ sender: Any) {
+        selectedIndex = 1
+        mr = [String]()
+        mr1 = [String]()
+        let mrSeperated = self.q_choices[0].components(separatedBy: ",")
+        for i in 0...mrSeperated.count-1{
+            let names = mrSeperated[i].components(separatedBy: "_")
+            self.mr1.append(names[0])
+            self.mr.append(names[1])
+            
+        }
+        pickerTableView.reloadData()
+        pickerTableView.frame = CGRect(x: 142, y: 145, width: Int(self.languagesTxt.frame.width), height: self.mr.count*44)
+       
+         self.view.addSubview(pickerTableView)
+    }
+    
+    
+    @IBAction func btn2(_ sender: Any) {
+        selectedIndex = 2
+        mr = [String]()
+        mr1 = [String]()
+        let mrSeperated = self.q_choices[5].components(separatedBy: ",")
+        for i in 0...mrSeperated.count-1{
+            let names = mrSeperated[i].components(separatedBy: "_")
+            self.mr1.append(names[0])
+            self.mr.append(names[1])
+            
+        }
+        pickerTableView.reloadData()
+        pickerTableView.frame = CGRect(x: 142, y: 409, width: self.languagesTxt.frame.width, height: 200)
+       
+        self.view.addSubview(pickerTableView)
+    }
+    
+    @IBAction func btn3(_ sender: Any) {
+        selectedIndex = 3
+        mr = [String]()
+        mr1 = [String]()
+        let mrSeperated = self.q_choices[6].components(separatedBy: ",")
+        for i in 0...mrSeperated.count-1{
+            let names = mrSeperated[i].components(separatedBy: "_")
+            self.mr1.append(names[0])
+            self.mr.append(names[1])
+            
+        }
+        pickerTableView.reloadData()
+        pickerTableView.frame = CGRect(x: 142, y: 462, width: self.languagesTxt.frame.width, height: 200)
+        
+        self.view.addSubview(pickerTableView)
+    }
+    
+    
+    @IBAction func btn4(_ sender: Any) {
+        selectedIndex = 4
+        mr = [String]()
+        mr1 = [String]()
+        let mrSeperated = self.q_choices[7].components(separatedBy: ",")
+        for i in 0...mrSeperated.count-1{
+            let names = mrSeperated[i].components(separatedBy: "_")
+            self.mr1.append(names[0])
+            self.mr.append(names[1])
+            
+        }
+        pickerTableView.reloadData()
+        pickerTableView.frame = CGRect(x: 142, y: 512, width: Int(self.languagesTxt.frame.width), height: self.mr.count*44)
+      
+        self.view.addSubview(pickerTableView)
+    }
 }

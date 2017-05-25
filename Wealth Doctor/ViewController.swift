@@ -735,6 +735,9 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     func refresh(){
     DataBaseManager.shared.ExecuteCommand(query: "DELETE FROM NewsArticle;")
+        let defaults = UserDefaults.standard
+        defaults.set(0, forKey: "row")
+        defaults.set(0, forKey: "section")
     articleLoad(arttime: "NEW", tag_id: "")
         
     }

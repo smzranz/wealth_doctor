@@ -32,7 +32,7 @@ let pickerTableView = UITableView()
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         stateLoad()
+      //   stateLoad()
          pickerTableView.isHidden = false
         stateLoad()
         pickerTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
