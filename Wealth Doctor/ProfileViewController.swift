@@ -19,11 +19,11 @@ class ProfileViewController: UIViewController, UITextFieldDelegate,UITableViewDe
     var pickerTableView = UITableView()
     @IBOutlet var eventStartText: UITextField!
     let sam = UIButton()
-    let datePicker = UIDatePicker()
+   
     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
   let deviceID = UIDevice.current.identifierForVendor!.uuidString
      let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
-    
+    let datePicker = UIDatePicker()
     var otp_req = [String]()
     var q_choices = [String]()
     var q_hint = [String]()
@@ -68,7 +68,20 @@ var language = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var components = DateComponents()
+        components.year = -100
+        let minDate = Calendar.current.date(byAdding: components, to: Date())
         
+        components.year = -18
+        let maxDate = Calendar.current.date(byAdding: components, to: Date())
+        
+        datePicker.minimumDate = minDate
+        datePicker.maximumDate = maxDate
+        
+        datePicker.datePickerMode = .date
+        
+        self.dobTxt.inputView = self.datePicker
+        self.datePicker.addTarget(self, action: #selector(datePickerChanged(sender:)), for: .valueChanged)
         
         
         pickerTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -157,20 +170,20 @@ loadProfile()
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 40
     }
-    
-    func samClick(sender: UIButton) {
-    
-        if eventStartText.inputView == datePicker{
-        eventStartText.inputView = nil
-        eventStartText.keyboardType = .numberPad
-        }
-        else{
-        
-        eventStartText.inputView = datePicker
-        }
-    
-    
-    }
+//    
+//    func samClick(sender: UIButton) {
+//    
+//        if eventStartText.inputView == datePicker{
+//        eventStartText.inputView = nil
+//        eventStartText.keyboardType = .numberPad
+//        }
+//        else{
+//        
+//        eventStartText.inputView = datePicker
+//        }
+//    
+//    
+//    }
 //
 //    func textFieldDidBeginEditing(_ textField: UITextField) {
 //        let datePicker = UIDatePicker()
@@ -509,5 +522,15 @@ loadProfile()
         pickerTableView.frame = CGRect(x: 142, y: 512, width: Int(self.languagesTxt.frame.width), height: self.mr.count*44)
       
         self.view.addSubview(pickerTableView)
+    }
+    
+    func datePickerChanged(sender: UIDatePicker) {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        // let dateFormatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        dobTxt.text = formatter.string(from: sender.date)
+        
+        print("Try this at home")
     }
 }

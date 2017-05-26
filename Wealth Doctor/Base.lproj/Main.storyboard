@@ -924,7 +924,7 @@
                                     <constraint firstAttribute="height" constant="93" id="e9O-cE-mh8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yUp-qd-Lk9">
@@ -934,7 +934,7 @@
                                     <constraint firstAttribute="width" constant="128" id="duZ-6e-UGM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="office_logo" translatesAutoresizingMaskIntoConstraints="NO" id="xRe-k6-ZzL">
@@ -950,7 +950,7 @@
                                     <constraint firstAttribute="height" constant="29" id="cNZ-ak-lEf"/>
                                     <constraint firstAttribute="width" constant="184" id="crg-Vl-gv6"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="19"/>
+                                <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.49803921569999998" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -975,7 +975,7 @@
                                     <constraint firstAttribute="height" constant="21" id="n65-ho-zgL"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>

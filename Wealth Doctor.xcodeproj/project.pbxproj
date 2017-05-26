@@ -10,6 +10,7 @@
 		1FFBC521FB3A055F495DFB84 /* Pods_Wealth_DoctorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B86C813944F50BEA67481DB /* Pods_Wealth_DoctorTests.framework */; };
 		30064E8D4C369FE81ADC42C8 /* Pods_Wealth_Doctor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A094B41A84D60E9309E5C7F /* Pods_Wealth_Doctor.framework */; };
 		3FD906FC5B2FCFBE3E99E3E5 /* Pods_Wealth_DoctorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50EE19117689EA6F46B58056 /* Pods_Wealth_DoctorUITests.framework */; };
+		512749591ED8483D00892333 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 512749581ED8483D00892333 /* GoogleService-Info.plist */; };
 		515C61F91EC9A7B800C97F70 /* TipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515C61F81EC9A7B800C97F70 /* TipsViewController.swift */; };
 		516377FB1EB05298003EB293 /* DotsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516377FA1EB05298003EB293 /* DotsLoader.swift */; };
 		516F768B1EAF10A900D34C43 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516F768A1EAF10A900D34C43 /* ProfileViewController.swift */; };
@@ -109,6 +110,7 @@
 		30B660CED809624C70EEE511 /* Pods-Wealth DoctorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wealth DoctorTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wealth DoctorTests/Pods-Wealth DoctorTests.release.xcconfig"; sourceTree = "<group>"; };
 		436B177EE1A863DA4A87D67C /* Pods-Wealth DoctorUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wealth DoctorUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wealth DoctorUITests/Pods-Wealth DoctorUITests.release.xcconfig"; sourceTree = "<group>"; };
 		50EE19117689EA6F46B58056 /* Pods_Wealth_DoctorUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wealth_DoctorUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		512749581ED8483D00892333 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		515C61F81EC9A7B800C97F70 /* TipsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsViewController.swift; sourceTree = "<group>"; };
 		516377FA1EB05298003EB293 /* DotsLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotsLoader.swift; sourceTree = "<group>"; };
 		516F768A1EAF10A900D34C43 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				C36EB61E1EC0B45200FA1F72 /* Wealth Doctor.entitlements */,
+				512749581ED8483D00892333 /* GoogleService-Info.plist */,
 				518FF8731EAE32C600DF7849 /* wd_logo_1024X1024.png */,
 				C397A8461E62CE4A00BA7724 /* AppDelegate.swift */,
 				C37D74A11E7E629200996448 /* Article */,
@@ -602,8 +605,11 @@
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -653,6 +659,7 @@
 				C397A84C1E62CE4A00BA7724 /* Main.storyboard in Resources */,
 				C3CCA6401E64845C0019A63E /* ic_launcher.png in Resources */,
 				C3CCA6421E6484660019A63E /* office_logo.png in Resources */,
+				512749591ED8483D00892333 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1033,6 +1040,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Wealth Doctor/Wealth Doctor.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 2HYG9JX3WQ;
 				INFOPLIST_FILE = "Wealth Doctor/Info.plist";
@@ -1054,6 +1062,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Wealth Doctor/Wealth Doctor.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 2HYG9JX3WQ;
 				INFOPLIST_FILE = "Wealth Doctor/Info.plist";
