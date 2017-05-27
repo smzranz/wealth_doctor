@@ -8,6 +8,7 @@
 
 import UIKit
 import Flurry_iOS_SDK
+import UserNotifications
 
 class ViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     var loadFavorited : Bool = false
@@ -65,8 +66,9 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge], completionHandler: { didAllow,error in
+        })
+        localNotification()
         let parameters = ["mobile number":mobileNumber as! String]
         Flurry.logEvent("Started to Read Articles", withParameters: parameters,timed:true);
         dateComponentsFormatter.allowedUnits = [.year,.month,.weekOfYear,.day,.hour,.minute,.second]
@@ -951,7 +953,81 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
             return nil
         }
     
+    func localNotification(){
+        let url = URL(string: "http://www.indianmoney.com/wealthDoctor/flatfiles/resendNews.json")
+        URLSession.shared.dataTask(with: url!, completionHandler: {
+            (data, response, error) in
+            if(error != nil){
+                print("error")
+            }else{
+                do{
+                    let json = try JSONSerialization.jsonObject(with: data!, options:.allowFragments) as! [String : AnyObject]
+                    if let nestedString = json["article_details"] as? [String:Any]{
+                        
+                        
+                        if let newsArray = nestedString["news"] as? NSArray {
+                            
+                            let news = newsArray[0] as! [String:Any]
+                            
+                            
+                            let a_title = news["a_title"] as! String
+                            let a_content = news["a_content"] as! String
+                            
+                            let a_image = news["a_image"] as! String
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            OperationQueue.main.addOperation({
+                                
+                                let content = UNMutableNotificationContent()
+                                content.title = a_title
+                                content.body = a_content
+                                // content.launchImageName = "image.jpg"
+                                content.badge = 1
+                                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                                let imageView1 = UIImageView()
+                                
+                                imageView1.sd_setImage(with: URL(string: a_image), placeholderImage: #imageLiteral(resourceName: "place_holder"), options: SDWebImageOptions.progressiveDownload, completed: block)
+                                
+                                if let image = imageView1.image {
+                                    if let data = UIImagePNGRepresentation(image) {
+                                        let filename = getDocumentsDirectory().appendingPathComponent("copy.png")
+                                        try? data.write(to: filename)
+                                    }
+                                }
+                                let sam = "\(self.getDocumentsDirectory())/copy.png"
+                                let fileURL : URL = URL(string: sam)!
+                                
+                                let attachement = try? UNNotificationAttachment(identifier: "attachment", url: fileURL, options: nil)
+                                content.attachments = [attachement!]
+                                let request = UNNotificationRequest(identifier: "timerDone", content: content, trigger: trigger)
+                                
+                                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                                
+                                
+                                
+                            })
+                        }
+                    }
+                    
+                }catch let error as NSError{
+                    print(error)
+                }
+            }
+        }).resume()
     
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
  
 }
 extension UIView{
