@@ -273,6 +273,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
         
         if type == "2" && indexPath.row == serverChatText.count - 1{
             totalWidth = 0.0
+            if squareData.count > 0{
             for i in 0...squareData.count-1{
                 
                 let size = (squareData[i] as NSString).size(attributes: nil)
@@ -282,7 +283,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                 
             }
             
-                
+            }
             
             cell.tagCollectionView.isHidden = false
             cell.collectionViewHeight.constant = 30+(totalWidth/(view.frame.width))*35
@@ -524,6 +525,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
        let type1 = UserDefaults.standard.value(forKey: "type") as! String
         if type1 == "2" && indexPath.row == serverChatText.count-1{
             totalWidth = 0.0
+            if squareData.count > 0{
             for i in 0...squareData.count-1{
                 
                 let size = (squareData[i] as NSString).size(attributes: nil)
@@ -534,6 +536,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
             }
             
         return (heightOfRow + 85+(totalWidth/(view.frame.width))*35)
+            }
         
         }
         else if indexPath.row != serverChatText.count-1{

@@ -13,7 +13,7 @@ import UserNotifications
 class ViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     var loadFavorited : Bool = false
      var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
-    
+    var newNewsClicked : Bool = false
     
     @IBOutlet weak var bottomWishLabel: UILabel!
     @IBOutlet weak var mesageLabel: UILabel!
@@ -62,13 +62,14 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     var tagIsClicked:Bool = false
     var gotoTopActive : Bool = false
     var gamer : Timer!
+    let application = UIApplication.shared
     @IBOutlet var newsArticleTableView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        application.applicationIconBadgeNumber = 0
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge], completionHandler: { didAllow,error in
         })
-        localNotification()
+        
         let parameters = ["mobile number":mobileNumber as! String]
         Flurry.logEvent("Started to Read Articles", withParameters: parameters,timed:true);
         dateComponentsFormatter.allowedUnits = [.year,.month,.weekOfYear,.day,.hour,.minute,.second]
@@ -112,20 +113,32 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
             self.newNewsBtn.isHidden = true
             UserDefaults.standard.set(Date(), forKey: "date")
         }else{
-            
+           
             let yourDate = UserDefaults.standard.object(forKey: "date") as? Date
             let day = Calendar.current.component(.day, from: yourDate!)
             
             let today = Calendar.current.component(.day, from: Date())
+            
+            if Calendar.current.component(.hour, from: yourDate!) != Calendar.current.component(.hour, from: Date()){
+                localNotification()
+                UserDefaults.standard.set(Date(), forKey: "date")
+                
+            }
+            else{}
             if day != today{
                 greetings(mobile: mobileNumber as! String, last_id: id[id.count-1], first_id: id[0], daily_report: "1")
                 
                 UserDefaults.standard.set(Date(), forKey: "date")
             }
             else{
-                //  greetings(mobile: mobileNumber as! String, last_id: "12", first_id: "0", daily_report: "1")
+               
+                if UserDefaults.standard.object(forKey: "newNewsClicked") as? Bool ==  true{
+                self.newNewsBtn.isHidden = true                }else{
+                
+                self.newNewsBtn.isHidden = false
+                }
                 self.morngBgView.isHidden = true
-                self.newNewsBtn.isHidden = true
+               
             }
             
         }
@@ -759,6 +772,8 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     }
     
     @IBAction func newNewsClick(_ sender: Any) {
+        newNewsClicked =  true
+        UserDefaults.standard.set(newNewsClicked, forKey: "newNewsClicked")
          refresh()
         newNewsBtn.isHidden = true
     }
@@ -884,10 +899,10 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                                     self.wishLabel.attributedText =  self.stringFromHtml(string: greetings)
                                     self.greetingImageView.sd_setImage(with: URL(string: imgurl), placeholderImage: UIImage(named: "placeHolder"))
                                     
-                                    self.newNewsBtn.setTitle("\(count) new news", for: .normal)
+                                    self.newNewsBtn.setTitle("+\(count) news", for: .normal)
                                     self.bottomWishLabel.text = wish
                                     self.mesageLabel.attributedText = self.stringFromHtml(string: Message)
-                                    
+                                    UserDefaults.standard.set(false, forKey: "newNewsClicked")
                                      self.morngBgView.isHidden = false
                                     self.newNewsBtn.isHidden = false
                                     //  self.performSegue(withIdentifier: "mobiletootp", sender: self)
@@ -987,24 +1002,26 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                                 let content = UNMutableNotificationContent()
                                 content.title = a_title
                                 content.body = a_content
+                                let application = UIApplication.shared
+                                application.applicationIconBadgeNumber = 1
                                 // content.launchImageName = "image.jpg"
-                                content.badge = 1
+                                content.badge = application.applicationIconBadgeNumber as NSNumber
                                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-                                let imageView1 = UIImageView()
-                                
-                                imageView1.sd_setImage(with: URL(string: a_image), placeholderImage: #imageLiteral(resourceName: "place_holder"), options: SDWebImageOptions.progressiveDownload, completed: block)
-                                
-                                if let image = imageView1.image {
-                                    if let data = UIImagePNGRepresentation(image) {
-                                        let filename = getDocumentsDirectory().appendingPathComponent("copy.png")
-                                        try? data.write(to: filename)
-                                    }
-                                }
-                                let sam = "\(self.getDocumentsDirectory())/copy.png"
-                                let fileURL : URL = URL(string: sam)!
-                                
-                                let attachement = try? UNNotificationAttachment(identifier: "attachment", url: fileURL, options: nil)
-                                content.attachments = [attachement!]
+//                                let imageView1 = UIImageView()
+//                                
+//                                imageView1.sd_setImage(with: URL(string: a_image), placeholderImage: UIImage(named: "placeHolder"))
+//                                
+//                                if let image = imageView1.image {
+//                                    if let data = UIImagePNGRepresentation(image) {
+//                                        let filename = self.getDocumentsDirectory().appendingPathComponent("copy.png")
+//                                        try? data.write(to: filename)
+//                                    }
+//                                }
+//                                let sam = "\(self.getDocumentsDirectory())/copy.png"
+//                                let fileURL : URL = URL(string: sam)!
+//                                
+//                                let attachement = try? UNNotificationAttachment(identifier: "attachment", url: fileURL, options: nil)
+//                                content.attachments = [attachement!]
                                 let request = UNNotificationRequest(identifier: "timerDone", content: content, trigger: trigger)
                                 
                                 UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
