@@ -126,7 +126,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
             }
             else{}
             if day != today{
-                greetings(mobile: mobileNumber as! String, last_id: id[id.count-1], first_id: id[0], daily_report: "1")
+                greetings(mobile: mobileNumber as! String, last_id: id[id.count-1], first_id: id[0], daily_report: "1", getNewPosts: false)
                 
                 UserDefaults.standard.set(Date(), forKey: "date")
             }
@@ -829,7 +829,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         
     }
     
-    func greetings(mobile:String,last_id:String,first_id:String,daily_report:String){
+    func greetings(mobile:String,last_id:String,first_id:String,daily_report:String,getNewPosts:Bool){
         
         let networkStatus = Reeachability().connectionStatus()
         switch networkStatus {
@@ -903,8 +903,13 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                                     self.bottomWishLabel.text = wish
                                     self.mesageLabel.attributedText = self.stringFromHtml(string: Message)
                                     UserDefaults.standard.set(false, forKey: "newNewsClicked")
+                                    if getNewPosts == true{
+                                        self.morngBgView.isHidden = true
+                                        self.newNewsBtn.isHidden = false
+                                    }else{
                                      self.morngBgView.isHidden = false
                                     self.newNewsBtn.isHidden = false
+                                    }
                                     //  self.performSegue(withIdentifier: "mobiletootp", sender: self)
                                 }
                                 

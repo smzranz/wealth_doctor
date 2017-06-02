@@ -11,7 +11,8 @@ import UIKit
 class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSource ,UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UICollectionViewDelegateFlowLayout,UIGestureRecognizerDelegate{
     var multiSelectionIsEnable :Bool = false
     
-    
+    var noSecondData :Bool = false
+
     @IBOutlet weak var doneBtnOutlet: UIButton!
     
     @IBOutlet weak var multiSelectTableview: UITableView!
@@ -723,7 +724,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                                 let type = convertedJsonIntoArray["type"] as! String
                                 let ans_id = convertedJsonIntoArray["ans_id"] as! String
                                 let product_id = convertedJsonIntoArray["product_id"] as! String
-                                let disable = convertedJsonIntoArray["desable"] as! String
+                                let disable = Int(convertedJsonIntoArray["desable"] as! String)
                                 let url = convertedJsonIntoArray["url"] as! String
                                 UserDefaults.standard.setValue(disable, forKey: "disable")
                                 UserDefaults.standard.setValue(ans_id, forKey: "ans_id")
@@ -737,7 +738,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                                 
                                 let firstName : String  = fullNameArr.removeLast()
                                 self.secondPart = firstName
-                                
+                                UserDefaults.standard.set(firstName, forKey: "contents")
                                 DataBaseManager.shared.ExecuteCommand(query: "insert into tags (advice, advice_id) values ( '\(self.secondPart!)', '\(0)');")
                                 for i in 0..<fullNameArr.count {
                                     let dataFromServer = fullNameArr[i] as String
@@ -802,15 +803,17 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
             
         
         }
-//        if disable[disable.count-1] == "0"{
-//            textFieldBgView.isHidden = true
-//            chatTxt.isHidden = true
-//        }
-//        else{
-//        
-//        textFieldBgView.isHidden = false
-//            chatTxt.isHidden = false
-//        }
+        if disable[disable.count-1] == "1"{
+            textFieldBgView.isHidden = true
+            chatTxt.isHidden = true
+        }
+        else{
+        
+        textFieldBgView.isHidden = false
+            chatTxt.isHidden = false
+            self.chatTxt.inputView = nil
+            self.chatTxt.keyboardType = .default
+        }
    //     chatTableView.reloadData()
         userdata.close()
         if  UserDefaults.standard.value(forKey: "type") == nil{
@@ -820,7 +823,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
         if type1 == "2" {
             UserDefaults.standard.setValue(nil, forKey: "questionId")
             UserDefaults.standard.synchronize()
-            textFieldBgView.isHidden = true
+           // textFieldBgView.isHidden = true
             squareData = [String]()
           //
                 let userdata = DataBaseManager.shared.fetchData(Query: "select * from tags ORDER BY slno DESC LIMIT 1;")
@@ -828,8 +831,8 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                 while userdata.next() {
                     let x = userdata.string(forColumn: "advice")
                     i = x!
-                    
-                    let curly = self.matches(for: "\\[.+?\\]", in: self.i)
+                  let value = UserDefaults.standard.string(forKey: "contents")
+                    let curly = self.matches(for: "\\[.+?\\]", in: value!)
                     if curly.count > 0{
                         for i in 0...curly.count-1{
                             if let sam1 = curly[i] as? String {
@@ -844,7 +847,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                         }
                     }
                     //  let y = userdata.string(forColumn: "advice_id")
-                    let square = self.matches(for: "\\{.+?\\}", in: self.i)
+                    let square = self.matches(for: "\\{.+?\\}", in: value!)
                     if square.count > 0{
                         for i in 0...square.count-1{
                             if let sam = square[i] as? String {
@@ -859,13 +862,14 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                     }
                     if adviceOn != ""{
                     if self.type == "2" {
-                        textFieldBgView.isHidden = true
+                       // textFieldBgView.isHidden = true
                         //  print(adviceOn)
                         serverChatText = [String]()
                         chat_id = [String]()
                         chatTime = [String]()
                         color_id = [String]()
                         DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, serverChat,ans_id,url,product_id,disable,chat_id,time,color) values ( '\(type1)', '\(adviceOn)', '\(0)','\(0)','\(0)', '\(0)',\(1),DATETIME('now'),0);")
+                        adviceOn = ""
                         let userdata = DataBaseManager.shared.fetchData(Query: "select * from CHAT ;")
                         while userdata.next() {
                             let x = userdata.string(forColumn: "serverChat")
@@ -887,8 +891,8 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                     }
                 }
                  userdata.close()
-                textFieldBgView.isHidden = true
-            chatTxt.isHidden = true
+              //  textFieldBgView.isHidden = true
+        //    chatTxt.isHidden = true
                 
            // }
         }
@@ -916,6 +920,10 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                         self.textFieldBgView.isHidden = false
                         
                         self.chatTxt.isHidden = false
+                        
+                        if x!.contains("YES") {
+                        
+                        
                             let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
                             for i in 0..<q_choicesSeperated.count {
                                 let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
@@ -928,7 +936,22 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                                     
                                 }
                             }
-                            
+                            }
+                        else{
+                            let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
+                            for i in 0..<q_choicesSeperated.count {
+                                let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
+                                if q_choiceDisplay.count == 2{
+                                    let choiceItemServer: String = q_choiceDisplay[0]
+                                    let choiceDisplayItem : String = q_choiceDisplay[1]
+                                    
+                                    self.pickerDisplayArray.append(choiceDisplayItem.replacingOccurrences(of: "~", with: ","))
+                                    self.serverGeneratedArray.append(choiceDisplayItem.replacingOccurrences(of: "~", with: ","))
+                                    
+                                }
+                            }
+
+                        }
                             UserDefaults.standard.setValue(self.pickerDisplayArray, forKeyPath: "pickerArray")
                             UserDefaults.standard.synchronize()
                             self.chatTxt.attributedPlaceholder = NSAttributedString(string: "tap to input", attributes: [NSForegroundColorAttributeName:UIColor.orange])
@@ -1244,8 +1267,14 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
             
         }
         else{
+            if noSecondData == true{
             
-            if pickerDisplayArray.count > 0{
+                let ans_Id = UserDefaults.standard.value(forKey: "ans_id")
+                let product_id = UserDefaults.standard.value(forKey: "product_id")
+                dataToServer(chatTxt1: chatTxt.text!, ans_id: ans_Id as! String, product_id: product_id as! String,colorEnable:true)
+            
+            }
+           else if pickerDisplayArray.count > 0{
                 let itemIndex = pickerDisplayArray.index(of: "\(chatTxt.text!)")
                 
                 let selecteditem = serverGeneratedArray[itemIndex!]
@@ -1357,20 +1386,20 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                         
                         if let convertedJsonIntoArray = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]    {
                                print(convertedJsonIntoArray)
-                            let disable = UserDefaults.standard.value(forKey: "disable") as! String
-                            DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, chat_id,ans_id,url,product_id,disable,serverChat,time,color) values ( 0, 1, '\(disable)',0,0,0,'\(chatQuestion)',DATETIME('now'),'\(color)');")
+                            let disable22 = UserDefaults.standard.integer(forKey: "disable")
+                            DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type, chat_id,ans_id,url,product_id,disable,serverChat,time,color) values ( 0, 1, '\(disable22)',0,0,0,'\(chatQuestion)',DATETIME('now'),'\(color)');")
                             
                             color = "0"
                             let nestedString = convertedJsonIntoArray["text"] as! String
                             if let type = convertedJsonIntoArray["type"] as? String {
-                                let ans_id = convertedJsonIntoArray["ans_id"] as! String
+                                let ans_id = convertedJsonIntoArray["ans_id"] 
                                 let product_id = convertedJsonIntoArray["product_id"] as! String
-                                let disable = convertedJsonIntoArray["desable"] as! String
+                                let disable = convertedJsonIntoArray["desable"]
                                 let url = convertedJsonIntoArray["url"] as! String
-                                UserDefaults.standard.setValue(disable, forKey: "disable")
+                                UserDefaults.standard.set(disable, forKey: "disable")
                                 UserDefaults.standard.setValue(ans_id, forKey: "ans_id")
                                 UserDefaults.standard.setValue(product_id, forKey: "product_id")
-                                self.ansId = ans_id
+                                self.ansId = ans_id as! String
                                 self.productId = product_id
                                 if type == "4" {
                                     if let questionsArray = convertedJsonIntoArray["questions"] as? NSArray{
@@ -1392,11 +1421,18 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                                 self.type = type
                                 var fullNameArr : [String] = nestedString.components(separatedBy: ". ")
                                 if type == "2" {
-                                    
-                                    let firstName : String  = fullNameArr.removeLast()
+                                    var firstName = ""
+                                    if fullNameArr.count>1{
+                                        self.noSecondData = false
+                                     firstName  = fullNameArr.removeLast()
+                                    }else{
+                                        self.noSecondData = true
+                                    firstName = fullNameArr[0]
+                                    }
+                                     // firstName  = fullNameArr.removeLast()
                                     self.secondPart = firstName
-                                    
-                                    DataBaseManager.shared.ExecuteCommand(query: "insert into tags (advice, advice_id) values ('\(self.secondPart!)','\(0)');")
+                                UserDefaults.standard.set(firstName, forKey: "contents")
+                                    DataBaseManager.shared.ExecuteCommand(query: "insert into tags (advice, advice_id) values ('\(firstName)','\(0)');")
                                     for i in 0..<fullNameArr.count {
                                         let dataFromServer = fullNameArr[i] as String
                                         
