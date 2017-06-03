@@ -13,6 +13,7 @@ import UserNotifications
 class ViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     var loadFavorited : Bool = false
      var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+    
     var newNewsClicked : Bool = false
     
     @IBOutlet weak var bottomWishLabel: UILabel!

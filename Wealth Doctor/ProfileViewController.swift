@@ -58,6 +58,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate,UITableViewDe
     @IBOutlet var maritalStatusTxt: UITextField!
     
     
+    
     var mr = [String]()
     var job = [String]()
 var language = [String]()
