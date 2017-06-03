@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1FFBC521FB3A055F495DFB84 /* Pods_Wealth_DoctorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B86C813944F50BEA67481DB /* Pods_Wealth_DoctorTests.framework */; };
-		30064E8D4C369FE81ADC42C8 /* Pods_Wealth_Doctor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A094B41A84D60E9309E5C7F /* Pods_Wealth_Doctor.framework */; };
 		3FD906FC5B2FCFBE3E99E3E5 /* Pods_Wealth_DoctorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50EE19117689EA6F46B58056 /* Pods_Wealth_DoctorUITests.framework */; };
 		512749591ED8483D00892333 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 512749581ED8483D00892333 /* GoogleService-Info.plist */; };
 		515C61F91EC9A7B800C97F70 /* TipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515C61F81EC9A7B800C97F70 /* TipsViewController.swift */; };
@@ -17,6 +16,7 @@
 		516F768B1EAF10A900D34C43 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516F768A1EAF10A900D34C43 /* ProfileViewController.swift */; };
 		518FF8741EAE32C600DF7849 /* wd_logo_1024X1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 518FF8731EAE32C600DF7849 /* wd_logo_1024X1024.png */; };
 		51F694081EBC83C2009BFB01 /* ColorFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F694071EBC83C2009BFB01 /* ColorFile.swift */; };
+		8D0AABB79BBF0B0D6C0F6EBA /* Pods_Wealth_Doctor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A094B41A84D60E9309E5C7F /* Pods_Wealth_Doctor.framework */; };
 		C30DB1701E76ECB000980DCD /* TagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30DB16F1E76ECB000980DCD /* TagsCollectionViewCell.swift */; };
 		C310788C1E882ACC00598790 /* StateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C310788B1E882ACC00598790 /* StateViewController.swift */; };
 		C31C996B1EAE4D3200E4040D /* NameEnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31C996A1EAE4D3200E4040D /* NameEnterViewController.swift */; };
@@ -233,7 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3A90B2E1E6A964900703389 /* libsqlite3.tbd in Frameworks */,
-				30064E8D4C369FE81ADC42C8 /* Pods_Wealth_Doctor.framework in Frameworks */,
+				8D0AABB79BBF0B0D6C0F6EBA /* Pods_Wealth_Doctor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,7 +695,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		0CD42C9AC5025F3DDC7745AE /* [CP] Check Pods Manifest.lock */ = {
@@ -710,7 +710,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		1C6F242CB384C3923893C97F /* [CP] Check Pods Manifest.lock */ = {
@@ -725,7 +725,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		1FDF3058DE9775ECB02A02AA /* [CP] Embed Pods Frameworks */ = {

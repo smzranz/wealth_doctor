@@ -907,8 +907,9 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                 while userdata.next() {
                     let x = userdata.string(forColumn: "q_choice")
                     let y = userdata.string(forColumn: "q_type")
-                    let qtype = y!
-                    
+                   // let qtype = y!
+                    let q_choice = UserDefaults.standard.string(forKey: "q_choice")
+                    let qtype = UserDefaults.standard.string(forKey: "q_type")
                     if qtype == "1"{
                     
                     self.textFieldBgView.isHidden = false
@@ -921,7 +922,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                         
                         self.chatTxt.isHidden = false
                         
-                        if x!.contains("YES") {
+                        if q_choice!.contains("YES") {
                         
                         
                             let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
@@ -938,7 +939,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                             }
                             }
                         else{
-                            let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
+                            let q_choicesSeperated : [String] = q_choice!.components(separatedBy: ",")
                             for i in 0..<q_choicesSeperated.count {
                                 let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
                                 if q_choiceDisplay.count == 2{
@@ -946,7 +947,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                                     let choiceDisplayItem : String = q_choiceDisplay[1]
                                     
                                     self.pickerDisplayArray.append(choiceDisplayItem.replacingOccurrences(of: "~", with: ","))
-                                    self.serverGeneratedArray.append(choiceDisplayItem.replacingOccurrences(of: "~", with: ","))
+                                    self.serverGeneratedArray.append(choiceItemServer.replacingOccurrences(of: "~", with: ","))
                                     
                                 }
                             }
@@ -970,7 +971,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                     else if qtype == "4"{
                         self.textFieldBgView.isHidden = false
                         self.chatTxt.isHidden = false
-                        let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
+                        let q_choicesSeperated : [String] = q_choice!.components(separatedBy: ",")
                         for i in 0..<q_choicesSeperated.count {
                             let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
                             if q_choiceDisplay.count == 2{
@@ -1000,7 +1001,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                     else if qtype == "6"{
                         self.textFieldBgView.isHidden = false
                         self.chatTxt.isHidden = false
-                        let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
+                        let q_choicesSeperated : [String] = q_choice!.components(separatedBy: ",")
                         for i in 0..<q_choicesSeperated.count {
                             let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
                             if q_choiceDisplay.count == 2{
@@ -1022,7 +1023,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                         
                         self.textFieldBgView.isHidden = false
                         self.chatTxt.isHidden = false
-                        let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
+                        let q_choicesSeperated : [String] = q_choice!.components(separatedBy: ",")
                         for i in 0..<q_choicesSeperated.count {
                             let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
                             if q_choiceDisplay.count == 2{
@@ -1049,7 +1050,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                     else if qtype == "8"{
                         self.textFieldBgView.isHidden = false
                         self.chatTxt.isHidden = false
-                        let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
+                        let q_choicesSeperated : [String] = q_choice!.components(separatedBy: ",")
                         for i in 0..<q_choicesSeperated.count {
                             let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
                             if q_choiceDisplay.count == 2{
@@ -1078,7 +1079,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                     else if qtype == "9"{
                         self.textFieldBgView.isHidden = false
                         self.chatTxt.isHidden = false
-                        let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
+                        let q_choicesSeperated : [String] = q_choice!.components(separatedBy: ",")
                         for i in 0..<q_choicesSeperated.count {
                             let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
                             if q_choiceDisplay.count == 2{
@@ -1105,7 +1106,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                     
                             self.textFieldBgView.isHidden = false
                             self.chatTxt.isHidden = false
-                            let q_choicesSeperated : [String] = x!.components(separatedBy: ",")
+                            let q_choicesSeperated : [String] = q_choice!.components(separatedBy: ",")
                             for i in 0..<q_choicesSeperated.count {
                                 let q_choiceDisplay  = q_choicesSeperated[i].components(separatedBy: "_")
                                 if q_choiceDisplay.count == 2{
@@ -1334,7 +1335,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
             
             let task = URLSession.shared.dataTask(with: request) {
                 data, response, error in
-                if let responseString = String(data: data!, encoding: .utf8){
+               
                 // print("responseString = \(responseString)")
                 //self.actstop()
                 if error != nil
@@ -1347,6 +1348,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                     }
                     return
                 }
+                 if let responseString = String(data: data!, encoding: .utf8){
                 if responseString == "null\n"{
                     
                 }
@@ -1408,7 +1410,8 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                                             let q_type = questionArrayDict["q_type"] as! String
                                             let q_id = questionArrayDict["q_id"] as! String
                                             let question = questionArrayDict["question"] as! String
-                                            
+                                            UserDefaults.standard.set(q_choice, forKey: "q_choice")
+                                            UserDefaults.standard.set(q_type, forKey: "q_type")
                                             DataBaseManager.shared.ExecuteCommand(query: "insert into questions (q_choice, q_choice_id,q_type,q_id,question) values ( '\(q_choice)', '\(0)', '\(q_type)', '\(q_id)','\(question)');")
                                             
                                             

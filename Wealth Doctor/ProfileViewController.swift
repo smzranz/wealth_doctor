@@ -43,6 +43,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate,UITableViewDe
     
     
     
+    @IBOutlet var saveBtnOutlet: UIButton!
     
     
     
@@ -68,6 +69,9 @@ var language = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        saveBtnOutlet.layer.cornerRadius = 6
+        saveBtnOutlet.layer.masksToBounds = true
+        
         var components = DateComponents()
         components.year = -100
         let minDate = Calendar.current.date(byAdding: components, to: Date())

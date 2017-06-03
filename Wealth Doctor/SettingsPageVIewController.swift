@@ -94,7 +94,8 @@ var tittleLabel = [String]()
             if #available(iOS 10.3, *) {
                 
                 // Present rating alert
-                SKStoreReviewController.requestReview()
+                
+              //  SKStoreReviewController.requestReview()
                 
             } else {
                 
@@ -138,7 +139,7 @@ var tittleLabel = [String]()
     }
     func shareApp(){
         
-        let message = "About App"
+        let message = "Start your Journey to Become RICH in 30 days with Babylonian SECRET.Download Wealth Doctor Now,"
         //Set the link to share.
         if let link = NSURL(string: "http://yoururl.com")
         {

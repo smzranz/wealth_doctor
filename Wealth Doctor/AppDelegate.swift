@@ -14,7 +14,14 @@ import FirebaseMessaging
 import Firebase
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate,FIRMessagingDelegate{
+class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate{
+    /// This method will be called whenever FCM receives a new, default FCM token for your
+    /// Firebase project's Sender ID.
+    /// You can send this token to your application server to send notifications to this device.
+    public func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        
+    }
+
 
     var window: UIWindow?
 
@@ -31,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
                 options: authOptions,
                 completionHandler: {_, _ in })
             // For iOS 10 data message (sent via FCM
-            FIRMessaging.messaging().remoteMessageDelegate = self
+           // Messaging.messaging().remoteMessageDelegate = self
         } else {
             let settings: UIUserNotificationSettings =
                 UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
@@ -40,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         
         application.registerForRemoteNotifications()
         
-        FIRApp.configure()
+        FirebaseApp.configure()
         
 
         
@@ -175,11 +182,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         // Convert token to string
         
-        if let refreshedToken = FIRInstanceID.instanceID().token() {
+        if let refreshedToken = InstanceID.instanceID().token() {
             print("InstanceID token: \(refreshedToken)")
         }
         
-        FIRInstanceID.instanceID().setAPNSToken(deviceToken, type:.sandbox)
+        InstanceID.instanceID().setAPNSToken(deviceToken, type:.sandbox)
         
         
         let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
@@ -240,13 +247,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     }
     
     /// The callback to handle data message received via FCM for devices running iOS 10 or above.
-    func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
+    func application(received remoteMessage: MessagingRemoteMessage) {
         
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         // Let FCM know about the message for analytics etc.
-        FIRMessaging.messaging().appDidReceiveMessage(userInfo)
+        Messaging.messaging().appDidReceiveMessage(userInfo)
         // handle your message
     }
     

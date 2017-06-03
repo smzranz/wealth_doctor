@@ -83,7 +83,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         favoritedToolTip.layer.cornerRadius = 8
         favoritedToolTip.layer.masksToBounds = true
       //  newNewsBtn.isHidden = true
-      //  gamer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
+        gamer = Timer.scheduledTimer(timeInterval: 60*5, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
         newNewsBtn.layer.cornerRadius = newNewsBtn.frame.height/2
         refresher  = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to Refresh")
@@ -778,7 +778,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         newNewsBtn.isHidden = true
     }
     func runTimedCode() {
-        newNewsBtn.isHidden = true
+        greetings(mobile: mobileNumber as! String, last_id: id[id.count-1], first_id: id[0], daily_report: "1", getNewPosts: true)
         
         
     }
@@ -853,8 +853,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
             
             let task = URLSession.shared.dataTask(with: request) {
                 data, response, error in
-                if let responseString = String(data: data!, encoding: .utf8){
-                    // print("responseString = \(responseString)")
+                                   // print("responseString = \(responseString)")
                    
                     if error != nil
                     {
@@ -864,6 +863,8 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                         }
                         return
                     }
+                if let responseString = String(data: data!, encoding: .utf8){
+
                     if responseString == "null\n"{
                         
                     }
