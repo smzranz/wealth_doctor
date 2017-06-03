@@ -46,7 +46,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="dBl-q9-d2f" customClass="NewsArticlesCollectionViewCell" customModule="Wealth_Doctor" customModuleProvider="target">
-                                        <rect key="frame" x="10.666666666666666" y="0.0" width="393" height="663"/>
+                                        <rect key="frame" x="11" y="0.0" width="393" height="663"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="663"/>
@@ -139,7 +139,7 @@
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <state key="normal" title="Button">
-                                                        <color key="titleColor" patternImage="C60BB963-C7F5-4F89-A79E-BE8D52453510" colorSpace="pattern"/>
+                                                        <color key="titleColor" patternImage="73F950A5-18A5-4F02-96E0-2A3FBC756CB6" colorSpace="pattern"/>
                                                     </state>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zEs-3R-cJn">
@@ -1402,7 +1402,7 @@
                                         <rect key="frame" x="0.0" y="28" width="314" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vnc-Hf-7dK" id="Ame-IG-zVf">
-                                            <rect key="frame" x="0.0" y="0.0" width="314" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="314" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -2629,7 +2629,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="C60BB963-C7F5-4F89-A79E-BE8D52453510" width="640" height="920">
+        <image name="73F950A5-18A5-4F02-96E0-2A3FBC756CB6" width="640" height="920">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

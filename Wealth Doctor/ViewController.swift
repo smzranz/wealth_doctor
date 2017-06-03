@@ -14,6 +14,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     var loadFavorited : Bool = false
      var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
+    
     var newNewsClicked : Bool = false
     
     @IBOutlet weak var bottomWishLabel: UILabel!
