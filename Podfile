@@ -6,7 +6,7 @@ target 'Wealth Doctor' do
   use_frameworks!
 
 pod 'Flurry-iOS-SDK/FlurrySDK'
-pod 'Firebase/Core'
+pod 'FirebaseCore', '~> 4.0'
 pod 'Firebase/Messaging'
   # Pods for Wealth Doctor
 

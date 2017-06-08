@@ -15,6 +15,11 @@
 		516377FB1EB05298003EB293 /* DotsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516377FA1EB05298003EB293 /* DotsLoader.swift */; };
 		516F768B1EAF10A900D34C43 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516F768A1EAF10A900D34C43 /* ProfileViewController.swift */; };
 		518FF8741EAE32C600DF7849 /* wd_logo_1024X1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 518FF8731EAE32C600DF7849 /* wd_logo_1024X1024.png */; };
+		51C21D601EE95563003BB882 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C21D5A1EE95563003BB882 /* Extensions.swift */; };
+		51C21D611EE95563003BB882 /* KSGuideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C21D5B1EE95563003BB882 /* KSGuideController.swift */; };
+		51C21D621EE95563003BB882 /* KSGuideDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C21D5C1EE95563003BB882 /* KSGuideDataManager.swift */; };
+		51C21D631EE95563003BB882 /* KSGuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C21D5D1EE95563003BB882 /* KSGuideItem.swift */; };
+		51C21D641EE95563003BB882 /* guide_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51C21D5F1EE95563003BB882 /* guide_arrow@3x.png */; };
 		51F694081EBC83C2009BFB01 /* ColorFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F694071EBC83C2009BFB01 /* ColorFile.swift */; };
 		8D0AABB79BBF0B0D6C0F6EBA /* Pods_Wealth_Doctor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A094B41A84D60E9309E5C7F /* Pods_Wealth_Doctor.framework */; };
 		C30DB1701E76ECB000980DCD /* TagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30DB16F1E76ECB000980DCD /* TagsCollectionViewCell.swift */; };
@@ -117,6 +122,11 @@
 		516377FA1EB05298003EB293 /* DotsLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotsLoader.swift; sourceTree = "<group>"; };
 		516F768A1EAF10A900D34C43 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		518FF8731EAE32C600DF7849 /* wd_logo_1024X1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wd_logo_1024X1024.png; sourceTree = "<group>"; };
+		51C21D5A1EE95563003BB882 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		51C21D5B1EE95563003BB882 /* KSGuideController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSGuideController.swift; sourceTree = "<group>"; };
+		51C21D5C1EE95563003BB882 /* KSGuideDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSGuideDataManager.swift; sourceTree = "<group>"; };
+		51C21D5D1EE95563003BB882 /* KSGuideItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSGuideItem.swift; sourceTree = "<group>"; };
+		51C21D5F1EE95563003BB882 /* guide_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide_arrow@3x.png"; sourceTree = "<group>"; };
 		51F03C7C1ECB13FA00187DC4 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		51F03C7D1ECB141500187DC4 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		51F694071EBC83C2009BFB01 /* ColorFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorFile.swift; sourceTree = "<group>"; };
@@ -269,6 +279,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		51C21D591EE95563003BB882 /* KSGuideController */ = {
+			isa = PBXGroup;
+			children = (
+				51C21D5A1EE95563003BB882 /* Extensions.swift */,
+				51C21D5B1EE95563003BB882 /* KSGuideController.swift */,
+				51C21D5C1EE95563003BB882 /* KSGuideDataManager.swift */,
+				51C21D5D1EE95563003BB882 /* KSGuideItem.swift */,
+				51C21D5E1EE95563003BB882 /* Resources */,
+			);
+			path = KSGuideController;
+			sourceTree = "<group>";
+		};
+		51C21D5E1EE95563003BB882 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				51C21D5F1EE95563003BB882 /* guide_arrow@3x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		C37253A31E73EF3F00ED2A43 /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,6 +421,7 @@
 				512749581ED8483D00892333 /* GoogleService-Info.plist */,
 				518FF8731EAE32C600DF7849 /* wd_logo_1024X1024.png */,
 				C397A8461E62CE4A00BA7724 /* AppDelegate.swift */,
+				51C21D591EE95563003BB882 /* KSGuideController */,
 				C37D74A11E7E629200996448 /* Article */,
 				C37D74A01E7E626A00996448 /* ViewControllers */,
 				C37D74A21E7E62AC00996448 /* Cells */,
@@ -662,6 +693,7 @@
 				C397A84C1E62CE4A00BA7724 /* Main.storyboard in Resources */,
 				C3CCA6401E64845C0019A63E /* ic_launcher.png in Resources */,
 				C3CCA6421E6484660019A63E /* office_logo.png in Resources */,
+				51C21D641EE95563003BB882 /* guide_arrow@3x.png in Resources */,
 				512749591ED8483D00892333 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -695,7 +727,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		0CD42C9AC5025F3DDC7745AE /* [CP] Check Pods Manifest.lock */ = {
@@ -710,7 +742,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		1C6F242CB384C3923893C97F /* [CP] Check Pods Manifest.lock */ = {
@@ -725,7 +757,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		1FDF3058DE9775ECB02A02AA /* [CP] Embed Pods Frameworks */ = {
@@ -839,6 +871,7 @@
 				C3A90B2B1E6A950600703389 /* DataBaseManager.swift in Sources */,
 				C397A8471E62CE4A00BA7724 /* AppDelegate.swift in Sources */,
 				516F768B1EAF10A900D34C43 /* ProfileViewController.swift in Sources */,
+				51C21D611EE95563003BB882 /* KSGuideController.swift in Sources */,
 				C3A90B251E6A94AC00703389 /* FMDatabaseQueue.m in Sources */,
 				C3BB32661E6F1E4F00DD3D44 /* IQKeyboardManagerConstantsInternal.swift in Sources */,
 				C37253C41E73EF3F00ED2A43 /* SDWebImageDecoder.m in Sources */,
@@ -863,6 +896,7 @@
 				C3BB32711E6F2EED00DD3D44 /* LabelPadding.swift in Sources */,
 				C37253D01E747E0100ED2A43 /* KnowMoreViewController.swift in Sources */,
 				C30DB1701E76ECB000980DCD /* TagsCollectionViewCell.swift in Sources */,
+				51C21D601EE95563003BB882 /* Extensions.swift in Sources */,
 				C31C996B1EAE4D3200E4040D /* NameEnterViewController.swift in Sources */,
 				C37253C51E73EF3F00ED2A43 /* SDWebImageDownloader.m in Sources */,
 				C37253C11E73EF3F00ED2A43 /* NSData+ImageContentType.m in Sources */,
@@ -870,6 +904,7 @@
 				51F694081EBC83C2009BFB01 /* ColorFile.swift in Sources */,
 				C3BB32681E6F1E4F00DD3D44 /* IQKeyboardReturnKeyHandler.swift in Sources */,
 				C397A84F1E62CE4A00BA7724 /* Wealth_Doctor.xcdatamodeld in Sources */,
+				51C21D631EE95563003BB882 /* KSGuideItem.swift in Sources */,
 				C393024E1EAA1FBE002D324B /* Terms&ConditionsViewController.swift in Sources */,
 				C3BB32631E6F1E4F00DD3D44 /* IQUIViewController+Additions.swift in Sources */,
 				C31C996D1EAE7DBB00E4040D /* WelcomePageViewController.swift in Sources */,
@@ -880,6 +915,7 @@
 				C37253C31E73EF3F00ED2A43 /* SDWebImageCompat.m in Sources */,
 				C3A90B341E6C294300703389 /* ChatTableViewCell.swift in Sources */,
 				C37D749D1E7E620700996448 /* MenuCollectionViewCell.swift in Sources */,
+				51C21D621EE95563003BB882 /* KSGuideDataManager.swift in Sources */,
 				C3EBD1D61E65FB0300E22661 /* SettingsPageVIewController.swift in Sources */,
 				C3A90B171E6A81D800703389 /* VerifyOTPViewController.swift in Sources */,
 				C3BB326B1E6F1E4F00DD3D44 /* IQPreviousNextView.swift in Sources */,

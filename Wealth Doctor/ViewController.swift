@@ -68,6 +68,9 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     @IBOutlet var newsArticleTableView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        newsArticleTableView.delegate = self
+        newsArticleTableView.dataSource = self
+
         application.applicationIconBadgeNumber = 0
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge], completionHandler: { didAllow,error in
         })
@@ -170,24 +173,31 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         }
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        navigationController?.hidesBarsOnSwipe = true
+        
+        
+            }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         
         
         Flurry.endTimedEvent("Started to Read Articles", withParameters: nil)
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        navigationController?.hidesBarsOnSwipe = true
-//            UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-//            // Sets shadow (line below the bar) to a blank image
-//            UINavigationBar.appearance().shadowImage = UIImage()
-//            // Sets the translucent background color
-//            UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25)
-//            // Set translucent. (Default value is already true, so this can be removed if desired.)
-//            UINavigationBar.appearance().isTranslucent = true
-        
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(true)
+//        
+////            UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+////            // Sets shadow (line below the bar) to a blank image
+////            UINavigationBar.appearance().shadowImage = UIImage()
+////            // Sets the translucent background color
+////            UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25)
+////            // Set translucent. (Default value is already true, so this can be removed if desired.)
+////            UINavigationBar.appearance().isTranslucent = true
+//        
+//    }
     
     override func viewDidLayoutSubviews() {
         if scrollToUnreadNews == true{
@@ -200,8 +210,21 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         super.didReceiveMemoryWarning()
     
     }
-    
-    
+//    
+//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//       
+//                if UserDefaults.standard.object(forKey:"tutorialView") != nil{
+//                                // showGuides()
+//                            }else{
+//                    
+//                                self.showGuides()
+//                                UserDefaults.standard.set("tutorialView", forKey: "tutorialView")
+//                                
+//                            }
+//            
+//        
+//    
+//    }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -210,6 +233,38 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! NewsArticlesCollectionViewCell
+        
+        if indexPath.row == 0{
+            if UserDefaults.standard.object(forKey:"tutorialView") != nil{
+                // showGuides()
+            }else{
+                
+                KSGuideDataManager.reset(for: "MainGuide")
+                
+                var items = [KSGuideItem]()
+                items.append(KSGuideItem(sourceView: cell.favoriteBtn, text: "Click to favorite the Article"))
+                
+                items.append(KSGuideItem(sourceView: cell.shareBtn, text: "Share the Article"))
+                items.append(KSGuideItem(sourceView: cell.tagBtn, text: "Ask us About Tag"))
+                items.append(KSGuideItem(sourceView: cell.knowMorebtn, text: "Click to Know more about the Article"))
+                items.append(KSGuideItem(sourceView:cell.askBtn , text: "Chat with our Siri"))
+                items.append(KSGuideItem(sourceView: cell.likeBtn, text: "Like the Article"))
+                let vc = KSGuideController(items: items, key: "MainGuide")
+                vc.setIndexChangeBlock { (index, item) in
+                    print("Index has change to \(index)")
+                }
+                vc.show(from: self) {
+                    print("Guide controller has been dismissed")
+                }
+
+                UserDefaults.standard.set("tutorialView", forKey: "tutorialView")
+                
+            }
+
+        
+        
+        }
+        
         
         cell.askBtn.setImage(#imageLiteral(resourceName: "hs_ask"), for: .normal)
         if row < indexPath.row{
@@ -428,8 +483,11 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                         
                         DispatchQueue.main.async {
                            self.loadData()
+                            
                            UserDefaults.standard.setValue("first", forKey: "first")
                             self.refresher.endRefreshing()
+                         
+
                         }
                     }
                     
@@ -505,8 +563,8 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
          self.newsArticleTableView.reloadData()
        // print(date)
             userdata.close()
-        }
-      
+               }
+    
 
     func pressed(sender: UIButton!) {
         
@@ -1056,6 +1114,43 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         let documentsDirectory = paths[0]
         return documentsDirectory
     }
+    
+    
+    func showGuides() {
+        // Reset to show everytime.
+        KSGuideDataManager.reset(for: "MainGuide")
+        
+        var items = [KSGuideItem]()
+//        for button in buttons {
+//            //            let n = Int(arc4random()) % string.characters.count
+//            //            let index = string.index(string.startIndex, offsetBy: Int(n))
+//            let text = string[buttons.index(of: button)!]
+//            let item = KSGuideItem(sourceView: button, text: text)
+//            items.append(item)
+//        }
+        let indexPath = IndexPath(row: 0, section: 0)
+        
+        let cell = newsArticleTableView.cellForItem(at: indexPath) as! NewsArticlesCollectionViewCell
+        
+        
+        
+        items.append(KSGuideItem(sourceView: cell.favoriteBtn, text: "Click to favorite the Article"))
+        
+        items.append(KSGuideItem(sourceView: cell.shareBtn, text: "Share the Article"))
+        items.append(KSGuideItem(sourceView: cell.tagBtn, text: "Ask us About Tag"))
+        items.append(KSGuideItem(sourceView: cell.knowMorebtn, text: "Click to Know more about the Article"))
+        items.append(KSGuideItem(sourceView:cell.askBtn , text: "Chat with our Siri"))
+        items.append(KSGuideItem(sourceView: cell.likeBtn, text: "Like the Article"))
+        let vc = KSGuideController(items: items, key: "MainGuide")
+        vc.setIndexChangeBlock { (index, item) in
+            print("Index has change to \(index)")
+        }
+        vc.show(from: self) {
+            print("Guide controller has been dismissed")
+        }
+    }
+
+    
  
 }
 extension UIView{

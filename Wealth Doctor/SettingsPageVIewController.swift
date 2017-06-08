@@ -95,7 +95,7 @@ var tittleLabel = [String]()
                 
                 // Present rating alert
                 
-              //  SKStoreReviewController.requestReview()
+                SKStoreReviewController.requestReview()
                 
             } else {
                 
