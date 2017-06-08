@@ -121,9 +121,9 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
             
           
             if isTagPressed == true{
-                let ans_Id = UserDefaults.standard.value(forKey: "ans_id") as! String
+                let ans_Id = UserDefaults.standard.value(forKey: "ans_id")
                 let product_id = UserDefaults.standard.value(forKey: "product_id") as! String
-                dataToServer(chatTxt1: selectedTagFromNews, ans_id: ans_Id, product_id: product_id,colorEnable:true)
+                dataToServer(chatTxt1: selectedTagFromNews, ans_id: "\(ans_Id)", product_id: product_id,colorEnable:true)
                 
             }
               lodingasending()
@@ -1403,7 +1403,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                                 UserDefaults.standard.set(disable, forKey: "disable")
                                 UserDefaults.standard.setValue(ans_id, forKey: "ans_id")
                                 UserDefaults.standard.setValue(product_id, forKey: "product_id")
-                                self.ansId = ans_id as! String
+                              //  self.ansId = ans_id as! String
                                 self.productId = product_id
                                 if type == "4" {
                                     if let questionsArray = convertedJsonIntoArray["questions"] as? NSArray{

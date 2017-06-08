@@ -135,9 +135,12 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
             else{
                
                 if UserDefaults.standard.object(forKey: "newNewsClicked") as? Bool ==  true{
-                self.newNewsBtn.isHidden = true                }else{
+                self.newNewsBtn.isHidden = true
+                }else if UserDefaults.standard.object(forKey: "newNewsClicked") as? Bool ==  true{
                 
                 self.newNewsBtn.isHidden = false
+                }else{
+                self.newNewsBtn.isHidden = true
                 }
                 self.morngBgView.isHidden = true
                
