@@ -175,7 +175,7 @@ let pickerTableView = UITableView()
             default :
                 
              //   self.performSegue(withIdentifier: "stateToNews", sender: self)
-                let scriptUrl = "http://www.indianmoney.com/wealthDoctor/ios/updatepro.php"
+                let scriptUrl = "https://www.indianmoney.com/wealthDoctor/ios/updatepro.php"
                 
                 let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
                 

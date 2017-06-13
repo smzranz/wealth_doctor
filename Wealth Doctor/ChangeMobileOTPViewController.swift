@@ -50,7 +50,7 @@ class ChangeMobileOTPViewController: UIViewController {
             print("no internet connection")
         default :
             actstart()
-            let scriptUrl = "http://www.indianmoney.com/wealthDoctor/mobile_swap.php"
+            let scriptUrl = "https://www.indianmoney.com/wealthDoctor/mobile_swap.php"
             
             let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
             

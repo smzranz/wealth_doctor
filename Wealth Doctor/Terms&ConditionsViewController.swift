@@ -24,7 +24,7 @@ class Terms_ConditionsViewController: UIViewController {
             displaymyalertmessage(usermessage: "no internet connection")
             print("no internet connection")
         default :
-            let webUrl = URLRequest(url: URL(string: "http://www.indianmoney.com/wealthDoctor/terms_n_cond.php")!)
+            let webUrl = URLRequest(url: URL(string: "https://www.indianmoney.com/wealthDoctor/terms_n_cond.php")!)
             self.terms2.loadRequest(webUrl)
             
             

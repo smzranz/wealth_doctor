@@ -676,7 +676,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
             print("no internet connection")
         default :
             self.loaderView.isHidden = false
-            let scriptUrl = "http://www.indianmoney.com/wealthDoctor/chatserver.php"
+            let scriptUrl = "https://www.indianmoney.com/wealthDoctor/chatserver.php"
             
             let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
             
@@ -724,7 +724,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                                 
                                 let nestedString = convertedJsonIntoArray["text"] as! String
                                 let type = convertedJsonIntoArray["type"] as! String
-                                let ans_id = convertedJsonIntoArray["ans_id"] as! String
+                                let ans_id = convertedJsonIntoArray["ans_id"]
                                 let product_id = convertedJsonIntoArray["product_id"] as! String
                                 let disable = Int(convertedJsonIntoArray["desable"] as! String)
                                 let url = convertedJsonIntoArray["url"] as! String
@@ -1322,7 +1322,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
             
             //  self.lodingasending()
             
-            let scriptUrl = "http://www.indianmoney.com/wealthDoctor/chatserver.php"
+            let scriptUrl = "https://www.indianmoney.com/wealthDoctor/chatserver.php"
             
             let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
             

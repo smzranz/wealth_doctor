@@ -232,7 +232,7 @@ loadProfile()
             print("no internet connection")
         default :
           //  actstart()
-            let scriptUrl = "http://www.indianmoney.com/wealthDoctor/myprofile.php"
+            let scriptUrl = "https://www.indianmoney.com/wealthDoctor/myprofile.php"
             
             let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
             

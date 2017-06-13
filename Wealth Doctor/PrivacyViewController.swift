@@ -21,7 +21,7 @@ class PrivacyViewController: UIViewController {
             displaymyalertmessage(usermessage: "no internet connection")
             print("no internet connection")
         default :
-            let webUrl = URLRequest(url: URL(string: "http://www.indianmoney.com/wealthDoctor/privacypolicy.php")!)
+            let webUrl = URLRequest(url: URL(string: "https://www.indianmoney.com/wealthDoctor/privacypolicy.php")!)
             self.terms1.loadRequest(webUrl)
         }
         // Do any additional setup after loading the view.

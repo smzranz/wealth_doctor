@@ -88,7 +88,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         favoritedToolTip.layer.cornerRadius = 8
         favoritedToolTip.layer.masksToBounds = true
       //  newNewsBtn.isHidden = true
-        gamer = Timer.scheduledTimer(timeInterval: 60*5, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
+        gamer = Timer.scheduledTimer(timeInterval: 60*2, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
         newNewsBtn.layer.cornerRadius = newNewsBtn.frame.height/2
         refresher  = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to Refresh")
@@ -391,7 +391,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     func articleLoad(arttime:String,tag_id:String){
     
     
-        let scriptUrl = "http://www.indianmoney.com/wealthDoctor/ios/wd_articles.php"
+        let scriptUrl = "https://www.indianmoney.com/wealthDoctor/ios/wd_articles.php"
         
         let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
         
@@ -623,7 +623,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         
         let textToShare = "Check out my app"
         
-        if let myWebsite = URL(string: "http://itunes.apple.com/app/idXXXXXXXXX") {//Enter link to your app here
+        if let myWebsite = URL(string: "https://itunes.apple.com/app/idXXXXXXXXX") {//Enter link to your app here
           //  let objectsToShare = [image]
             let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
             
@@ -703,7 +703,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         tagId = [String]()
         knowMoreUrl = [String]()
         favorited = [String]()
-        let scriptUrl = "http://www.indianmoney.com/wealthDoctor/ios/wd_articles.php"
+        let scriptUrl = "https://www.indianmoney.com/wealthDoctor/ios/wd_articles.php"
         
         let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
         
@@ -901,7 +901,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
             print("no internet connection")
         default :
           //  actstart()
-            let scriptUrl = "http://www.indianmoney.com/wealthDoctor/ios/newnewscount.php"
+            let scriptUrl = "https://www.indianmoney.com/wealthDoctor/ios/newnewscount.php"
             
             let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
             
@@ -1038,7 +1038,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         }
     
     func localNotification(){
-        let url = URL(string: "http://www.indianmoney.com/wealthDoctor/flatfiles/resendNews.json")
+        let url = URL(string: "https://www.indianmoney.com/wealthDoctor/flatfiles/resendNews.json")
         URLSession.shared.dataTask(with: url!, completionHandler: {
             (data, response, error) in
             if(error != nil){

@@ -58,7 +58,7 @@ var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
                 print("no internet connection")
             default :
                 actstart()
-                let scriptUrl = "http://www.indianmoney.com/wealthDoctor/login.php"
+                let scriptUrl = "https://www.indianmoney.com/wealthDoctor/login.php"
                 
                 let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
                 

@@ -65,7 +65,7 @@ class VerifyOTPViewController: UIViewController, UITextFieldDelegate {
                 print("no internet connection")
             default :
                 actstart()
-                let scriptUrl = "http://www.indianmoney.com/wealthDoctor/ios/verifyLoginOtp.php"
+                let scriptUrl = "https://www.indianmoney.com/wealthDoctor/ios/verifyLoginOtp.php"
                 
                 let urlWithParams = scriptUrl + "?UUID=\(NSUUID().uuidString)"
                 
