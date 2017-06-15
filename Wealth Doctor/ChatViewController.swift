@@ -805,23 +805,26 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
             
         
         }
-        if disable[disable.count-1] == "1"{
-            textFieldBgView.isHidden = true
-            chatTxt.isHidden = true
-        }
-        else{
-        
-        textFieldBgView.isHidden = false
+        let type1 = UserDefaults.standard.value(forKey: "type") as! String
+        if disable[disable.count-1] != "1"{
+            
+            textFieldBgView.isHidden = false
             chatTxt.isHidden = false
             self.chatTxt.inputView = nil
             self.chatTxt.keyboardType = .default
+           
+        }
+        else{
+        
+            textFieldBgView.isHidden = true
+            chatTxt.isHidden = true
         }
    //     chatTableView.reloadData()
         userdata.close()
         if  UserDefaults.standard.value(forKey: "type") == nil{
             return
         }
-        let type1 = UserDefaults.standard.value(forKey: "type") as! String
+        
         if type1 == "2" {
             UserDefaults.standard.setValue(nil, forKey: "questionId")
             UserDefaults.standard.synchronize()
