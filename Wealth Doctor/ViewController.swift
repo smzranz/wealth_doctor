@@ -245,7 +245,11 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                 items.append(KSGuideItem(sourceView: cell.favoriteBtn, text: "Click to favorite the Article"))
                 
                 items.append(KSGuideItem(sourceView: cell.shareBtn, text: "Share the Article"))
+                
+                if tag[0] == "0" {
+                }else{
                 items.append(KSGuideItem(sourceView: cell.tagBtn, text: "Ask us About Tag"))
+                }
                 items.append(KSGuideItem(sourceView: cell.knowMorebtn, text: "Click to Know more about the Article"))
                 items.append(KSGuideItem(sourceView:cell.askBtn , text: "Chat with our Siri"))
                 items.append(KSGuideItem(sourceView: cell.likeBtn, text: "Like the Article"))
@@ -1137,6 +1141,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         items.append(KSGuideItem(sourceView: cell.favoriteBtn, text: "Click to favorite the Article"))
         
         items.append(KSGuideItem(sourceView: cell.shareBtn, text: "Share the Article"))
+       // if
         items.append(KSGuideItem(sourceView: cell.tagBtn, text: "Ask us About Tag"))
         items.append(KSGuideItem(sourceView: cell.knowMorebtn, text: "Click to Know more about the Article"))
         items.append(KSGuideItem(sourceView:cell.askBtn , text: "Chat with our Siri"))
