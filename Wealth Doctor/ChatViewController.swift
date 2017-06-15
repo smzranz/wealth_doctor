@@ -282,7 +282,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                 let size = (squareData[i] as NSString).size(attributes: nil)
                 let width = size.width
                 
-                totalWidth = totalWidth + width
+                totalWidth = totalWidth + width  + 30.0
                 
             }
             
@@ -534,7 +534,7 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                 let size = (squareData[i] as NSString).size(attributes: nil)
                 let width = size.width
                 
-                totalWidth = totalWidth + width
+                totalWidth = totalWidth + width + 15.0
                 
             }
             
@@ -1401,7 +1401,12 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                                 let disable = convertedJsonIntoArray["desable"]
                                 let url = convertedJsonIntoArray["url"] as! String
                                 UserDefaults.standard.set(disable, forKey: "disable")
+                                if ans_id == nil{
+                                UserDefaults.standard.set(0, forKey: "ans_id")
+                                }
+                                else{
                                 UserDefaults.standard.set(ans_id, forKey: "ans_id")
+                                }
                                 UserDefaults.standard.set(product_id, forKey: "product_id")
                               //  self.ansId = ans_id as! String
                                 self.productId = product_id

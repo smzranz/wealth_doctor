@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wealth Doctor/ChatViewController.swift"
-            timestampString = "519236779.479085"
+            timestampString = "519242794.410045"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1441"
-            endingLineNumber = "1441"
+            startingLineNumber = "1446"
+            endingLineNumber = "1446"
             landmarkName = "dataToServer(chatTxt1:ans_id:product_id:colorEnable:)"
             landmarkType = "7">
          </BreakpointContent>

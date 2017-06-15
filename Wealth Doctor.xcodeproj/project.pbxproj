@@ -45,6 +45,7 @@
 		C37253D01E747E0100ED2A43 /* KnowMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37253CF1E747E0100ED2A43 /* KnowMoreViewController.swift */; };
 		C37D749D1E7E620700996448 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37D749C1E7E620600996448 /* MenuCollectionViewCell.swift */; };
 		C37D749F1E7E621F00996448 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37D749E1E7E621F00996448 /* MenuViewController.swift */; };
+		C384F5671EF2FBF800FE1C74 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C384F5661EF2FBF800FE1C74 /* CollectionViewController.swift */; };
 		C393024E1EAA1FBE002D324B /* Terms&ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C393024D1EAA1FBE002D324B /* Terms&ConditionsViewController.swift */; };
 		C39302501EAA20D5002D324B /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C393024F1EAA20D5002D324B /* PrivacyViewController.swift */; };
 		C39302521EAB563A002D324B /* ChangeMobileNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39302511EAB563A002D324B /* ChangeMobileNumberViewController.swift */; };
@@ -173,6 +174,7 @@
 		C37253CF1E747E0100ED2A43 /* KnowMoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnowMoreViewController.swift; sourceTree = "<group>"; };
 		C37D749C1E7E620600996448 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		C37D749E1E7E621F00996448 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		C384F5661EF2FBF800FE1C74 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		C393024D1EAA1FBE002D324B /* Terms&ConditionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Terms&ConditionsViewController.swift"; sourceTree = "<group>"; };
 		C393024F1EAA20D5002D324B /* PrivacyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		C39302511EAB563A002D324B /* ChangeMobileNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeMobileNumberViewController.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				C397A8481E62CE4A00BA7724 /* ViewController.swift */,
+				C384F5661EF2FBF800FE1C74 /* CollectionViewController.swift */,
 				C310788B1E882ACC00598790 /* StateViewController.swift */,
 				516F768A1EAF10A900D34C43 /* ProfileViewController.swift */,
 				C31C996C1EAE7DBB00E4040D /* WelcomePageViewController.swift */,
@@ -887,6 +890,7 @@
 				515C61F91EC9A7B800C97F70 /* TipsViewController.swift in Sources */,
 				C3A90B281E6A94C200703389 /* FMResultSet.m in Sources */,
 				C37253C21E73EF3F00ED2A43 /* SDImageCache.m in Sources */,
+				C384F5671EF2FBF800FE1C74 /* CollectionViewController.swift in Sources */,
 				C3BB32611E6F1E4F00DD3D44 /* IQUITextFieldView+Additions.swift in Sources */,
 				C37253C61E73EF3F00ED2A43 /* SDWebImageDownloaderOperation.m in Sources */,
 				C3BB326C1E6F1E4F00DD3D44 /* IQTitleBarButtonItem.swift in Sources */,
