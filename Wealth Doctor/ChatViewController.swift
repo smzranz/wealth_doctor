@@ -645,9 +645,9 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
         
         selectedTag = cell.tagLabel.text!
         collectionView.isHidden = true
-        let ans_Id = UserDefaults.standard.value(forKey: "ans_id") as! String
+        let ans_Id = UserDefaults.standard.value(forKey: "ans_id")
         let product_id = UserDefaults.standard.value(forKey: "product_id") as! String
-        dataToServer(chatTxt1: squareData[indexPath.row], ans_id: ans_Id, product_id: product_id,colorEnable:true)
+        dataToServer(chatTxt1: squareData[indexPath.row], ans_id: String(describing: ans_Id), product_id: product_id,colorEnable:true)
         
         
     }
@@ -1401,8 +1401,8 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                                 let disable = convertedJsonIntoArray["desable"]
                                 let url = convertedJsonIntoArray["url"] as! String
                                 UserDefaults.standard.set(disable, forKey: "disable")
-                                UserDefaults.standard.setValue(ans_id, forKey: "ans_id")
-                                UserDefaults.standard.setValue(product_id, forKey: "product_id")
+                                UserDefaults.standard.set(ans_id, forKey: "ans_id")
+                                UserDefaults.standard.set(product_id, forKey: "product_id")
                               //  self.ansId = ans_id as! String
                                 self.productId = product_id
                                 if type == "4" {
@@ -1439,7 +1439,19 @@ let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
                                 UserDefaults.standard.set(firstName, forKey: "contents")
                                     DataBaseManager.shared.ExecuteCommand(query: "insert into tags (advice, advice_id) values ('\(firstName)','\(0)');")
                                     for i in 0..<fullNameArr.count {
-                                        let dataFromServer = fullNameArr[i] as String
+                                        var dataFromServer = ""
+                                        if fullNameArr.count == 1{
+                                            var sam = fullNameArr[i]
+                                        let curly = self.matches(for: "\\[.+?\\]", in: nestedString)
+                                            for i in 0...curly.count-1{
+                                            sam = sam.replacingOccurrences(of: curly[i], with: "")
+                                            dataFromServer = sam
+                                            }
+                                        }
+                                        else{
+                                        dataFromServer = fullNameArr[i] as String
+                                        }
+                                        
                                         
                                         DataBaseManager.shared.ExecuteCommand(query: "insert into CHAT (type,serverChat,ans_id,url,product_id,disable,chat_id,time,color) values ('\(type)','\(dataFromServer)', '\(ans_id)','\(url)','\(product_id)', '\(disable)','\(0)',DATETIME('now'),'\(color)');")
                                         
