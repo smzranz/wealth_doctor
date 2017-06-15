@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Wealth Doctor.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>C397A8421E62CE4A00BA7724</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C397A8591E62CE4A00BA7724</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C397A8641E62CE4A00BA7724</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
