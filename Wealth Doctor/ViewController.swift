@@ -324,15 +324,15 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
          cell.likeBtn.tag = indexPath.row
         
         
-//        if tittle[indexPath.row] == "share"{
-//        
-//        cell.imageViewheignt.constant = self.view.frame.height-80
-//       
-//        }
-//        else{
-//        
-//        cell.imageViewheignt.constant = self.view.frame.height-self.view.frame.height/2
-//        }
+        if tittle[indexPath.row] == "share"{
+            
+            cell.newsImage.frame.size = CGSize(width: self.view.frame.width, height: self.view.frame.height-80)
+            
+        }
+        else{
+            
+            cell.newsImage.frame.size = CGSize(width: self.view.frame.width, height: self.view.frame.height/2)
+        }    
         cell.favoriteBtn.setTitle(tittle[indexPath.row], for: .normal)
           cell.favoriteBtn.setTitle(tittle[indexPath.row], for: .selected)
         cell.favoriteBtn.setTitleColor(UIColor.black, for: .normal)
