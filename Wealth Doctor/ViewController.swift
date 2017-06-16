@@ -35,6 +35,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     
     
+    
      let name = UserDefaults.standard.value(forKey: "Name")
     let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
     var lastIndexPath: Int = 0
