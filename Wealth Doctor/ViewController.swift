@@ -34,6 +34,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     @IBOutlet var refreshBtnOulet: UIBarButtonItem!
     
     
+    
      let name = UserDefaults.standard.value(forKey: "Name")
     let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
     var lastIndexPath: Int = 0
