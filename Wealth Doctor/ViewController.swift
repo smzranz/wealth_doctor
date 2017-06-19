@@ -10,10 +10,10 @@ import UIKit
 import Flurry_iOS_SDK
 import UserNotifications
 
-class ViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+class ViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIScrollViewDelegate {
     var loadFavorited : Bool = false
      var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
-    
+    var currentIndex : Int! = 0
     
     var newNewsClicked : Bool = false
     
@@ -321,17 +321,19 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         cell.likeBtn.layer.borderWidth = 1
         cell.likeBtn.layer.masksToBounds = true
          cell.likeBtn.tag = indexPath.row
-        
-        
         if tittle[indexPath.row] == "share"{
             
-            cell.newsImage.frame.size = CGSize(width: self.view.frame.width, height: self.view.frame.height-80)
+            cell.imageViewheignt.constant = self.view.frame.height
             
         }
         else{
             
-            cell.newsImage.frame.size = CGSize(width: self.view.frame.width, height: self.view.frame.height/2)
-        }    
+            cell.imageViewheignt.constant = self.view.frame.height/2
+            
+        }
+        
+
+        
         cell.favoriteBtn.setTitle(tittle[indexPath.row], for: .normal)
           cell.favoriteBtn.setTitle(tittle[indexPath.row], for: .selected)
         cell.favoriteBtn.setTitleColor(UIColor.black, for: .normal)
@@ -385,6 +387,33 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! NewsArticlesCollectionViewCell
+                if tittle[indexPath.row] == "share"{
+        
+                    cell.newsImage.frame.size = CGSize(width: self.view.frame.width, height: self.view.frame.height)
+        
+                }
+                else{
+        
+                    cell.newsImage.frame.size = CGSize(width: self.view.frame.width, height: self.view.frame.height/2)
+                }
+
+            }
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        currentIndex = Int (newsArticleTableView.contentOffset.x/newsArticleTableView.frame.size.width)
+//        let cell = newsArticleTableView.cellForItem(at: [0,currentIndex]) as! NewsArticlesCollectionViewCell
+//        if tittle[currentIndex] == "share"{
+//            
+//            cell.newsImage.frame.size = CGSize(width: self.view.frame.width, height: self.view.frame.height-80)
+//            
+//        }
+//        else{
+//            
+//            cell.newsImage.frame.size = CGSize(width: self.view.frame.width, height: self.view.frame.height/2)
+//        }
+//        
+//    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.view.frame.width, height: self.view.frame.height-20)

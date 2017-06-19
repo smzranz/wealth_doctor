@@ -25,4 +25,19 @@ class NewsArticlesCollectionViewCell: UICollectionViewCell {
     @IBOutlet var likeBtn: UIButton!
     @IBOutlet var gdpLabel: UILabel!
     @IBOutlet var askBtn: UIButton!
+    
+    func loadItem(string: String) {
+    
+    if string == "share"{
+    
+    imageViewheignt.constant = UIScreen.main.bounds.height-100
+    
+    }
+    else{
+    
+    imageViewheignt.constant = UIScreen.main.bounds.height/2
+    
+    }
+    }
+
 }
