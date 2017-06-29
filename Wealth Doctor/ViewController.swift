@@ -318,7 +318,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         cell.likeBtn.layer.borderWidth = 1
         cell.likeBtn.layer.masksToBounds = true
          cell.likeBtn.tag = indexPath.row
-        
+        cell.newsContentLabel.sizeToFit()
         
         if tittle[indexPath.row] == "share"{
         
@@ -346,6 +346,13 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         cell.shareBtn.addTarget(self, action: #selector(share(sender:)), for: .touchUpInside)
         cell.newsContentLabel.text = content[indexPath.row]
         if likeCount.count>0{
+            if likeCount[indexPath.row] == "0"{
+                cell.likesCountLabel.isHidden = true
+            }else{
+                
+                cell.likesCountLabel.isHidden = false
+            
+            }
         cell.likesCountLabel.text = "\(likeCount[indexPath.row]) Likes"
         cell.tagBtn.layer.cornerRadius = 10
             cell.tagBtn.layer.borderColor = UIColor.lightGray.cgColor
@@ -571,15 +578,16 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         let buttonindex =  sender.tag
         if (sender.isSelected){
             print("unselected")
-            
-            DataBaseManager.shared.ExecuteCommand(query: "UPDATE NewsArticle SET like_status = 0 WHERE a_id=\(id[buttonindex]);")
+            let likeCount = Int(self.likeCount[buttonindex])!-1
+            DataBaseManager.shared.ExecuteCommand(query: "UPDATE NewsArticle SET like_status = 0 , like_count =\(likeCount) WHERE a_id=\(id[buttonindex]);")
             loadData()
             sender.isSelected = false
         }
         else{
             print("selected")
             print(buttonindex)
-            DataBaseManager.shared.ExecuteCommand(query: "UPDATE NewsArticle SET like_status = 1 WHERE a_id=\(id[buttonindex]);")
+            let likeCount = Int(self.likeCount[buttonindex])!+1
+            DataBaseManager.shared.ExecuteCommand(query: "UPDATE NewsArticle SET like_status = 1 , like_count =\(likeCount) WHERE a_id=\(id[buttonindex]);")
             print(id[buttonindex])
             loadData()
             sender.isSelected = true

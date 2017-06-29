@@ -9,6 +9,7 @@ import UIKit
 import UserNotifications
 import Flurry_iOS_SDK
 import Firebase
+import MessageUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -87,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // [END register_for_notifications]
         return true
     }
-    
+  
     // [START receive_message]
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         // If you are receiving a notification message while your app is in the background,

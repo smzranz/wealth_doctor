@@ -25,4 +25,9 @@ class NewsArticlesCollectionViewCell: UICollectionViewCell {
     @IBOutlet var likeBtn: UIButton!
     @IBOutlet var gdpLabel: UILabel!
     @IBOutlet var askBtn: UIButton!
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        newsContentLabel.sizeToFit()
+    }
 }
