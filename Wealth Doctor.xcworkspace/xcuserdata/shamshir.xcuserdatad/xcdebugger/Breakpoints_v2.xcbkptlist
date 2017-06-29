@@ -58,12 +58,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wealth Doctor/ViewController.swift"
-            timestampString = "520426645.195529"
+            timestampString = "520439346.003217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "941"
-            endingLineNumber = "941"
-            landmarkName = "greetings(mobile:last_id:first_id:daily_report:getNewPosts:)"
+            startingLineNumber = "940"
+            endingLineNumber = "940"
+            landmarkName = "ViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wealth Doctor/ViewController.swift"
+            timestampString = "520439346.003217"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "937"
+            endingLineNumber = "937"
+            landmarkName = "update()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,12 +90,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wealth Doctor/ViewController.swift"
-            timestampString = "520426645.195529"
+            timestampString = "520439346.003217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "938"
-            endingLineNumber = "938"
-            landmarkName = "greetings(mobile:last_id:first_id:daily_report:getNewPosts:)"
+            startingLineNumber = "904"
+            endingLineNumber = "904"
+            landmarkName = "showAnimationLeftToRight()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -90,12 +106,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wealth Doctor/ViewController.swift"
-            timestampString = "520426645.195529"
+            timestampString = "520439346.003217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "905"
-            endingLineNumber = "905"
-            landmarkName = "greetings(mobile:last_id:first_id:daily_report:getNewPosts:)"
+            startingLineNumber = "912"
+            endingLineNumber = "912"
+            landmarkName = "showAnimationRightToLeft()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -106,12 +122,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wealth Doctor/ViewController.swift"
-            timestampString = "520426645.195529"
+            timestampString = "520439346.003217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "913"
-            endingLineNumber = "913"
-            landmarkName = "greetings(mobile:last_id:first_id:daily_report:getNewPosts:)"
+            startingLineNumber = "910"
+            endingLineNumber = "910"
+            landmarkName = "showAnimationRightToLeft()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -122,27 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wealth Doctor/ViewController.swift"
-            timestampString = "520426645.195529"
+            timestampString = "520439346.003217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "911"
-            endingLineNumber = "911"
-            landmarkName = "greetings(mobile:last_id:first_id:daily_report:getNewPosts:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wealth Doctor/ViewController.swift"
-            timestampString = "520426645.195529"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "962"
-            endingLineNumber = "962"
+            startingLineNumber = "961"
+            endingLineNumber = "961"
             landmarkName = "greetings(mobile:last_id:first_id:daily_report:getNewPosts:)"
             landmarkType = "7">
             <Locations>
@@ -442,12 +442,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wealth Doctor/ViewController.swift"
-            timestampString = "520426645.195529"
+            timestampString = "520439346.003217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "401"
-            endingLineNumber = "401"
-            landmarkName = "articleLoad(arttime:tag_id:)"
+            startingLineNumber = "400"
+            endingLineNumber = "400"
+            landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -458,13 +458,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wealth Doctor/ViewController.swift"
-            timestampString = "520426645.195529"
+            timestampString = "520439346.003217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "436"
-            endingLineNumber = "436"
-            landmarkName = "articleLoad(arttime:tag_id:)"
-            landmarkType = "7">
+            startingLineNumber = "435"
+            endingLineNumber = "435"
+            landmarkName = "ViewController"
+            landmarkType = "3">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
@@ -506,12 +506,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wealth Doctor/ViewController.swift"
-            timestampString = "520426645.195529"
+            timestampString = "520439346.003217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "409"
-            endingLineNumber = "409"
-            landmarkName = "articleLoad(arttime:tag_id:)"
+            startingLineNumber = "408"
+            endingLineNumber = "408"
+            landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

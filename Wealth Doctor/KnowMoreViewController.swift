@@ -44,6 +44,7 @@ var urlstring = ""
         myActivityIndicator.color = colorObject.getPrimaryColor()
         terms1.addSubview(myActivityIndicator)
           navigationController?.hidesBarsOnSwipe = false
+        navigationController?.isNavigationBarHidden = false
         print(urlstring)
         let networkStatus = Reeachability().connectionStatus()
         switch networkStatus {

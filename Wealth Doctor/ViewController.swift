@@ -10,10 +10,10 @@ import UIKit
 import Flurry_iOS_SDK
 import UserNotifications
 
-class ViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+class ViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIScrollViewDelegate {
     var loadFavorited : Bool = false
      var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
-    
+    var currentIndex : Int! = 0
     
     var newNewsClicked : Bool = false
     
@@ -32,7 +32,6 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     @IBOutlet weak var titleName: UIBarButtonItem!
     @IBOutlet weak var favoritedToolTip: PaddingLabel!
     @IBOutlet var refreshBtnOulet: UIBarButtonItem!
-    
     
      let name = UserDefaults.standard.value(forKey: "Name")
     let mobileNumber = UserDefaults.standard.value(forKey: "mobileverified")
@@ -245,7 +244,11 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                 items.append(KSGuideItem(sourceView: cell.favoriteBtn, text: "Click to favorite the Article"))
                 
                 items.append(KSGuideItem(sourceView: cell.shareBtn, text: "Share the Article"))
+                
+                if tag[0] == "0" {
+                }else{
                 items.append(KSGuideItem(sourceView: cell.tagBtn, text: "Ask us About Tag"))
+                }
                 items.append(KSGuideItem(sourceView: cell.knowMorebtn, text: "Click to Know more about the Article"))
                 items.append(KSGuideItem(sourceView:cell.askBtn , text: "Chat with our Siri"))
                 items.append(KSGuideItem(sourceView: cell.likeBtn, text: "Like the Article"))
@@ -318,6 +321,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         cell.likeBtn.layer.borderWidth = 1
         cell.likeBtn.layer.masksToBounds = true
          cell.likeBtn.tag = indexPath.row
+
         cell.newsContentLabel.sizeToFit()
         
         if tittle[indexPath.row] == "share"{
@@ -329,6 +333,20 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         
         cell.newsImage.frame.size = CGSize(width: self.view.frame.width, height: self.view.frame.height/2)
         }
+
+        if tittle[indexPath.row] == "share"{
+            
+            cell.imageViewheignt.constant = self.view.frame.height
+            
+        }
+        else{
+            
+            cell.imageViewheignt.constant = self.view.frame.height/2
+            
+        }
+        
+
+        
         cell.favoriteBtn.setTitle(tittle[indexPath.row], for: .normal)
           cell.favoriteBtn.setTitle(tittle[indexPath.row], for: .selected)
         cell.favoriteBtn.setTitleColor(UIColor.black, for: .normal)
@@ -389,6 +407,33 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! NewsArticlesCollectionViewCell
+                if tittle[indexPath.row] == "share"{
+        
+                    cell.newsImage.frame.size = CGSize(width: self.view.frame.width, height: self.view.frame.height)
+        
+                }
+                else{
+        
+                    cell.newsImage.frame.size = CGSize(width: self.view.frame.width, height: self.view.frame.height/2)
+                }
+
+            }
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        currentIndex = Int (newsArticleTableView.contentOffset.x/newsArticleTableView.frame.size.width)
+//        let cell = newsArticleTableView.cellForItem(at: [0,currentIndex]) as! NewsArticlesCollectionViewCell
+//        if tittle[currentIndex] == "share"{
+//            
+//            cell.newsImage.frame.size = CGSize(width: self.view.frame.width, height: self.view.frame.height-80)
+//            
+//        }
+//        else{
+//            
+//            cell.newsImage.frame.size = CGSize(width: self.view.frame.width, height: self.view.frame.height/2)
+//        }
+//        
+//    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.view.frame.width, height: self.view.frame.height-20)
@@ -1148,6 +1193,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         items.append(KSGuideItem(sourceView: cell.favoriteBtn, text: "Click to favorite the Article"))
         
         items.append(KSGuideItem(sourceView: cell.shareBtn, text: "Share the Article"))
+       // if
         items.append(KSGuideItem(sourceView: cell.tagBtn, text: "Ask us About Tag"))
         items.append(KSGuideItem(sourceView: cell.knowMorebtn, text: "Click to Know more about the Article"))
         items.append(KSGuideItem(sourceView:cell.askBtn , text: "Chat with our Siri"))
