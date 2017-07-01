@@ -105,12 +105,18 @@ var tittleLabel = [String]()
                 }
             }
         case 5 :
-            let mailComposeViewController = configuredMailComposeViewController()
-            if MFMailComposeViewController.canSendMail() {
-                self.window?.rootViewController?.present(mailComposeViewController, animated: true, completion: nil)
-            } else {
-                self.showSendMailErrorAlert()
-            }
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            let ViewController = storyboard.instantiateViewController(withIdentifier :"feedBackViewController") as! FeedBackViewController
+            
+            self.navigationController?.pushViewController(ViewController, animated: true)
+//            let mailComposeViewController = configuredMailComposeViewController()
+//            if MFMailComposeViewController.canSendMail() {
+//                self.window?.rootViewController?.present(mailComposeViewController, animated: true, completion: nil)
+//            } else {
+//                self.showSendMailErrorAlert()
+//            }
             
 
         case 6 :

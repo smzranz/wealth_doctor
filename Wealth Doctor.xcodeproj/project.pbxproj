@@ -10,6 +10,7 @@
 		1FFBC521FB3A055F495DFB84 /* Pods_Wealth_DoctorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B86C813944F50BEA67481DB /* Pods_Wealth_DoctorTests.framework */; };
 		3FD906FC5B2FCFBE3E99E3E5 /* Pods_Wealth_DoctorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50EE19117689EA6F46B58056 /* Pods_Wealth_DoctorUITests.framework */; };
 		512749591ED8483D00892333 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 512749581ED8483D00892333 /* GoogleService-Info.plist */; };
+		514E05A71F07B1E900C32AB0 /* FeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514E05A61F07B1E900C32AB0 /* FeedBackViewController.swift */; };
 		515C61F91EC9A7B800C97F70 /* TipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515C61F81EC9A7B800C97F70 /* TipsViewController.swift */; };
 		516219621EDBDC4C0082156E /* ChangeMobileOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516219611EDBDC4C0082156E /* ChangeMobileOTPViewController.swift */; };
 		516377FB1EB05298003EB293 /* DotsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516377FA1EB05298003EB293 /* DotsLoader.swift */; };
@@ -118,6 +119,7 @@
 		436B177EE1A863DA4A87D67C /* Pods-Wealth DoctorUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wealth DoctorUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wealth DoctorUITests/Pods-Wealth DoctorUITests.release.xcconfig"; sourceTree = "<group>"; };
 		50EE19117689EA6F46B58056 /* Pods_Wealth_DoctorUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wealth_DoctorUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		512749581ED8483D00892333 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		514E05A61F07B1E900C32AB0 /* FeedBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedBackViewController.swift; sourceTree = "<group>"; };
 		515C61F81EC9A7B800C97F70 /* TipsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsViewController.swift; sourceTree = "<group>"; };
 		516219611EDBDC4C0082156E /* ChangeMobileOTPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeMobileOTPViewController.swift; sourceTree = "<group>"; };
 		516377FA1EB05298003EB293 /* DotsLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotsLoader.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				516F768A1EAF10A900D34C43 /* ProfileViewController.swift */,
 				C31C996C1EAE7DBB00E4040D /* WelcomePageViewController.swift */,
 				C31C996E1EAE7DD500E4040D /* UsagePageViewController.swift */,
+				514E05A61F07B1E900C32AB0 /* FeedBackViewController.swift */,
 				C3A90B311E6C293200703389 /* ChatViewController.swift */,
 				515C61F81EC9A7B800C97F70 /* TipsViewController.swift */,
 				C3EBD1D51E65FB0300E22661 /* SettingsPageVIewController.swift */,
@@ -879,6 +882,7 @@
 				C3BB32661E6F1E4F00DD3D44 /* IQKeyboardManagerConstantsInternal.swift in Sources */,
 				C37253C41E73EF3F00ED2A43 /* SDWebImageDecoder.m in Sources */,
 				C3BB32641E6F1E4F00DD3D44 /* IQUIWindow+Hierarchy.swift in Sources */,
+				514E05A71F07B1E900C32AB0 /* FeedBackViewController.swift in Sources */,
 				C37253C71E73EF3F00ED2A43 /* SDWebImageManager.m in Sources */,
 				C31C996F1EAE7DD500E4040D /* UsagePageViewController.swift in Sources */,
 				C37253CC1E73EF3F00ED2A43 /* UIImageView+HighlightedWebCache.m in Sources */,

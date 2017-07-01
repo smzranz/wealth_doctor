@@ -25,6 +25,7 @@ class State {
 }
 
 class VerifyOTPViewController: UIViewController, UITextFieldDelegate {
+
     let deviceID = UIDevice.current.identifierForVendor!.uuidString
     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     @IBOutlet var otpTxt: UITextField!
